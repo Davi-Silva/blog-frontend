@@ -5,7 +5,7 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:5000/user")
+    fetch("https://davi-silva-blog-backend.herokuapp.com/user")
       .then(res => res.json())
       .then(res => {
         console.log("res:", res);
