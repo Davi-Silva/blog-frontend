@@ -20,15 +20,15 @@ import history from "./history";
 function App() {
   return (
     <Router history={history}>
-      <Navbar />
-      <Route path="/" exact component={Homepage} />
-      <Route path="/admin" component={Admin} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
-      <Route path="/blog" component={BlogHome} />
-      <Route path="/about" component={About} />
       <UserProvider>
+        <Navbar />
+        <Route path="/" exact component={Homepage} />
+        <Route path="/admin" component={Admin} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/blog" component={BlogHome} />
+        <Route path="/about" component={About} />
         <Route path="/profile" component={Profile} />
       </UserProvider>
       <Footer />
