@@ -114,7 +114,7 @@ class Login extends Component {
                 <LoginButton
                   icon="google"
                   backgroundColor="#4285f4"
-                  endpoint="http://localhost:5000/auth/google"
+                  endpoint="https://davi-silva-blog-backend.herokuapp.com/auth/google"
                   providerName="Google"
                 ></LoginButton>
               </li>
@@ -122,7 +122,7 @@ class Login extends Component {
                 <LoginButton
                   icon="github"
                   backgroundColor="#333"
-                  endpoint="http://localhost:5000/auth/github"
+                  endpoint="https://davi-silva-blog-backend.herokuapp.com/auth/github"
                   providerName="Github"
                 ></LoginButton>
               </li>
@@ -130,7 +130,7 @@ class Login extends Component {
                 <LoginButton
                   icon="amazon"
                   backgroundColor="#f2a930"
-                  endpoint="http://localhost:5000/auth/amazon"
+                  endpoint="https://davi-silva-blog-backend.herokuapp.com/auth/amazon"
                   providerName="Amazon"
                 ></LoginButton>
               </li>
@@ -138,7 +138,7 @@ class Login extends Component {
                 <LoginButton
                   icon="facebook"
                   backgroundColor="#3a5797"
-                  endpoint="http://localhost:5000/auth/facebook"
+                  endpoint="https://davi-silva-blog-backend.herokuapp.com/auth/facebook"
                   providerName="Facebook"
                 ></LoginButton>
               </li>
