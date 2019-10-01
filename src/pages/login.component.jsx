@@ -126,14 +126,6 @@ class Login extends Component {
                   providerName="Github"
                 ></LoginButton>
               </li>
-              {/* <li style={{ listStyle: "none", margin: "5px 0px" }}>
-                <LoginButton
-                  icon="amazon"
-                  backgroundColor="#f2a930"
-                  endpoint="https://davi-silva-blog-backend.herokuapp.com/auth/amazon"
-                  providerName="Amazon"
-                ></LoginButton>
-              </li> */}
               <li style={{ listStyle: "none", margin: "5px 0px" }}>
                 <LoginButton
                   icon="facebook"
