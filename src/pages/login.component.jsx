@@ -134,6 +134,14 @@ class Login extends Component {
                   providerName="Facebook"
                 ></LoginButton>
               </li>
+              <li style={{ listStyle: "none", margin: "5px 0px" }}>
+                <LoginButton
+                  icon="instagram"
+                  backgroundColor="#4285f4"
+                  endpoint="https://davi-silva-blog-backend.herokuapp.com/auth/instagram"
+                  providerName="Instagram"
+                ></LoginButton>
+              </li>
             </ul>
           </div>
         </div>
