@@ -5,15 +5,24 @@ class Navbar extends Component {
   styles = {
     navbar: {
       a: {
-        color: "#6345ba",
-        textDecoration: "none"
+        color: "#999",
+        textDecoration: "none",
+        fontWeight: "900",
+        fontSize: "13px",
+        textTransform: "uppercase",
+        letterSpacing: "2px",
+        ":hover": {
+          color: "#0058e4"
+        }
       },
       brand: {
-        color: "#6345ba",
-        fontWeight: "900"
+        color: "#0058e4",
+        fontWeight: "900",
+        textTransform: "uppercase",
+        letterSpacing: "1px"
       },
       toggleButton: {
-        color: "#6345ba"
+        color: "#0058e4"
       }
     }
   };

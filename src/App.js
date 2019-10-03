@@ -15,25 +15,25 @@ import BlogHome from "./pages/BlogHome";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import UserProvider from "./contexts/UserProvider";
-import history from "./history";
+// import history from "./history";
 
 function App() {
-	return (
-		<Router history={history}>
-			<UserProvider>
-				<Navbar />
-				<Route path="/" exact component={Homepage} />
-				<Route path="/admin" component={Admin} />
-				<Route path="/dashboard" component={Dashboard} />
-				<Route path="/login" component={Login} />
-				<Route path="/register" component={Register} />
-				<Route path="/blog" component={BlogHome} />
-				<Route path="/about" component={About} />
-				<Route path="/profile" component={Profile} />
-			</UserProvider>
-			<Footer />
-		</Router>
-	);
+  return (
+    <Router>
+      <UserProvider>
+        <Navbar />
+        <Route path="/" exact component={Homepage} />
+        <Route path="/admin" component={Admin} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/blog" component={BlogHome} />
+        <Route path="/about" component={About} />
+        <Route path="/profile" component={Profile} />
+      </UserProvider>
+      <Footer />
+    </Router>
+  );
 }
 
 export default App;

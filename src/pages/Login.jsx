@@ -8,7 +8,7 @@ import {
   A
 } from "../styled-components/forms.styled-components";
 
-import LoginButton from "../components/buttons/ThirdPartyLoginButton.component";
+import LoginButton from "../components/UI/buttons/ThirdPartyLoginButton.component";
 
 class Login extends Component {
   constructor(props) {

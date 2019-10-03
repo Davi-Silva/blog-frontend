@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import UserProvider from "../contexts/UserProvider";
 import Terminal from "../components/displays/Terminal";
 import Col from "../components/wrappers/Col";
-import DataTags from "../components/menus/DataTags";
+import DataTags from "../components/UI/menus/DataTags";
 import _ from "lodash";
 
 const LoginMsg =
@@ -24,7 +24,7 @@ const Profile = () => {
         {text}
       </p>
 
-      <Col className="col-4" style={{ verticalAlign: "top" }}>
+      <Col className="col-12" style={{ verticalAlign: "top" }}>
         <DataTags
           options={options}
           onClick={option => setSelected(option)}
