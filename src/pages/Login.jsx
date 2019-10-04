@@ -39,7 +39,7 @@ class Login extends Component {
   async loginUser(loginInfo) {
     // let response = await fetch("http://localhost:5000/users/login", {
     let response = await fetch(
-      "https://davi-silva-blog-backend.herokuapp.com/users/login",
+      "https://course-backend.herokuapp.com/users/login",
       {
         method: "POST",
         mode: "cors",
@@ -107,14 +107,14 @@ class Login extends Component {
           <div className="col-12 m-auto">
             <ul style={{ display: "table", margin: "0 auto" }}>
               {/* <LoginButton
-              endpoint="davi-silva-blog-backend.herokuapp.com/auth/google"
+              endpoint="course-backend.herokuapp.com/auth/google"
               providerName="Google"
 						></LoginButton> */}
               <li style={{ listStyle: "none", margin: "5px 0px" }}>
                 <LoginButton
                   icon="google"
                   backgroundColor="#4285f4"
-                  endpoint="https://davi-silva-blog-backend.herokuapp.com/auth/google"
+                  endpoint="https://course-backend.herokuapp.com/auth/google"
                   providerName="Google"
                 ></LoginButton>
               </li>
@@ -122,7 +122,7 @@ class Login extends Component {
                 <LoginButton
                   icon="github"
                   backgroundColor="#333"
-                  endpoint="https://davi-silva-blog-backend.herokuapp.com/auth/github"
+                  endpoint="https://course-backend.herokuapp.com/auth/github"
                   providerName="Github"
                 ></LoginButton>
               </li>
@@ -130,7 +130,7 @@ class Login extends Component {
                 <LoginButton
                   icon="facebook"
                   backgroundColor="#3a5797"
-                  endpoint="https://davi-silva-blog-backend.herokuapp.com/auth/facebook"
+                  endpoint="https://course-backend.herokuapp.com/auth/facebook"
                   providerName="Facebook"
                 ></LoginButton>
               </li>
@@ -138,7 +138,7 @@ class Login extends Component {
                 <LoginButton
                   icon="instagram"
                   backgroundColor="#4285f4"
-                  endpoint="https://davi-silva-blog-backend.herokuapp.com/auth/instagram"
+                  endpoint="https://course-backend.herokuapp.com/auth/instagram"
                   providerName="Instagram"
                 ></LoginButton>
               </li>
