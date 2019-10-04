@@ -7,15 +7,15 @@ import Portifolio from "./section/about/portifolio.component";
 import Blog from "./section/about/blog.component";
 
 function About(props) {
-	return (
-		<React.Fragment>
-			<Hero />
-			<WorkExperience />
-			<Skills />
-			<Portifolio />
-			<Blog />
-		</React.Fragment>
-	);
+  return (
+    <React.Fragment>
+      <Hero />
+      <WorkExperience />
+      <Skills />
+      <Portifolio />
+      <Blog />
+    </React.Fragment>
+  );
 }
 
 export default About;

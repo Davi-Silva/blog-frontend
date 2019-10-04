@@ -104,7 +104,7 @@ class Register extends Component {
           </Alert>
           <div className="form-container">
             <Header className="text-center mb-3">
-              <i className="fas fa-user-plus"></i> Register
+              <i className="fas fa-user-plus"></i> Sign Up
             </Header>
             <form onSubmit={this.onSubmit}>
               <Input

@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 
 class Podcast extends Component {
-	render() {
-		return (
-			<div>
-				<h1>Podcast</h1>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <h1>Podcast</h1>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Podcast;
