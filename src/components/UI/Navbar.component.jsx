@@ -37,28 +37,68 @@ class Navbar extends Component {
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <LinkA className="nav-link" to="/">
+                  <LinkA
+                    className="nav-link"
+                    to="/"
+                    onClick={() => {
+                      document
+                        .querySelector("#navbarResponsive")
+                        .classList.remove("show");
+                    }}
+                  >
                     Home
                     <span className="sr-only">(current)</span>
                   </LinkA>
                 </li>
                 <li className="nav-item">
-                  <LinkA className="nav-link" to="/blog">
+                  <LinkA
+                    className="nav-link"
+                    to="/blog"
+                    onClick={() => {
+                      document
+                        .querySelector("#navbarResponsive")
+                        .classList.remove("show");
+                    }}
+                  >
                     Blog
                   </LinkA>
                 </li>
                 <li className="nav-item">
-                  <LinkA className="nav-link" to="/courses">
+                  <LinkA
+                    className="nav-link"
+                    to="/courses"
+                    onClick={() => {
+                      document
+                        .querySelector("#navbarResponsive")
+                        .classList.remove("show");
+                    }}
+                  >
                     Courses
                   </LinkA>
                 </li>
                 <li className="nav-item">
-                  <LinkA className="nav-link" to="/podcast">
+                  <LinkA
+                    className="nav-link"
+                    to="/podcast"
+                    onClick={() => {
+                      document
+                        .querySelector("#navbarResponsive")
+                        .classList.remove("show");
+                    }}
+                  >
                     Podcast
                   </LinkA>
                 </li>
                 <li className="nav-item">
-                  <LinkA className="nav-link" to="/dashboard">
+                  <LinkA
+                    className="nav-link"
+                    to="/dashboard"
+                    onClick={() => {
+                      document
+                        .querySelector("#navbarResponsive")
+                        .classList.remove("show");
+                    }}
+                  >
                     Dashboard
                   </LinkA>
                 </li>
@@ -71,17 +111,38 @@ class Navbar extends Component {
                       email: "davi@davi.com",
                       created_on: "2019"
                     }}
+                    onClick={() => {
+                      document
+                        .querySelector("#navbarResponsive")
+                        .classList.remove("show");
+                    }}
                   >
                     Admin
                   </LinkA>
                 </li>
                 <li className="nav-item">
-                  <LinkA className="nav-link" to="/about">
+                  <LinkA
+                    className="nav-link"
+                    to="/about"
+                    onClick={() => {
+                      document
+                        .querySelector("#navbarResponsive")
+                        .classList.remove("show");
+                    }}
+                  >
                     About
                   </LinkA>
                 </li>
                 <li className="nav-item">
-                  <LinkA className="nav-link" to="/login">
+                  <LinkA
+                    className="nav-link"
+                    to="/login"
+                    onClick={() => {
+                      document
+                        .querySelector("#navbarResponsive")
+                        .classList.remove("show");
+                    }}
+                  >
                     Login
                   </LinkA>
                 </li>
@@ -90,6 +151,11 @@ class Navbar extends Component {
                     className="nav-link"
                     style={this.styles.signup}
                     to="/signup"
+                    onClick={() => {
+                      document
+                        .querySelector("#navbarResponsive")
+                        .classList.remove("show");
+                    }}
                   >
                     Sign Up
                   </LinkA>
