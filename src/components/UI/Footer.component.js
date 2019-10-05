@@ -11,7 +11,7 @@ class Footer extends Component {
             <div className="row">
               <div className="col-12">
                 <P>
-                  Developed by <A href="/">Davi Silva</A>
+                  Developed by <A to="/">Davi Silva</A>
                 </P>
               </div>
             </div>

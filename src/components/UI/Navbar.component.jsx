@@ -18,7 +18,7 @@ class Navbar extends Component {
   render() {
     return (
       <React.Fragment>
-        <nav className="navbar navbar-expand-sm">
+        <nav className="navbar navbar-expand-lg">
           <div className="container-fluid">
             <Brand className="navbar-brand" to="/">
               Name
