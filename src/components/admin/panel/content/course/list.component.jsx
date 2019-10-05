@@ -9,6 +9,7 @@ export default class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      category: "",
       title: "",
       date: "",
       description: "",
@@ -20,6 +21,7 @@ export default class List extends Component {
 
   componentDidMount() {
     this.setState({
+      category: this.props.category,
       title: this.props.title,
       date: this.props.date,
       description: this.props.description,
@@ -40,6 +42,16 @@ export default class List extends Component {
         >
           <div className="row">
             <div className="col-10">
+              <b
+                style={{
+                  color: "#999",
+                  marginBottom: "0px",
+                  float: "left",
+                  fontSize: "12px",
+                  lineHeight: "24px"
+                }}
+              >{`Course > ${this.state.category}`}</b>
+              <br />
               <h5
                 style={{
                   color: "#0058e4",
