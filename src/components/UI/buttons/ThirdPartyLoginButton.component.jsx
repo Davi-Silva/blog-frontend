@@ -33,7 +33,7 @@ export default class LoginButton extends Component {
           style={{
             color: "#fff",
             backgroundColor: `${this.state.backgroundColor}`,
-            padding: "10px 15px",
+            padding: "12px 30px",
             display: "inline-block",
             width: "100%",
             textAlign: "center",
@@ -41,8 +41,19 @@ export default class LoginButton extends Component {
             fontSize: "14px"
           }}
         >
-          Login with <i className={`fab fa-${this.state.icon}`}></i>{" "}
-          {this.state.providerName}
+          <div className="row">
+            <div className="col-2 p-0">
+              <i
+                className={`fab fa-${this.state.icon}`}
+                style={{ fontSize: "20px" }}
+              ></i>
+            </div>
+            <div className="col-10 p-0">
+              <span style={{ textDecoration: "none" }}>
+                Login with {this.state.providerName}
+              </span>
+            </div>
+          </div>
         </a>
       </React.Fragment>
     );

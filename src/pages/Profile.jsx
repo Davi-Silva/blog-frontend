@@ -32,7 +32,7 @@ const Profile = () => {
         />
       </Col>
 
-      <Col className="col-8">
+      <Col className="col-12">
         <Terminal userData={userData} selected={selected} />
       </Col>
       <div style={{ marginBottom: 20 }} />

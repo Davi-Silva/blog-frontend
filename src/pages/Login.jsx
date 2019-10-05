@@ -74,7 +74,7 @@ class Login extends Component {
     return (
       <div className="container">
         <div className="row m-5">
-          <div className="col-lg-3 col-md-6 col-sm-8 col-12 m-auto">
+          <div className="col-lg-4 col-md-6 col-sm-8 col-12 m-auto">
             <div className="form-container">
               <Header className="text-center mb-3">
                 <i className="fas fa-sign-in-alt"></i> Login
@@ -103,14 +103,13 @@ class Login extends Component {
                 No Account? <A href="/register">Register</A>
               </P>
             </div>
-          </div>
-          <div className="col-12 m-auto">
-            <ul style={{ display: "table", margin: "0 auto" }}>
-              {/* <LoginButton
-              endpoint="course-backend.herokuapp.com/auth/google"
-              providerName="Google"
-						></LoginButton> */}
-              <li style={{ listStyle: "none", margin: "5px 0px" }}>
+            <ul className="m-auto">
+              <li
+                style={{
+                  listStyle: "none",
+                  margin: "5px auto"
+                }}
+              >
                 <LoginButton
                   icon="google"
                   backgroundColor="#4285f4"
@@ -118,7 +117,12 @@ class Login extends Component {
                   providerName="Google"
                 ></LoginButton>
               </li>
-              <li style={{ listStyle: "none", margin: "5px 0px" }}>
+              <li
+                style={{
+                  listStyle: "none",
+                  margin: "5px auto"
+                }}
+              >
                 <LoginButton
                   icon="github"
                   backgroundColor="#333"
@@ -126,7 +130,12 @@ class Login extends Component {
                   providerName="Github"
                 ></LoginButton>
               </li>
-              <li style={{ listStyle: "none", margin: "5px 0px" }}>
+              <li
+                style={{
+                  listStyle: "none",
+                  margin: "5px auto"
+                }}
+              >
                 <LoginButton
                   icon="facebook"
                   backgroundColor="#3a5797"
@@ -134,7 +143,12 @@ class Login extends Component {
                   providerName="Facebook"
                 ></LoginButton>
               </li>
-              <li style={{ listStyle: "none", margin: "5px 0px" }}>
+              <li
+                style={{
+                  listStyle: "none",
+                  margin: "5px auto"
+                }}
+              >
                 <LoginButton
                   icon="instagram"
                   backgroundColor="#4285f4"
