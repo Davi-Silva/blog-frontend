@@ -104,6 +104,18 @@ export const Form = styled.form`
     &:focus {
       outline: none;
     }
+    @media (max-width: 373px) {
+      width: 180px;
+    }
+    @media (max-width: 323px) {
+      width: 140px;
+    }
+    @media (max-width: 293px) {
+      width: 120px;
+    }
+    @media (max-width: 257px) {
+      width: 100px;
+    }
   }
   button {
     background-color: transparent;

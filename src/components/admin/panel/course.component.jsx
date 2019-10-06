@@ -37,10 +37,10 @@ export default class CoursePanel extends Component {
         <header style={{ paddingBottom: "10px" }}>
           <H6>COURSE</H6>
           <div className="row">
-            <div className="col-8">
+            <div className="col-10">
               <SearcForm />
             </div>
-            <div className="col-4">
+            <div className="col-2">
               <Add to="/add/course">
                 <i className="fas fa-plus"></i>
               </Add>
