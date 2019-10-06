@@ -100,7 +100,7 @@ class Login extends Component {
                 <Button type="submit">Login</Button>
               </form>
               <P className="mt-1">
-                No Account? <A href="/register">Register</A>
+                No Account? <A to="/register">Register</A>
               </P>
             </div>
             <ul className="m-auto">
