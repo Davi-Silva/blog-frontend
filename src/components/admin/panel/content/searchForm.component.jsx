@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Form } from "../../../../../styled-components/admin.styled-components";
+import { Form } from "../../../../styled-components/admin.styled-components";
 
 export default class SearchForm extends Component {
   render() {

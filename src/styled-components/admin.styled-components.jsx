@@ -13,6 +13,8 @@ export const Panel = styled.div`
   padding: 20px;
   margin: 20px 30px;
   height: 400px;
+  box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
   @media (max-width: 768px) {
     margin: 15px 15px !important;
   }
@@ -31,7 +33,7 @@ export const Li = styled.li`
   }
 `;
 
-export const CourseButton = styled.button`
+export const ToggleButton = styled.button`
   background-color: transparent;
   border: none;
   width: 100%;
@@ -83,7 +85,7 @@ export const Main = styled.main`
 `;
 
 export const Expand = styled(Link)`
-  padding: 7px 20px;
+  padding: 20px;
   float: right;
   margin-right: 10px;
   color: #0058e4;
@@ -100,6 +102,7 @@ export const Form = styled.form`
   input {
     border: none;
     transition: all 0.2s ease-in-out;
+    padding-right: 10px;
     color: #999;
     &:focus {
       outline: none;

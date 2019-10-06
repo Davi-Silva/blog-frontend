@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 
 import {
-  CourseButton,
+  ToggleButton,
   Expand
-} from "../../../../../styled-components/admin.styled-components";
+} from "../../../../styled-components/admin.styled-components";
 
 export default class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      type: "",
       category: "",
       title: "",
       date: "",
@@ -21,6 +22,7 @@ export default class List extends Component {
 
   componentDidMount() {
     this.setState({
+      type: this.props.type,
       category: this.props.category,
       title: this.props.title,
       date: this.props.date,
@@ -33,7 +35,7 @@ export default class List extends Component {
   render() {
     return (
       <li style={{ margin: "15px 15px 15px 0" }}>
-        <CourseButton
+        <ToggleButton
           type="button"
           data-toggle="collapse"
           data-target={`#${this.props.liID}`}
@@ -50,7 +52,7 @@ export default class List extends Component {
                   fontSize: "12px",
                   lineHeight: "24px"
                 }}
-              >{`Course > ${this.state.category}`}</b>
+              >{`${this.state.type} > ${this.state.category}`}</b>
               <br />
               <h5
                 style={{
@@ -78,7 +80,7 @@ export default class List extends Component {
               </Expand>
             </div>
           </div>
-        </CourseButton>
+        </ToggleButton>
         <div
           className="collapse"
           id={this.state.liID}

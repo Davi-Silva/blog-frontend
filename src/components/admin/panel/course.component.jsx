@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import CourseContent from "./content/course/courseContent.component";
-import SearcForm from "./content/course/searchForm.component";
+import SearcForm from "./content/searchForm.component";
 
 import { Add } from "../../../styled-components/admin.styled-components";
 
