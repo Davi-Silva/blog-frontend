@@ -14,7 +14,7 @@ export default class PodcastContent extends Component {
 
 	async getAllPodcasts() {
 		let response = await fetch(
-			"https://course-frontend.herokuapp.com/podcasts/",
+			"https://course-backend.herokuapp.com/podcasts/",
 			{
 				method: "GET",
 				mode: "cors",
