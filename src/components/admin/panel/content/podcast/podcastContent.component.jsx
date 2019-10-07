@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import List from "../list.component";
 
-export default class CourseContent extends Component {
+export default class PodcastContent extends Component {
   podcasts = [
     {
       type: "Podcasts",

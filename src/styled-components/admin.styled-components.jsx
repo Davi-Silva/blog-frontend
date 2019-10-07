@@ -146,3 +146,33 @@ export const Add = styled(Link)`
     }
   }
 `;
+
+export const Edit = styled(Link)`
+  margin-right: 5px;
+  float: right;
+  border: none;
+  padding: 7px 14px;
+  background-color: #0058e4;
+  border-radius: 3px;
+  color: #fff;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+`;
+
+export const Delete = styled.button`
+  margin-left: 5px;
+  float: right;
+  border: none;
+  padding: 7px 14px;
+  background-color: #cc2222;
+  border-radius: 3px;
+  color: #fff;
+  &:focus {
+    outline: none;
+  }
+`;

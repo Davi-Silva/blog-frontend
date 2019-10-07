@@ -11,35 +11,24 @@ export default class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: "",
-      category: "",
-      title: "",
-      date: "",
+      settingName: "",
       description: "",
+      status: "",
       path: "",
-      liID: "",
-      editTo: ""
+      subSettings: null,
+      liID: ""
     };
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount() {
-    const type = this.props.type.toLowerCase();
-    const title = this.props.title
-      .toLowerCase()
-      .split(" ")
-      .join("-");
-    const editTo = `/edit/${type}/${title}`;
-
     this.setState({
-      type: this.props.type,
-      category: this.props.category,
-      title: this.props.title,
-      date: this.props.date,
+      settingName: this.props.settingName,
       description: this.props.description,
+      status: this.props.status,
       path: this.props.path,
-      liID: this.props.liID,
-      editTo: editTo
+      subSettings: this.props.subSettings,
+      liID: this.props.liID
     });
   }
 
@@ -55,16 +44,6 @@ export default class List extends Component {
         >
           <div className="row">
             <div className="col-10">
-              <b
-                style={{
-                  color: "#999",
-                  marginBottom: "0px",
-                  float: "left",
-                  fontSize: "12px",
-                  lineHeight: "24px"
-                }}
-              >{`${this.state.type} > ${this.state.category}`}</b>
-              <br />
               <h5
                 style={{
                   color: "#0058e4",
@@ -72,18 +51,12 @@ export default class List extends Component {
                   float: "left"
                 }}
               >
-                {this.state.title}
+                {this.state.settingName}
               </h5>
               <br />
-              <span
-                style={{
-                  color: "#999",
-                  fontSize: "14px",
-                  float: "left"
-                }}
-              >
-                {this.state.date}
-              </span>
+              <p style={{ color: "#999", float: "left" }}>
+                {this.state.description}
+              </p>
             </div>
             <div className="col-2">
               <Expand to={`/admin/course/${this.state.path}`}>
@@ -97,10 +70,10 @@ export default class List extends Component {
           id={this.state.liID}
           style={{ padding: "10px 10px 40px 10px" }}
         >
-          <strong style={{ color: "#666" }}>Description</strong>
-          <p style={{ color: "#999" }}>{this.state.description}</p>
-          <Delete>Delete</Delete>
-          <Edit to={this.state.editTo}>Edit</Edit>
+          {/* {this.state.subSettings.map(subSetting => {
+            return <p>{subSetting.settingName}</p>;
+          })} */}
+          {/* {this.state.subSettings} */}
         </div>
       </li>
     );

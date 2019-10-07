@@ -1,30 +1,24 @@
 import React, { Component } from "react";
 
+import SettingsContent from "./content/settings/settingsContent.component";
+
 import {
   H6,
   Panel,
-  Li,
-  Span
+  Main
 } from "../../../styled-components/admin.styled-components";
 
-export default class PodcastPanel extends Component {
+export default class SettingsPanel extends Component {
   render() {
     return (
       <Panel style={{ marginLeft: "13px", marginTop: "3px" }}>
-        <header>
+        <header style={{ paddingBottom: "10px" }}>
           <H6>SETTINGS</H6>
         </header>
         <section>
-          <header>
-            <ul>
-              <Li>CREATE</Li>
-              <Span>|</Span>
-              <Li>EDIT</Li>
-              <Span>|</Span>
-              <Li>OTHERS</Li>
-            </ul>
-          </header>
-          <main></main>
+          <Main>
+            <SettingsContent />
+          </Main>
         </section>
       </Panel>
     );
