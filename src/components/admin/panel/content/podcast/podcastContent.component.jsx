@@ -40,9 +40,6 @@ export default class PodcastContent extends Component {
 		const podcastsList = await this.getAllPodcasts();
 		console.log("data on did mount:", podcastsList);
 		await this.setStateAsync({ podcasts: podcastsList });
-		// this.setState({
-		// 	podcasts: podcastsList
-		// });
 		console.log("state podcasts:", this.state.podcasts);
 	}
 
