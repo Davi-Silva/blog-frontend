@@ -17,7 +17,7 @@ export default class PodcastContent extends Component {
 			"https://course-backend.herokuapp.com/podcasts/",
 			{
 				method: "GET",
-				mode: "cors",
+				mode: "no-cors",
 				cache: "no-cache",
 				credentials: "same-origin",
 				headers: {
