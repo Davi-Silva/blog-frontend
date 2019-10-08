@@ -13,8 +13,10 @@ export default class PodcastContent extends Component {
 	}
 
 	async getAllPodcasts() {
+		console.log("getAllPodcast");
 		let response = await fetch(
-			"https://course-backend.herokuapp.com/podcasts/",
+			// "https://course-backend.herokuapp.com/podcasts/",
+			"http://localhost:5000/podcasts/",
 			{
 				method: "GET",
 				mode: "cors",
