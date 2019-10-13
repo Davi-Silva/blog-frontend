@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import UploadField from "../components/UI/admin/UploadField.component";
+
 // import debounce from "lodash/debounce";
 
 import {
@@ -18,8 +20,6 @@ export default class UploadNewPodcast extends Component {
       title: "",
       description: "",
       tags: "",
-      filepath: "/path/to/the/file",
-      length: "5:35",
       isSlugValid: true,
       uploaded: null
     };
@@ -117,9 +117,7 @@ export default class UploadNewPodcast extends Component {
       category: this.state.category,
       title: this.state.title,
       description: this.state.description,
-      tags: this.state.tags,
-      filepath: this.state.filepath,
-      length: this.state.length
+      tags: this.state.tags
     };
     let isSlugValidRes = await this.verifySlug(this.state.slug);
     console.log("isSlugValidRes:", isSlugValidRes);
@@ -224,14 +222,7 @@ export default class UploadNewPodcast extends Component {
                 />
               </div>
               <div className="col-12">
-                <Input
-                  type="file"
-                  id="audio_file"
-                  name="audio_file"
-                  placeholder="Audio File"
-                  style={{ margin: "-4px auto 5px auto" }}
-                  required
-                />
+                <UploadField />
               </div>
               <div className="col-12">
                 <Button>Upload</Button>

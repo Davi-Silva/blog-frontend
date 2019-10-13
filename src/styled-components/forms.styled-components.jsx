@@ -17,6 +17,7 @@ export const Input = styled.input`
   :focus {
     border: 1px solid #0062ff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    outline: none;
   }
   ::placeholder {
     color: #a9a7ad;
@@ -37,6 +38,7 @@ export const TextArea = styled.textarea`
   :focus {
     border: 1px solid #0062ff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    outline: none;
   }
   ::placeholder {
     color: #a9a7ad;

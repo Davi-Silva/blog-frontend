@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const H6 = styled.h6`
@@ -220,4 +220,41 @@ export const Preview = styled.div`
   background-size: cover;
   background-position: 50% 50%;
   margin-right: 10px;
+`;
+
+const dragActive = css`
+  border-color: #78e5d5;
+`;
+
+const dragReject = css`
+  border-color: #e57878;
+`;
+
+export const DropContainer = styled.div.attrs({
+  className: "dropzone"
+})`
+  margin: -3px auto 6px auto;
+  border: 1px dashed #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: height 0.2s ease;
+  ${props => props.isDragActive && dragActive};
+  ${props => props.isDragReject && dragReject};
+  &:focus {
+    outline: none;
+  }
+`;
+
+const messageColors = {
+  default: "#999",
+  error: "#e57878",
+  success: "#78e5d5"
+};
+
+export const UploadMessage = styled.p`
+  display: flex;
+  color: ${props => messageColors[props.type || "default"]};
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
 `;
