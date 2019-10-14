@@ -147,7 +147,7 @@ export default class UploadNewPodcast extends Component {
   }
 
   async componentDidMount() {
-    const response = await api.get("/audio");
+    const response = await api.get("podcasts/upload/audio");
 
     this.setState({
       uploadedFiles: response.data.map(file => ({
@@ -197,7 +197,7 @@ export default class UploadNewPodcast extends Component {
     data.append("file", uploadedFile.file, uploadedFile.name);
 
     api
-      .post("/upload/audio", data, {
+      .post("podcasts/upload/audio", data, {
         onUploadProgress: e => {
           const progress = parseInt(Math.round((e.loaded * 100) / e.total));
 
@@ -221,7 +221,7 @@ export default class UploadNewPodcast extends Component {
   };
 
   handleDelete = async id => {
-    await api.delete(`/delete/audio/${id}`);
+    await api.delete(`podcasts/delete/audio/${id}`);
 
     this.setState({
       uploadedFiles: this.state.uploadedFiles.filter(file => file.id !== id)
