@@ -6,7 +6,8 @@ export default class PodcastContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      podcasts: []
+      podcasts: [],
+      formSubmitted: false
     };
 
     this.componentDidMount = this.componentDidMount(this);

@@ -262,4 +262,7 @@ export const UploadMessage = styled.p`
 export const AudioPlayer = styled.video`
   height: 45px;
   width: 300px;
+  &:focus {
+    outline: none;
+  }
 `;

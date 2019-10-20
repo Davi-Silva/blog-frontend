@@ -126,10 +126,14 @@ export default class UploadNewPodcast extends Component {
       title: this.state.title,
       description: this.state.description,
       tags: this.state.tags,
-      audio_file: this.state.uploadedFiles[0].id
+      audio_file: this.state.uploadedFiles[this.state.uploadedFiles.length - 1]
+        .id
     };
     console.log("podcast_info:", podcast_info);
-    console.log("uploadedFiles:", this.state.uploadedFiles[0].id);
+    console.log(
+      "uploadedFiles:",
+      this.state.uploadedFiles[this.state.uploadedFiles.length - 1].id
+    );
     let isSlugValidRes = await this.verifySlug(this.state.slug);
     console.log("isSlugValidRes:", isSlugValidRes);
     if (isSlugValidRes.valid) {
@@ -146,6 +150,7 @@ export default class UploadNewPodcast extends Component {
   async componentDidUpdate() {
     if (this.state.uploaded) {
       console.log("Podcast Uploaded");
+      this.props.history.push("/admin");
     }
   }
 
