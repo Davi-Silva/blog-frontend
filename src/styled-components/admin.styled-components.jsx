@@ -258,3 +258,8 @@ export const UploadMessage = styled.p`
   align-items: center;
   padding: 15px 0;
 `;
+
+export const AudioPlayer = styled.video`
+  height: 45px;
+  width: 300px;
+`;
