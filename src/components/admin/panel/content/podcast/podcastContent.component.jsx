@@ -9,7 +9,6 @@ export default class PodcastContent extends Component {
       podcasts: [],
       formSubmitted: false
     };
-
     this.componentDidMount = this.componentDidMount(this);
   }
 
