@@ -80,14 +80,14 @@ class Navbar extends Component {
                 <li className="nav-item">
                   <LinkA
                     className="nav-link"
-                    to="/podcast"
+                    to="/podcasts"
                     onClick={() => {
                       document
                         .querySelector("#navbarResponsive")
                         .classList.remove("show");
                     }}
                   >
-                    Podcast
+                    Podcasts
                   </LinkA>
                 </li>
                 <li className="nav-item">

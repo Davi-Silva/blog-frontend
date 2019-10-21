@@ -177,6 +177,14 @@ export const Delete = styled.button`
   }
 `;
 
+export const GoTo = styled(Link)`
+  color: #0058e4;
+  margin-left: 5px;
+  float: right;
+  border: none;
+  padding: 7px 14px;
+`;
+
 export const Container = styled.ul`
   margin-top: 20px;
   li {
@@ -257,12 +265,4 @@ export const UploadMessage = styled.p`
   justify-content: center;
   align-items: center;
   padding: 15px 0;
-`;
-
-export const AudioPlayer = styled.video`
-  height: 45px;
-  width: 300px;
-  &:focus {
-    outline: none;
-  }
 `;

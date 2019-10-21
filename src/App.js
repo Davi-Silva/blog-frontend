@@ -19,7 +19,9 @@ import CoursesCategories from "./pages/CoursesCategories";
 import CoursesCategory from "./pages/CoursesCategory";
 import CoursesList from "./pages/CoursesList";
 import Podcast from "./pages/Podcast";
+import Podcasts from "./pages/Podcasts";
 import UploadNewPodcast from "./pages/UploadNewPodcast";
+import PageNotFound from "./pages/PageNotFound";
 
 import UserProvider from "./contexts/UserProvider";
 // import history from "./history";
@@ -41,7 +43,9 @@ function App() {
 				<Route path="/courses/categories" component={CoursesCategories} />
 				<Route path="/courses/category" component={CoursesCategory} />
 				<Route path="/courses" component={CoursesList} />
-				<Route path="/podcast" component={Podcast} />
+				<Route exact path="/podcast/:slug" render={props => <Podcast {...props}/>} />
+				<Route exact path="/404" component={PageNotFound} />
+				<Route exact path="/podcasts" component={Podcasts} />
 				<Route path="/add/podcast" component={UploadNewPodcast} />
 			</UserProvider>
 			<Footer />

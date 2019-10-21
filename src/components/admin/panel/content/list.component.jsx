@@ -5,9 +5,11 @@ import {
   Expand,
   Edit,
   Delete,
-  AudioPlayer
+  GoTo
 } from "../../../../styled-components/admin.styled-components";
 // import { format } from "date-fns";
+
+import { AudioPlayer } from "../../../../styled-components/media_players.styled-component";
 
 export default class List extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ export default class List extends Component {
       title: "",
       date: "",
       description: "",
+      slug: "",
       audio_file_url: "",
       liID: "",
       editTo: ""
@@ -41,6 +44,7 @@ export default class List extends Component {
       title: this.props.title,
       date: this.props.date,
       description: this.props.description,
+      slug: this.props.slug,
       audio_file_url: this.props.path,
       liID: this.props.liID,
       editTo: editTo
@@ -106,8 +110,10 @@ export default class List extends Component {
           <AudioPlayer controls name="media">
             <source src={this.state.audio_file_url} type="audio/mp3" />
           </AudioPlayer>
+          <p>{this.state.audio_file_url}</p>
           <Delete>Delete</Delete>
           <Edit to={this.state.editTo}>Edit</Edit>
+          <GoTo to={`/podcast/${this.state.slug}`}>Podcast Page</GoTo>
         </div>
       </li>
     );

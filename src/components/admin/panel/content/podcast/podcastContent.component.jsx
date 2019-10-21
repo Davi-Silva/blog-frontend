@@ -39,12 +39,20 @@ export default class PodcastContent extends Component {
 
   async componentDidMount() {
     const podcastsList = await this.getAllPodcasts();
+    console.log("podcast:", podcastsList);
     await this.setStateAsync({ podcasts: podcastsList });
   }
 
   render() {
-    return (
-      <div style={{ height: "100%" }}>
+    let list;
+    if (this.state.podcasts.length == 0) {
+      list = (
+        <h6 style={{ color: "#999", textAlign: "center" }}>
+          No Podcasts yet...
+        </h6>
+      );
+    } else {
+      list = (
         <ul>
           {this.state.podcasts.map((podcast, key) => {
             return (
@@ -55,13 +63,15 @@ export default class PodcastContent extends Component {
                 title={podcast.title}
                 date={podcast.uploaded_on}
                 description={podcast.description}
+                slug={podcast.slug}
                 path={podcast.audio_file.url}
                 liID={`p-${key}`}
               />
             );
           })}
         </ul>
-      </div>
-    );
+      );
+    }
+    return <div style={{ height: "100%" }}>{list}</div>;
   }
 }
