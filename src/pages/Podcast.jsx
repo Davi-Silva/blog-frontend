@@ -60,7 +60,7 @@ export default class Podcast extends Component {
     return (
       <React.Fragment>
         <h1>{this.state.title}</h1>
-        <p>{this.state.description}</p>
+        {this.state.description}
         <AudioPlayer autoPlay controls name="podcast">
           <source src={this.state.audio_file_url} type="audio/mp3" />
           Your browser does not support this feature.

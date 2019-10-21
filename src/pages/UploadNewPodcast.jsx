@@ -10,6 +10,8 @@ import api from "../services/api";
 
 import Upload from "../components/UI/admin/UploadField.component";
 import FileList from "../components/UI/admin/FileList.component";
+import UploadCover from "../components/UI/admin/UploadFieldCover.component";
+import FileListCover from "../components/UI/admin/FileListCover.component";
 
 import {
   Input,
@@ -29,7 +31,8 @@ export default class UploadNewPodcast extends Component {
       tags: "",
       isSlugValid: true,
       uploaded: null,
-      uploadedFiles: []
+      uploadedFiles: [],
+      uploadedCovers: []
     };
     this.verifySlug = this.verifySlug.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
@@ -38,6 +41,7 @@ export default class UploadNewPodcast extends Component {
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeTags = this.onChangeTags.bind(this);
+    this.setGlobalVariable = this.setGlobalVariable.bind(this);
   }
 
   async verifySlug(slug) {
@@ -126,6 +130,9 @@ export default class UploadNewPodcast extends Component {
       title: this.state.title,
       description: this.state.description,
       tags: this.state.tags,
+      cover_img: this.state.uploadedCovers[
+        this.state.uploadedCovers.length - 1
+      ],
       audio_file: this.state.uploadedFiles[this.state.uploadedFiles.length - 1]
         .id
     };
@@ -133,6 +140,10 @@ export default class UploadNewPodcast extends Component {
     console.log(
       "uploadedFiles:",
       this.state.uploadedFiles[this.state.uploadedFiles.length - 1].id
+    );
+    console.log(
+      "uploadedCovers:",
+      this.state.uploadedCovers[this.state.uploadedCovers.length - 1].id
     );
     let isSlugValidRes = await this.verifySlug(this.state.slug);
     console.log("isSlugValidRes:", isSlugValidRes);
@@ -147,7 +158,29 @@ export default class UploadNewPodcast extends Component {
     }
   }
 
+  async setGlobalVariable() {
+    let bodyRequest = {
+      type: "podcasts",
+      title: this.state.title
+    };
+    let response = fetch("http://localhost:5000/podcasts/set/global-variable", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(bodyRequest)
+    });
+    // let data = await response.json();
+    return response;
+  }
+
   async componentDidUpdate() {
+    let res = await this.setGlobalVariable();
+
+    console.log("resolve:", res);
     if (this.state.uploaded) {
       console.log("Podcast Uploaded");
       this.props.history.push("/admin");
@@ -155,10 +188,22 @@ export default class UploadNewPodcast extends Component {
   }
 
   async componentDidMount() {
-    const response = await api.get("/podcasts/audio");
+    const responseAudioFile = await api.get("/podcasts/audio");
+    const responseCover = await api.get("/podcasts/audio");
 
     this.setState({
-      uploadedFiles: response.data.map(file => ({
+      uploadedFiles: responseAudioFile.data.map(file => ({
+        id: file._id,
+        name: file.name,
+        readableSize: filesize(file.size),
+        preview: file.url,
+        uploaded: true,
+        url: file.url
+      }))
+    });
+
+    this.setState({
+      uploadedCovers: responseCover.data.map(file => ({
         id: file._id,
         name: file.name,
         readableSize: filesize(file.size),
@@ -189,12 +234,42 @@ export default class UploadNewPodcast extends Component {
     uploadedFiles.forEach(this.processUpload);
   };
 
+  handleUploadCover = files => {
+    const uploadedCovers = files.map(file => ({
+      file,
+      id: uniqueId(),
+      name: file.name,
+      readableSize: filesize(file.size),
+      preview: URL.createObjectURL(file),
+      progress: 0,
+      uploaded: false,
+      error: false,
+      url: null
+    }));
+
+    this.setState({
+      uploadedCovers: this.state.uploadedCovers.concat(uploadedCovers)
+    });
+
+    uploadedCovers.forEach(this.processUploadCover);
+  };
+
   updateFile = (id, data) => {
     this.setState({
       uploadedFiles: this.state.uploadedFiles.map(uploadedFile => {
         return id === uploadedFile.id
           ? { ...uploadedFile, ...data }
           : uploadedFile;
+      })
+    });
+  };
+
+  updateFileCover = (id, data) => {
+    this.setState({
+      uploadedCovers: this.state.uploadedCovers.map(uploadedCover => {
+        return id === uploadedCover.id
+          ? { ...uploadedCover, ...data }
+          : uploadedCover;
       })
     });
   };
@@ -228,6 +303,35 @@ export default class UploadNewPodcast extends Component {
       });
   };
 
+  processUploadCover = uploadedCovers => {
+    const data = new FormData();
+
+    data.append("file", uploadedCovers.file, uploadedCovers.name);
+
+    api
+      .post("/podcasts/upload/cover", data, {
+        onUploadProgress: e => {
+          const progress = parseInt(Math.round((e.loaded * 100) / e.total));
+
+          this.updateFileCover(uploadedCovers.id, {
+            progress
+          });
+        }
+      })
+      .then(response => {
+        this.updateFileCover(uploadedCovers.id, {
+          uploaded: true,
+          id: response.data._id,
+          url: response.data.url
+        });
+      })
+      .catch(() => {
+        this.updateFileCover(uploadedCovers.id, {
+          error: true
+        });
+      });
+  };
+
   handleDelete = async id => {
     await api.delete(`/podcasts/delete/audio/${id}`);
 
@@ -236,12 +340,23 @@ export default class UploadNewPodcast extends Component {
     });
   };
 
+  handleDeleteCover = async id => {
+    await api.delete(`/podcasts/delete/cover/${id}`);
+
+    this.setState({
+      uploadedCovers: this.state.uploadedCovers.filter(file => file.id !== id)
+    });
+  };
+
   componentWillUnmount() {
     this.state.uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
+    this.state.uploadedCovers.forEach(file =>
+      URL.revokeObjectURL(file.preview)
+    );
   }
 
   render() {
-    const { uploadedFiles } = this.state;
+    const { uploadedFiles, uploadedCovers } = this.state;
     return (
       <React.Fragment>
         <div className="container" style={{ margin: "35px auto" }}>
@@ -323,6 +438,18 @@ export default class UploadNewPodcast extends Component {
                   onChange={this.onChangeDescription}
                   required
                 />
+              </div>
+              <div className="col-12">
+                {/* <UploadField /> */}
+                <div>
+                  <UploadCover onUpload={this.handleUploadCover} />
+                  {!!uploadedCovers.length && (
+                    <FileListCover
+                      files={uploadedCovers}
+                      onDelete={this.handleDeleteCover}
+                    />
+                  )}
+                </div>
               </div>
               <div className="col-12">
                 {/* <UploadField /> */}

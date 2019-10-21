@@ -45,7 +45,7 @@ export default class PodcastContent extends Component {
 
   render() {
     let list;
-    if (this.state.podcasts.length == 0) {
+    if (this.state.podcasts.length === 0) {
       list = (
         <h6 style={{ color: "#999", textAlign: "center" }}>
           No Podcasts yet...
