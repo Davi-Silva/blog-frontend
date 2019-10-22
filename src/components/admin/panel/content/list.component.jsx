@@ -194,8 +194,6 @@ export default class List extends Component {
           id={this.state.liID}
           style={{ padding: "10px 10px 40px 10px" }}
         >
-          {/* <strong style={{ color: "#666" }}>Description</strong> */}
-          {/* <p style={{ color: "#999" }}>{this.state.description}</p> */}
           <Delete onClick={this.onDeletePodcast}>Delete</Delete>
           <Edit to={this.state.editTo}>Edit</Edit>
           <GoTo to={`/podcast/${this.state.slug}`}>Podcast Page</GoTo>
