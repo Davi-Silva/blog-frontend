@@ -9,7 +9,7 @@ import {
 } from "../../../../styled-components/admin.styled-components";
 // import { format } from "date-fns";
 
-import { AudioPlayer } from "../../../../styled-components/media_players.styled-component";
+// import { AudioPlayer } from "../../../../styled-components/media_players.styled-component";
 
 export default class List extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class List extends Component {
       type: "",
       category: "",
       title: "",
-      date: "",
+      date: null,
       description: "",
       slug: "",
       audio_file_url: "",
@@ -26,6 +26,73 @@ export default class List extends Component {
       editTo: ""
     };
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.onDeletePodcast = this.onDeletePodcast.bind(this);
+    this.getPodcastBySlug = this.getPodcastBySlug.bind(this);
+  }
+
+  async getPodcastBySlug() {
+    console.log("slug:", this.state.slug);
+    let response = await fetch(
+      `http://localhost:5000/podcasts/get/${this.state.slug}`,
+      {
+        method: "GET",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+    let data = await response.json();
+    return data;
+  }
+
+  async onDeletePodcast() {
+    let podcast = await this.getPodcastBySlug();
+    podcast = podcast[0];
+    console.log("podcast.id:", podcast.id);
+    console.log("podcast.cover._id:", podcast.cover._id);
+    console.log("podcast.audio_file._id:", podcast.audio_file._id);
+    // await fetch(
+    //   `http://localhost:5000/podcasts/delete/audio/${podcast.cover._id}`,
+    //   {
+    //     method: "DELETE",
+    //     mode: "cors",
+    //     cache: "no-cache",
+    //     credentials: "same-origin",
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     }
+    //   }
+    // );
+    // await fetch(
+    //   `http://localhost:5000/podcasts/delete/cover/${podcast.audio_file._id}`,
+    //   {
+    //     method: "DELETE",
+    //     mode: "cors",
+    //     cache: "no-cache",
+    //     credentials: "same-origin",
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     }
+    //   }
+    // );
+    await fetch(`http://localhost:5000/podcasts/delete/${podcast.id}`, {
+      method: "DELETE",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  }
+
+  parseDate(input) {
+    var parts = input.match(/(\d+)/g);
+    // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+    return new Date(parts[0], parts[1] - 1, parts[2]); // months are 0-based
   }
 
   componentDidMount() {
@@ -38,11 +105,33 @@ export default class List extends Component {
 
     // const date = date;
 
+    let dateFormatted = this.parseDate(this.props.date);
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "may",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    let formattedDate =
+      months[dateFormatted.getMonth()] +
+      " " +
+      dateFormatted.getDate() +
+      " " +
+      dateFormatted.getFullYear();
+
     this.setState({
       type: this.props.type,
       category: this.props.category,
       title: this.props.title,
-      date: this.props.date,
+      date: formattedDate,
       description: this.props.description,
       slug: this.props.slug,
       audio_file_url: this.props.path,
@@ -105,13 +194,9 @@ export default class List extends Component {
           id={this.state.liID}
           style={{ padding: "10px 10px 40px 10px" }}
         >
-          <strong style={{ color: "#666" }}>Description</strong>
-          <p style={{ color: "#999" }}>{this.state.description}</p>
-          <AudioPlayer controls name="media">
-            <source src={this.state.audio_file_url} type="audio/mp3" />
-          </AudioPlayer>
-          <p>{this.state.audio_file_url}</p>
-          <Delete>Delete</Delete>
+          {/* <strong style={{ color: "#666" }}>Description</strong> */}
+          {/* <p style={{ color: "#999" }}>{this.state.description}</p> */}
+          <Delete onClick={this.onDeletePodcast}>Delete</Delete>
           <Edit to={this.state.editTo}>Edit</Edit>
           <GoTo to={`/podcast/${this.state.slug}`}>Podcast Page</GoTo>
         </div>

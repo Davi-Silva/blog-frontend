@@ -178,11 +178,22 @@ export const Delete = styled.button`
 `;
 
 export const GoTo = styled(Link)`
-  color: #0058e4;
-  margin-left: 5px;
+  color: #fff;
+  margin-right: 10px;
   float: right;
   border: none;
   padding: 7px 14px;
+  border-radius: 3px;
+  background-color: #ccc;
+  transition: all 0.3s ease-in-out;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #bbb;
+  }
 `;
 
 export const Container = styled.ul`

@@ -130,9 +130,7 @@ export default class UploadNewPodcast extends Component {
       title: this.state.title,
       description: this.state.description,
       tags: this.state.tags,
-      cover_img: this.state.uploadedCovers[
-        this.state.uploadedCovers.length - 1
-      ],
+      cover: this.state.uploadedCovers[this.state.uploadedCovers.length - 1].id,
       audio_file: this.state.uploadedFiles[this.state.uploadedFiles.length - 1]
         .id
     };
