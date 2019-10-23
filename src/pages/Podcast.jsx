@@ -115,7 +115,6 @@ export default class Podcast extends Component {
                 </UploadedOn>
                 <Title>{this.state.title}</Title>
                 <AudioPlayer
-                  autoPlay
                   controls
                   name="podcast"
                   style={{
