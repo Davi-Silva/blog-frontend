@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import List from "../components/admin/panel/content/list.component";
+import PodcastsList from "../components/UI/lists/PodcastsList.component";
 
 export default class Podcasts extends Component {
   constructor(props) {
@@ -49,7 +49,7 @@ export default class Podcasts extends Component {
               <ul>
                 {this.state.podcasts.map((podcast, key) => {
                   return (
-                    <List
+                    <PodcastsList
                       key={key}
                       type={podcast.type}
                       category={podcast.category}
@@ -57,6 +57,7 @@ export default class Podcasts extends Component {
                       date={podcast.uploaded_on}
                       description={podcast.description}
                       slug={podcast.slug}
+                      cover={podcast.cover.url}
                       path={podcast.audio_file.url}
                       liID={`p-${key}`}
                     />

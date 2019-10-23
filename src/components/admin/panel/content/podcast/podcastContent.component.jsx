@@ -62,6 +62,7 @@ export default class PodcastContent extends Component {
                 title={podcast.title}
                 date={podcast.uploaded_on}
                 description={podcast.description}
+                path={podcast.audio_file.url}
                 slug={podcast.slug}
                 liID={`p-${key}`}
               />

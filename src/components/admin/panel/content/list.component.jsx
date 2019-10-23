@@ -9,7 +9,7 @@ import {
 } from "../../../../styled-components/admin.styled-components";
 // import { format } from "date-fns";
 
-// import { AudioPlayer } from "../../../../styled-components/media_players.styled-component";
+import { AudioPlayer } from "../../../../styled-components/media_players.styled-component";
 
 export default class List extends Component {
   constructor(props) {
@@ -194,6 +194,18 @@ export default class List extends Component {
           id={this.state.liID}
           style={{ padding: "10px 10px 40px 10px" }}
         >
+          <AudioPlayer
+            autoPlay
+            controls
+            name="podcast"
+            style={{
+              width: "100%",
+              padding: "0px 25px"
+            }}
+          >
+            <source src={this.state.audio_file_url} type="audio/mp3" />
+            Your browser does not support this feature.
+          </AudioPlayer>
           <Delete onClick={this.onDeletePodcast}>Delete</Delete>
           <Edit to={this.state.editTo}>Edit</Edit>
           <GoTo to={`/podcast/${this.state.slug}`}>Podcast Page</GoTo>

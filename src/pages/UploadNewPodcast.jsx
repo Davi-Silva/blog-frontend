@@ -186,8 +186,10 @@ export default class UploadNewPodcast extends Component {
   }
 
   async componentDidMount() {
-    const responseAudioFile = await api.get("/podcasts/audio");
-    const responseCover = await api.get("/podcasts/audio");
+    const responseAudioFile = await api.get(
+      `/podcasts/audio/${this.state.title}`
+    );
+    const responseCover = await api.get(`/podcasts/cover/${this.state.title}`);
 
     this.setState({
       uploadedFiles: responseAudioFile.data.map(file => ({
