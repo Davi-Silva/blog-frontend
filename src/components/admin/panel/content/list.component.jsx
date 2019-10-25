@@ -17,6 +17,7 @@ export default class List extends Component {
 			title: "",
 			date: null,
 			description: "",
+			short_description: "",
 			slug: "",
 			audio_file_url: "",
 			liID: "",
@@ -124,12 +125,15 @@ export default class List extends Component {
 			" " +
 			dateFormatted.getFullYear();
 
+		const short_desc = this.props.description.split("\n");
+
 		this.setState({
 			type: this.props.type,
 			category: this.props.category,
 			title: this.props.title,
 			date: formattedDate,
 			description: this.props.description,
+			short_description: short_desc[0],
 			slug: this.props.slug,
 			audio_file_url: this.props.path,
 			liID: this.props.liID,
@@ -191,6 +195,10 @@ export default class List extends Component {
 					id={this.state.liID}
 					style={{ padding: "10px 10px 40px 10px" }}
 				>
+					<div
+						style={{ color: "#999" }}
+						dangerouslySetInnerHTML={{ __html: this.state.short_description }}
+					></div>
 					<Delete onClick={this.onDeletePodcast}>Delete</Delete>
 					<Edit to={this.state.editTo}>Edit</Edit>
 					<GoTo to={`/podcast/${this.state.slug}`}>Podcast Page</GoTo>
