@@ -123,10 +123,9 @@ export default class Podcast extends Component {
 										width: "100%",
 										padding: "0px 25px"
 									}}
-								>
-									<source src={this.state.audio_file_url} type="audio/mp3" />
-									Your browser does not support this feature.
-								</AudioPlayer>
+									src={this.state.audio_file_url}
+									type="audio/mp3"
+								/>
 								<Description
 									dangerouslySetInnerHTML={{ __html: this.state.description }}
 									style={{ textAlign: "justify" }}
