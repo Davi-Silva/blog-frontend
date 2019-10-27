@@ -30,6 +30,7 @@ export default class PodcastContent extends Component {
     return data;
   }
 
+
   setStateAsync(state) {
     return new Promise(resolve => {
       this.setState(state, resolve);
