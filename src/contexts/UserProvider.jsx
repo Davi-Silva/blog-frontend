@@ -5,8 +5,8 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    // fetch("https://course-backend.herokuapp.com/user")
-    fetch("http://localhost:5000/user")
+    fetch("https://course-backend.herokuapp.com/user")
+      // fetch("http://localhost:5000/user")
       .then(res => res.json())
       .then(res => {
         console.log("res:", res);

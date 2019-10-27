@@ -169,7 +169,7 @@ class Navbar extends Component {
                       window.location.href =
                         "http://localhost:5000/auth/logout";
                     }}
-                  // to="https://course-backend.herokuapp.com/auth/logout"
+                    // to="https://course-backend.herokuapp.com/auth/logout"
                   >
                     Logout
                   </LinkA>
