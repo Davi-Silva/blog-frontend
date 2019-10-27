@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, useContext, useState } from "react";
+import UserProvider from "../../contexts/UserProvider";
 
 import {
   NavBar,
@@ -7,8 +8,8 @@ import {
   ToggleButton
 } from "../../styled-components/navbar.styled-components";
 
-class Navbar extends Component {
-  styles = {
+const Navbar = () => {
+  const styles = {
     signup: {
       backgroundColor: "#0058e4",
       color: "#fff",
@@ -16,171 +17,183 @@ class Navbar extends Component {
     }
   };
 
-  render() {
-    return (
-      <React.Fragment>
-        <NavBar className="navbar navbar-expand-lg">
-          <div className="container-fluid">
-            <Brand className="navbar-brand" to="/">
-              Name
+
+  const [selected, setSelected] = useState("All");
+  const userData = useContext(UserProvider.context);
+
+  console.log("Navigator Bar userData:", userData)
+
+  return (
+    <React.Fragment>
+      <NavBar className="navbar navbar-expand-lg">
+        <div className="container-fluid">
+          <Brand className="navbar-brand" to="/">
+            Name
             </Brand>
-            <ToggleButton
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarResponsive"
-              aria-controls="navbarResponsive"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <i className="fas fa-bars"></i>
-            </ToggleButton>
-            <div className="collapse navbar-collapse" id="navbarResponsive">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/"
-                    onClick={() => {
-                      document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
-                    }}
-                  >
-                    Home
+          <ToggleButton
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i className="fas fa-bars"></i>
+          </ToggleButton>
+          <div className="collapse navbar-collapse" id="navbarResponsive">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/"
+                  onClick={() => {
+                    document
+                      .querySelector("#navbarResponsive")
+                      .classList.remove("show");
+                  }}
+                >
+                  Home
                     <span className="sr-only">(current)</span>
+                </LinkA>
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/blog"
+                  onClick={() => {
+                    document
+                      .querySelector("#navbarResponsive")
+                      .classList.remove("show");
+                  }}
+                >
+                  Blog
                   </LinkA>
-                </li>
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/blog"
-                    onClick={() => {
-                      document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
-                    }}
-                  >
-                    Blog
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/courses"
+                  onClick={() => {
+                    document
+                      .querySelector("#navbarResponsive")
+                      .classList.remove("show");
+                  }}
+                >
+                  Courses
                   </LinkA>
-                </li>
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/courses"
-                    onClick={() => {
-                      document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
-                    }}
-                  >
-                    Courses
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/podcasts"
+                  onClick={() => {
+                    document
+                      .querySelector("#navbarResponsive")
+                      .classList.remove("show");
+                  }}
+                >
+                  Podcasts
                   </LinkA>
-                </li>
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/podcasts"
-                    onClick={() => {
-                      document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
-                    }}
-                  >
-                    Podcasts
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/dashboard"
+                  onClick={() => {
+                    document
+                      .querySelector("#navbarResponsive")
+                      .classList.remove("show");
+                  }}
+                >
+                  Dashboard
                   </LinkA>
-                </li>
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/dashboard"
-                    onClick={() => {
-                      document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
-                    }}
-                  >
-                    Dashboard
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/admin"
+                  params={{
+                    name: "Davi Silva",
+                    email: "davi@davi.com",
+                    created_on: "2019"
+                  }}
+                  onClick={() => {
+                    document
+                      .querySelector("#navbarResponsive")
+                      .classList.remove("show");
+                  }}
+                >
+                  Admin
                   </LinkA>
-                </li>
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/admin"
-                    params={{
-                      name: "Davi Silva",
-                      email: "davi@davi.com",
-                      created_on: "2019"
-                    }}
-                    onClick={() => {
-                      document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
-                    }}
-                  >
-                    Admin
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/about"
+                  onClick={() => {
+                    document
+                      .querySelector("#navbarResponsive")
+                      .classList.remove("show");
+                  }}
+                >
+                  About
                   </LinkA>
-                </li>
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/about"
-                    onClick={() => {
-                      document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
-                    }}
-                  >
-                    About
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/login"
+                  onClick={() => {
+                    document
+                      .querySelector("#navbarResponsive")
+                      .classList.remove("show");
+                  }}
+                >
+                  Login
                   </LinkA>
-                </li>
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/login"
-                    onClick={() => {
-                      document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
-                    }}
-                  >
-                    Login
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  style={styles.signup}
+                  to="/signup"
+                  onClick={() => {
+                    document
+                      .querySelector("#navbarResponsive")
+                      .classList.remove("show");
+                  }}
+                >
+                  Sign Up
                   </LinkA>
-                </li>
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    style={this.styles.signup}
-                    to="/signup"
-                    onClick={() => {
-                      document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
-                    }}
-                  >
-                    Sign Up
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="//localhost:5000/auth/logout"
+                  onClick={() => {
+                    window.location.href =
+                      "http://localhost:5000/auth/logout";
+                  }}
+                // to="https://course-backend.herokuapp.com/auth/logout"
+                >
+                  Logout
                   </LinkA>
-                </li>
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="//localhost:5000/auth/logout"
-                    onClick={() => {
-                      window.location.href =
-                        "http://localhost:5000/auth/logout";
-                    }}
-                    // to="https://course-backend.herokuapp.com/auth/logout"
-                  >
-                    Logout
-                  </LinkA>
-                </li>
-              </ul>
-            </div>
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/login"
+                >
+                  {/* <img src={}/> */}
+                </LinkA>
+              </li>
+            </ul>
           </div>
-        </NavBar>
-      </React.Fragment>
-    );
-  }
+        </div>
+      </NavBar>
+    </React.Fragment>
+  );
 }
 
 export default Navbar;
