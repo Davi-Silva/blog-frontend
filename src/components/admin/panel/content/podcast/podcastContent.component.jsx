@@ -65,6 +65,8 @@ export default class PodcastContent extends Component {
                 path={podcast.audio_file.url}
                 slug={podcast.slug}
                 liID={`p-${key}`}
+                audio_file_id={podcast.audio_file._id}
+                cover_file_id={podcast.cover._id}
               />
             );
           })}

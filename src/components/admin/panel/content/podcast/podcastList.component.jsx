@@ -21,7 +21,9 @@ export default class List extends Component {
 			slug: "",
 			audio_file_url: "",
 			liID: "",
-			editTo: ""
+			editTo: "",
+			audio_file_id: "",
+			cover_file_id: ""
 		};
 		this.componentDidMount = this.componentDidMount.bind(this);
 		this.onDeletePodcast = this.onDeletePodcast.bind(this);
@@ -52,30 +54,30 @@ export default class List extends Component {
 		console.log("podcast.id:", podcast.id);
 		console.log("podcast.cover._id:", podcast.cover._id);
 		console.log("podcast.audio_file._id:", podcast.audio_file._id);
-		// await fetch(
-		//   `http://localhost:5000/podcasts/delete/audio/${podcast.cover._id}`,
-		//   {
-		//     method: "DELETE",
-		//     mode: "cors",
-		//     cache: "no-cache",
-		//     credentials: "same-origin",
-		//     headers: {
-		//       "Content-Type": "application/json"
-		//     }
-		//   }
-		// );
-		// await fetch(
-		//   `http://localhost:5000/podcasts/delete/cover/${podcast.audio_file._id}`,
-		//   {
-		//     method: "DELETE",
-		//     mode: "cors",
-		//     cache: "no-cache",
-		//     credentials: "same-origin",
-		//     headers: {
-		//       "Content-Type": "application/json"
-		//     }
-		//   }
-		// );
+		await fetch(
+			`http://localhost:5000/podcasts/delete/audio/${this.state.audio_file_id}`,
+			{
+				method: "DELETE",
+				mode: "cors",
+				cache: "no-cache",
+				credentials: "same-origin",
+				headers: {
+					"Content-Type": "application/json"
+				}
+			}
+		);
+		await fetch(
+			`http://localhost:5000/podcasts/delete/cover/${this.state.cover_file_id}`,
+			{
+				method: "DELETE",
+				mode: "cors",
+				cache: "no-cache",
+				credentials: "same-origin",
+				headers: {
+					"Content-Type": "application/json"
+				}
+			}
+		);
 		await fetch(`http://localhost:5000/podcasts/delete/${podcast.id}`, {
 			method: "DELETE",
 			mode: "cors",
@@ -100,6 +102,7 @@ export default class List extends Component {
 			.split(" ")
 			.join("-");
 		const editTo = `/edit/${type}/${title}`;
+
 
 		// const date = date;
 
@@ -126,6 +129,7 @@ export default class List extends Component {
 			dateFormatted.getFullYear();
 
 		const short_desc = this.props.description.split("\n");
+		console.log("audio_file_id:", this.props.audio_file_id)
 
 		this.setState({
 			type: this.props.type,
@@ -136,6 +140,8 @@ export default class List extends Component {
 			short_description: short_desc[0],
 			slug: this.props.slug,
 			audio_file_url: this.props.path,
+			audio_file_id: this.props.audio_file_id,
+			cover_file_id: this.props.cover_file_id,
 			liID: this.props.liID,
 			editTo: editTo
 		});

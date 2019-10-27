@@ -50,8 +50,8 @@ export default class List extends Component {
 		let podcast = await this.getPodcastBySlug();
 		podcast = podcast[0];
 		console.log("podcast.id:", podcast.id);
-		console.log("podcast.cover._id:", podcast.cover._id);
-		console.log("podcast.audio_file._id:", podcast.audio_file._id);
+		console.log("podcast.cover.id:", podcast.cover.id);
+		console.log("podcast.audio_file.id:", podcast.audio_file.id);
 		// await fetch(
 		//   `http://localhost:5000/podcasts/delete/audio/${podcast.cover._id}`,
 		//   {
