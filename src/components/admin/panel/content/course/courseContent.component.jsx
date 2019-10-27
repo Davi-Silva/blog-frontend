@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import List from "../list.component";
+import List from "../course/courseList.component";
 
 export default class CourseContent extends Component {
   courses = [

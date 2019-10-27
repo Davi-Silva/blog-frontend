@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import List from "../list.component";
+import List from "../blog/blogList.component";
 
 export default class BlogContent extends Component {
   posts = [

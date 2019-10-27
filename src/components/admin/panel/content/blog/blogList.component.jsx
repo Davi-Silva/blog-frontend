@@ -6,7 +6,7 @@ import {
 	Edit,
 	Delete,
 	GoTo
-} from "../../../../styled-components/admin.styled-components";
+} from "../../../../../styled-components/admin.styled-components";
 
 export default class List extends Component {
 	constructor(props) {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import List from "../list.component";
+import List from "./podcastList.component";
 
 export default class PodcastContent extends Component {
   constructor(props) {
