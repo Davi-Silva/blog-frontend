@@ -32,7 +32,8 @@ export default class UploadNewPodcast extends Component {
       isSlugValid: true,
       uploaded: null,
       uploadedFiles: [],
-      uploadedCovers: []
+      uploadedCovers: [],
+      allFieldsFilled: false
     };
     this.verifySlug = this.verifySlug.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
@@ -87,12 +88,27 @@ export default class UploadNewPodcast extends Component {
     });
   }
 
+  async disabledSubmitButton() {
+    if (this.state.category !== "" && this.state.title !== "" && this.state.tags !== "" && this.state.description !== "" && this.state.uploadedFiles.length > 0 && this.state.uploadedCovers.length > 0) {
+      await this.setStateAsync({
+        allFieldsFilled: true
+      });
+    } else {
+      await this.setStateAsync({
+        allFieldsFilled: false
+      })
+    }
+  }
+
   async onChangeTitle(e) {
     this.setStateAsync({
       title: e.target.value
     });
     setTimeout(() => {
       this.changeSlugFromTitle(this.state.title);
+    }, 0);
+    setTimeout(() => {
+      this.disabledSubmitButton();
     }, 0);
   }
 
@@ -108,18 +124,27 @@ export default class UploadNewPodcast extends Component {
     this.setStateAsync({
       category: e.target.value
     });
+    setTimeout(() => {
+      this.disabledSubmitButton();
+    }, 0);
   }
 
   async onChangeDescription(e) {
     this.setStateAsync({
       description: e.target.value
     });
+    setTimeout(() => {
+      this.disabledSubmitButton();
+    }, 0);
   }
 
   async onChangeTags(e) {
     this.setStateAsync({
       tags: e.target.value
     });
+    setTimeout(() => {
+      this.disabledSubmitButton();
+    }, 0);
   }
 
   async onSubmit(e) {
@@ -232,6 +257,9 @@ export default class UploadNewPodcast extends Component {
     });
 
     uploadedFiles.forEach(this.processUpload);
+    setTimeout(() => {
+      this.disabledSubmitButton();
+    }, 0);
   };
 
   handleUploadCover = files => {
@@ -252,6 +280,9 @@ export default class UploadNewPodcast extends Component {
     });
 
     uploadedCovers.forEach(this.processUploadCover);
+    setTimeout(() => {
+      this.disabledSubmitButton();
+    }, 0);
   };
 
   updateFile = (id, data) => {
@@ -439,7 +470,7 @@ export default class UploadNewPodcast extends Component {
                   required
                 />
               </div>
-              <div className="col-12">
+              <div className="col-lg-6 col-12" style={{ paddingRight: "3px" }}>
                 {/* <UploadField /> */}
                 <div>
                   <UploadCover onUpload={this.handleUploadCover} />
@@ -451,7 +482,7 @@ export default class UploadNewPodcast extends Component {
                   )}
                 </div>
               </div>
-              <div className="col-12">
+              <div className="col-lg-6 col-12" style={{ paddingLeft: "3px" }}>
                 {/* <UploadField /> */}
                 <div>
                   <Upload onUpload={this.handleUpload} />
@@ -464,7 +495,7 @@ export default class UploadNewPodcast extends Component {
                 </div>
               </div>
               <div className="col-12">
-                <Button>Upload</Button>
+                <Button disabled={!this.state.allFieldsFilled}>Upload</Button>
               </div>
             </div>
           </form>
