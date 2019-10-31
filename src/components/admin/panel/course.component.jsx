@@ -38,7 +38,7 @@ export default class CoursePanel extends Component {
           <H6>COURSE</H6>
           <div className="row">
             <div className="col-10">
-              <SearcForm />
+              <SearcForm media="courses" />
             </div>
             <div className="col-2">
               <Add to="/add/course">

@@ -38,7 +38,7 @@ export default class PodcastPanel extends Component {
           <H6>PODCAST</H6>
           <div className="row">
             <div className="col-10">
-              <SearcForm />
+              <SearcForm media="podcasts" />
             </div>
             <div className="col-2">
               <Add to="/add/podcast">

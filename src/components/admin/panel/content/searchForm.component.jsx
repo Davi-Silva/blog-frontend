@@ -33,7 +33,7 @@ export default class SearchForm extends Component {
   async getAllPodcasts() {
     let response = await fetch(
       // "https://course-backend.herokuapp.com/podcasts/",
-      "http://localhost:5000/podcasts/",
+      `http://localhost:5000/${this.props.media}/`,
       {
         method: "GET",
         mode: "cors",
