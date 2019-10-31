@@ -21,6 +21,7 @@ import CoursesList from "./pages/CoursesList";
 import Podcast from "./pages/Podcast";
 import Podcasts from "./pages/Podcasts";
 import UploadNewPodcast from "./pages/UploadNewPodcast";
+import PublishBlogPost from "./pages/PublishBlogPost";
 import PageNotFound from "./pages/PageNotFound";
 
 import UserProvider from "./contexts/UserProvider";
@@ -51,6 +52,7 @@ function App() {
         <Route exact path="/404" component={PageNotFound} />
         <Route exact path="/podcasts" component={Podcasts} />
         <Route path="/add/podcast" component={UploadNewPodcast} />
+        <Route path="/add/blog-post" component={PublishBlogPost} />
       </UserProvider>
       <Footer />
     </Router>
