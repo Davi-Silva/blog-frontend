@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { P, A } from "../../styled-components/footer.styled-components";
+import { P, A } from "../../../styled-components/footer.styled-components";
 
 class Footer extends Component {
   render() {

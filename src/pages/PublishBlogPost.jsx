@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react'
 
 import {
   Input,
-  TextArea,
-  Button
+  // TextArea,
+  // Button
 } from "../styled-components/forms.styled-components";
 
 export default class PublishBlogPost extends Component {

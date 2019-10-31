@@ -1,25 +1,25 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js install
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.19.1/libexec/bin/yarn.js install
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
   1.19.1
 
 Node version: 
-  10.16.3
+  12.13.0
 
 Platform: 
-  linux x64
+  darwin x64
 
 Trace: 
-  SyntaxError: /home/davi/Documents/Dev/course/package.json: Unexpected token } in JSON at position 2
+  SyntaxError: /Users/seeds/Documents/Davi/Dev/course/package.json: Unexpected token { in JSON at position 141
       at JSON.parse (<anonymous>)
-      at /usr/share/yarn/lib/cli.js:1625:59
+      at /usr/local/Cellar/yarn/1.19.1/libexec/lib/cli.js:1625:59
       at Generator.next (<anonymous>)
-      at step (/usr/share/yarn/lib/cli.js:304:30)
-      at /usr/share/yarn/lib/cli.js:315:13
+      at step (/usr/local/Cellar/yarn/1.19.1/libexec/lib/cli.js:304:30)
+      at /usr/local/Cellar/yarn/1.19.1/libexec/lib/cli.js:315:13
 
 npm manifest: 
   {

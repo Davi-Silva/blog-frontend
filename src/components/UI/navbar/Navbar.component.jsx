@@ -5,7 +5,7 @@ import {
   LinkA,
   Brand,
   ToggleButton
-} from "../../styled-components/navbar.styled-components";
+} from "../../../styled-components/navbar.styled-components";
 
 class Navbar extends Component {
   styles = {

@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import Navbar from "./components/UI/Navbar.component";
-import Footer from "./components/UI/Footer.component";
+import Navbar from "./components/UI/navbar/Navbar.component";
+import Footer from "./components/UI/footer/Footer.component";
 
 import Admin from "./pages/Admin";
 import Homepage from "./pages/Homepage";
