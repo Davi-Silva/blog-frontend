@@ -452,6 +452,7 @@ export const PortifolioImg = styled.img`
 export const PortifolioTitle = styled.h5`
   color: #0058e4;
   margin-top: 15px;
+  font-weight: 900;
 
   @media (max-width: 1199px) {
     font-size: 17px;
