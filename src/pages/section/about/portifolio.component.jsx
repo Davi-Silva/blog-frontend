@@ -11,7 +11,7 @@ import {
 
 import canadaecigs from "../../../static/img/canadaecigs.gif";
 
-function Protifolio() {
+export default function Protifolio() {
   return (
     <React.Fragment>
       <section className="container" style={{ marginTop: "30px auto" }}>
@@ -46,5 +46,3 @@ function Protifolio() {
     </React.Fragment>
   );
 }
-
-export default Protifolio;
