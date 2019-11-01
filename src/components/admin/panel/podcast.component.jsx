@@ -17,10 +17,17 @@ export default class PodcastPanel extends Component {
     this.state = {
       uploadPodcast: null,
       editPodcast: null,
-      others: null
+      others: null,
+      podcasts: []
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  setStateAsync(state) {
+    return new Promise(resolve => {
+      this.setState(state, resolve);
+    });
   }
 
   componentDidMount() {
