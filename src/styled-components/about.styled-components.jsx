@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // ###################
 // ###### HERO #######
@@ -428,51 +429,82 @@ export const PortifolioH3 = styled.h3`
   }
 `;
 
-export const PortifolioColumnLeft = styled.div`
-  overflow: hidden;
-  padding-right: 0px;
-`;
-
-export const PortifolioColumnRight = styled.div`
-  overflow: hidden;
-  padding-left: 0px;
-`;
-
-export const PortifolioDiv = styled.div`
-  width: 100%;
-  height: 400px;
-  // background-color: #0058e4;
-  box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.3);
-  margin: 15px 0;
-  overflow: hidden;
-
-  @media (max-width: 1199px) {
-    height: 380px;
-  }
-
-  @media (max-width: 991px) {
-    height: 320px;
-  }
-
-  @media (max-width: 991px) {
-    height: 250px;
-  }
-
-  @media (max-width: 440px) {
-    height: 200px;
-  }
-
-  @media (max-width: 320px) {
-    height: 170px;
+export const PortifolioItemContainer = styled(Link)`
+  display: block;
+  margin: 30px auto;
+  &:hover {
+    text-decoration: none;
   }
 `;
 
 export const PortifolioImg = styled.img`
   width: 100%;
   transition: all 0.2s ease-in-out;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+  display: block;
+  border-radius: 4px;
+  &:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  }
+`;
 
-  :hover {
-    transform: scale(1.1, 1.1);
+export const PortifolioTitle = styled.h5`
+  color: #0058e4;
+  margin-top: 15px;
+
+  @media (max-width: 1199px) {
+    font-size: 17px;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 15px;
+    margin-top: 3px;
+  }
+
+  @media (max-width: 768px) {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+  }
+`;
+
+export const PortifolioDescription = styled.p`
+  color: #999;
+  margin-top: 15px;
+  max-width: 500px;
+
+  @media (max-width: 1199px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 14px;
+    line-height: 19px;
+    margin: 5px 0;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 1.3rem;
+    text-align: center;
+    max-width: 100%;
+  }
+`;
+
+export const SeeMore = styled.span`
+  color: #0058e4;
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 1199px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    display: table;
+    margin: 0 auto;
   }
 `;
 
