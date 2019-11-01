@@ -1,30 +1,30 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
-import Navbar from "./components/UI/navbar/Navbar.component";
-import Footer from "./components/UI/footer/Footer.component";
+import Navbar from './components/UI/navbar/Navbar.component';
+import Footer from './components/UI/footer/Footer.component';
 
-import Admin from "./pages/Admin";
-import Homepage from "./pages/Homepage";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import Dashboard from "./pages/Dashboard";
-import BlogHome from "./pages/BlogHome";
-import About from "./pages/About";
-import Profile from "./pages/Profile";
-import Course from "./pages/Course";
-import CoursesCategories from "./pages/CoursesCategories";
-import CoursesCategory from "./pages/CoursesCategory";
-import CoursesList from "./pages/CoursesList";
-import Podcast from "./pages/Podcast";
-import Podcasts from "./pages/Podcasts";
-import UploadNewPodcast from "./pages/UploadNewPodcast";
-import PublishBlogPost from "./pages/PublishBlogPost";
-import PageNotFound from "./pages/PageNotFound";
+import Admin from './pages/Admin';
+import Homepage from './pages/Homepage';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Dashboard from './pages/Dashboard';
+import BlogHome from './pages/BlogHome';
+import About from './pages/About';
+import Profile from './pages/Profile';
+import Course from './pages/Course';
+import CoursesCategories from './pages/CoursesCategories';
+import CoursesCategory from './pages/CoursesCategory';
+import CoursesList from './pages/CoursesList';
+import Podcast from './pages/Podcast';
+import Podcasts from './pages/Podcasts';
+import UploadNewPodcast from './pages/UploadNewPodcast';
+import PublishBlogPost from './pages/PublishBlogPost';
+import PageNotFound from './pages/PageNotFound';
 
-import UserProvider from "./contexts/UserProvider";
+import UserProvider from './contexts/UserProvider';
 // import history from "./history";
 
 function App() {
@@ -47,7 +47,7 @@ function App() {
         <Route
           exact
           path="/podcast/:slug"
-          render={props => <Podcast {...props} />}
+          render={(props) => <Podcast {...props} />}
         />
         <Route exact path="/404" component={PageNotFound} />
         <Route exact path="/podcasts" component={Podcasts} />

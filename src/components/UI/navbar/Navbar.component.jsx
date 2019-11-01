@@ -1,24 +1,27 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 import {
   NavBar,
   LinkA,
   Brand,
-  ToggleButton
-} from "../../../styled-components/navbar.styled-components";
+  ToggleButton,
+} from '../../../styled-components/navbar.styled-components';
 
 class Navbar extends Component {
-  styles = {
-    signup: {
-      backgroundColor: "#0058e4",
-      color: "#fff",
-      borderRadius: "3px"
-    }
-  };
+  constructor(props) {
+    super(props);
+    this.styles = {
+      signup: {
+        backgroundColor: '#0058e4',
+        color: '#fff',
+        borderRadius: '3px',
+      },
+    };
+  }
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <NavBar className="navbar navbar-expand-lg">
           <div className="container-fluid">
             <Brand className="navbar-brand" to="/">
@@ -33,7 +36,7 @@ class Navbar extends Component {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <i className="fas fa-bars"></i>
+              <i className="fas fa-bars" />
             </ToggleButton>
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">
@@ -43,8 +46,8 @@ class Navbar extends Component {
                     to="/"
                     onClick={() => {
                       document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
+                        .querySelector('#navbarResponsive')
+                        .classList.remove('show');
                     }}
                   >
                     Home
@@ -57,8 +60,8 @@ class Navbar extends Component {
                     to="/blog"
                     onClick={() => {
                       document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
+                        .querySelector('#navbarResponsive')
+                        .classList.remove('show');
                     }}
                   >
                     Blog
@@ -70,8 +73,8 @@ class Navbar extends Component {
                     to="/courses"
                     onClick={() => {
                       document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
+                        .querySelector('#navbarResponsive')
+                        .classList.remove('show');
                     }}
                   >
                     Courses
@@ -83,8 +86,8 @@ class Navbar extends Component {
                     to="/podcasts"
                     onClick={() => {
                       document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
+                        .querySelector('#navbarResponsive')
+                        .classList.remove('show');
                     }}
                   >
                     Podcasts
@@ -96,8 +99,8 @@ class Navbar extends Component {
                     to="/dashboard"
                     onClick={() => {
                       document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
+                        .querySelector('#navbarResponsive')
+                        .classList.remove('show');
                     }}
                   >
                     Dashboard
@@ -108,14 +111,14 @@ class Navbar extends Component {
                     className="nav-link"
                     to="/admin"
                     params={{
-                      name: "Davi Silva",
-                      email: "davi@davi.com",
-                      created_on: "2019"
+                      name: 'Davi Silva',
+                      email: 'davi@davi.com',
+                      created_on: '2019',
                     }}
                     onClick={() => {
                       document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
+                        .querySelector('#navbarResponsive')
+                        .classList.remove('show');
                     }}
                   >
                     Admin
@@ -127,8 +130,8 @@ class Navbar extends Component {
                     to="/about"
                     onClick={() => {
                       document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
+                        .querySelector('#navbarResponsive')
+                        .classList.remove('show');
                     }}
                   >
                     About
@@ -140,8 +143,8 @@ class Navbar extends Component {
                     to="/login"
                     onClick={() => {
                       document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
+                        .querySelector('#navbarResponsive')
+                        .classList.remove('show');
                     }}
                   >
                     Login
@@ -154,8 +157,8 @@ class Navbar extends Component {
                     to="/signup"
                     onClick={() => {
                       document
-                        .querySelector("#navbarResponsive")
-                        .classList.remove("show");
+                        .querySelector('#navbarResponsive')
+                        .classList.remove('show');
                     }}
                   >
                     Sign Up
@@ -166,8 +169,7 @@ class Navbar extends Component {
                     className="nav-link"
                     to="//localhost:5000/auth/logout"
                     onClick={() => {
-                      window.location.href =
-                        "http://localhost:5000/auth/logout";
+                      window.location.href = 'http://localhost:5000/auth/logout';
                     }}
                     // to="https://course-backend.herokuapp.com/auth/logout"
                   >
@@ -178,7 +180,7 @@ class Navbar extends Component {
             </div>
           </div>
         </NavBar>
-      </React.Fragment>
+      </>
     );
   }
 }

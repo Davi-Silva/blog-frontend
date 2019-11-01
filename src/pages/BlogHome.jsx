@@ -1,20 +1,24 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class BlogHome extends Component {
-  styles = {
-    main: {
-      padding: "15px 0"
-    },
-    container: {
-      border: "1px solid rgba(0,0,0,0.1)",
-      zIndex: 3,
-      backgroundColor: "rgba(0,0,0,0.05)"
-    }
-  };
+  constructor(props) {
+    super(props);
+
+    this.styles = {
+      main: {
+        padding: '15px 0',
+      },
+      container: {
+        border: '1px solid rgba(0,0,0,0.1)',
+        zIndex: 3,
+        backgroundColor: 'rgba(0,0,0,0.05)',
+      },
+    };
+  }
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <main className="main" style={this.styles.main}>
           <div className="container">
             <div className="row">
@@ -31,7 +35,7 @@ class BlogHome extends Component {
             </div>
           </div>
         </main>
-      </React.Fragment>
+      </>
     );
   }
 }

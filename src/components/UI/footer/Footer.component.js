@@ -1,25 +1,25 @@
-import React, { Component } from "react";
+import React from 'react';
 
-import { P, A } from "../../../styled-components/footer.styled-components";
+import { P, A } from '../../../styled-components/footer.styled-components';
 
-class Footer extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <footer>
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <P>
-                  Developed by <A to="/">Davi Silva</A>
-                </P>
-              </div>
+function Footer() {
+  return (
+    <>
+      <footer>
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <P>
+                  Developed by
+                {' '}
+                <A to="/">Davi Silva</A>
+              </P>
             </div>
           </div>
-        </footer>
-      </React.Fragment>
-    );
-  }
+        </div>
+      </footer>
+    </>
+  );
 }
 
 export default Footer;
