@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled(Link)`
 	border-radius: 8px;
@@ -8,6 +8,7 @@ export const Wrapper = styled(Link)`
 	margin: 20px auto;
 	display: block;
 	overflow: hidden;
+	padding-bottom: 10px;
 	transition: all 0.2s ease-in-out;
 	&:hover {
 		text-decoration: none;

@@ -1,25 +1,27 @@
-import React from "react";
-import { CircularProgressbar } from "react-circular-progressbar";
-import { MdCheckCircle, MdError, MdLink } from "react-icons/md";
+/* eslint-disable react/prop-types */
+import React from 'react';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
 
 import {
   Container,
   FileInfo,
-  Preview
-} from "../../../styled-components/admin.styled-components";
+  Preview,
+} from '../../../styled-components/admin.styled-components';
 
 const FileList = ({ files, onDelete }) => (
   <Container>
-    {files.map(uploadedFile => (
+    {files.map((uploadedFile) => (
       <li key={uploadedFile.id}>
         <FileInfo>
           <Preview src={uploadedFile.preview} />
           <div>
             <strong>{uploadedFile.name}</strong>
             <span>
-              {uploadedFile.readableSize}{" "}
+              {uploadedFile.readableSize}
+              {' '}
               {!!uploadedFile.url && (
-                <button onClick={() => onDelete(uploadedFile.id)}>
+                <button type="button" onClick={() => onDelete(uploadedFile.id)}>
                   Delete
                 </button>
               )}
@@ -32,7 +34,7 @@ const FileList = ({ files, onDelete }) => (
             <CircularProgressbar
               styles={{
                 root: { width: 24 },
-                path: { stroke: "#7159c1" }
+                path: { stroke: '#0058e4' },
               }}
               strokeWidth={10}
               percentage={uploadedFile.progress}

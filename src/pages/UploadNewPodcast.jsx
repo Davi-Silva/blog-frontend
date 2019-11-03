@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { uniqueId } from 'lodash';
-import filesize from 'filesize';
+import { uniqueId } from "lodash";
+import filesize from "filesize";
 
-import api from '../services/api';
+import api from "../services/api";
 
 // import GlobalStyle from "./styles/global";
 // import { Container, Content } from "./styles";
 
-import Upload from '../components/UI/admin/UploadField.component';
-import FileList from '../components/UI/admin/FileList.component';
-import UploadCover from '../components/UI/admin/UploadFieldCover.component';
-import FileListCover from '../components/UI/admin/FileListCover.component';
+import Upload from "../components/UI/admin/UploadField.component";
+import FileList from "../components/UI/admin/FileList.component";
+import UploadCover from "../components/UI/admin/UploadFieldCover.component";
+import FileListCover from "../components/UI/admin/FileListCover.component";
 
 import {
   Input,
   TextArea,
-  Button,
-} from '../styled-components/forms.styled-components';
+  Button
+} from "../styled-components/forms.styled-components";
 
 export default class UploadNewPodcast extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: '',
-      slug: '',
-      category: '',
-      title: '',
-      description: '',
-      tags: '',
+      id: "",
+      slug: "",
+      category: "",
+      title: "",
+      description: "",
+      tags: "",
       isSlugValid: true,
       uploaded: null,
       uploadedFiles: [],
       uploadedCovers: [],
-      allFieldsFilled: false,
+      allFieldsFilled: false
     };
-    // this.verifySlug = this.verifySlug.bind(this);
+    this.verifySlug = this.verifySlug.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.changeSlugFromTitle = this.changeSlugFromTitle.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
@@ -43,98 +43,66 @@ export default class UploadNewPodcast extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeTags = this.onChangeTags.bind(this);
     this.setGlobalVariable = this.setGlobalVariable.bind(this);
-    this.handleUpload = this.handleUpload.bind(this);
-  }
-
-  setStateAsync(state) {
-    return new Promise((resolve) => {
-      this.setState(state, resolve);
-    });
-  }
-
-  async setGlobalVariable() {
-    const bodyRequest = {
-      type: 'podcasts',
-      title: this.state.title,
-    };
-    const response = fetch('http://localhost:5000/podcasts/set/global-variable', {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(bodyRequest),
-    });
-    // let data = await response.json();
-    return response;
-  }
-
-  componentWillUnmount() {
-    this.state.uploadedFiles.forEach((file) => URL.revokeObjectURL(file.preview));
-    this.state.uploadedCovers.forEach((file) => URL.revokeObjectURL(file.preview));
   }
 
   async verifySlug(slug) {
-    const response = await fetch(
+    let response = await fetch(
       // `https://course-backend.herokuapp.com/podcasts/get/${}`,
       `http://localhost:5000/podcasts/validation/slug/${slug}`,
       {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
+        method: "GET",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
         headers: {
-          'Content-Type': 'application/json',
-        },
-      },
+          "Content-Type": "application/json"
+        }
+      }
     );
-    const data = await response.json();
+    let data = await response.json();
     return data;
   }
 
   async uploadPodcast(podcast) {
-    const response = await fetch(
+    let response = await fetch(
       // `https://course-backend.herokuapp.com/podcasts/get/${}`,
-      'http://localhost:5000/podcasts/upload',
+      "http://localhost:5000/podcasts/upload",
       {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(podcast),
-      },
+        body: JSON.stringify(podcast)
+      }
     );
-    const data = await response.json();
+    let data = await response.json();
     return data;
   }
 
+  setStateAsync(state) {
+    return new Promise(resolve => {
+      this.setState(state, resolve);
+    });
+  }
+
   async disabledSubmitButton() {
-    if (
-      this.state.category !== ''
-      && this.state.title !== ''
-      && this.state.tags !== ''
-      && this.state.description !== ''
-      && this.state.uploadedFiles.length > 0
-      && this.state.uploadedCovers.length > 0
-    ) {
+    if (this.state.category !== "" && this.state.title !== "" && this.state.tags !== "" && this.state.description !== "" && this.state.uploadedFiles.length > 0 && this.state.uploadedCovers.length > 0) {
       await this.setStateAsync({
-        allFieldsFilled: true,
+        allFieldsFilled: true
       });
     } else {
       await this.setStateAsync({
-        allFieldsFilled: false,
-      });
+        allFieldsFilled: false
+      })
     }
   }
 
   async onChangeTitle(e) {
     this.setStateAsync({
-      title: e.target.value,
+      title: e.target.value
     });
     setTimeout(() => {
       this.changeSlugFromTitle(this.state.title);
@@ -145,16 +113,16 @@ export default class UploadNewPodcast extends Component {
   }
 
   async changeSlugFromTitle() {
-    const slug = this.state.title
+    let slug = this.state.title
       .toLowerCase()
-      .split(' ')
-      .join('-');
+      .split(" ")
+      .join("-");
     await this.setStateAsync({ slug });
   }
 
   async onChangeCategory(e) {
     this.setStateAsync({
-      category: e.target.value,
+      category: e.target.value
     });
     setTimeout(() => {
       this.disabledSubmitButton();
@@ -163,7 +131,7 @@ export default class UploadNewPodcast extends Component {
 
   async onChangeDescription(e) {
     this.setStateAsync({
-      description: e.target.value,
+      description: e.target.value
     });
     setTimeout(() => {
       this.disabledSubmitButton();
@@ -172,7 +140,7 @@ export default class UploadNewPodcast extends Component {
 
   async onChangeTags(e) {
     this.setStateAsync({
-      tags: e.target.value,
+      tags: e.target.value
     });
     setTimeout(() => {
       this.disabledSubmitButton();
@@ -188,72 +156,91 @@ export default class UploadNewPodcast extends Component {
       description: this.state.description,
       tags: this.state.tags,
       cover: this.state.uploadedCovers[this.state.uploadedCovers.length - 1].id,
-      audio_file: this.state.uploadedFiles[this.state.uploadedFiles.length - 1]
-        .id,
+      audioFile: this.state.uploadedFiles[this.state.uploadedFiles.length - 1]
+        .id
     };
-    console.log('podcast_info:', podcast_info);
+    console.log("podcast_info:", podcast_info);
     console.log(
-      'uploadedFiles:',
-      this.state.uploadedFiles[this.state.uploadedFiles.length - 1].id,
+      "uploadedFiles:",
+      this.state.uploadedFiles[this.state.uploadedFiles.length - 1].id
     );
     console.log(
-      'uploadedCovers:',
-      this.state.uploadedCovers[this.state.uploadedCovers.length - 1].id,
+      "uploadedCovers:",
+      this.state.uploadedCovers[this.state.uploadedCovers.length - 1].id
     );
-    const isSlugValidRes = await this.verifySlug(this.state.slug);
-    console.log('isSlugValidRes:', isSlugValidRes);
+    let isSlugValidRes = await this.verifySlug(this.state.slug);
+    console.log("isSlugValidRes:", isSlugValidRes);
     if (isSlugValidRes.valid) {
-      const res = await this.uploadPodcast(podcast_info);
+      let res = await this.uploadPodcast(podcast_info);
       this.setStateAsync({
-        uploaded: res.uploaded,
+        uploaded: res.uploaded
       });
       console.log(res);
     } else {
-      console.log('Slug is invalid');
+      console.log("Slug is invalid");
     }
   }
 
-  async componentDidUpdate() {
-    const res = await this.setGlobalVariable();
+  async setGlobalVariable() {
+    let bodyRequest = {
+      type: "podcasts",
+      title: this.state.title
+    };
+    let response = fetch("http://localhost:5000/podcasts/set/global-variable", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(bodyRequest)
+    });
+    // let data = await response.json();
+    return response;
+  }
 
-    console.log('resolve:', res);
+  async componentDidUpdate() {
+    let res = await this.setGlobalVariable();
+
+    console.log("resolve:", res);
     if (this.state.uploaded) {
-      console.log('Podcast Uploaded');
-      this.props.history.push('/admin');
+      console.log("Podcast Uploaded");
+      this.props.history.push("/admin");
     }
   }
 
   async componentDidMount() {
     const responseAudioFile = await api.get(
-      `/podcasts/audio/${this.state.title}`,
+      `/podcasts/audio/${this.state.title}`
     );
     const responseCover = await api.get(`/podcasts/cover/${this.state.title}`);
 
     this.setState({
-      uploadedFiles: responseAudioFile.data.map((file) => ({
+      uploadedFiles: responseAudioFile.data.map(file => ({
         id: file._id,
         name: file.name,
         readableSize: filesize(file.size),
         preview: file.url,
         uploaded: true,
-        url: file.url,
-      })),
+        url: file.url
+      }))
     });
 
     this.setState({
-      uploadedCovers: responseCover.data.map((file) => ({
+      uploadedCovers: responseCover.data.map(file => ({
         id: file._id,
         name: file.name,
         readableSize: filesize(file.size),
         preview: file.url,
         uploaded: true,
-        url: file.url,
-      })),
+        url: file.url
+      }))
     });
   }
 
-  handleUpload(files) {
-    const uploadedFiles = files.map((file) => ({
+  handleUpload = files => {
+    const uploadedFiles = files.map(file => ({
       file,
       id: uniqueId(),
       name: file.name,
@@ -262,21 +249,21 @@ export default class UploadNewPodcast extends Component {
       progress: 0,
       uploaded: false,
       error: false,
-      url: null,
+      url: null
     }));
 
     this.setState({
-      uploadedFiles: this.state.uploadedFiles.concat(uploadedFiles),
+      uploadedFiles: this.state.uploadedFiles.concat(uploadedFiles)
     });
 
     uploadedFiles.forEach(this.processUpload);
     setTimeout(() => {
       this.disabledSubmitButton();
     }, 0);
-  }
+  };
 
-  handleUploadCover(files) {
-    const uploadedCovers = files.map((file) => ({
+  handleUploadCover = files => {
+    const uploadedCovers = files.map(file => ({
       file,
       id: uniqueId(),
       name: file.name,
@@ -285,119 +272,130 @@ export default class UploadNewPodcast extends Component {
       progress: 0,
       uploaded: false,
       error: false,
-      url: null,
+      url: null
     }));
 
     this.setState({
-      uploadedCovers: this.state.uploadedCovers.concat(uploadedCovers),
+      uploadedCovers: this.state.uploadedCovers.concat(uploadedCovers)
     });
 
     uploadedCovers.forEach(this.processUploadCover);
     setTimeout(() => {
       this.disabledSubmitButton();
     }, 0);
-  }
+  };
 
-  updateFile(id, data) {
+  updateFile = (id, data) => {
     this.setState({
-      uploadedFiles: this.state.uploadedFiles.map((uploadedFile) => (id === uploadedFile.id
-        ? { ...uploadedFile, ...data }
-        : uploadedFile)),
+      uploadedFiles: this.state.uploadedFiles.map(uploadedFile => {
+        return id === uploadedFile.id
+          ? { ...uploadedFile, ...data }
+          : uploadedFile;
+      })
     });
-  }
+  };
 
-  updateFileCover(id, data) {
+  updateFileCover = (id, data) => {
     this.setState({
-      uploadedCovers: this.state.uploadedCovers.map((uploadedCover) => (id === uploadedCover.id
-        ? { ...uploadedCover, ...data }
-        : uploadedCover)),
+      uploadedCovers: this.state.uploadedCovers.map(uploadedCover => {
+        return id === uploadedCover.id
+          ? { ...uploadedCover, ...data }
+          : uploadedCover;
+      })
     });
-  }
+  };
 
-  processUpload(uploadedFile) {
+  processUpload = uploadedFile => {
     const data = new FormData();
 
-    data.append('file', uploadedFile.file, uploadedFile.name);
+    data.append("file", uploadedFile.file, uploadedFile.name);
 
     api
-      .post('/podcasts/upload/audio', data, {
-        onUploadProgress: (e) => {
+      .post("/podcasts/upload/audio", data, {
+        onUploadProgress: e => {
           const progress = parseInt(Math.round((e.loaded * 100) / e.total));
 
           this.updateFile(uploadedFile.id, {
-            progress,
+            progress
           });
-        },
+        }
       })
-      .then((response) => {
+      .then(response => {
         this.updateFile(uploadedFile.id, {
           uploaded: true,
           id: response.data._id,
-          url: response.data.url,
+          url: response.data.url
         });
       })
       .catch(() => {
         this.updateFile(uploadedFile.id, {
-          error: true,
+          error: true
         });
       });
-  }
+  };
 
-  processUploadCover(uploadedCovers) {
+  processUploadCover = uploadedCovers => {
     const data = new FormData();
 
-    data.append('file', uploadedCovers.file, uploadedCovers.name);
+    data.append("file", uploadedCovers.file, uploadedCovers.name);
 
     api
-      .post('/podcasts/upload/cover', data, {
-        onUploadProgress: (e) => {
+      .post("/podcasts/upload/cover", data, {
+        onUploadProgress: e => {
           const progress = parseInt(Math.round((e.loaded * 100) / e.total));
 
           this.updateFileCover(uploadedCovers.id, {
-            progress,
+            progress
           });
-        },
+        }
       })
-      .then((response) => {
+      .then(response => {
         this.updateFileCover(uploadedCovers.id, {
           uploaded: true,
           id: response.data._id,
-          url: response.data.url,
+          url: response.data.url
         });
       })
       .catch(() => {
         this.updateFileCover(uploadedCovers.id, {
-          error: true,
+          error: true
         });
       });
-  }
+  };
 
-  async handleDelete(id) {
+  handleDelete = async id => {
     await api.delete(`/podcasts/delete/audio/${id}`);
 
     this.setState({
-      uploadedFiles: this.state.uploadedFiles.filter((file) => file.id !== id),
+      uploadedFiles: this.state.uploadedFiles.filter(file => file.id !== id)
     });
-  }
+  };
 
-  async handleDeleteCover(id) {
+  handleDeleteCover = async id => {
     await api.delete(`/podcasts/delete/cover/${id}`);
 
     this.setState({
-      uploadedCovers: this.state.uploadedCovers.filter((file) => file.id !== id),
+      uploadedCovers: this.state.uploadedCovers.filter(file => file.id !== id)
     });
+  };
+
+  componentWillUnmount() {
+    this.state.uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
+    this.state.uploadedCovers.forEach(file =>
+      URL.revokeObjectURL(file.preview)
+    );
   }
 
   render() {
-    const { uploadedFiles, uploadedCovers } = this.state;
+    const { uploadedFiles, uploadedCovers, title, slug, category, tags, description, allFieldsFilled } = this.state;
     return (
-      <>
-        <div className="container" style={{ margin: '35px auto' }}>
+      <React.Fragment>
+        <div className="container" style={{ margin: "35px auto" }}>
           <div className="row">
             <div className="col-12">
               <h6
                 className="text-center"
-                style={{ fontSize: '14px', color: '#999', fontWeight: '900' }}
+                style={{ fontSize: "14px", color: "#999", fontWeight: "900" }}
               >
                 UPLOAD NEW PODCAST
               </h6>
@@ -407,28 +405,28 @@ export default class UploadNewPodcast extends Component {
             <div className="row">
               <div
                 className="col-lg-6 col-md-6 col-sm-6 col-12"
-                style={{ paddingRight: '3px' }}
+                style={{ paddingRight: "3px" }}
               >
                 <Input
                   type="text"
                   id="title"
                   name="title"
                   placeholder="Title"
-                  value={this.state.title}
+                  value={title}
                   onChange={this.onChangeTitle}
                   required
                 />
               </div>
               <div
                 className="col-lg-6 col-md-6 col-sm-6 col-12"
-                style={{ paddingLeft: '3px' }}
+                style={{ paddingLeft: "3px" }}
               >
                 <Input
                   type="text"
                   id="Slug"
                   name="slug"
                   placeholder="Slug"
-                  value={this.state.slug}
+                  value={slug}
                   // onChange={this.onChangeTitle}
                   disabled
                   required
@@ -436,28 +434,28 @@ export default class UploadNewPodcast extends Component {
               </div>
               <div
                 className="col-lg-6 col-md-6 col-sm-6 col-12"
-                style={{ paddingRight: '3px' }}
+                style={{ paddingRight: "3px" }}
               >
                 <Input
                   type="text"
                   id="category"
                   name="category"
                   placeholder="Category"
-                  value={this.state.category}
+                  value={category}
                   onChange={this.onChangeCategory}
                   required
                 />
               </div>
               <div
                 className="col-lg-6 col-md-6 col-sm-6 col-12"
-                style={{ paddingLeft: '3px' }}
+                style={{ paddingLeft: "3px" }}
               >
                 <Input
                   type="text"
                   id="tags"
                   name="tags"
                   placeholder="Tags"
-                  value={this.state.tags}
+                  value={tags}
                   onChange={this.onChangeTags}
                   required
                 />
@@ -467,12 +465,12 @@ export default class UploadNewPodcast extends Component {
                   id="description"
                   name="description"
                   placeholder="Description"
-                  value={this.state.description}
+                  value={description}
                   onChange={this.onChangeDescription}
                   required
                 />
               </div>
-              <div className="col-lg-6 col-12" style={{ paddingRight: '3px' }}>
+              <div className="col-lg-6 col-12" style={{ paddingRight: "3px" }}>
                 {/* <UploadField /> */}
                 <div>
                   <UploadCover onUpload={this.handleUploadCover} />
@@ -484,7 +482,7 @@ export default class UploadNewPodcast extends Component {
                   )}
                 </div>
               </div>
-              <div className="col-lg-6 col-12" style={{ paddingLeft: '3px' }}>
+              <div className="col-lg-6 col-12" style={{ paddingLeft: "3px" }}>
                 {/* <UploadField /> */}
                 <div>
                   <Upload onUpload={this.handleUpload} />
@@ -497,12 +495,12 @@ export default class UploadNewPodcast extends Component {
                 </div>
               </div>
               <div className="col-12">
-                <Button disabled={!this.state.allFieldsFilled}>Upload</Button>
+                <Button disabled={!allFieldsFilled}>Upload</Button>
               </div>
             </div>
           </form>
         </div>
-      </>
+      </React.Fragment>
     );
   }
 }

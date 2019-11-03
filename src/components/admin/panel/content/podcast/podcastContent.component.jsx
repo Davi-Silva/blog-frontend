@@ -1,81 +1,78 @@
-import React, { Component } from "react";
+/* eslint-disable no-underscore-dangle */
+import React, { Component } from 'react';
 
-import List from "./podcastList.component";
+import List from './podcastList.component';
 
 export default class PodcastContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       podcasts: [],
-      formSubmitted: false
+      // formSubmitted: false,
     };
     this.componentDidMount = this.componentDidMount(this);
   }
 
-  async getAllPodcasts() {
-    let response = await fetch(
-      // "https://course-backend.herokuapp.com/podcasts/",
-      "http://localhost:5000/podcasts/",
-      {
-        method: "GET",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
-    );
-    let data = await response.json();
-    return data;
+  async componentDidMount() {
+    const podcastsList = await this.getAllPodcasts();
+    console.log('podcast:', podcastsList);
+    await this.setStateAsync({ podcasts: podcastsList });
   }
 
-
   setStateAsync(state) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       this.setState(state, resolve);
     });
   }
 
-  async componentDidMount() {
-    const podcastsList = await this.getAllPodcasts();
-    console.log("podcast:", podcastsList);
-    await this.setStateAsync({ podcasts: podcastsList });
+  async getAllPodcasts() {
+    this.response = await fetch(
+      // "https://course-backend.herokuapp.com/podcasts/",
+      'http://localhost:5000/podcasts/',
+      {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+    const data = await this.response.json();
+    return data;
   }
 
   render() {
     let list;
-    if (this.state.podcasts.length === 0) {
+    const { podcasts } = this.state;
+    if (podcasts.length === 0) {
       list = (
-        <h6 style={{ color: "#999", textAlign: "center" }}>
+        <h6 style={{ color: '#999', textAlign: 'center' }}>
           No Podcasts yet...
         </h6>
       );
     } else {
       list = (
         <ul>
-          {this.state.podcasts.map((podcast, key) => {
-            return (
-              <List
-                key={key}
-                type={podcast.type}
-                category={podcast.category}
-                title={podcast.title}
-                date={podcast.uploaded_on}
-                description={podcast.description}
-                path={podcast.audio_file.url}
-                slug={podcast.slug}
-                liID={`p-${key}`}
-                audio_file_id={podcast.audio_file._id}
-                cover_file_id={podcast.cover._id}
-              />
-            );
-          })}
+          {podcasts.map((podcast, key) => (
+            <List
+              key={podcast.id}
+              type={podcast.type}
+              category={podcast.category}
+              title={podcast.title}
+              date={podcast.uploadedOn}
+              description={podcast.description}
+              path={podcast.audioFile.url}
+              slug={podcast.slug}
+              liID={`p-${key}`}
+              audioFileId={podcast.audioFile._id}
+              coverFileId={podcast.cover._id}
+            />
+          ))}
         </ul>
       );
-
-
     }
-    return <div style={{ height: "100%" }}>{list}</div>;
+    return <div style={{ height: '100%' }}>{list}</div>;
   }
 }

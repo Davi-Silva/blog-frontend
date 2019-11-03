@@ -1,26 +1,29 @@
-import React, { Component } from "react";
+/* eslint-disable react/prop-types */
+import React, { Component } from 'react';
 
-import { ProfileContainerDiv } from "../../../styled-components/admin.styled-components";
+import { ProfileContainerDiv } from '../../../styled-components/admin.styled-components';
 
 export default class ProfileContainer extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			name: this.props.name,
-			email: this.props.email,
-			created_on: this.props.created_on
-		};
-	}
+  constructor(props) {
+    super(props);
+    const { name, email, created_on } = this.props;
+    this.state = {
+      name,
+      email,
+      created_on,
+    };
+  }
 
-	render() {
-		return (
-			<React.Fragment>
-				<ProfileContainerDiv>
-					<p>{this.state.name}</p>
-					<p>{this.state.email}</p>
-					<p>{this.state.created_on}</p>
-				</ProfileContainerDiv>
-			</React.Fragment>
-		);
-	}
+  render() {
+    const { name, email, created_on } = this.state;
+    return (
+      <>
+        <ProfileContainerDiv>
+          <p>{name}</p>
+          <p>{email}</p>
+          <p>{created_on}</p>
+        </ProfileContainerDiv>
+      </>
+    );
+  }
 }
