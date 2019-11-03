@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import CourseContent from "./content/course/courseContent.component";
-import SearcForm from "./content/searchForm.component";
-
-import { Add } from "../../../styled-components/admin.styled-components";
+import CourseContent from './content/course/courseContent.component';
+import SearcForm from './content/searchForm.component';
 
 import {
+  Add,
   H6,
   Panel,
-  Main
-} from "../../../styled-components/admin.styled-components";
+  Main,
+} from '../../../styled-components/admin.styled-components';
+
 
 export default class CoursePanel extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class CoursePanel extends Component {
     this.state = {
       createCourse: null,
       editCourse: null,
-      others: null
+      others: null,
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -27,14 +27,14 @@ export default class CoursePanel extends Component {
     this.setState({
       createCourse: true,
       editCourse: false,
-      others: false
+      others: false,
     });
   }
 
   render() {
     return (
-      <Panel style={{ marginRight: "13px" }}>
-        <header style={{ paddingBottom: "10px" }}>
+      <Panel style={{ marginRight: '13px' }}>
+        <header style={{ paddingBottom: '10px' }}>
           <H6>COURSE</H6>
           <div className="row">
             <div className="col-10">
@@ -42,7 +42,7 @@ export default class CoursePanel extends Component {
             </div>
             <div className="col-2">
               <Add to="/add/course">
-                <i className="fas fa-plus"></i>
+                <i className="fas fa-plus" />
               </Add>
             </div>
           </div>

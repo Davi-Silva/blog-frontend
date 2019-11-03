@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import PodcastContent from "./content/podcast/podcastContent.component";
-import SearcForm from "./content/searchForm.component";
-
-import { Add } from "../../../styled-components/admin.styled-components";
+import PodcastContent from './content/podcast/podcastContent.component';
+import SearcForm from './content/searchForm.component';
 
 import {
+  Add,
   H6,
   Panel,
-  Main
-} from "../../../styled-components/admin.styled-components";
+  Main,
+} from '../../../styled-components/admin.styled-components';
+
 
 export default class PodcastPanel extends Component {
   constructor(props) {
@@ -18,30 +18,31 @@ export default class PodcastPanel extends Component {
       uploadPodcast: null,
       editPodcast: null,
       others: null,
-      podcasts: []
+      podcasts: [],
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
-  }
-
-  setStateAsync(state) {
-    return new Promise(resolve => {
-      this.setState(state, resolve);
-    });
   }
 
   componentDidMount() {
     this.setState({
       uploadPodcast: true,
       editPodcast: false,
-      others: false
+      others: false,
+    });
+  }
+
+
+  setStateAsync(state) {
+    return new Promise((resolve) => {
+      this.setState(state, resolve);
     });
   }
 
   render() {
     return (
-      <Panel style={{ marginLeft: "13px" }}>
-        <header style={{ paddingBottom: "10px" }}>
+      <Panel style={{ marginLeft: '13px' }}>
+        <header style={{ paddingBottom: '10px' }}>
           <H6>PODCAST</H6>
           <div className="row">
             <div className="col-10">
@@ -49,7 +50,7 @@ export default class PodcastPanel extends Component {
             </div>
             <div className="col-2">
               <Add to="/add/podcast">
-                <i className="fas fa-plus"></i>
+                <i className="fas fa-plus" />
               </Add>
             </div>
           </div>

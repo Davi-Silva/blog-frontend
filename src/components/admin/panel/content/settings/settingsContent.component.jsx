@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import SettingsList from "../settingsList.component";
+import SettingsList from "./settingsList.component";
 
 export default class SettingsContent extends Component {
   settings = [
@@ -154,7 +154,7 @@ export default class SettingsContent extends Component {
     return (
       <div style={{ height: "100%" }}>
         <ul>
-          {this.settings.map((setting, key) => {
+          {this.settings.reverse().map((setting, key) => {
             return (
               <SettingsList
                 key={key}

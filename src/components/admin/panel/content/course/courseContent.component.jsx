@@ -82,7 +82,7 @@ export default class CourseContent extends Component {
     return (
       <div style={{ height: "100%" }}>
         <ul>
-          {this.courses.map((course, key) => {
+          {this.courses.reverse().map((course, key) => {
             return (
               <List
                 key={key}

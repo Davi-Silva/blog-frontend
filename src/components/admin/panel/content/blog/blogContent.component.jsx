@@ -82,7 +82,7 @@ export default class BlogContent extends Component {
     return (
       <div style={{ height: "100%" }}>
         <ul>
-          {this.posts.map((post, key) => {
+          {this.posts.reverse().map((post, key) => {
             return (
               <List
                 key={key}

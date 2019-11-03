@@ -12,7 +12,7 @@ body {
 
 body::-webkit-scrollbar {
 	height: 5px;
-	width: 10px;
+	width: 5px;
 }
 
 body::-webkit-scrollbar-track {
@@ -24,6 +24,25 @@ body::-webkit-scrollbar-thumb {
 }
 
 body::-webkit-scrollbar-thumb:hover {
+	background: #999;
+}
+
+textarea::-webkit-scrollbar {
+	height: 5px;
+	width: 5px;
+}
+
+textarea::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+textarea::-webkit-scrollbar-thumb {
+	background: #0058e4;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
 	background: #999;
 }
 

@@ -19,6 +19,7 @@ import CoursesCategories from './pages/CoursesCategories';
 import CoursesCategory from './pages/CoursesCategory';
 import CoursesList from './pages/CoursesList';
 import Podcast from './pages/Podcast';
+import EditPodcast from './pages/EditPodcast';
 import Podcasts from './pages/Podcasts';
 import UploadNewPodcast from './pages/UploadNewPodcast';
 import PublishBlogPost from './pages/PublishBlogPost';
@@ -48,6 +49,11 @@ function App() {
           exact
           path="/podcast/:slug"
           render={(props) => <Podcast {...props} />}
+        />
+        <Route
+          exact
+          path="/edit/podcast/:slug"
+          render={(props) => <EditPodcast {...props} />}
         />
         <Route exact path="/404" component={PageNotFound} />
         <Route exact path="/podcasts" component={Podcasts} />

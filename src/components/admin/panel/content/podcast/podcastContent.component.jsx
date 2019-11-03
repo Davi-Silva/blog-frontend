@@ -55,7 +55,7 @@ export default class PodcastContent extends Component {
     } else {
       list = (
         <ul>
-          {podcasts.map((podcast, key) => (
+          {podcasts.reverse().map((podcast, key) => (
             <List
               key={podcast.id}
               type={podcast.type}

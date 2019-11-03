@@ -147,6 +147,7 @@ export default class List extends Component {
     const {
       type, category, title, date, path, liID, shortDescription, slug, editTo,
     } = this.state;
+    const { description } = this.props;
     return (
       <li style={{ margin: '0px 15px 6px 0px' }}>
         <ToggleButton

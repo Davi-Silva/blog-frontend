@@ -50,7 +50,7 @@ export default class Podcasts extends Component {
           <div className="row">
             <div className="col-lg-9 col-md-9 col-sm-12 col-12">
               <ul>
-                {podcasts.map((podcast, key) => (
+                {podcasts.reverse().map((podcast, key) => (
                   <PodcastsList
                     key={key}
                     type={podcast.type}
