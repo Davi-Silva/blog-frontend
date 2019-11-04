@@ -39,7 +39,7 @@ export const Update = styled(Link)`
 	position: relative;
 	float: right;
 	margin-top: -35px;
-	margin-right: 25px
+	margin-right: 25px;
 	border: none;
 	z-index: 999999;
 	box-shadow: 0px 4px 7px rgba(0, 0, 0, .25);
