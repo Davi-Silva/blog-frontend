@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-	margin: 20px auto 0px auto;
+	margin: 0px auto 0px auto;
 	border-radius: 8px;
 	overflow: hidden;
 	box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.2);
@@ -52,8 +52,8 @@ export const Update = styled.button`
 	height: 65px;
 	width: 65px;
 	position: absolute;
-	right: 0;
-	top: 0;
+	right: 10px;
+	top: -5px;
 	border: none;
 	box-shadow: 0px 4px 7px rgba(0, 0, 0, .25);
 	transition: all .2s ease-in-out;
