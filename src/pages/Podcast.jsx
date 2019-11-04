@@ -7,6 +7,7 @@ import {
   Title,
   Description,
   UploadedOn,
+  Update,
 } from '../styled-components/podcast.styled-components';
 
 import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
@@ -99,6 +100,8 @@ export default class Podcast extends Component {
     const {
       cover, coverAlt, uploadedOn, title, audioFileUrl, description,
     } = this.state;
+    const { match } = this.props;
+    const { slug } = match.params;
     return (
       <>
         <div className="container">
@@ -110,6 +113,9 @@ export default class Podcast extends Component {
                   alt={coverAlt}
                   style={{ width: '100%' }}
                 />
+                <Update to={`/edit/podcast/${slug}`}>
+                  <i className="fas fa-edit" />
+                </Update>
                 <UploadedOn>
 Uploaded on&nbsp;
                   <span style={{ color: '#0058e4' }}>{uploadedOn}</span>
