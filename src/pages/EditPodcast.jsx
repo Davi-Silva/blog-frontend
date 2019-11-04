@@ -174,7 +174,7 @@ export default class EditPodcast extends Component {
     const coverUrl = cover;
     return (
       <>
-        <div className="container" style={{ margin: '35px auto' }}>
+        <div className="container">
           <div className="row">
             <div className="col-lg-9 col-md-9 col-sm-12 col-12">
               <form onSubmit={this.onSubmit} method="POST">
