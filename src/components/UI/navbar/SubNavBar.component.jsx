@@ -11,7 +11,6 @@ export default class SubNavBar extends Component {
     this.state = {
       containerClassName: '',
     };
-
     this.componentDidMount = this.componentDidMount.bind(this);
     this.listenScrollEvent = this.listenScrollEvent.bind(this);
   }
