@@ -15,6 +15,7 @@ class Navbar extends Component {
         backgroundColor: '#0058e4',
         color: '#fff',
         borderRadius: '3px',
+        padding: '10px',
       },
     };
   }

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import PodcastsList from '../components/UI/lists/PodcastsList.component';
 import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
 
+import SubNavBar from '../components/UI/navbar/SubNavBar.component';
+
 export default class Podcasts extends Component {
   constructor(props) {
     super(props);
@@ -46,6 +48,7 @@ export default class Podcasts extends Component {
 
     return (
       <>
+        <SubNavBar media="Podcasts" category="" title="" />
         <div className="container">
           <div className="row">
             <div className="col-lg-9 col-md-9 col-sm-12 col-12">

@@ -11,14 +11,17 @@ import {
 } from '../styled-components/podcast.styled-components';
 
 import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
+import SubNavBar from '../components/UI/navbar/SubNavBar.component';
 
 export default class Podcast extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      category: '',
       title: '',
       description: '',
       uploadedOn: null,
+      updatedOn: null,
       audioFileUrl: null,
       cover: null,
       coverAlt: '',
@@ -33,7 +36,7 @@ export default class Podcast extends Component {
     const podcast = await this.getPodcastBySlug();
     if (podcast.length > 0) {
       const {
-        slug, title, description, uploadedOn, audioFile, cover,
+        slug, category, title, description, uploadedOn, updatedOn, audioFile, cover,
       } = podcast[0];
       const dateFormatted = this.parseDate(uploadedOn);
       const months = [
@@ -51,15 +54,33 @@ export default class Podcast extends Component {
         'December',
       ];
       const formattedDate = `${months[dateFormatted.getMonth()]} ${dateFormatted.getDate()} ${dateFormatted.getFullYear()}`;
-      await this.setStateAsync({
-        slug,
-        title,
-        description,
-        uploadedOn: formattedDate,
-        audioFileUrl: audioFile.url,
-        cover: cover.url,
-        coverAlt: cover.name,
-      });
+      if (updatedOn === null) {
+        await this.setStateAsync({
+          slug,
+          category,
+          title,
+          description,
+          uploadedOn: formattedDate,
+          audioFileUrl: audioFile.url,
+          cover: cover.url,
+          coverAlt: cover.name,
+        });
+      }
+      if (updatedOn !== null) {
+        const dateFormattedUpdated = this.parseDate(updatedOn);
+        const formattedDateUpdated = `${months[dateFormattedUpdated.getMonth()]} ${dateFormattedUpdated.getDate()} ${dateFormattedUpdated.getFullYear()}`;
+        await this.setStateAsync({
+          slug,
+          category,
+          title,
+          description,
+          uploadedOn: formattedDate,
+          updatedOn: formattedDateUpdated,
+          audioFileUrl: audioFile.url,
+          cover: cover.url,
+          coverAlt: cover.name,
+        });
+      }
     } else {
       const { history } = this.props;
       history.push('/404');
@@ -98,12 +119,29 @@ export default class Podcast extends Component {
 
   render() {
     const {
-      cover, coverAlt, uploadedOn, title, audioFileUrl, description,
+      cover, coverAlt, uploadedOn, updatedOn, category, title, audioFileUrl, description,
     } = this.state;
     const { match } = this.props;
     const { slug } = match.params;
+    let podcastUpdated;
+    if (updatedOn === null) {
+      podcastUpdated = (
+        <UploadedOn>
+      Uploaded on&nbsp;
+          <span style={{ color: '#0058e4' }}>{uploadedOn}</span>
+        </UploadedOn>
+      );
+    } else if (updatedOn !== null) {
+      podcastUpdated = (
+        <UploadedOn>
+        Updated on&nbsp;
+          <span style={{ color: '#0058e4' }}>{updatedOn}</span>
+        </UploadedOn>
+      );
+    }
     return (
       <>
+        <SubNavBar media="Podcast" category={category} title={title} />
         <div className="container">
           <div className="row">
             <div className="col-lg-9 col-md-9 col-sm-12 col-12">
@@ -116,10 +154,7 @@ export default class Podcast extends Component {
                 <Update to={`/edit/podcast/${slug}`}>
                   <i className="fas fa-edit" />
                 </Update>
-                <UploadedOn>
-Uploaded on&nbsp;
-                  <span style={{ color: '#0058e4' }}>{uploadedOn}</span>
-                </UploadedOn>
+                {podcastUpdated}
                 <Title>{title}</Title>
                 <AudioPlayer
                   controls

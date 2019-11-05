@@ -1,5 +1,6 @@
 /* eslint-disable no-tabs */
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
 	margin: 20px auto 0px auto;
@@ -51,9 +52,11 @@ export const Update = styled.button`
 	border-radius: 50px;
 	height: 65px;
 	width: 65px;
-	position: absolute;
-	right: 10px;
-	top: 10px;
+	display: table;
+	position: relative;
+	float: right;
+	margin-top: -35px;
+	margin-right: 25px;
 	border: none;
 	box-shadow: 0px 4px 7px rgba(0, 0, 0, .25);
 	transition: all .2s ease-in-out;
@@ -69,5 +72,14 @@ export const Update = styled.button`
 	}
 	i {
 		font-size: 25px;
+	}
+`;
+
+export const BackButton = styled(Link)`
+	i {
+		color: #fff;
+		&:hover {
+			text-decoration: none;
+		}
 	}
 `;

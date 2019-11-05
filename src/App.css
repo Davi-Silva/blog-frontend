@@ -12,7 +12,7 @@ body {
 
 body::-webkit-scrollbar {
 	height: 5px;
-	width: 5px;
+	width: 10px;
 }
 
 body::-webkit-scrollbar-track {
@@ -63,5 +63,54 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 .adSquareContainerFixed {
 	position: fixed;
-	top: 22px;
+	top: 70px;
+}
+
+.subNavBarRelative {
+	position: relative;
+	transition: all .5s ease-in-out;
+}
+
+.subNavBarFixed {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 999;
+	transition: all .5s ease-in-out;
+}
+
+
+
+.backPodcastButtonRelavite {
+	border-radius: 50px;
+	background: #0058e4;
+	position: absolute;
+	top: 30px;
+	left: -135px;
+	display: table;
+	font-weight: 900;
+	width: 54px;
+	height: 50px;
+	z-index: 999;
+	color: #fff;
+	cursor: pointer;
+	padding: 15px 18px 15px 20px;
+	box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+	animation: float 2s ease-in-out infinite;
+}
+
+.backPodcastButtonFixed {
+	border-radius: 50px;
+	background: #0058e4;
+	position: fixed;
+	top: 80px;
+	font-weight: 900;
+	left: 100px;
+	width: 55px;
+	height: 53px;
+	cursor: pointer;
+	color: #fff;
+	padding: 15px 15px 15px 20px;
+	box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+	animation: float 2s ease-in-out infinite;
 }
