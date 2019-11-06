@@ -5,13 +5,17 @@ import { AudioPlayer } from '../styled-components/media_players.styled-component
 import {
   Wrapper,
   Title,
+  Category,
   Description,
   UploadedOn,
   Update,
+  MoreEpisodes,
 } from '../styled-components/podcast.styled-components';
 
 import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
 import SubNavBar from '../components/UI/navbar/SubNavBar.component';
+import CoverImage from '../components/UI/pdocast/cover.component';
+
 
 export default class Podcast extends Component {
   constructor(props) {
@@ -128,14 +132,14 @@ export default class Podcast extends Component {
       podcastUpdated = (
         <UploadedOn>
       Uploaded on&nbsp;
-          <span style={{ color: '#0058e4' }}>{uploadedOn}</span>
+          <span style={{ color: '#333', fontWeight: '700' }}>{uploadedOn}</span>
         </UploadedOn>
       );
     } else if (updatedOn !== null) {
       podcastUpdated = (
         <UploadedOn>
         Updated on&nbsp;
-          <span style={{ color: '#0058e4' }}>{updatedOn}</span>
+          <span style={{ color: '#333', fontWeight: '700' }}>{updatedOn}</span>
         </UploadedOn>
       );
     }
@@ -144,35 +148,34 @@ export default class Podcast extends Component {
         <SubNavBar media="Podcast" category={category} title={title} />
         <div className="container">
           <div className="row">
-            <div className="col-lg-9 col-md-9 col-sm-12 col-12">
+            <div className="col-lg-4 col-md-4 col-sm-12 col-12">
+              <aside style={{ marginTop: '20px' }}>
+                <CoverImage cover={cover} coverAlt={coverAlt} />
+              </aside>
+            </div>
+            <div className="col-lg-8 col-md-8 col-sm-12 col-12">
               <Wrapper>
-                <img
-                  src={cover}
-                  alt={coverAlt}
-                  style={{ width: '100%' }}
-                />
-                <Update to={`/edit/podcast/${slug}`}>
-                  <i className="fas fa-edit" />
-                </Update>
+                {/* <Update to={`/edit/podcast/${slug}`}>
+                <i className="fas fa-edit" />
+              </Update> */}
                 {podcastUpdated}
                 <Title>{title}</Title>
+                <Category>
+                  {category}
+                </Category>
                 <AudioPlayer
                   controls
                   name="podcast"
-                  style={{ width: '100%', padding: '0px 25px' }}
+                  style={{ width: '100%' }}
                   src={audioFileUrl}
                   type="audio/mp3"
                 />
                 <Description
                   dangerouslySetInnerHTML={{ __html: description }}
-                  style={{ textAlign: 'justify' }}
                 />
+                <hr />
+                <MoreEpisodes to="/podcasts">More Episodes</MoreEpisodes>
               </Wrapper>
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-              <aside style={{ marginTop: '20px' }}>
-                <AdvertisementSquare />
-              </aside>
             </div>
           </div>
         </div>
