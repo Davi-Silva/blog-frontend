@@ -59,7 +59,7 @@ export default class List extends Component {
       'November',
       'December',
     ];
-    
+
     const formattedDate = `${months[dateFormatted.getMonth()]} ${dateFormatted.getDate()} ${dateFormatted.getFullYear()}`;
 
     const shortDesc = description.split('\n');
@@ -169,7 +169,7 @@ export default class List extends Component {
               </b>
               <br />
               <h5
-                style={{ color: '#0058e4', marginBottom: '0px', float: 'left' }}
+                style={{ color: '#0058e4', marginBottom: '0px', float: 'left', textAlign: "initial" }}
               >
                 {title}
               </h5>
