@@ -54,7 +54,7 @@ class Login extends Component {
   }
 
   async loginUser(loginInfo) {
-    // let response = await fetch("http://localhost:5000/users/login", {
+    // let response = await fetch("https://course-backend.herokuapp.com/users/login", {
     this.response = await fetch(
       'https://course-backend.herokuapp.com/users/login',
       {

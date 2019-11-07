@@ -6,7 +6,7 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     fetch("https://course-backend.herokuapp.com/user")
-      // fetch("http://localhost:5000/user")
+      // fetch("https://course-backend.herokuapp.com/user")
       .then(res => res.json())
       .then(res => {
         console.log("res:", res);

@@ -83,7 +83,7 @@ export default class List extends Component {
     const { id } = podcast[0];
     const { audioFileId, coverFileId } = this.state;
     await fetch(
-      `http://localhost:5000/podcasts/delete/audio/${audioFileId}`,
+      `https://course-backend.herokuapp.com/podcasts/delete/audio/${audioFileId}`,
       {
         method: 'DELETE',
         mode: 'cors',
@@ -95,7 +95,7 @@ export default class List extends Component {
       },
     );
     await fetch(
-      `http://localhost:5000/podcasts/delete/cover/${coverFileId}`,
+      `https://course-backend.herokuapp.com/podcasts/delete/cover/${coverFileId}`,
       {
         method: 'DELETE',
         mode: 'cors',
@@ -106,7 +106,7 @@ export default class List extends Component {
         },
       },
     );
-    await fetch(`http://localhost:5000/podcasts/delete/${id}`, {
+    await fetch(`https://course-backend.herokuapp.com/podcasts/delete/${id}`, {
       method: 'DELETE',
       mode: 'cors',
       cache: 'no-cache',
@@ -121,7 +121,7 @@ export default class List extends Component {
     const { slug } = this.state;
     console.log('slug:', slug);
     this.response = await fetch(
-      `http://localhost:5000/podcasts/get/${slug}`,
+      `https://course-backend.herokuapp.com/podcasts/get/${slug}`,
       {
         method: 'GET',
         mode: 'cors',

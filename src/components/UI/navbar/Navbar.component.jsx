@@ -170,7 +170,7 @@ class Navbar extends Component {
                     className="nav-link"
                     to="//localhost:5000/auth/logout"
                     onClick={() => {
-                      window.location.href = 'http://localhost:5000/auth/logout';
+                      window.location.href = 'https://course-backend.herokuapp.com/auth/logout';
                     }}
                     // to="https://course-backend.herokuapp.com/auth/logout"
                   >

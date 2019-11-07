@@ -57,7 +57,7 @@ class Register extends Component {
   }
 
   async registerUser(registerInfo) {
-    let response = await fetch("http://localhost:5000/users/register", {
+    let response = await fetch("https://course-backend.herokuapp.com/users/register", {
       method: "POST",
       mode: "cors",
       cache: "no-cache",
