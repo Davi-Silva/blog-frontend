@@ -8,7 +8,6 @@ export default class PodcastContent extends Component {
     super(props);
     this.state = {
       podcasts: [],
-      // formSubmitted: false,
     };
     this.componentDidMount = this.componentDidMount(this);
   }
