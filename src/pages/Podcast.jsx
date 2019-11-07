@@ -58,6 +58,7 @@ export default class Podcast extends Component {
         'November',
         'December',
       ];
+      
       const formattedDate = `${months[dateFormatted.getMonth()]} ${dateFormatted.getDate()} ${dateFormatted.getFullYear()}`;
       if (updatedOn === null) {
         await this.setStateAsync({
