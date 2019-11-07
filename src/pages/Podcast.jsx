@@ -29,6 +29,7 @@ export default class Podcast extends Component {
       audioFileUrl: null,
       cover: null,
       coverAlt: '',
+      documentHeight: null,
     };
 
     this.getPodcastBySlug = this.getPodcastBySlug.bind(this);
@@ -123,7 +124,7 @@ export default class Podcast extends Component {
 
   render() {
     const {
-      cover, coverAlt, uploadedOn, updatedOn, category, title, audioFileUrl, description,
+      cover, coverAlt, uploadedOn, updatedOn, category, title, audioFileUrl, description, documentHeight,
     } = this.state;
     const { match } = this.props;
     const { slug } = match.params;
@@ -150,7 +151,7 @@ export default class Podcast extends Component {
           <div className="row">
             <div className="col-lg-4 col-md-4 col-sm-12 col-12">
               <aside style={{ marginTop: '20px' }}>
-                <CoverImage cover={cover} coverAlt={coverAlt} />
+                <CoverImage cover={cover} coverAlt={coverAlt} documentHeight={documentHeight}/>
               </aside>
             </div>
             <div className="col-lg-8 col-md-8 col-sm-12 col-12">

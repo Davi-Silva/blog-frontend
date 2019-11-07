@@ -9,9 +9,36 @@ export const Wrapper = styled.div`
 export const Cover = styled.img`
 	width: 320px;
 	height: 320px;
-    display: table;
-    margin: 0 auto;
-    border-radius: 10px;
+	display: table;
+	margin: 0 auto;
+	border-radius: 10px;
+	
+	@media (max-width: 1543px) {
+		width: 280px!important;
+		height: 280px!important;
+	}
+
+	@media (max-width: 1199px) {
+		width: 250px!important;
+		height: 250px!important;
+	}
+
+	@media (max-width: 991px) {
+		width: 220px!important;
+		height: 220px!important;
+	}
+
+	@media (max-width: 870px) {
+		width: 200px!important;
+		height: 200px!important;
+	}
+
+	@media (max-width: 768px) {
+		width: 250px!important;
+		height: 250px!important;
+		display: table;
+		margin: 0 auto;
+	}
 `;
 
 export const UploadedOn = styled.p`
