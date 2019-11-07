@@ -97,7 +97,8 @@ export default class Podcast extends Component {
     const { match } = this.props;
     const { slug } = match.params;
     this.response = await fetch(
-      `http://localhost:5000/podcasts/get/${slug}`,
+      // `http://localhost:5000/podcasts/get/${slug}`,
+      `https://course-backend.herokuapp.com/podcasts/get/${slug}`,
       {
         method: 'GET',
         mode: 'cors',
