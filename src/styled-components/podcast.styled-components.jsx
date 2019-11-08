@@ -37,7 +37,7 @@ export const Cover = styled.img`
 		width: 250px!important;
 		height: 250px!important;
 		display: table;
-		margin: 0 auto;
+		margin: 0 auto; 
 	}
 `;
 
@@ -48,7 +48,6 @@ export const UploadedOn = styled.p`
 
 export const Title = styled.h1`
 	color: #333;
-	text-transform: uppercase;
 	font-size: 26px;
 	font-weight: 700;
 	letter-spacing: 1px;

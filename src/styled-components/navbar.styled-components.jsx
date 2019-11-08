@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const NavBar = styled.nav`
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: .05rem 1rem;
 `;
 
 export const LinkA = styled(Link)`
   color: #999;
   text-decoration: none;
-  font-weight: 900;
+  font-weight: 100;
   font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   transition: all 0.2s ease-in-out;
   :hover {
     color: #0058e4;

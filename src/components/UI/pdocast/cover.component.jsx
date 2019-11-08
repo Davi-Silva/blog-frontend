@@ -21,14 +21,14 @@ export default class CoverImage extends Component {
       const {documentHeight} = this.props;
       let height = window.document.body.children[1].children[2].clientHeight;
       // console.log("height:", height)
-      if (window.scrollY > 56 && window.scrollY <= (height * 0.8)) {
+      if (window.scrollY > 44 && window.scrollY <= (height * 0.8)) {
           this.setState({ containerClassName: "podcastCoverImageFixed", stickyHeight: null });
           // console.log(
           //     "this.state.containerClassName:",
           //     this.state.containerClassName
           // );
       } 
-      if(window.scrollY <= 56) {
+      if(window.scrollY <= 44) {
           this.setState({ containerClassName: "podcastCoverImageRelative", stickyHeight: null });
           // console.log(
           //     "this.state.containerClassName:",

@@ -4,9 +4,10 @@ import styled from 'styled-components';
 
 export const SubNavigatorBar = styled.nav`
   padding: 0 0 3px 0;
-  background: #0058e4;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+  background: #fff;
   letter-spacing: 1px;
+  border-bottom: 1px solid #0058e4;
+  border-top: 1px solid #0058e4;
 `;
 
 export const Ul = styled.ul`
@@ -17,11 +18,11 @@ export const Ul = styled.ul`
 
 export const Li = styled.li`
   display: inline-block;
-  color: #fff;
+  color: #0058e4;
   font-size: 14px;
 `;
 
 export const Separator = styled.span`
   font-size: 11px;
-  color: #fff;
+  color: #0058e4;
 `;

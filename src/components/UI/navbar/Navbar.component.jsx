@@ -12,10 +12,14 @@ class Navbar extends Component {
     super(props);
     this.styles = {
       signup: {
-        backgroundColor: '#0058e4',
-        color: '#fff',
+        backgroundColor: '#fff',
+        border: "1px solid #0058e4",
+        color: '#0058e4',
         borderRadius: '3px',
-        padding: '10px',
+        padding: '5px',
+        marginTop: "3px",
+        fontWeight: "600",
+        // letterSpacing: "unset"
       },
     };
   }

@@ -31,7 +31,7 @@ export default class SubNavBar extends Component {
 
   async listenScrollEvent(e) {
     let container = window.document.body.children[1].children[2];
-    if (window.scrollY >= 57) {
+    if (window.scrollY >= 44) {
       console.log("container:", container)
       container.className = "container fixedSubNavBarContainer";
       console.log("container:", container)
@@ -77,7 +77,7 @@ export default class SubNavBar extends Component {
           {' '}
           <Separator>{'>'}</Separator>
           {' '}
-          <Li style={{ color: '#fff', fontWeight: '900' }}>{title}</Li>
+          <Li style={{ color: '#0058e4', fontWeight: '900' }}>{title}</Li>
         </Ul>
       );
     }

@@ -77,6 +77,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 	width: 100%;
 	z-index: 999;
 	transition: all .5s ease-in-out;
+	border-top: 1px solid #fff!important;
 }
 
 .backPodcastButtonRelavite {
@@ -115,39 +116,97 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 @keyframes showShadow {
   0% {
-		box-shadow: 0px 2px 6px rgba(0, 0, 0, 0);
+		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0);
+		transform: translateX(13%);
 	}
 	10% {
-		box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.03);
+		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.03);
+		transform: translateX(2.7%);
 	}
 	20% {
-		box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
+		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.06);
+		transform: translateX(2.4%);
 	}
 	30% {
-		box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.09);
+		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.09);
+		transform: translateX(2.1%);
 	}
 	40% {
-		box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.12);
+		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.12);
+		transform: translateX(1.8%);
 	}
 	50% {
-		box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.15);
+		transform: translateX(1.5%);
 	}
 	60% {
-		box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.18);
+		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.18);
+		transform: translateX(1.2%);
 	}
 	70% {
-		box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.21);
+		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.21);
+		transform: translateX(0.9%);
 	}
 	80% {
-		box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.24);
+		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.24);
+		transform: translateX(0.6%);
 	}
 	90% {
-		box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.27);
+		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.27);
+		transform: translateX(0.3%);
 	}
   100% {
-		box-shadow: 0px 2px 6px rgba(0, 0, 0, .3);
+		box-shadow: 0px 2px 3px rgba(0, 0, 0, .3);
+		transform: translateX(0%);
 	}
 }
+
+@keyframes hideShadow {
+	0% {
+		  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
+		  transform: translateX(0%);
+	  }
+	  10% {
+		  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.27);
+		  transform: translateX(0.3%);
+	  }
+	  20% {
+		  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.24);
+		  transform: translateX(0.6%);
+	  }
+	  30% {
+		  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.21);
+		  transform: translateX(0.9%);
+	  }
+	  40% {
+		  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.18);
+		  transform: translateX(1.2%);
+	  }
+	  50% {
+		  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.15);
+		  transform: translateX(1.5%);
+	  }
+	  60% {
+		  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.12);
+		  transform: translateX(1.8%);
+	  }
+	  70% {
+		  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.09);
+		  transform: translateX(2.1%);
+	  }
+	  80% {
+		  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.06);
+		  transform: translateX(2.4%);
+	  }
+	  90% {
+		  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.03);
+		  transform: translateX(2.7%);
+	  }
+	100% {
+		  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0);
+		  transform: translateX(3%);
+	  }
+  }
 
 .podcastCoverImageRelative {
 	position: relative;
@@ -157,12 +216,15 @@ textarea::-webkit-scrollbar-thumb:hover {
 	position: fixed;
 	top: 52px;
 	left: 15%;
-	animation: showShadow .3s;
+	animation: showShadow 0.5s ease-in;
 	animation-fill-mode: forwards;  
 }
 
 .podcastCoverImageSticky {
 	position: relative;
+	margin-top: -13%!important;
+	animation: hideShadow .5s ease-in;
+	animation-fill-mode: forwards;  
 }
 
 .relativeSubNavBarContainer {
