@@ -24,8 +24,8 @@ export default class Podcasts extends Component {
 
 
   async getAllPodcasts() {
-    // this.response = await fetch('https://course-backend.herokuapp.com/podcasts', {
-      this.response = await fetch('https://course-backend.herokuapp.com/podcasts', {
+    this.response = await fetch('https://course-backend.herokuapp.com/podcasts', {
+    // this.response = await fetch('http://localhost:5000/podcasts', {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',

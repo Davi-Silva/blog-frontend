@@ -60,7 +60,7 @@ export const Category = styled.p`
 `;
 
 export const Description = styled.div`
-	color: #999;
+	color: #333;
 	font-size: 16px;
 	margin: 10px 0px;
 `;

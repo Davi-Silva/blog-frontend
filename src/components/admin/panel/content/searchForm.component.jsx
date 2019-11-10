@@ -91,6 +91,7 @@ export default class SearchForm extends Component {
             name="course"
             id=""
             placeholder="Search"
+            autoComplete="off"
             onChange={this.onChangeSearchInput}
           />
           <button type="submit">

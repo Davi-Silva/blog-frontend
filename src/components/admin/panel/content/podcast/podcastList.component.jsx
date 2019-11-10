@@ -34,13 +34,7 @@ export default class List extends Component {
       type, title, date, description, audioFileId, coverFileId, category, slug, liID,
     } = this.props;
     const typeLower = type.toLowerCase();
-    const titleLower = title
-      .toLowerCase()
-      .split(' ')
-      .join('-');
-    const editTo = `/edit/${typeLower}/${titleLower}`;
-
-
+    const editTo = `/edit/${typeLower}/${slug}`;
     // const date = date;
     console.log('date:', date);
 
@@ -85,6 +79,7 @@ export default class List extends Component {
     const { audioFileId, coverFileId } = this.state;
     await fetch(
       `https://course-backend.herokuapp.com/podcasts/delete/audio/${audioFileId}`,
+      // `http://localhost:5000/podcasts/delete/audio/${audioFileId}`,
       {
         method: 'DELETE',
         mode: 'cors',
@@ -97,6 +92,7 @@ export default class List extends Component {
     );
     await fetch(
       `https://course-backend.herokuapp.com/podcasts/delete/cover/${coverFileId}`,
+      // `http://localhost:5000/podcasts/delete/cover/${coverFileId}`,
       {
         method: 'DELETE',
         mode: 'cors',
@@ -108,6 +104,7 @@ export default class List extends Component {
       },
     );
     await fetch(`https://course-backend.herokuapp.com/podcasts/delete/${id}`, {
+    // await fetch(`http://localhost:5000/podcasts/delete/${id}`, {
       method: 'DELETE',
       mode: 'cors',
       cache: 'no-cache',
@@ -123,6 +120,7 @@ export default class List extends Component {
     console.log('slug:', slug);
     this.response = await fetch(
       `https://course-backend.herokuapp.com/podcasts/get/${slug}`,
+      // `https://localhost:5000/podcasts/get/${slug}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -169,7 +167,9 @@ export default class List extends Component {
               </b>
               <br />
               <h5
-                style={{ color: '#0058e4', marginBottom: '0px', float: 'left', textAlign: "initial" }}
+                style={{
+                  color: '#0058e4', marginBottom: '0px', float: 'left', textAlign: 'initial',
+                }}
               >
                 {title}
               </h5>
@@ -196,9 +196,18 @@ export default class List extends Component {
             style={{ color: '#999' }}
             dangerouslySetInnerHTML={{ __html: shortDescription }}
           />
-          <Delete onClick={this.onDeletePodcast}>Delete</Delete>
-          <Edit to={editTo}>Edit</Edit>
-          <GoTo to={`/podcast/${slug}`}>Podcast Page</GoTo>
+          <Delete onClick={this.onDeletePodcast}>
+Delete &nbsp;
+            <i className="far fa-trash-alt" />
+          </Delete>
+          <Edit to={editTo}>
+Edit &nbsp;
+            <i className="far fa-edit" />
+          </Edit>
+          <GoTo to={`/podcast/${slug}`}>
+Podcast Page &nbsp;
+            <i className="fas fa-podcast" />
+          </GoTo>
         </div>
       </li>
     );

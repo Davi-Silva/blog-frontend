@@ -15,17 +15,14 @@ export const UploadedOn = styled.p`
 `;
 
 export const Input = styled.input`
-	color: #0058e4;
-	text-transform: uppercase;
-	font-size: 26px;
-	font-weight: 700;
-	letter-spacing: 1px;
-	margin: 10px 25px;
-  background: transparent;
   border: none;
-  transition: all .15s ease-in-out;
-  &:focus {
+  transition: all 0.15s ease-in-out;
+  :focus {
+    border-bottom: none;
     outline: none;
+  }
+  ::placeholder {
+    color: #333;
   }
 `;
 
@@ -47,32 +44,20 @@ export const Tags = styled.p`
 `;
 
 export const Update = styled.button`
-	background: #0058e4;
-	color: #fff;
-	border-radius: 50px;
-	height: 65px;
-	width: 65px;
-	display: table;
-	position: relative;
-	float: right;
-	margin-top: -35px;
-	margin-right: 25px;
-	border: none;
-	box-shadow: 0px 4px 7px rgba(0, 0, 0, .25);
-	transition: all .2s ease-in-out;
-	&:hover {
-		box-shadow: 0px 6px 7px rgba(0, 0, 0, .25);
-		transform: scale(1.1, 1.1);
-	}
-	&:active {
-		transform: scale(0.9, 0.9);
-	}
-	&:focus {
+  background-color: transparent;
+  border: none;
+  color: #999;
+  width: 100%;
+  font-weight: 900;
+  padding: 8px 0px;
+  transition: all 0.3s ease-in-out;
+  font-size: 16px;
+	:focus {
 		outline: none;
 	}
-	i {
-		font-size: 25px;
-	}
+  :hover {
+    color: #0042ab;
+  }
 `;
 
 export const BackButton = styled(Link)`

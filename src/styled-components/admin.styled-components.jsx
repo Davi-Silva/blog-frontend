@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -67,7 +68,7 @@ export const Main = styled.main`
   overflow-x: hidden;
   &::-webkit-scrollbar {
     height: 5px;
-    width: 10px;
+    width: 7px;
   }
 
   &::-webkit-scrollbar-track {
@@ -75,12 +76,14 @@ export const Main = styled.main`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #0058e4;
+    background: #fff;
+    border: 1px solid #0058e4;
+    border-radius: 50px;
     transition: "all .2s ease-in-out";
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: #9fc4ff;
+    background: #0058e4;
   }
 `;
 
@@ -150,41 +153,53 @@ export const Add = styled(Link)`
 export const Edit = styled(Link)`
   margin-right: 5px;
   float: right;
+  font-size: 12px;
   border: none;
-  padding: 7px 14px;
-  background-color: #0058e4;
-  border-radius: 3px;
-  color: #fff;
+  padding: 3px 7px;
+  background-color: #fff;
+  border-radius: 50px;
+  border: 1px solid #0058e4;
+  color: #0058e4;
+  transition: all .3s ease-in-out;
   &:focus {
     outline: none;
   }
   &:hover {
     color: #fff;
     text-decoration: none;
+    background-color: #0058e4;
   }
 `;
 
 export const Delete = styled.button`
   margin-left: 5px;
   float: right;
-  border: none;
-  padding: 7px 14px;
-  background-color: #cc2222;
-  border-radius: 3px;
-  color: #fff;
+  font-size: 12px;
+  border: 1px solid #cc2222;
+  padding: 3px 7px;
+  background-color: #fff;
+  border-radius: 50px;
+  color: #cc2222;
+  transition: all .3s ease-in-out;
   &:focus {
     outline: none;
+  }
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #cc2222;
   }
 `;
 
 export const GoTo = styled(Link)`
-  color: #fff;
+  color: #333;
   margin-right: 10px;
   float: right;
-  border: none;
-  padding: 7px 14px;
-  border-radius: 3px;
-  background-color: #ccc;
+  border: 1px solid #333;
+  font-size: 12px;
+  padding: 3px 7px;
+  border-radius: 50px;
+  background-color: #fff;
   transition: all 0.3s ease-in-out;
   &:focus {
     outline: none;
@@ -192,12 +207,13 @@ export const GoTo = styled(Link)`
   &:hover {
     color: #fff;
     text-decoration: none;
-    background-color: #bbb;
+    background-color: #333;
   }
 `;
 
 export const Container = styled.ul`
-  margin-top: 20px;
+  top: 20px;
+  position: absolute;
   li {
     display: flex;
     justify-content: space-between;
@@ -231,14 +247,25 @@ export const FileInfo = styled.div`
 `;
 
 export const Preview = styled.div`
-  width: 36px;
-  height: 36px;
+  width: 250px;
+  height: 250px;
   border-radius: 5px;
   background-image: url(${(props) => props.src});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
-  margin-right: 10px;
+  margin-left: 50px;
+`;
+
+export const PreviewAudio = styled.div`
+  width: 250px;
+  /* height: 250px; */
+  border-radius: 5px;
+  background-image: url(${(props) => props.src});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  margin-left: 50px;
 `;
 
 const dragActive = css`
@@ -253,8 +280,33 @@ export const DropContainer = styled.div.attrs({
   className: 'dropzone',
 })`
   margin: -3px auto 6px auto;
-  border: 1px dashed #ddd;
+  border: 1px dashed #0058e4;
   border-radius: 4px;
+  width: 250px;
+	height: 250px;
+	display: table;
+  z-index: 99999;
+	margin: 0 auto;
+  cursor: pointer;
+  transition: height 0.2s ease;
+  ${(props) => props.isDragActive && dragActive};
+  ${(props) => props.isDragReject && dragReject};
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const DropAudioContainer = styled.div.attrs({
+  className: 'dropzone',
+})`
+  margin: -3px auto 6px auto;
+  border: 1px dashed #0058e4;
+  border-radius: 4px;
+  width: 100%;
+	height: 20px;
+	display: table;
+  z-index: 99999;
+	margin: 0 auto;
   cursor: pointer;
   transition: height 0.2s ease;
   ${(props) => props.isDragActive && dragActive};
@@ -271,6 +323,14 @@ const messageColors = {
 };
 
 export const UploadMessage = styled.p`
+  display: flex;
+  color: ${(props) => messageColors[props.type || 'default']};
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+`;
+
+export const UploadAudioMessage = styled.p`
   display: flex;
   color: ${(props) => messageColors[props.type || 'default']};
   justify-content: center;

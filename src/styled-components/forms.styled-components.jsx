@@ -6,21 +6,14 @@ export const Header = styled.h5`
 `;
 
 export const Input = styled.input`
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  width: 100%;
-  padding: 10px 15px;
-  margin: 3px 0px;
-  color: #a9a7ad;
-  border-radius: 3px;
-  background-color: rgba(0, 0, 0, 0.05);
+  border: none;
   transition: all 0.15s ease-in-out;
   :focus {
-    border: 1px solid #0062ff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: none;
     outline: none;
   }
   ::placeholder {
-    color: #a9a7ad;
+    color: #333;
   }
 `;
 
@@ -46,17 +39,19 @@ export const TextArea = styled.textarea`
 `;
 
 export const Button = styled.button`
-  background-color: #0058e4;
+  background-color: transparent;
   border: none;
-  border-radius: 3px;
-  color: #fff;
+  color: #999;
   width: 100%;
+  font-weight: 900;
   padding: 8px 0px;
   transition: all 0.3s ease-in-out;
-  font-size: 14px;
-
+  font-size: 16px;
+  :focus {
+    outline: none;
+  }
   :hover {
-    background-color: #0042ab;
+    color: #0042ab;
   }
 `;
 

@@ -6,7 +6,7 @@ import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
 import {
   Container,
   FileInfo,
-  Preview,
+  PreviewAudio,
 } from '../../../styled-components/admin.styled-components';
 
 const FileList = ({ files, onDelete }) => (
@@ -14,10 +14,13 @@ const FileList = ({ files, onDelete }) => (
     {files.map((uploadedFile) => (
       <li key={uploadedFile.id}>
         <FileInfo>
-          <Preview src={uploadedFile.preview} />
-          <div>
-            <strong>{uploadedFile.name}</strong>
-            <span>
+          <PreviewAudio src={uploadedFile.preview} />
+          <div style={{
+            position: 'absolute', display: 'block', width: '240%', background: '#fff', left: '5px', top: '120px', padding: '2px 5px', borderRadius: '5px',
+          }}
+          >
+            <strong style={{ width: '100%' }}>{uploadedFile.name}</strong>
+            <span style={{ marginLeft: '10px' }}>
               {uploadedFile.readableSize}
               {' '}
               {!!uploadedFile.url && (
@@ -28,13 +31,18 @@ const FileList = ({ files, onDelete }) => (
             </span>
           </div>
         </FileInfo>
-
-        <div>
+        <div
+          style={{
+            position: 'absolute', background: '#fff', left: '0px', top: '190px', padding: '2px 5px', borderRadius: '5px',
+          }}
+        >
           {!uploadedFile.uploaded && !uploadedFile.error && (
             <CircularProgressbar
               styles={{
                 root: { width: 24 },
                 path: { stroke: '#0058e4' },
+                marginLeft: '30px',
+                position: 'absolute',
               }}
               strokeWidth={10}
               percentage={uploadedFile.progress}

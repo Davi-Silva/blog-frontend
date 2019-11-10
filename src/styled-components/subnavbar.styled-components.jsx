@@ -5,9 +5,10 @@ import styled from 'styled-components';
 export const SubNavigatorBar = styled.nav`
   padding: 0 0 3px 0;
   background: #fff;
+  margin-top: -1px;
   letter-spacing: 1px;
   border-bottom: 1px solid #0058e4;
-  border-top: 1px solid #0058e4;
+  border-top: 1px solid #fff;
 `;
 
 export const Ul = styled.ul`

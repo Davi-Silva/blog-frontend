@@ -15,8 +15,12 @@ const FileList = ({ files, onDelete }) => (
       <li key={uploadedFile.id}>
         <FileInfo>
           <Preview src={uploadedFile.preview} />
-          <div>
-            <strong>{uploadedFile.name}</strong>
+          <br />
+          <div style={{
+            position: 'absolute', display: 'table', margin: '0 auto', background: '#fff', left: '125px', top: '210px', padding: '2px 5px', borderRadius: '5px',
+          }}
+          >
+            {/* <strong>{uploadedFile.name}</strong> */}
             <span>
               {uploadedFile.readableSize}
               {' '}
@@ -28,8 +32,10 @@ const FileList = ({ files, onDelete }) => (
             </span>
           </div>
         </FileInfo>
-
-        <div>
+        <div style={{
+          position: 'absolute', display: 'table', margin: '0 auto', background: '#fff', left: '146px', top: '177px', padding: '2px 5px', borderRadius: '5px',
+        }}
+        >
           {!uploadedFile.uploaded && !uploadedFile.error && (
             <CircularProgressbar
               styles={{

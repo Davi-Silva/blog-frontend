@@ -33,3 +33,14 @@ export const Brand = styled(Link)`
 export const ToggleButton = styled.button`
   color: #0058e4;
 `;
+
+export const SignUp = styled(Link)`
+  background-color: #fff;
+  border: 1px solid #0058e4;
+  color: #0058e4;
+  border-radius: 50px;
+  padding: 3px 7px;
+  margin-top: 4px;
+  font-weight: 100;
+  font-size: 13px;
+`;

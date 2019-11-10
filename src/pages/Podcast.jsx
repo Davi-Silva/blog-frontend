@@ -1,7 +1,9 @@
 /* eslint react/prop-types: 0 */
 import React, { Component } from 'react';
+import { createMuiTheme, makeStyles } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/styles';
+import AudioPlayer from 'material-ui-audio-player';
 
-import { AudioPlayer } from '../styled-components/media_players.styled-component';
 import {
   Wrapper,
   Title,
@@ -24,9 +26,10 @@ export default class Podcast extends Component {
       category: '',
       title: '',
       description: '',
+      tags: '',
       uploadedOn: null,
       updatedOn: null,
-      audioFileUrl: null,
+      audioFileUrl: '',
       cover: null,
       coverAlt: '',
       documentHeight: null,
@@ -41,7 +44,7 @@ export default class Podcast extends Component {
     const podcast = await this.getPodcastBySlug();
     if (podcast.length > 0) {
       const {
-        slug, category, title, description, uploadedOn, updatedOn, audioFile, cover,
+        slug, category, title, tags, description, uploadedOn, updatedOn, audioFile, cover,
       } = podcast[0];
       const dateFormatted = this.parseDate(uploadedOn);
       const months = [
@@ -58,7 +61,7 @@ export default class Podcast extends Component {
         'November',
         'December',
       ];
-      
+
       const formattedDate = `${months[dateFormatted.getMonth()]} ${dateFormatted.getDate()} ${dateFormatted.getFullYear()}`;
       if (updatedOn === null) {
         await this.setStateAsync({
@@ -66,6 +69,7 @@ export default class Podcast extends Component {
           category,
           title,
           description,
+          tags,
           uploadedOn: formattedDate,
           audioFileUrl: audioFile.url,
           cover: cover.url,
@@ -80,6 +84,7 @@ export default class Podcast extends Component {
           category,
           title,
           description,
+          tags,
           uploadedOn: formattedDate,
           updatedOn: formattedDateUpdated,
           audioFileUrl: audioFile.url,
@@ -98,7 +103,7 @@ export default class Podcast extends Component {
     const { slug } = match.params;
     this.response = await fetch(
       // `https://course-backend.herokuapp.com/podcasts/get/${slug}`,
-      `https://course-backend.herokuapp.com/podcasts/get/${slug}`,
+      `http://localhost:5000/podcasts/get/${slug}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -126,10 +131,78 @@ export default class Podcast extends Component {
 
   render() {
     const {
-      cover, coverAlt, uploadedOn, updatedOn, category, title, audioFileUrl, description, documentHeight,
+      cover, coverAlt, uploadedOn, updatedOn, category, title, audioFileUrl, description, tags, documentHeight,
     } = this.state;
     const { match } = this.props;
     const { slug } = match.params;
+    const muiTheme = createMuiTheme({});
+    const src = [
+      `${audioFileUrl}`,
+    ];
+    console.log('audioFileUrl:', audioFileUrl);
+    console.log('src:', src);
+    const useStyles = makeStyles((theme) => ({
+      playIcon: {
+        color: '#0058e4',
+        height: '25px',
+        width: '25px',
+        transition: 'all .2s ease-in-out',
+        '&:hover': {
+          color: '#333',
+        },
+        '&:active': {
+          color: '#333',
+        },
+        '&:focus': {
+          color: '#333',
+        },
+      },
+      pauseIcon: {
+        color: '#0058e4',
+        height: '25px',
+        width: '25px',
+        transition: 'all .2s ease-in-out',
+        '&:hover': {
+          color: '#333',
+        },
+        '&:active': {
+          color: '#333',
+        },
+        '&:focus': {
+          color: '#333',
+        },
+      },
+      volumeIcon: {
+        color: '#0058e4',
+        height: '25px',
+        width: '25px',
+      },
+      volumeSlider: {
+        color: '#0058e4',
+        height: '25px',
+        width: '25px',
+      },
+      progressTime: {
+        color: '#0058e4',
+        lineHeight: '50px',
+      },
+      mainSlider: {
+        color: '#0058e4',
+        '& .MuiSlider-rail': {
+          color: '#999',
+          marginTop: '13px',
+        },
+        '& .MuiSlider-track': {
+          color: '#0058e4',
+          marginTop: '13px',
+        },
+        '& .MuiSlider-thumb': {
+          color: '#0058e4',
+          top: '10px',
+          marginTop: '10px',
+        },
+      },
+    }));
     let podcastUpdated;
     if (updatedOn === null) {
       podcastUpdated = (
@@ -153,7 +226,7 @@ export default class Podcast extends Component {
           <div className="row">
             <div className="col-lg-4 col-md-4 col-sm-12 col-12">
               <aside style={{ marginTop: '20px' }}>
-                <CoverImage cover={cover} coverAlt={coverAlt} documentHeight={documentHeight}/>
+                <CoverImage cover={cover} coverAlt={coverAlt} documentHeight={documentHeight} />
               </aside>
             </div>
             <div className="col-lg-8 col-md-8 col-sm-12 col-12">
@@ -166,16 +239,27 @@ export default class Podcast extends Component {
                 <Category>
                   {category}
                 </Category>
-                <AudioPlayer
-                  controls
-                  name="podcast"
-                  style={{ width: '100%' }}
-                  src={audioFileUrl}
-                  type="audio/mp3"
-                />
+                <ThemeProvider theme={muiTheme}>
+                  <AudioPlayer
+                    elevation={0}
+                    width="100%"
+                    variation="default"
+                    spacing={1}
+                    height="55px"
+                    order="standart"
+                    preload="auto"
+                    useStyles={useStyles}
+                    src={audioFileUrl}
+                    debug
+                  />
+                </ThemeProvider>
                 <Description
                   dangerouslySetInnerHTML={{ __html: description }}
                 />
+                <p style={{ fontSize: '14px' }}>
+Tags:&nbsp;
+                  <b style={{ fontSize: '16px' }}>{tags}</b>
+                </p>
                 <hr />
                 <MoreEpisodes to="/podcasts">More Episodes</MoreEpisodes>
               </Wrapper>

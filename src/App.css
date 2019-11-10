@@ -20,11 +20,13 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-	background: #0058e4;
+	background: #fff;
+	border: 1px solid #0058e4;
+	border-radius: 50px;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-	background: #999;
+	background: #0058e4;
 }
 
 textarea::-webkit-scrollbar {
@@ -68,7 +70,8 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 .subNavBarRelative {
 	position: relative;
-	transition: all .5s ease-in-out;
+	margin-top: -1px;
+	display: block;
 }
 
 .subNavBarFixed {
@@ -76,7 +79,6 @@ textarea::-webkit-scrollbar-thumb:hover {
 	top: 0;
 	width: 100%;
 	z-index: 999;
-	transition: all .5s ease-in-out;
 	border-top: 1px solid #fff!important;
 }
 

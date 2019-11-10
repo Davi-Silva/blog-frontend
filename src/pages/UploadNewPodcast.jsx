@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { uniqueId } from "lodash";
 import filesize from "filesize";
+import slugify from 'slugify';
+import { Editor } from '@tinymce/tinymce-react';
 
 import api from "../services/api";
 
@@ -12,12 +14,16 @@ import Upload from "../components/UI/admin/UploadField.component";
 import FileList from "../components/UI/admin/FileList.component";
 import UploadCover from "../components/UI/admin/UploadFieldCover.component";
 import FileListCover from "../components/UI/admin/FileListCover.component";
+import SubNavBar from '../components/UI/navbar/SubNavBar.component';
 
 import {
   Input,
-  TextArea,
   Button
 } from "../styled-components/forms.styled-components";
+
+import {
+  UploadedOn,
+} from '../styled-components/podcast.styled-components';
 
 export default class UploadNewPodcast extends Component {
   constructor(props) {
@@ -43,12 +49,13 @@ export default class UploadNewPodcast extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeTags = this.onChangeTags.bind(this);
     this.setGlobalVariable = this.setGlobalVariable.bind(this);
+    this.handleEditorChange = this.handleEditorChange.bind(this);
   }
 
   async verifySlug(slug) {
     let response = await fetch(
+      // `http://localhost:5000/podcasts/validation/slug/${slug}`,
       `https://course-backend.herokuapp.com/podcasts/validation/slug/${slug}`,
-      // `https://course-backend.herokuapp.com/podcasts/validation/slug/${slug}`,
       {
         method: "GET",
         mode: "cors",
@@ -65,8 +72,8 @@ export default class UploadNewPodcast extends Component {
 
   async uploadPodcast(podcast) {
     let response = await fetch(
-      `https://course-backend.herokuapp.com/podcasts/upload`,
-      // "https://course-backend.herokuapp.com/podcasts/upload",
+      // `http://localhost:5000/podcasts/upload`,
+      "https://course-backend.herokuapp.com/podcasts/upload",
       {
         method: "POST",
         mode: "cors",
@@ -113,10 +120,9 @@ export default class UploadNewPodcast extends Component {
   }
 
   async changeSlugFromTitle() {
-    let slug = this.state.title
-      .toLowerCase()
-      .split(" ")
-      .join("-");
+    const {title} = this.state;
+    let lowerCaseTitle = title.toLowerCase();
+    let slug = slugify(lowerCaseTitle);
     await this.setStateAsync({ slug });
   }
 
@@ -149,29 +155,30 @@ export default class UploadNewPodcast extends Component {
 
   async onSubmit(e) {
     e.preventDefault();
-    const podcast_info = {
-      isSlugValid: this.state.isSlugValid,
-      category: this.state.category,
-      title: this.state.title,
-      description: this.state.description,
-      tags: this.state.tags,
-      cover: this.state.uploadedCovers[this.state.uploadedCovers.length - 1].id,
-      audioFile: this.state.uploadedFiles[this.state.uploadedFiles.length - 1]
-        .id
+    const {isSlugValid, slug, category, title, description, tags, uploadedCovers, uploadedFiles} = this.state;
+    const podcastInfo = {
+      isSlugValid: isSlugValid,
+      slug,
+      category: category,
+      title: title,
+      description: description,
+      tags: tags,
+      cover: uploadedCovers[uploadedCovers.length - 1].id,
+      audioFile: uploadedFiles[uploadedFiles.length - 1].id
     };
-    console.log("podcast_info:", podcast_info);
+    console.log("podcast_info:", podcastInfo);
     console.log(
       "uploadedFiles:",
-      this.state.uploadedFiles[this.state.uploadedFiles.length - 1].id
+      uploadedFiles[uploadedFiles.length - 1].id
     );
     console.log(
       "uploadedCovers:",
-      this.state.uploadedCovers[this.state.uploadedCovers.length - 1].id
+      uploadedCovers[uploadedCovers.length - 1].id
     );
     let isSlugValidRes = await this.verifySlug(this.state.slug);
     console.log("isSlugValidRes:", isSlugValidRes);
     if (isSlugValidRes.valid) {
-      let res = await this.uploadPodcast(podcast_info);
+      let res = await this.uploadPodcast(podcastInfo);
       this.setStateAsync({
         uploaded: res.uploaded
       });
@@ -186,8 +193,8 @@ export default class UploadNewPodcast extends Component {
       type: "podcasts",
       title: this.state.title
     };
-    // let response = fetch("https://course-backend.herokuapp.com/podcasts/set/global-variable", {
-      let response = fetch("https://course-backend.herokuapp.com/podcasts/set/global-variable", {
+    let response = fetch("https://course-backend.herokuapp.com/podcasts/set/global-variable", {
+      // let response = fetch("http://localhost:5000/podcasts/set/global-variable", {
       method: "POST",
       mode: "cors",
       cache: "no-cache",
@@ -380,6 +387,13 @@ export default class UploadNewPodcast extends Component {
     });
   };
 
+  handleEditorChange = async (e) => {
+    console.log('Content was updated:', e.target.getContent());
+    this.setStateAsync({
+      description: e.target.getContent()
+    });
+  }
+
   componentWillUnmount() {
     this.state.uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
     this.state.uploadedCovers.forEach(file =>
@@ -391,111 +405,114 @@ export default class UploadNewPodcast extends Component {
     const { uploadedFiles, uploadedCovers, title, slug, category, tags, description, allFieldsFilled } = this.state;
     return (
       <React.Fragment>
-        <div className="container" style={{ margin: "35px auto" }}>
-          <div className="row">
-            <div className="col-12">
-              <h6
-                className="text-center"
-                style={{ fontSize: "14px", color: "#999", fontWeight: "900" }}
-              >
-                UPLOAD NEW PODCAST
-              </h6>
-            </div>
-          </div>
+        <SubNavBar media="Podcast" category="New" title={title} />
+        <div className="container">
           <form onSubmit={this.onSubmit} method="POST">
             <div className="row">
-              <div
-                className="col-lg-6 col-md-6 col-sm-6 col-12"
-                style={{ paddingRight: "3px" }}
-              >
-                <Input
-                  type="text"
-                  id="title"
-                  name="title"
-                  placeholder="Title"
-                  value={title}
-                  onChange={this.onChangeTitle}
-                  required
-                />
+              <div className="col-lg-4 col-md-4 col-sm-12 col-12">
+                <aside style={{ marginTop: '20px' }}>
+                  {/* <UploadField />  */}
+                  <div>
+                    <UploadCover onUpload={this.handleUploadCover} />
+                    {!!uploadedCovers.length && (
+                      <FileListCover
+                        files={uploadedCovers}
+                        onDelete={this.handleDeleteCover}
+                      />
+                    )}
+                  </div>
+                </aside>
               </div>
-              <div
-                className="col-lg-6 col-md-6 col-sm-6 col-12"
-                style={{ paddingLeft: "3px" }}
-              >
-                <Input
-                  type="text"
-                  id="Slug"
-                  name="slug"
-                  placeholder="Slug"
-                  value={slug}
-                  // onChange={this.onChangeTitle}
-                  disabled
-                  required
-                />
-              </div>
-              <div
-                className="col-lg-6 col-md-6 col-sm-6 col-12"
-                style={{ paddingRight: "3px" }}
-              >
-                <Input
-                  type="text"
-                  id="category"
-                  name="category"
-                  placeholder="Category"
-                  value={category}
-                  onChange={this.onChangeCategory}
-                  required
-                />
-              </div>
-              <div
-                className="col-lg-6 col-md-6 col-sm-6 col-12"
-                style={{ paddingLeft: "3px" }}
-              >
-                <Input
-                  type="text"
-                  id="tags"
-                  name="tags"
-                  placeholder="Tags"
-                  value={tags}
-                  onChange={this.onChangeTags}
-                  required
-                />
-              </div>
-              <div className="col-12">
-                <TextArea
-                  id="description"
-                  name="description"
-                  placeholder="Description"
-                  value={description}
-                  onChange={this.onChangeDescription}
-                  required
-                />
-              </div>
-              <div className="col-lg-6 col-12" style={{ paddingRight: "3px" }}>
-                {/* <UploadField /> */}
-                <div>
-                  <UploadCover onUpload={this.handleUploadCover} />
-                  {!!uploadedCovers.length && (
-                    <FileListCover
-                      files={uploadedCovers}
-                      onDelete={this.handleDeleteCover}
+              <div className="col-lg-8 col-md-8 col-sm-12 col-12">
+                <main style={{marginTop: "20px"}}>
+                  <UploadedOn>
+                    Uploaded on&nbsp;
+                    <span style={{ color: '#333', fontWeight: '700' }}>Date</span>
+                  </UploadedOn>
+                  <Input
+                      type="text"
+                      id="title"
+                      name="title"
+                      placeholder="Title..."
+                      value={title}
+                      autoComplete="off"
+                      style={{  
+                        color: "#333",
+                        fontSize: "23px",
+                        fontWeight: "900",
+                        width: "100%"
+                      }}
+                      onChange={this.onChangeTitle}
+                      required
                     />
-                  )}
-                </div>
-              </div>
-              <div className="col-lg-6 col-12" style={{ paddingLeft: "3px" }}>
-                {/* <UploadField /> */}
-                <div>
-                  <Upload onUpload={this.handleUpload} />
-                  {!!uploadedFiles.length && (
-                    <FileList
-                      files={uploadedFiles}
-                      onDelete={this.handleDelete}
+                  <Input
+                      type="text"
+                      id="category"
+                      name="category"
+                      placeholder="Category..."
+                      value={category}
+                      autoComplete="off"
+                      style={{  
+                        color: "#999",
+                        fontSize: "16px",
+                        fontWeight: "100",
+                        margin: "10px 0",
+                        width: "100%"
+                      }}
+                      onChange={this.onChangeCategory}
+                      required
                     />
-                  )}
-                </div>
-              </div>
-              <div className="col-12">
+                  <div>
+                    <Upload onUpload={this.handleUpload} />
+                    {!!uploadedFiles.length && (
+                      <FileList
+                        files={uploadedFiles}
+                        onDelete={this.handleDelete}
+                      />
+                    )}
+                  </div>
+                  <div style={{margin: "50px 0px 20px 0px"}}>
+                    <Editor
+                      apiKey='z1imaefgqfqi5gkj9tp9blogndyf2gp0aj3fgubdtz73p658'
+                      init={{
+                        height: 500,
+                        menubar: false,
+                        plugins: [
+                          'advlist autolink lists link image charmap print preview anchor',
+                          'searchreplace visualblocks code fullscreen',
+                          'insertdatetime media table paste code help wordcount'
+                        ],
+                        toolbar:
+                          'undo redo | formatselect | bold italic backcolor | \
+                          alignleft aligncenter alignright alignjustify | \
+                          bullist numlist outdent indent | removeformat | help'
+                      }}
+                      onChange={this.handleEditorChange}
+                    />
+                  </div>
+                  <ul
+                  style={{display: "inline"}}>
+                    <li style={{display: "inline"}}>
+                      <p style={{marginBottom: "0px", marginTop: "0px", position: "absolute", color: "#333"}}>Tags:</p>
+                    </li>
+                    <li style={{display: "inline", marginLeft: "45px", marginTop: "-20px"}}>
+                      <Input
+                          type="text"
+                          id="tags"
+                          name="tags"
+                          value={tags}
+                          autoComplete="off"
+                          style={{  
+                            color: "#333",
+                            fontSize: "16px",
+                            fontWeight: "100",
+                          }}
+                          onChange={this.onChangeTags}
+                          required
+                      />
+                    </li>
+                  </ul>
+                </main>
                 <Button disabled={!allFieldsFilled}>Upload</Button>
               </div>
             </div>

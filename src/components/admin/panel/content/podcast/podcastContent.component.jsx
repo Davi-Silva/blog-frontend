@@ -26,7 +26,7 @@ export default class PodcastContent extends Component {
 
   async getAllPodcasts() {
     this.response = await fetch(
-      "https://course-backend.herokuapp.com/podcasts/",
+      'https://course-backend.herokuapp.com/podcasts/',
       // 'https://course-backend.herokuapp.com/podcasts/',
       {
         method: 'GET',
