@@ -12,9 +12,9 @@ export default function Navbar() {
   return (
     <>
       <NavBar className="navbar navbar-expand-lg">
-        <div className="container-fluid">
+        <div className="container">
           <Brand className="navbar-brand" to="/">
-              Name
+              Cryptic Archivist
           </Brand>
           <ToggleButton
             className="navbar-toggler"
@@ -29,7 +29,7 @@ export default function Navbar() {
           </ToggleButton>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <LinkA
                   className="nav-link"
                   to="/"
@@ -42,7 +42,7 @@ export default function Navbar() {
                     Home
                   <span className="sr-only">(current)</span>
                 </LinkA>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <LinkA
                   className="nav-link"
@@ -82,7 +82,7 @@ export default function Navbar() {
                     Podcasts
                 </LinkA>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <LinkA
                   className="nav-link"
                   to="/dashboard"
@@ -94,7 +94,7 @@ export default function Navbar() {
                 >
                     Dashboard
                 </LinkA>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <LinkA
                   className="nav-link"
@@ -113,7 +113,7 @@ export default function Navbar() {
                     Admin
                 </LinkA>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <LinkA
                   className="nav-link"
                   to="/about"
@@ -125,7 +125,7 @@ export default function Navbar() {
                 >
                     About
                 </LinkA>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <LinkA
                   className="nav-link"
@@ -139,7 +139,7 @@ export default function Navbar() {
                     Login
                 </LinkA>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <SignUp
                   className="nav-link"
                   to="/signup"
@@ -151,14 +151,18 @@ export default function Navbar() {
                 >
                     Sign Up
                 </SignUp>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <LinkA
                   className="nav-link"
-                  to="//course-backend.herokuapp.com/auth/logout"
+                  // to="//course-backend.herokuapp.com/auth/logout"
+                  to="/auth/logout"
                   // to="//localhost:5000/auth/logout"
+                  // onClick={() => {
+                  //   window.location.href = 'https://course-backend.herokuapp.com/auth/logout';
+                  // }}
                   onClick={() => {
-                    window.location.href = 'https://course-backend.herokuapp.com/auth/logout';
+                    window.location.href = 'http://localhost:5000/auth/logout';
                   }}
                 >
                     Logout

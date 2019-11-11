@@ -85,8 +85,9 @@ export default class SubNavBar extends Component {
       <SubNavigatorBar className={containerClassName}>
         <div className="container">
           <div className="row">
-            <div className="col-12" />
-            {subNavMenu}
+            <div className="col-12">
+              {subNavMenu}
+            </div>
           </div>
         </div>
       </SubNavigatorBar>

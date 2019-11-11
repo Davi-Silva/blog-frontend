@@ -78,7 +78,7 @@ export const LoadingCategory = styled.p`
 
 export const Description = styled.div`
 	color: #333;
-	font-size: 16px;
+	font-size: 14px;
 	margin: 10px 0px;
 `;
 

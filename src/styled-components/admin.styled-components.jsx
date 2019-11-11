@@ -40,14 +40,16 @@ export const ToggleButton = styled.button`
   width: 100%;
   padding: 5px 10px;
   border-radius: 4px;
+  border: 1px solid #fff;
   transition: all 0.2s ease-in-out;
   &:hover {
-    background-color: rgb(0, 0, 0, 0.05);
+    box-shadow: inset 0px 0px 7px rgba(0, 0, 0, 0.2);
+    border: 1px solid #0058e4;
   }
   &:focus {
     outline: none;
-    background-color: rgb(0, 0, 0, 0.05);
-    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid #0058e4;
+    box-shadow: inset 0px 0px 7px rgba(0, 0, 0, 0.2);
   }
 `;
 

@@ -26,7 +26,6 @@ export const LinkA = styled(Link)`
 export const Brand = styled(Link)`
   color: #0058e4;
   font-weight: 900;
-  text-transform: uppercase;
   letter-spacing: 1px;
 `;
 

@@ -74,6 +74,15 @@ export default class Podcast extends Component {
         color: '#0058e4',
         height: '25px',
         width: '25px',
+        '&:hover': {
+          color: '#333',
+        },
+        '&:active': {
+          color: '#333',
+        },
+        '&:focus': {
+          color: '#333',
+        },
       },
       volumeSlider: {
         color: '#0058e4',
@@ -169,8 +178,8 @@ export default class Podcast extends Component {
     const { match } = this.props;
     const { slug } = match.params;
     this.response = await fetch(
-      `https://course-backend.herokuapp.com/podcasts/get/${slug}`,
-      // `http://localhost:5000/podcasts/get/${slug}`,
+      // `https://course-backend.herokuapp.com/podcasts/get/${slug}`,
+      `http://localhost:5000/podcasts/get/${slug}`,
       {
         method: 'GET',
         mode: 'cors',
