@@ -1,6 +1,8 @@
 /* eslint-disable no-tabs */
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
+
+import { opacity } from './animations';
 
 export const Wrapper = styled.div`
 	margin: 20px auto 0px auto;
@@ -54,15 +56,37 @@ export const Title = styled.h1`
 	margin: 10px 0px;
 `;
 
+export const LoadingTitle = styled.h1`
+	color: #333;
+	font-size: 26px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	margin: 10px 0px;
+	animation: ${opacity} 2s ease-in-out infinite;
+`;
+
 export const Category = styled.p`
 	color: #999;
 	margin: 10px 0px;
+`;
+
+export const LoadingCategory = styled.p`
+	color: #999;
+	margin: 10px 0px;
+	animation: ${opacity} 2s ease-in-out infinite;
 `;
 
 export const Description = styled.div`
 	color: #333;
 	font-size: 16px;
 	margin: 10px 0px;
+`;
+
+export const LoadingDescription = styled.div`
+	color: #333;
+	font-size: 16px;
+	margin: 10px 0px;
+	animation: ${opacity} 2s ease-in-out infinite;
 `;
 
 export const Update = styled(Link)`
@@ -102,4 +126,20 @@ export const Update = styled(Link)`
 
 export const MoreEpisodes = styled(Link)`
 	color: #0058e4;
+`;
+
+
+export const LoadingAudio = styled.p`
+	color: #999;
+	font-size: 14px;
+	animation: ${opacity} 2s ease-in-out infinite;
+`;
+
+export const Tags = styled.p`
+	font-size: 14px;
+`;
+
+export const LoadingTags = styled.p`
+	font-size: 14px;
+	animation: ${opacity} 2s ease-in-out infinite;
 `;

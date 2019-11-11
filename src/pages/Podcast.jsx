@@ -9,15 +9,18 @@ import {
   Title,
   Category,
   Description,
+  Tags,
   UploadedOn,
-  Update,
   MoreEpisodes,
+  LoadingTitle,
+  LoadingCategory,
+  LoadingAudio,
+  LoadingDescription,
+  LoadingTags,
 } from '../styled-components/podcast.styled-components';
 
-import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
 import SubNavBar from '../components/UI/navbar/SubNavBar.component';
 import CoverImage from '../components/UI/pdocast/cover.component';
-
 
 export default class Podcast extends Component {
   constructor(props) {
@@ -34,6 +37,70 @@ export default class Podcast extends Component {
       coverAlt: '',
       documentHeight: null,
     };
+
+    this.muiTheme = createMuiTheme({});
+    this.useStyles = makeStyles((theme) => ({
+      playIcon: {
+        color: '#0058e4',
+        height: '25px',
+        width: '25px',
+        transition: 'all .2s ease-in-out',
+        '&:hover': {
+          color: '#333',
+        },
+        '&:active': {
+          color: '#333',
+        },
+        '&:focus': {
+          color: '#333',
+        },
+      },
+      pauseIcon: {
+        color: '#0058e4',
+        height: '25px',
+        width: '25px',
+        transition: 'all .2s ease-in-out',
+        '&:hover': {
+          color: '#333',
+        },
+        '&:active': {
+          color: '#333',
+        },
+        '&:focus': {
+          color: '#333',
+        },
+      },
+      volumeIcon: {
+        color: '#0058e4',
+        height: '25px',
+        width: '25px',
+      },
+      volumeSlider: {
+        color: '#0058e4',
+        height: '25px',
+        width: '25px',
+      },
+      progressTime: {
+        color: '#0058e4',
+        lineHeight: '50px',
+      },
+      mainSlider: {
+        color: '#0058e4',
+        '& .MuiSlider-rail': {
+          color: '#999',
+          marginTop: '13px',
+        },
+        '& .MuiSlider-track': {
+          color: '#0058e4',
+          marginTop: '13px',
+        },
+        '& .MuiSlider-thumb': {
+          color: '#0058e4',
+          top: '10px',
+          marginTop: '10px',
+        },
+      },
+    }));
 
     this.getPodcastBySlug = this.getPodcastBySlug.bind(this);
     this.setStateAsync = this.setStateAsync.bind(this);
@@ -131,79 +198,91 @@ export default class Podcast extends Component {
 
   render() {
     const {
-      cover, coverAlt, uploadedOn, updatedOn, category, title, audioFileUrl, description, tags, documentHeight,
+      cover,
+      coverAlt,
+      uploadedOn,
+      updatedOn,
+      category,
+      title,
+      audioFileUrl,
+      description,
+      tags,
+      documentHeight,
     } = this.state;
     const { match } = this.props;
     const { slug } = match.params;
-    const muiTheme = createMuiTheme({});
-    const src = [
-      `${audioFileUrl}`,
-    ];
-    console.log('audioFileUrl:', audioFileUrl);
-    console.log('src:', src);
-    const useStyles = makeStyles((theme) => ({
-      playIcon: {
-        color: '#0058e4',
-        height: '25px',
-        width: '25px',
-        transition: 'all .2s ease-in-out',
-        '&:hover': {
-          color: '#333',
-        },
-        '&:active': {
-          color: '#333',
-        },
-        '&:focus': {
-          color: '#333',
-        },
-      },
-      pauseIcon: {
-        color: '#0058e4',
-        height: '25px',
-        width: '25px',
-        transition: 'all .2s ease-in-out',
-        '&:hover': {
-          color: '#333',
-        },
-        '&:active': {
-          color: '#333',
-        },
-        '&:focus': {
-          color: '#333',
-        },
-      },
-      volumeIcon: {
-        color: '#0058e4',
-        height: '25px',
-        width: '25px',
-      },
-      volumeSlider: {
-        color: '#0058e4',
-        height: '25px',
-        width: '25px',
-      },
-      progressTime: {
-        color: '#0058e4',
-        lineHeight: '50px',
-      },
-      mainSlider: {
-        color: '#0058e4',
-        '& .MuiSlider-rail': {
-          color: '#999',
-          marginTop: '13px',
-        },
-        '& .MuiSlider-track': {
-          color: '#0058e4',
-          marginTop: '13px',
-        },
-        '& .MuiSlider-thumb': {
-          color: '#0058e4',
-          top: '10px',
-          marginTop: '10px',
-        },
-      },
-    }));
     let podcastUpdated;
+    let podcastTitle;
+    let podcastCategory;
+    let podcastDescription;
+    let audioPlayer;
+    let podcastTags;
+    if (title === '') {
+      podcastTitle = (
+        <LoadingTitle>Title...</LoadingTitle>
+      );
+    } else {
+      podcastTitle = (
+        <Title>{title}</Title>
+      );
+    }
+    if (category === '') {
+      podcastCategory = (
+        <LoadingCategory>Category...</LoadingCategory>
+      );
+    } else {
+      podcastCategory = (
+        <Category>
+          {category}
+        </Category>
+      );
+    }
+    if (audioFileUrl === '') {
+      audioPlayer = (
+        <LoadingAudio>Loading audio file...</LoadingAudio>
+      );
+    } else {
+      audioPlayer = (
+        <ThemeProvider theme={this.muiTheme}>
+          <AudioPlayer
+            elevation={0}
+            width="100%"
+            variation="default"
+            spacing={1}
+            height="55px"
+            order="standart"
+            preload="auto"
+            useStyles={this.useStyles}
+            src={audioFileUrl}
+            debug
+          />
+        </ThemeProvider>
+      );
+    }
+    if (description === '') {
+      podcastDescription = (
+        <LoadingDescription>Description...</LoadingDescription>
+      );
+    } else {
+      podcastDescription = (
+        <Description
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+      );
+    }
+    if (tags === '') {
+      podcastTags = (
+        <LoadingTags>Tags...</LoadingTags>
+      );
+    } else {
+      podcastTags = (
+        <Tags>
+        Tags:&nbsp;
+          <b style={{ fontSize: '16px' }}>{tags}</b>
+        </Tags>
+      );
+    }
+
     if (updatedOn === null) {
       podcastUpdated = (
         <UploadedOn>
@@ -211,7 +290,7 @@ export default class Podcast extends Component {
           <span style={{ color: '#333', fontWeight: '700' }}>{uploadedOn}</span>
         </UploadedOn>
       );
-    } else if (updatedOn !== null) {
+    } else {
       podcastUpdated = (
         <UploadedOn>
         Updated on&nbsp;
@@ -231,35 +310,12 @@ export default class Podcast extends Component {
             </div>
             <div className="col-lg-8 col-md-8 col-sm-12 col-12">
               <Wrapper>
-                {/* <Update to={`/edit/podcast/${slug}`}>
-                <i className="fas fa-edit" />
-              </Update> */}
                 {podcastUpdated}
-                <Title>{title}</Title>
-                <Category>
-                  {category}
-                </Category>
-                <ThemeProvider theme={muiTheme}>
-                  <AudioPlayer
-                    elevation={0}
-                    width="100%"
-                    variation="default"
-                    spacing={1}
-                    height="55px"
-                    order="standart"
-                    preload="auto"
-                    useStyles={useStyles}
-                    src={audioFileUrl}
-                    debug
-                  />
-                </ThemeProvider>
-                <Description
-                  dangerouslySetInnerHTML={{ __html: description }}
-                />
-                <p style={{ fontSize: '14px' }}>
-Tags:&nbsp;
-                  <b style={{ fontSize: '16px' }}>{tags}</b>
-                </p>
+                {podcastTitle}
+                {podcastCategory}
+                {audioPlayer}
+                {podcastDescription}
+                {podcastTags}
                 <hr />
                 <MoreEpisodes to="/podcasts">More Episodes</MoreEpisodes>
               </Wrapper>
