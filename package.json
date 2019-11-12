@@ -28,17 +28,6 @@
         "slugify": "^1.3.6",
         "styled-components": "^4.4.0"
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "echo 'testing'"
-        }
-    },
-    "lint-staged": {
-        "*.js": [
-            "eslint --fix",
-            "git add ."
-        ]
-    },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
