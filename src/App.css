@@ -208,7 +208,36 @@ textarea::-webkit-scrollbar-thumb:hover {
 		  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0);
 		  transform: translateX(3%);
 	  }
-  }
+}
+
+@keyframes opacityShareButtons {
+	0% {
+		opacity: 0;
+		left: 5%
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes moveShareButtons {
+	0% {
+		opacity: 0;
+		/* left: 5% */
+	}
+	25% {
+		opacity: 0;
+	}
+	50% {
+		left: 10%;
+	}
+	90% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
 
 .podcastCoverImageRelative {
 	position: relative;
@@ -223,6 +252,27 @@ textarea::-webkit-scrollbar-thumb:hover {
 }
 
 .podcastCoverImageSticky {
+	position: relative;
+	margin-top: -13%!important;
+	animation: hideShadow .5s ease-in;
+	animation-fill-mode: forwards;  
+}
+
+.shareButtonsRelative {
+	position: relative;
+	/* animation: opacityShareButtons 0.2s ease-in;
+	animation-fill-mode: forwards;   */
+}
+
+.shareButtonsFixed {
+	position: fixed!important;
+	top: 340px!important;
+	left: -34%!important;
+	/* animation: moveShareButtons 0.2s ease-in;
+	animation-fill-mode: forwards;   */
+}
+
+.shareButtonsSticky {
 	position: relative;
 	margin-top: -13%!important;
 	animation: hideShadow .5s ease-in;
@@ -249,6 +299,11 @@ textarea::-webkit-scrollbar-thumb:hover {
 @media (max-width: 1199px) {
 	.podcastCoverImageFixed {
 		left: 5%;
+	}
+	.shareButtonsFixed {
+		top: 300px;
+		left: -34%!important;
+
 	}
 	.card-columns {
 		column-count: 4
@@ -277,6 +332,13 @@ textarea::-webkit-scrollbar-thumb:hover {
 		top: unset;
 		animation: unset;
 	}
+
+	.shareButtonsFixed {
+		position: relative!important;
+		top: unset!important;
+		left: unset!important;
+	}
+	
 	.podcastCoverImageSticky {
 		top: 0;
 		position: sticky;

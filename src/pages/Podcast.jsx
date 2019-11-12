@@ -4,6 +4,8 @@ import { createMuiTheme, makeStyles } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import AudioPlayer from 'material-ui-audio-player';
 
+import ShareButtons from '../components/UI/buttons/ShareButton';
+
 import {
   Wrapper,
   Title,
@@ -315,6 +317,7 @@ export default class Podcast extends Component {
             <div className="col-lg-4 col-md-4 col-sm-12 col-12">
               <aside style={{ marginTop: '20px' }}>
                 <CoverImage cover={cover} coverAlt={coverAlt} documentHeight={documentHeight} />
+                <ShareButtons img={cover} text={title} />
               </aside>
             </div>
             <div className="col-lg-8 col-md-8 col-sm-12 col-12">

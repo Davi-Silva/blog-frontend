@@ -46,7 +46,7 @@ export default class CoverImage extends Component {
 
     componentDidMount() {
       console.log(window.scrollY)
-    window.addEventListener('scroll', this.listenScrollEvent);
+      window.addEventListener('scroll', this.listenScrollEvent);
     }
     
 
