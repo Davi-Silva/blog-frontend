@@ -52,7 +52,7 @@ export default class Podcasts extends Component {
         <SubNavBar media="Podcasts" category="" title="" />
         <div className="container">
           <div className="row">
-            <div className="col-lg-9 col-md-9 col-sm-12 col-12">
+            <div className="col-lg-7 col-md-9 col-sm-12 col-12">
               <ul>
                 {podcasts.reverse().map((podcast, key) => (
                   <PodcastsList
@@ -70,9 +70,9 @@ export default class Podcasts extends Component {
                 ))}
               </ul>
             </div>
-            <div className="col-lg-3 col-md-3 col-sm-12 col-12">
+            <div className="col-lg-5 col-md-3 col-sm-12 col-12">
               <aside style={{ marginTop: '20px' }}>
-                <AdvertisementSquare />
+                {/* <AdvertisementSquare /> */}
               </aside>
             </div>
           </div>

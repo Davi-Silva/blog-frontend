@@ -7,6 +7,7 @@ import {
   Description,
   UploadedOn,
   Category,
+  Title,
 } from '../../../styled-components/podcasts.styled-components';
 
 export default class PodcastsList extends Component {
@@ -99,31 +100,21 @@ export default class PodcastsList extends Component {
     return (
       <>
         <Wrapper to={`/podcast/${slug}`}>
-          <Cover
-            style={{
-              background: `url(${cover}) no-repeat`,
-            }}
-          />
-          <div style={{ padding: '5px 25px 0px 25px' }}>
-            <Category>{`${type} > ${category}`}</Category>
-            <br />
-            <h5
-              style={{
-                color: '#0058e4',
-                marginBottom: '0px',
-                float: 'left',
-              }}
-            >
-              {title}
-            </h5>
-            <br />
-            <UploadedOn>
-              Uploaded on&nbsp;
-              <span style={{ color: '#0058e4' }}>{date}</span>
-            </UploadedOn>
-            <Description
-              dangerouslySetInnerHTML={{ __html: shortDescription }}
-            />
+          <div className="row">
+            <div className="col-3">
+              <Cover src={cover} />
+            </div>
+            <div className="col-9 p-0">
+              <UploadedOn>
+                <b style={{ color: '#333' }}>{date}</b>
+              </UploadedOn>
+              <Title>
+                {title}
+              </Title>
+              <Category>
+                {category}
+              </Category>
+            </div>
           </div>
         </Wrapper>
       </>

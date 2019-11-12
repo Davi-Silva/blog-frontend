@@ -14,7 +14,7 @@ export default function Navbar() {
       <NavBar className="navbar navbar-expand-lg">
         <div className="container">
           <Brand className="navbar-brand" to="/">
-              Cryptic Archivist
+              CrypticActivist
           </Brand>
           <ToggleButton
             className="navbar-toggler"
@@ -29,7 +29,7 @@ export default function Navbar() {
           </ToggleButton>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
-              {/* <li className="nav-item">
+              <li className="nav-item">
                 <LinkA
                   className="nav-link"
                   to="/"
@@ -42,7 +42,7 @@ export default function Navbar() {
                     Home
                   <span className="sr-only">(current)</span>
                 </LinkA>
-              </li> */}
+              </li>
               <li className="nav-item">
                 <LinkA
                   className="nav-link"

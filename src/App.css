@@ -241,17 +241,26 @@ textarea::-webkit-scrollbar-thumb:hover {
 	.podcastCoverImageFixed {
 		left: 5%;
 	}
+	.card-columns {
+		column-count: 4
+	}
 }
 
 @media (max-width: 1199px) {
 	.podcastCoverImageFixed {
 		left: 5%;
 	}
+	.card-columns {
+		column-count: 4
+	}
 }
 
 @media (max-width: 991px) {
 	.podcastCoverImageFixed {
 		left: 10%;
+	}
+	.card-columns {
+		column-count: 3
 	}
 }
 
@@ -266,9 +275,21 @@ textarea::-webkit-scrollbar-thumb:hover {
 		position: relative;
 		left: unset;
 		top: unset;
+		animation: unset;
 	}
 	.podcastCoverImageSticky {
 		top: 0;
 		position: sticky;
+		animation: unset;
+	}
+	.card-columns {
+		column-count: 2
 	}
 }
+
+@media (max-width: 490px) {
+	.card-columns {
+		column-count: 1
+	}
+}
+
