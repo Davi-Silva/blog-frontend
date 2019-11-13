@@ -50,9 +50,6 @@ export default class ShareButton extends Component {
       buttons: [
         { network: 'Twitter', icon: FaTwitter },
         { network: 'Facebook', icon: FaFacebook },
-        { network: 'GooglePlus', icon: FaGooglePlus },
-        { network: 'Email', icon: FaEnvelope },
-        { network: 'Pinterest', icon: FaPinterest, media: `${img}` },
         { network: 'Linkedin', icon: FaLinkedin },
       ],
       text: `${text}`,
@@ -68,6 +65,7 @@ export default class ShareButton extends Component {
                 margin: 0px;
                 svg {
                     fill: #0058e4;
+                    height: 22px;
                     &:hover {
                         fill: #fff;
                     }

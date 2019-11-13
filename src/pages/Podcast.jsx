@@ -22,7 +22,7 @@ import {
 } from '../styled-components/podcast.styled-components';
 
 import SubNavBar from '../components/UI/navbar/SubNavBar.component';
-import CoverImage from '../components/UI/pdocast/cover.component';
+import CoverImage from '../components/UI/podcast/cover.component';
 
 export default class Podcast extends Component {
   constructor(props) {

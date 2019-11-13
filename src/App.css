@@ -276,7 +276,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 	position: relative;
 	margin-top: -13%!important;
 	animation: hideShadow .5s ease-in;
-	animation-fill-mode: forwards;  
+	animation-fill-mode: forwards;
 }
 
 .relativeSubNavBarContainer {
@@ -287,12 +287,16 @@ textarea::-webkit-scrollbar-thumb:hover {
 	padding-top: 35px;
 }
 
+.card-columns {
+	column-count: 4;
+}
+
 @media (max-width: 1543px) {
 	.podcastCoverImageFixed {
 		left: 5%;
 	}
 	.card-columns {
-		column-count: 4
+		column-count: 4;
 	}
 }
 
@@ -306,7 +310,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 	}
 	.card-columns {
-		column-count: 4
+		column-count: 4;
 	}
 }
 
@@ -315,7 +319,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 		left: 10%;
 	}
 	.card-columns {
-		column-count: 3
+		column-count: 3;
 	}
 }
 
@@ -345,13 +349,13 @@ textarea::-webkit-scrollbar-thumb:hover {
 		animation: unset;
 	}
 	.card-columns {
-		column-count: 2
+		column-count: 2;
 	}
 }
 
 @media (max-width: 490px) {
 	.card-columns {
-		column-count: 1
+		column-count: 1;
 	}
 }
 
