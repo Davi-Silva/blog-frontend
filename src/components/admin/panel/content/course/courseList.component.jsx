@@ -31,7 +31,7 @@ export default class List extends Component {
 	async getPodcastBySlug() {
 		console.log("slug:", this.state.slug);
 		let response = await fetch(
-			`https://course-backend.herokuapp.com/podcasts/get/${this.state.slug}`,
+			`https://cryptic-activist-backend.herokuapp.com/podcasts/get/${this.state.slug}`,
 			{
 				method: "GET",
 				mode: "cors",
@@ -53,7 +53,7 @@ export default class List extends Component {
 		console.log("podcast.cover._id:", podcast.cover._id);
 		console.log("podcast.audio_file._id:", podcast.audio_file._id);
 		// await fetch(
-		//   `https://course-backend.herokuapp.com/podcasts/delete/audio/${podcast.cover._id}`,
+		//   `https://cryptic-activist-backend.herokuapp.com/podcasts/delete/audio/${podcast.cover._id}`,
 		//   {
 		//     method: "DELETE",
 		//     mode: "cors",
@@ -65,7 +65,7 @@ export default class List extends Component {
 		//   }
 		// );
 		// await fetch(
-		//   `https://course-backend.herokuapp.com/podcasts/delete/cover/${podcast.audio_file._id}`,
+		//   `https://cryptic-activist-backend.herokuapp.com/podcasts/delete/cover/${podcast.audio_file._id}`,
 		//   {
 		//     method: "DELETE",
 		//     mode: "cors",
@@ -76,7 +76,7 @@ export default class List extends Component {
 		//     }
 		//   }
 		// );
-		await fetch(`https://course-backend.herokuapp.com/podcasts/delete/${podcast.id}`, {
+		await fetch(`https://cryptic-activist-backend.herokuapp.com/podcasts/delete/${podcast.id}`, {
 			method: "DELETE",
 			mode: "cors",
 			cache: "no-cache",

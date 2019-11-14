@@ -155,11 +155,11 @@ export default function Navbar() {
               <li className="nav-item">
                 <LinkA
                   className="nav-link"
-                  // to="//course-backend.herokuapp.com/auth/logout"
+                  // to="//cryptic-activist-backend.herokuapp.com/auth/logout"
                   to="/auth/logout"
                   // to="//localhost:5000/auth/logout"
                   // onClick={() => {
-                  //   window.location.href = 'https://course-backend.herokuapp.com/auth/logout';
+                  //   window.location.href = 'https://cryptic-activist-backend.herokuapp.com/auth/logout';
                   // }}
                   onClick={() => {
                     window.location.href = 'http://localhost:5000/auth/logout';

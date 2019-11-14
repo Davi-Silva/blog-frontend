@@ -188,7 +188,7 @@ export default class EditPodcast extends Component {
     const { slug } = match.params;
     console.log('slug:', slug);
     this.response = await fetch(
-      // `https://course-backend.herokuapp.com/podcasts/get/${slug}`,
+      // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${slug}`,
       `http://localhost:5000/podcasts/get/${slug}`,
       {
         method: 'GET',
@@ -232,8 +232,8 @@ export default class EditPodcast extends Component {
   async updatePodcast(podcast) {
     const { id } = this.state;
     this.response = await fetch(
-      // `https://course-backend.herokuapp.com/podcasts/get/${}`,
-      // `https://course-backend.herokuapp.com/podcasts/update/${id}`,
+      // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${}`,
+      // `https://cryptic-activist-backend.herokuapp.com/podcasts/update/${id}`,
       `http://localhost:5000/podcasts/update/${id}`,
       {
         method: 'PUT',

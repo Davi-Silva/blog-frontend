@@ -40,8 +40,8 @@ export default class SearchForm extends Component {
   async getAllMedias() {
     const { media } = this.props;
     this.response = await fetch(
-      // "https://course-backend.herokuapp.com/podcasts/",
-      `https://course-backend.herokuapp.com/${media}/`,
+      // "https://cryptic-activist-backend.herokuapp.com/podcasts/",
+      `https://cryptic-activist-backend.herokuapp.com/${media}/`,
       {
         method: 'GET',
         mode: 'cors',

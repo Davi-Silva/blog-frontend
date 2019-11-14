@@ -85,7 +85,7 @@ export default class List extends Component {
     const { id } = podcast[0];
     const { audioFileId, coverFileId } = this.state;
     await fetch(
-      // `https://course-backend.herokuapp.com/podcasts/delete/audio/${audioFileId}`,
+      // `https://cryptic-activist-backend.herokuapp.com/podcasts/delete/audio/${audioFileId}`,
       `http://localhost:5000/podcasts/delete/audio/${audioFileId}`,
       {
         method: 'DELETE',
@@ -98,7 +98,7 @@ export default class List extends Component {
       },
     );
     await fetch(
-      // `https://course-backend.herokuapp.com/podcasts/delete/cover/${coverFileId}`,
+      // `https://cryptic-activist-backend.herokuapp.com/podcasts/delete/cover/${coverFileId}`,
       `http://localhost:5000/podcasts/delete/cover/${coverFileId}`,
       {
         method: 'DELETE',
@@ -110,7 +110,7 @@ export default class List extends Component {
         },
       },
     );
-    // await fetch(`https://course-backend.herokuapp.com/podcasts/delete/${id}`, {
+    // await fetch(`https://cryptic-activist-backend.herokuapp.com/podcasts/delete/${id}`, {
     await fetch(`http://localhost:5000/podcasts/delete/${id}`, {
       method: 'DELETE',
       mode: 'cors',
@@ -126,7 +126,7 @@ export default class List extends Component {
     const { slug } = this.state;
     console.log('slug:', slug);
     this.response = await fetch(
-      // `https://course-backend.herokuapp.com/podcasts/get/${slug}`,
+      // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${slug}`,
       `http://localhost:5000/podcasts/get/${slug}`,
       {
         method: 'GET',

@@ -116,7 +116,7 @@ export default class PublishBlogPost extends Component {
       type: 'blog',
       title,
     };
-    // let response = fetch("https://course-backend.herokuapp.com/podcasts/set/global-variable", {
+    // let response = fetch("https://cryptic-activist-backend.herokuapp.com/podcasts/set/global-variable", {
     const response = fetch('http://localhost:5000/blog/set/global-variable', {
       method: 'POST',
       mode: 'cors',
@@ -134,7 +134,7 @@ export default class PublishBlogPost extends Component {
   async verifySlug(slug) {
     this.response = await fetch(
       `http://localhost:5000/blog/validation/slug/${slug}`,
-      // `https://course-backend.herokuapp.com/podcasts/validation/slug/${slug}`,
+      // `https://cryptic-activist-backend.herokuapp.com/podcasts/validation/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -152,7 +152,7 @@ export default class PublishBlogPost extends Component {
   async publishPost(podcast) {
     this.response = await fetch(
       'http://localhost:5000/blog/publish',
-      // "https://course-backend.herokuapp.com/podcasts/upload",
+      // "https://cryptic-activist-backend.herokuapp.com/podcasts/upload",
       {
         method: 'POST',
         mode: 'cors',

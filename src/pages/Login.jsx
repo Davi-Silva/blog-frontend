@@ -54,9 +54,9 @@ class Login extends Component {
   }
 
   async loginUser(loginInfo) {
-    // let response = await fetch("https://course-backend.herokuapp.com/users/login", {
+    // let response = await fetch("https://cryptic-activist-backend.herokuapp.com/users/login", {
     this.response = await fetch(
-      'https://course-backend.herokuapp.com/users/login',
+      'https://cryptic-activist-backend.herokuapp.com/users/login',
       {
         method: 'POST',
         mode: 'cors',
@@ -120,7 +120,7 @@ class Login extends Component {
                 <LoginButton
                   icon="google"
                   backgroundColor="#4285f4"
-                  endpoint="https://course-backend.herokuapp.com/auth/google"
+                  endpoint="https://cryptic-activist-backend.herokuapp.com/auth/google"
                   providerName="Google"
                 />
               </li>
@@ -133,7 +133,7 @@ class Login extends Component {
                 <LoginButton
                   icon="github"
                   backgroundColor="#333"
-                  endpoint="https://course-backend.herokuapp.com/auth/github"
+                  endpoint="https://cryptic-activist-backend.herokuapp.com/auth/github"
                   providerName="Github"
                 />
               </li>
@@ -146,7 +146,7 @@ class Login extends Component {
                 <LoginButton
                   icon="facebook"
                   backgroundColor="#3a5797"
-                  endpoint="https://course-backend.herokuapp.com/auth/facebook"
+                  endpoint="https://cryptic-activist-backend.herokuapp.com/auth/facebook"
                   providerName="Facebook"
                 />
               </li>
@@ -159,7 +159,7 @@ class Login extends Component {
                 <LoginButton
                   icon="instagram"
                   backgroundColor="#4285f4"
-                  endpoint="https://course-backend.herokuapp.com/auth/instagram"
+                  endpoint="https://cryptic-activist-backend.herokuapp.com/auth/instagram"
                   providerName="Instagram"
                 />
               </li>

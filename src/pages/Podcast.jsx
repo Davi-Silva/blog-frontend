@@ -180,7 +180,7 @@ export default class Podcast extends Component {
     const { match } = this.props;
     const { slug } = match.params;
     this.response = await fetch(
-      // `https://course-backend.herokuapp.com/podcasts/get/${slug}`,
+      // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${slug}`,
       `http://localhost:5000/podcasts/get/${slug}`,
       {
         method: 'GET',

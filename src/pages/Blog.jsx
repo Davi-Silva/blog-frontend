@@ -17,7 +17,7 @@ class Blog extends Component {
   }
 
   async getAllPosts() {
-    // this.response = await fetch('https://course-backend.herokuapp.com/blog/short', {
+    // this.response = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/short', {
     this.response = await fetch('http://localhost:5000/blog/short', {
       method: 'GET',
       mode: 'cors',
