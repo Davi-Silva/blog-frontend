@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import BlogPostList from '../components/UI/lists/BlogPostList.component';
 
-class BlogHome extends Component {
+class Blog extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,8 +17,8 @@ class BlogHome extends Component {
   }
 
   async getAllPosts() {
-    // this.response = await fetch('https://course-backend.herokuapp.com/podcasts', {
-    this.response = await fetch('http://localhost:5000/blog', {
+    // this.response = await fetch('https://course-backend.herokuapp.com/blog/short', {
+    this.response = await fetch('http://localhost:5000/blog/short', {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -61,4 +61,4 @@ class BlogHome extends Component {
   }
 }
 
-export default BlogHome;
+export default Blog;

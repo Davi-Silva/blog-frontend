@@ -14,7 +14,7 @@ import Upload from "../components/UI/admin/UploadField.component";
 import FileList from "../components/UI/admin/FileList.component";
 import UploadCover from "../components/UI/admin/UploadFieldCover.component";
 import FileListCover from "../components/UI/admin/FileListCover.component";
-import SubNavBar from '../components/UI/navbar/SubNavBar.component';
+import SubNavBar from '../components/UI/navbar/SubNavBar';
 
 import {
   Input,
@@ -404,14 +404,13 @@ export default class UploadNewPodcast extends Component {
   render() {
     const { uploadedFiles, uploadedCovers, title, slug, category, tags, description, allFieldsFilled } = this.state;
     return (
-      <React.Fragment>
-        <SubNavBar media="Podcast" category="New" title={title} />
+      <>
+        <SubNavBar media="Podcast" category="Upload" title={title} />
         <div className="container">
           <form onSubmit={this.onSubmit} method="POST">
             <div className="row">
               <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                 <aside style={{ marginTop: '20px' }}>
-                  {/* <UploadField />  */}
                   <div>
                     <UploadCover onUpload={this.handleUploadCover} />
                     {!!uploadedCovers.length && (
@@ -518,7 +517,7 @@ export default class UploadNewPodcast extends Component {
             </div>
           </form>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

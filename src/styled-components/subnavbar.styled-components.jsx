@@ -9,6 +9,7 @@ export const SubNavigatorBar = styled.nav`
   letter-spacing: 1px;
   border-bottom: 1px solid #0058e4;
   border-top: 1px solid #fff;
+  z-index: 999999999;
 `;
 
 export const Ul = styled.ul`

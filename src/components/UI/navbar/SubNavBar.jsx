@@ -32,25 +32,11 @@ export default class SubNavBar extends Component {
   async listenScrollEvent(e) {
     const container = window.document.body.children[1].children[2];
     if (window.scrollY >= 44) {
-      console.log('container:', container);
       container.className = 'container fixedSubNavBarContainer';
-      console.log('container:', container);
       await this.setStateAsync({ containerClassName: 'subNavBarFixed' });
-      const { containerClassName } = this.state;
-      // console.log(
-      //   'this.state.containerClassName:',
-      //   containerClassName,
-      // );
     } else {
-      console.log('container:', container);
       container.className = 'container relativeSubNavBarContainer';
-      console.log('container:', container);
       await this.setStateAsync({ containerClassName: 'subNavBarRelative' });
-      const { containerClassName } = this.state;
-      // console.log(
-      //   'this.state.containerClassName:',
-      //   containerClassName,
-      // );
     }
   }
 

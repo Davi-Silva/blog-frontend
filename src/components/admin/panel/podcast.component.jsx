@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import {
+  FaPlus,
+} from 'react-icons/fa';
 import PodcastContent from './content/podcast/podcastContent.component';
 import SearcForm from './content/searchForm.component';
 
@@ -49,8 +52,8 @@ export default class PodcastPanel extends Component {
               <SearcForm media="podcasts" />
             </div>
             <div className="col-2">
-              <Add to="/add/podcast">
-                <i className="fas fa-plus" />
+              <Add to="/upload/podcast">
+                <FaPlus />
               </Add>
             </div>
           </div>

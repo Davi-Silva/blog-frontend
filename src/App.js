@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import Navbar from './components/UI/navbar/Navbar.component';
-import Footer from './components/UI/footer/Footer.component';
+import Navbar from './components/UI/navbar/Navbar';
+import Footer from './components/UI/footer/Footer';
 
 import Admin from './pages/Admin';
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
-import BlogHome from './pages/BlogHome';
+import Blog from './pages/Blog';
 import About from './pages/About';
 import Profile from './pages/Profile';
 import Course from './pages/Course';
@@ -38,7 +38,7 @@ function App() {
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/blog" component={BlogHome} />
+        <Route path="/blog" component={Blog} />
         <Route path="/about" component={About} />
         <Route path="/profile" component={Profile} />
         <Route path="/course" component={Course} />
@@ -57,8 +57,8 @@ function App() {
         />
         <Route exact path="/404" component={PageNotFound} />
         <Route exact path="/podcasts" component={Podcasts} />
-        <Route path="/add/podcast" component={UploadNewPodcast} />
-        <Route path="/add/blog-post" component={PublishBlogPost} />
+        <Route path="/upload/podcast" component={UploadNewPodcast} />
+        <Route path="/publish/blog" component={PublishBlogPost} />
       </UserProvider>
       <Footer />
     </Router>

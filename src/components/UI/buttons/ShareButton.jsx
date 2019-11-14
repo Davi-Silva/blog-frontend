@@ -22,7 +22,6 @@ export default class ShareButton extends Component {
   }
 
   componentDidMount() {
-    console.log(window.scrollY);
     window.addEventListener('scroll', this.listenScrollEvent);
   }
 

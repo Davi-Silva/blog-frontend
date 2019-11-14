@@ -2,12 +2,19 @@
 import React, { Component } from 'react';
 
 import {
+  FaSortDown,
+  FaPodcast,
+  FaTrashAlt,
+  FaRegEdit,
+} from 'react-icons/fa';
+import {
   ToggleButton,
   Expand,
   Edit,
   Delete,
   GoTo,
 } from '../../../../../styled-components/admin.styled-components';
+
 
 export default class List extends Component {
   constructor(props) {
@@ -182,7 +189,7 @@ export default class List extends Component {
             </div>
             <div className="col-2">
               <Expand to={`/admin/course/${path}`}>
-                <i className="fas fa-sort-down" />
+                <FaSortDown />
               </Expand>
             </div>
           </div>
@@ -197,16 +204,18 @@ export default class List extends Component {
             dangerouslySetInnerHTML={{ __html: shortDescription }}
           />
           <Delete onClick={this.onDeletePodcast}>
-Delete &nbsp;
-            <i className="far fa-trash-alt" />
+            <FaTrashAlt />
+            &nbsp;
+Delete
           </Delete>
           <Edit to={editTo}>
-Edit &nbsp;
-            <i className="far fa-edit" />
+            <FaRegEdit />
+&nbsp; Edit
           </Edit>
           <GoTo to={`/podcast/${slug}`}>
-Podcast Page &nbsp;
-            <i className="fas fa-podcast" />
+            <FaPodcast />
+&nbsp;
+Podcast Page
           </GoTo>
         </div>
       </li>

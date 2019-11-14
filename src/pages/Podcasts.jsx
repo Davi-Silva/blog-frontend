@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PodcastsList from '../components/UI/lists/PodcastsList.component';
 import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
 
-import SubNavBar from '../components/UI/navbar/SubNavBar.component';
+import SubNavBar from '../components/UI/navbar/SubNavBar';
 
 export default class Podcasts extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export default class Podcasts extends Component {
 
   async getAllPodcasts() {
     // this.response = await fetch('https://course-backend.herokuapp.com/podcasts', {
-    this.response = await fetch('http://localhost:5000/podcasts', {
+    this.response = await fetch('http://localhost:5000/podcasts/short', {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -57,14 +57,11 @@ export default class Podcasts extends Component {
                 {podcasts.reverse().map((podcast, key) => (
                   <PodcastsList
                     key={key}
-                    type={podcast.type}
                     category={podcast.category}
                     title={podcast.title}
                     date={podcast.uploadedOn}
-                    description={podcast.description}
                     slug={podcast.slug}
                     cover={podcast.cover.url}
-                    path={podcast.audioFile.url}
                     liID={`p-${key}`}
                   />
                 ))}

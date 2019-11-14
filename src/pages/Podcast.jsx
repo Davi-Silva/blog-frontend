@@ -21,7 +21,7 @@ import {
   LoadingTags,
 } from '../styled-components/podcast.styled-components';
 
-import SubNavBar from '../components/UI/navbar/SubNavBar.component';
+import SubNavBar from '../components/UI/navbar/SubNavBar';
 import CoverImage from '../components/UI/podcast/cover.component';
 
 export default class Podcast extends Component {
@@ -220,8 +220,6 @@ export default class Podcast extends Component {
       tags,
       documentHeight,
     } = this.state;
-    const { match } = this.props;
-    const { slug } = match.params;
     let podcastUpdated;
     let podcastTitle;
     let podcastCategory;

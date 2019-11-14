@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import {
+  FaPlus,
+} from 'react-icons/fa';
 import BlogPostContent from './content/blog/blogContent.component';
 import SearcForm from './content/searchForm.component';
 
@@ -41,8 +44,8 @@ export default class BlogPanel extends Component {
               <SearcForm media="blog" />
             </div>
             <div className="col-2">
-              <Add to="/add/blog-post">
-                <i className="fas fa-plus" />
+              <Add to="/publish/blog">
+                <FaPlus />
               </Add>
             </div>
           </div>

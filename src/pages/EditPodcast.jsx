@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
-import SubNavBar from '../components/UI/navbar/SubNavBar.component';
+import SubNavBar from '../components/UI/navbar/SubNavBar';
 import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
 
 import UploadCover from "../components/UI/admin/UploadFieldCover.component";

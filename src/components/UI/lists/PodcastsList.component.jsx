@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import {
   Wrapper,
   Cover,
-  Description,
   UploadedOn,
   Category,
   Title,
@@ -14,17 +13,11 @@ export default class PodcastsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: '',
       category: '',
       title: '',
       date: null,
-      description: '',
-      shortDescription: '',
       slug: '',
       cover: '',
-      audioFileUrl: '',
-      liID: '',
-      editTo: '',
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -32,14 +25,8 @@ export default class PodcastsList extends Component {
 
   async componentDidMount() {
     const {
-      type, title, date, description, category, slug, cover, path, liID,
+      title, date, category, slug, cover,
     } = this.props;
-    const typeLower = type.toLowerCase();
-    const titleLower = title
-      .toLowerCase()
-      .split(' ')
-      .join('-');
-    const editTo = `/edit/${typeLower}/${titleLower}`;
 
     console.log('date:', date);
 
@@ -64,22 +51,13 @@ export default class PodcastsList extends Component {
     } ${
       dateFormatted.getFullYear()}`;
 
-    const shortDesc = description.split('\n');
-
     await this.setStateAsync({
-      type,
       category,
       title,
       date: formattedDate,
-      description,
-      shortDescription: shortDesc[0],
       slug,
       cover,
-      audioFileUrl: path,
-      liID,
-      editTo,
     });
-    console.log('shortDesc:', shortDesc[0]);
   }
 
   setStateAsync(state) {
@@ -95,7 +73,7 @@ export default class PodcastsList extends Component {
 
   render() {
     const {
-      slug, cover, type, category, title, date, shortDescription,
+      slug, cover, category, title, date,
     } = this.state;
     return (
       <>

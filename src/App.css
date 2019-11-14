@@ -288,7 +288,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 }
 
 .card-columns {
-	column-count: 4;
+	column-count: 3;
 }
 
 @media (max-width: 1543px) {
@@ -296,7 +296,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 		left: 5%;
 	}
 	.card-columns {
-		column-count: 4;
+		column-count: 3;
 	}
 }
 
@@ -310,7 +310,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 	}
 	.card-columns {
-		column-count: 4;
+		column-count: 3;
 	}
 }
 
@@ -358,4 +358,3 @@ textarea::-webkit-scrollbar-thumb:hover {
 		column-count: 1;
 	}
 }
-

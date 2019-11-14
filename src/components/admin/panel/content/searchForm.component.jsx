@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 
+import {
+  FaSearch,
+} from 'react-icons/fa';
 import { Form } from '../../../../styled-components/admin.styled-components';
+
 
 export default class SearchForm extends Component {
   constructor(props) {
@@ -95,7 +99,7 @@ export default class SearchForm extends Component {
             onChange={this.onChangeSearchInput}
           />
           <button type="submit">
-            <i className="fas fa-search" />
+            <FaSearch />
           </button>
         </Form>
       </>

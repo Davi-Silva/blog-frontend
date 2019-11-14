@@ -92,7 +92,8 @@ export default class BlogPostList extends Component {
         <Card className="card" style={{ border: 'none' }} to="">
           <Cover
             className="card-img-top img-fluid"
-            src={imgSrc}
+            // src={imgSrc}
+            src="http://res.cloudinary.com/simpleview/image/upload/v1486505969/clients/vancouverbc/Aerial_Sunset_Vancouver_d3_copy_1bb86ed0-1edc-4cda-841d-0b033ca0bb72.jpg"
             alt="React.js"
             width="100%"
           />

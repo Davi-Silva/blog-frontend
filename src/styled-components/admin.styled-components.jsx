@@ -248,6 +248,30 @@ export const FileInfo = styled.div`
   }
 `;
 
+export const FileInfoBlogPost = styled.div`
+  div {
+    position: absolute;
+    height: 300px;
+    width: 100vw;
+    z-index: 9999;
+    span {
+      font-size: 12px;
+      color: #999;
+      margin-top: 50px;
+      background-color: #fff;
+      padding: 3px 6px;
+      border-radius: 5px;
+      button {
+        border: 0;
+        background: transparent;
+        color: #e57878;
+        margin-left: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+`;
+
 export const Preview = styled.div`
   width: 250px;
   height: 250px;
@@ -268,6 +292,18 @@ export const PreviewAudio = styled.div`
   background-size: cover;
   background-position: 50% 50%;
   margin-left: 50px;
+`;
+
+export const PreviewBlogPostCover = styled.div`
+  width: 100%!important;
+  height: 305px!important;
+  display: table;
+  position: absolute;
+  top: -20px!important;
+  background-image: url(${(props) => props.src});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
 `;
 
 const dragActive = css`
@@ -309,6 +345,26 @@ export const DropAudioContainer = styled.div.attrs({
 	display: table;
   z-index: 99999;
 	margin: 0 auto;
+  cursor: pointer;
+  transition: height 0.2s ease;
+  ${(props) => props.isDragActive && dragActive};
+  ${(props) => props.isDragReject && dragReject};
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const DropContainerBlogPostCover = styled.div.attrs({
+  className: 'dropzone',
+})`
+  margin-top: 5px;
+  margin-left: 6px;
+  border: 1px dashed #0058e4;
+  border-radius: 4px;
+  width: 99%;
+	height: 300px;
+	display: table;
+  z-index: 99999;
   cursor: pointer;
   transition: height 0.2s ease;
   ${(props) => props.isDragActive && dragActive};
