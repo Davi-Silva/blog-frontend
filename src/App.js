@@ -26,7 +26,6 @@ import PublishBlogPost from './pages/PublishBlogPost';
 import PageNotFound from './pages/PageNotFound';
 
 import UserProvider from './contexts/UserProvider';
-// import history from "./history";
 
 function App() {
   return (
