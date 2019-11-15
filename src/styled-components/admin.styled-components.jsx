@@ -216,6 +216,25 @@ export const GoTo = styled(Link)`
 export const Container = styled.ul`
   top: 20px;
   position: absolute;
+
+  li {
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+    color: #444;
+    & + li {
+      margin-top: 15px;
+    }
+  }
+`;
+
+export const ContainerBlogPostCover = styled.ul`
+  top: 20px;
+  position: relative;
+  width: 100%;
+  transform: translateY(-305px);
+
+  
   li {
     display: flex;
     justify-content: space-between;
@@ -226,6 +245,7 @@ export const Container = styled.ul`
     }
   }
 `;
+
 
 export const FileInfo = styled.div`
   display: flex;
@@ -252,7 +272,7 @@ export const FileInfoBlogPost = styled.div`
   div {
     position: absolute;
     height: 300px;
-    width: 100vw;
+    width: 100%;
     z-index: 9999;
     span {
       font-size: 12px;
@@ -304,6 +324,11 @@ export const PreviewBlogPostCover = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
+  position: absolute;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 100%;
+  height: 305px;
 `;
 
 const dragActive = css`

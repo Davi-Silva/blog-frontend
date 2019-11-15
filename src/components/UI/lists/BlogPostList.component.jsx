@@ -11,14 +11,14 @@ export default class BlogPostList extends Component {
     this.state = {
       title: '',
       publishedOn: null,
-      shortContent: '',
+      slug: '',
     };
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   async componentDidMount() {
     const {
-      type, imgSrc, title, publishedOn, shortContent, slug,
+      type, imgSrc, title, publishedOn, slug,
     } = this.props;
     const typeLower = type.toLowerCase();
     const titleLower = title
@@ -50,20 +50,16 @@ export default class BlogPostList extends Component {
     } ${
       dateFormatted.getFullYear()}`;
 
-    const shortDesc = shortContent.split('\n');
-
     await this.setStateAsync({
       type,
       title,
       publishedOn: formattedDate,
-      shortContent: shortDesc[0],
       slug,
       imgSrc,
       // audioFileUrl: path,
       // liID,
       editTo,
     });
-    console.log('shortDesc:', shortDesc[0]);
   }
 
   setStateAsync(state) {
@@ -79,17 +75,12 @@ export default class BlogPostList extends Component {
 
   render() {
     const {
-      title, imgSrc, publishedOn, shortContent,
+      title, imgSrc, slug, publishedOn,
     } = this.state;
-    let trimedShortDescription;
-    if (shortContent.length > 100) {
-      trimedShortDescription = `${shortContent.substring(0, 100).trim()}...`;
-    } else {
-      trimedShortDescription = shortContent.trim();
-    }
+
     return (
       <>
-        <Card className="card" style={{ border: 'none' }} to="">
+        <Card to={`/blog/${slug}`} className="card" style={{ border: 'none' }}>
           <Cover
             className="card-img-top img-fluid"
             // src={imgSrc}
@@ -101,9 +92,7 @@ export default class BlogPostList extends Component {
             {publishedOn}
           </PublishedOn>
           <Title>{title}</Title>
-          <ShortDescription>
-            {trimedShortDescription}
-          </ShortDescription>
+
         </Card>
       </>
     );

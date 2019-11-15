@@ -4,13 +4,13 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
 
 import {
-  Container,
+  ContainerBlogPostCover,
   FileInfoBlogPost,
   PreviewBlogPostCover,
 } from '../../../styled-components/admin.styled-components';
 
 const FileList = ({ files, onDelete }) => (
-  <Container>
+  <ContainerBlogPostCover>
     {files.map((uploadedFile) => (
       <li key={uploadedFile.id}>
         <FileInfoBlogPost>
@@ -20,7 +20,7 @@ const FileList = ({ files, onDelete }) => (
             display: 'block',
             position: 'absolute',
             // left: '45%',
-            width: '100%',
+            // width: '100%',
             borderRadius: '5px',
             textAlign: 'center',
             height: '28px',
@@ -70,7 +70,6 @@ const FileList = ({ files, onDelete }) => (
               style={{
                 display: 'block',
                 position: 'absolute',
-                left: '47%',
                 borderRadius: '5px',
                 textAlign: 'center',
                 height: '28px',
@@ -88,7 +87,13 @@ const FileList = ({ files, onDelete }) => (
             size={24}
             color="#47d15c"
             style={{
-              backgroundColor: '#fff', margin: '0 0 0 56px', height: '29px', width: '34px', borderRadius: '5px',
+              backgroundColor: '#fff',
+              margin: '0 0 0 56px',
+              display: 'block',
+              position: 'absolute',
+              height: '29px',
+              width: '34px',
+              borderRadius: '5px',
             }}
           />
           )}
@@ -104,7 +109,7 @@ const FileList = ({ files, onDelete }) => (
         </div>
       </li>
     ))}
-  </Container>
+  </ContainerBlogPostCover>
 );
 
 export default FileList;

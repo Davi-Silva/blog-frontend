@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import Blog from './pages/Blog';
+import Post from './pages/Post';
 import About from './pages/About';
 import Profile from './pages/Profile';
 import Course from './pages/Course';
@@ -48,6 +49,11 @@ function App() {
           exact
           path="/podcast/:slug"
           render={(props) => <Podcast {...props} />}
+        />
+        <Route
+          exact
+          path="/blog/:slug"
+          render={(props) => <Post {...props} />}
         />
         <Route
           exact

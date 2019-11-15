@@ -39,6 +39,7 @@ class Blog extends Component {
 
   render() {
     const { postsList } = this.state;
+    console.log('postList:', postsList);
     return (
       <>
         <div className="container" style={{ margin: '25px auto' }}>
@@ -51,7 +52,6 @@ class Blog extends Component {
                 imgSrc={post.src}
                 title={post.title}
                 publishedOn={post.publishedOn}
-                shortContent={post.shortContent}
               />
             ))}
           </div>

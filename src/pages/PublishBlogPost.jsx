@@ -20,16 +20,20 @@ export default class PublishBlogPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isSlugValid: true,
       slug: '',
       title: '',
       category: '',
       tags: '',
       content: '',
-      shortContent: '',
+      uploaded: null,
       uploadedCovers: [],
+      author: '',
+      allFieldsFilled: false
     };
     this.verifySlug = this.verifySlug.bind(this);
     this.publishPost = this.publishPost.bind(this);
+    this.handleEditorChange = this.handleEditorChange.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
     this.onChangeTags = this.onChangeTags.bind(this);
@@ -37,6 +41,7 @@ export default class PublishBlogPost extends Component {
     this.handleUploadCover = this.handleUploadCover.bind(this);
     this.handleDeleteCover = this.handleDeleteCover.bind(this);
     this.changeSlugFromTitle = this.changeSlugFromTitle.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   async componentDidMount() {
@@ -85,6 +90,27 @@ export default class PublishBlogPost extends Component {
     let slug = slugify(lowerCaseTitle);
     await this.setStateAsync({ slug });
   }
+
+  async onChangeTitle(e) {
+    const { title } = this.state;
+    this.setStateAsync({
+      title: e.target.value,
+    });
+    setTimeout(() => {
+      this.changeSlugFromTitle(title);
+    }, 0);
+    setTimeout(() => {
+      this.disabledSubmitButton();
+    }, 0);
+  }
+
+  handleEditorChange = async (e) => {
+    console.log('Content was updated:', e.target.getContent());
+    this.setStateAsync({
+      content: e.target.getContent()
+    });
+  }
+
 
   async onChangeCategory(e) {
     this.setStateAsync({
@@ -149,6 +175,37 @@ export default class PublishBlogPost extends Component {
     return data;
   }
 
+  async onSubmit(e) {
+    e.preventDefault();
+    const {isSlugValid, slug, category, title, content, tags, uploadedCovers, author } = this.state;
+    const postInfo = {
+      isSlugValid: isSlugValid,
+      slug,
+      category: category,
+      title: title,
+      content: content,
+      tags: tags,
+      cover: uploadedCovers[uploadedCovers.length - 1].id,
+      author: 'Davi Silva',
+    };
+    console.log("podcast_info:", postInfo);
+    console.log(
+      "uploadedCovers:",
+      uploadedCovers[uploadedCovers.length - 1].id
+    );
+    let isSlugValidRes = await this.verifySlug(this.state.slug);
+    console.log("isSlugValidRes:", isSlugValidRes);
+    if (isSlugValidRes.valid) {
+      let res = await this.publishPost(postInfo);
+      this.setStateAsync({
+        uploaded: res.uploaded
+      });
+      console.log(res);
+    } else {
+      console.log("Slug is invalid");
+    }
+  }
+
   async publishPost(podcast) {
     this.response = await fetch(
       'http://localhost:5000/blog/publish',
@@ -170,13 +227,12 @@ export default class PublishBlogPost extends Component {
 
   async disabledSubmitButton() {
     const {
-      category, title, tags, content, shortContent, uploadedCovers,
+      category, title, tags, content, uploadedCovers,
     } = this.state;
     if (category !== ''
      && title !== ''
      && tags !== ''
      && content !== ''
-     && shortContent !== ''
      && uploadedCovers.length > 0) {
       await this.setStateAsync({
         allFieldsFilled: true,
@@ -258,6 +314,7 @@ export default class PublishBlogPost extends Component {
     });
   };
 
+
   componentWillUnmount() {
     this.state.uploadedCovers.forEach(file =>
       URL.revokeObjectURL(file.preview)
@@ -266,7 +323,7 @@ export default class PublishBlogPost extends Component {
 
 
   render() {
-    const { uploadedCovers, title } = this.state;
+    const { uploadedCovers, title, category, tags, allFieldsFilled } = this.state;
     return (
       <>
         <SubNavBar media="Blog" category="Publish" title={title} />
@@ -288,7 +345,7 @@ export default class PublishBlogPost extends Component {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <form style={{marginTop: '25px'}}>
+              <form style={{marginTop: '25px'}} onSubmit={this.onSubmit}>
                 <Input
                   type="text"
                   id="title"
@@ -306,24 +363,63 @@ export default class PublishBlogPost extends Component {
                   onChange={this.onChangeTitle}
                   required
                 />
-                  <Editor
-                    apiKey='z1imaefgqfqi5gkj9tp9blogndyf2gp0aj3fgubdtz73p658'
-                    init={{
-                      height: 500,
-                      menubar: false,
-                      plugins: [
-                        'advlist autolink lists link image charmap print preview anchor',
-                        'searchreplace visualblocks code fullscreen',
-                        'insertdatetime media table paste code help wordcount'
-                      ],
-                      toolbar:
-                        'undo redo | formatselect | bold italic backcolor | \
-                        alignleft aligncenter alignright alignjustify | \
-                        bullist numlist outdent indent | removeformat | help'
-                    }}
-                    onChange={this.handleEditorChange}
-                  />
-
+                <Input
+                  type="text"
+                  id="category"
+                  name="category"
+                  placeholder="Category..."
+                  value={category}
+                  autoComplete="off"
+                  style={{  
+                    color: "#999",
+                    fontSize: "16px",
+                    fontWeight: "100",
+                    margin: "10px 0",
+                    width: "100%"
+                  }}
+                  onChange={this.onChangeCategory}
+                  required
+                />
+                <Editor
+                  apiKey='z1imaefgqfqi5gkj9tp9blogndyf2gp0aj3fgubdtz73p658'
+                  init={{
+                    height: 500,
+                    menubar: false,
+                    plugins: [
+                      'advlist autolink lists link image charmap print preview anchor',
+                      'searchreplace visualblocks code fullscreen',
+                      'insertdatetime media table paste code help wordcount'
+                    ],
+                    toolbar:
+                      'undo redo | formatselect | bold italic backcolor | \
+                      alignleft aligncenter alignright alignjustify | \
+                      bullist numlist outdent indent | removeformat | help'
+                  }}
+                  onChange={this.handleEditorChange}
+                />
+                <ul
+                  style={{display: "inline"}}>
+                  <li style={{display: "inline"}}>
+                    <p style={{marginBottom: "0px", marginTop: "0px", position: "absolute", color: "#333"}}>Tags:</p>
+                  </li>
+                  <li style={{display: "inline", marginLeft: "45px", marginTop: "-20px"}}>
+                    <Input
+                        type="text"
+                        id="tags"
+                        name="tags"
+                        value={tags}
+                        autoComplete="off"
+                        style={{  
+                          color: "#333",
+                          fontSize: "16px",
+                          fontWeight: "100",
+                        }}
+                        onChange={this.onChangeTags}
+                        required
+                    />
+                  </li>
+                </ul>
+                <Button>Publish</Button>
               </form>
             </div>
           </div>
