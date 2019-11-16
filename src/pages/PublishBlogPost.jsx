@@ -61,9 +61,10 @@ export default class PublishBlogPost extends Component {
   }
 
   async componentDidUpdate() {
-    const { uploaded } = this.state;
+    const { uploaded, uploadedCovers } = this.state;
     const res = await this.setGlobalVariable();
 
+    console.log('covers:', uploadedCovers)
     console.log('resolve:', res);
     if (uploaded) {
       console.log('Blog Post Publish');
@@ -178,6 +179,7 @@ export default class PublishBlogPost extends Component {
   async onSubmit(e) {
     e.preventDefault();
     const {isSlugValid, slug, category, title, content, tags, uploadedCovers, author } = this.state;
+    console.log('cover on submit:', uploadedCovers)
     const postInfo = {
       isSlugValid: isSlugValid,
       slug,
@@ -185,7 +187,7 @@ export default class PublishBlogPost extends Component {
       title: title,
       content: content,
       tags: tags,
-      cover: uploadedCovers[uploadedCovers.length - 1].id,
+      cover: uploadedCovers[0].id,
       author: 'Davi Silva',
     };
     console.log("podcast_info:", postInfo);

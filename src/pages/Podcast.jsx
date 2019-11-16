@@ -19,6 +19,7 @@ import {
   LoadingAudio,
   LoadingDescription,
   LoadingTags,
+  RelatedPodcast,
 } from '../styled-components/podcast.styled-components';
 
 import SubNavBar from '../components/UI/navbar/SubNavBar';
@@ -28,6 +29,7 @@ export default class Podcast extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      slug: '',
       category: '',
       title: '',
       description: '',
@@ -38,6 +40,7 @@ export default class Podcast extends Component {
       cover: null,
       coverAlt: '',
       documentHeight: null,
+      relatedCategoryPodcast: [],
     };
 
     this.muiTheme = createMuiTheme({});
@@ -116,6 +119,7 @@ export default class Podcast extends Component {
     this.getPodcastBySlug = this.getPodcastBySlug.bind(this);
     this.setStateAsync = this.setStateAsync.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.getPodcastByCategory = this.getPodcastByCategory.bind(this);
   }
 
   async componentDidMount() {
@@ -124,6 +128,16 @@ export default class Podcast extends Component {
       const {
         slug, category, title, tags, description, uploadedOn, updatedOn, audioFile, cover,
       } = podcast[0];
+      const relatedCategoryPodcast = await this.getPodcastByCategory(category);
+      console.log('relatedCategoryPodcast:', relatedCategoryPodcast);
+      let count = 0;
+      relatedCategoryPodcast.map((post) => {
+        if(post.slug === slug) {
+          relatedCategoryPodcast.splice(count, count + 1);
+          console.log('array:', relatedCategoryPodcast)
+        }
+        count++;
+      })
       const dateFormatted = this.parseDate(uploadedOn);
       const months = [
         'January',
@@ -152,6 +166,7 @@ export default class Podcast extends Component {
           audioFileUrl: audioFile.url,
           cover: cover.url,
           coverAlt: cover.name,
+          relatedCategoryPodcast,
         });
       }
       if (updatedOn !== null) {
@@ -168,6 +183,7 @@ export default class Podcast extends Component {
           audioFileUrl: audioFile.url,
           cover: cover.url,
           coverAlt: cover.name,
+          relatedCategoryPodcast,
         });
       }
     } else {
@@ -180,8 +196,26 @@ export default class Podcast extends Component {
     const { match } = this.props;
     const { slug } = match.params;
     this.response = await fetch(
-      // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${slug}`,
-      `http://localhost:5000/podcasts/get/${slug}`,
+      // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/slug/${slug}`,
+      `http://localhost:5000/podcasts/get/slug/${slug}`,
+      {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+    const data = await this.response.json();
+    return data;
+  }
+
+  async getPodcastByCategory(category) {
+    this.response = await fetch(
+      // `https://cryptic-activist-backend.herokuapp.com/blog/get/category/${category}`,
+      `http://localhost:5000/podcasts/get/category/${category}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -217,8 +251,10 @@ export default class Podcast extends Component {
       title,
       audioFileUrl,
       description,
+      slug,
       tags,
       documentHeight,
+      relatedCategoryPodcast,
     } = this.state;
     let podcastUpdated;
     let podcastTitle;
@@ -328,6 +364,46 @@ export default class Podcast extends Component {
                 {podcastTags}
                 <hr />
                 <MoreEpisodes to="/podcasts">More Episodes</MoreEpisodes>
+                <b style={{
+                  margin: '10px 0'
+                }}
+                >
+                  Related Blog Posts
+                </b>
+                <br/>
+                {
+                  relatedCategoryPodcast.map((podcast, key) => {
+                    return (
+                      <li 
+                      key={key}
+                      style={{
+                        listStyle: 'none',
+                        display: 'inline-block',
+                        margin: '0 5px'
+                      }}
+                      >
+                        <RelatedPodcast to={podcast.slug}>
+                          <img 
+                          width="150px"  
+                          height="100px" 
+                          src={podcast.cover.url}
+                          style={{
+                            borderRadius: '5px'
+                          }}/>
+                          <br />
+                          <h6 style={{
+                            color: '#333',
+                            fontSize: '14px',
+                            fontWeight: '900',
+                            margin: '5px 0'
+                          }}>
+                            {podcast.title}
+                          </h6>
+                        </RelatedPodcast>
+                      </li>
+                    )
+                  })
+                }
               </Wrapper>
             </div>
           </div>

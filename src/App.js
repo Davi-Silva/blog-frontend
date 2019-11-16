@@ -38,18 +38,19 @@ function App() {
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/blog" component={Blog} />
         <Route path="/about" component={About} />
         <Route path="/profile" component={Profile} />
         <Route path="/course" component={Course} />
         <Route path="/courses/categories" component={CoursesCategories} />
         <Route path="/courses/category" component={CoursesCategory} />
         <Route path="/courses" component={CoursesList} />
+        <Route exact path="/podcasts" component={Podcasts} />
         <Route
           exact
           path="/podcast/:slug"
           render={(props) => <Podcast {...props} />}
         />
+        <Route exact path="/blog" component={Blog} />
         <Route
           exact
           path="/blog/:slug"
@@ -61,7 +62,6 @@ function App() {
           render={(props) => <EditPodcast {...props} />}
         />
         <Route exact path="/404" component={PageNotFound} />
-        <Route exact path="/podcasts" component={Podcasts} />
         <Route path="/upload/podcast" component={UploadNewPodcast} />
         <Route path="/publish/blog" component={PublishBlogPost} />
       </UserProvider>

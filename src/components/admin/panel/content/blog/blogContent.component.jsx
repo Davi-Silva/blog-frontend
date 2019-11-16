@@ -3,95 +3,63 @@ import React, { Component } from "react";
 import List from "../blog/blogList.component";
 
 export default class BlogContent extends Component {
-  posts = [
-    {
-      type: "Blog",
-      category: "Programming",
-      title: "Blog Post Name",
-      date: "Oct 19th 1996",
-      description:
-        "Suspendisse felis ma felis maurit quis lacinia sed, viverra eget libero. Maecenas nec oru sed dolor. Donecbus auctor."
-    },
-    {
-      type: "Blog",
-      category: "Gaming",
-      title: "Blog Post Name",
-      date: "Oct 19th 1996",
-      description:
-        "ullam fringilla porta ante id molestie. Donec placerat nibh tortor, sed hendrerit purus mollis sed. Suspendisse lacinia vulputate felis volutpat dignissim. Integer ac lacus nibh. Nullam viverra elementum commodo. Morbi vitae magna sodales, suscipit tortor id, suscipit tortor. Phasellus vitae"
-    },
-    {
-      type: "Blog",
-      category: "Marketing",
-      title: "Blog Post Name",
-      date: "Oct 19th 1996",
-      description:
-        "viverra. Nullam tortor dui, imperdiet a nunc ac, pharetra gravida arcu. Aliquam tincidunt purus consectetur lorem rhoncus maximus. Curabitur"
-    },
-    {
-      type: "Blog",
-      category: "Programming",
-      title: "Blog Post Name",
-      date: "Oct 19th 1996",
-      description:
-        "Praesent malesuada metus vitae laoreet sodales. Nulla sit amet lobortis est. Class aptent taciti sociosqu ad litora torquent per conubia nos"
-    },
-    {
-      type: "Blog",
-      category: "Programming",
-      title: "Blog Post Name",
-      date: "Oct 19th 1996",
-      description:
-        "t. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mattis ut augue non aliquam. Aenean a pulvinar odio. Curabitur fringilla diam"
-    },
-    {
-      type: "Blog",
-      category: "Programming",
-      title: "Blog Post Name",
-      date: "Oct 19th 1996",
-      description:
-        " id molestie. Donec placerat nibh tortor, sed hendrerit purus mollis sed. Suspendisse lacinia vulputate felis volutpat dignissim. Integer ac lac"
-    },
-    {
-      type: "Blog",
-      category: "Programming",
-      title: "Blog Post Name",
-      date: "Oct 19th 1996",
-      description:
-        "l ac ultricies euismod. Nam vitae venenatis nulla. Curabitur sit amet ante vel risus faucibus ullamcorper. Quisque mattis vel diam id viverra. Nullam tortor dui, imperdiet a nunc ac, pharetra gravida arcu. Aliquam tincidunt purus consectetur lorem rhoncus maximus. Curabitur"
-    },
-    {
-      type: "Blog",
-      category: "Programming",
-      title: "Blog Post Name",
-      date: "Oct 19th 1996",
-      description:
-        "aliquet. Donec auctor fermentum est, at aliquam sapien pharetra ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mattis ut"
-    },
-    {
-      type: "Blog",
-      category: "Learning",
-      title: "Blog Post Name",
-      date: "Oct 19th 1996",
-      description:
-        "uere ex tincidunt vitae. Morbi luctus commodo purus, vel bibendum felis dictum quis. Donec sed venenatis tortor. Morbi placerat viverra condimentum. Duis vehic"
-    }
-  ];
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [],
+    };
+    this.getAllBlogPost = this.getAllBlogPost.bind(this);
+    this.componentDidMount = this.componentDidMount(this);
+  }
+
+  async componentDidMount() {
+    const postsList = await this.getAllBlogPost();
+    console.log('podcast blog admin panel:', postsList);
+    await this.setStateAsync({ posts: postsList });
+  }
+
+  setStateAsync(state) {
+    return new Promise((resolve) => {
+      this.setState(state, resolve);
+    });
+  }
+
+  async getAllBlogPost() {
+    this.response = await fetch(
+      // 'https://cryptic-activist-backend.herokuapp.com/podcasts/',
+      'http://localhost:5000/blog/',
+      {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+    const data = await this.response.json();
+    return data;
+  }
+
 
   render() {
+    const {posts} = this.state;
     return (
       <div style={{ height: "100%" }}>
         <ul>
-          {this.posts.reverse().map((post, key) => {
+          {posts.reverse().map((post, key) => {
             return (
               <List
                 key={key}
                 type={post.type}
                 category={post.category}
                 title={post.title}
-                date={post.date}
-                description={post.description}
+                date={post.publishedOn}
+                content={post.content}
+                slug={post.slug}
                 liID={`b-${key}`}
+                coverFileId={post.cover._id}
               />
             );
           })}

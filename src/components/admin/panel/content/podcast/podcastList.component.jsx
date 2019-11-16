@@ -7,6 +7,7 @@ import {
   FaTrashAlt,
   FaRegEdit,
 } from 'react-icons/fa';
+
 import {
   ToggleButton,
   Expand,
@@ -63,15 +64,12 @@ export default class List extends Component {
 
     const formattedDate = `${months[dateFormatted.getMonth()]} ${dateFormatted.getDate()} ${dateFormatted.getFullYear()}`;
 
-    const shortDesc = description.split('\n');
-    console.log('audioFileId:', audioFileId);
 
     this.setState({
       type,
       category,
       title,
       date: formattedDate,
-      shortDescription: shortDesc[0],
       slug,
       audioFileId,
       coverFileId,
@@ -151,7 +149,7 @@ export default class List extends Component {
 
   render() {
     const {
-      type, category, title, date, path, liID, shortDescription, slug, editTo,
+      type, category, title, date, path, liID, slug, editTo,
     } = this.state;
     return (
       <li style={{ margin: '0px 15px 6px 0px' }}>
@@ -199,10 +197,6 @@ export default class List extends Component {
           id={liID}
           style={{ padding: '10px 10px 40px 10px' }}
         >
-          <div
-            style={{ color: '#999' }}
-            dangerouslySetInnerHTML={{ __html: shortDescription }}
-          />
           <Delete onClick={this.onDeletePodcast}>
             <FaTrashAlt />
             &nbsp;

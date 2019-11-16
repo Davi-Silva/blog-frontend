@@ -24,8 +24,3 @@ export const Title = styled.h5`
   font-weight: 900;
   margin: 0;
 `;
-
-export const ShortDescription = styled.p`
-  color: #999;
-  font-size: 14px;
-`;

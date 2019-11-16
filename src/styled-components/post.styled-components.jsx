@@ -9,38 +9,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Cover = styled.img`
-	width: 320px;
-	height: 320px;
-	display: table;
-	margin: 0 auto;
-	border-radius: 10px;
-	
-	@media (max-width: 1543px) {
-		width: 280px!important;
-		height: 280px!important;
-	}
-
-	@media (max-width: 1199px) {
-		width: 250px!important;
-		height: 250px!important;
-	}
-
-	@media (max-width: 991px) {
-		width: 220px!important;
-		height: 220px!important;
-	}
-
-	@media (max-width: 870px) {
-		width: 200px!important;
-		height: 200px!important;
-	}
-
-	@media (max-width: 768px) {
-		width: 250px!important;
-		height: 250px!important;
-		display: table;
-		margin: 0 auto; 
-	}
+	width: 100%;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 `;
 
 export const UploadedOn = styled.p`
@@ -50,10 +21,11 @@ export const UploadedOn = styled.p`
 
 export const Title = styled.h1`
 	color: #333;
-	font-size: 26px;
+	font-size: 30px;
 	font-weight: 700;
+	text-align: center;
 	letter-spacing: 1px;
-	margin: 10px 0px;
+	margin: 30px 0px;
 `;
 
 export const LoadingTitle = styled.h1`
@@ -76,9 +48,9 @@ export const LoadingCategory = styled.p`
 	animation: ${opacity} 2s ease-in-out infinite;
 `;
 
-export const Description = styled.div`
+export const Content = styled.div`
 	color: #333;
-	font-size: 14px;
+	font-size: 16px;
 	margin: 10px 0px;
 `;
 
@@ -144,7 +116,7 @@ export const LoadingTags = styled.p`
 	animation: ${opacity} 2s ease-in-out infinite;
 `;
 
-export const RelatedPodcast = styled(Link)`
+export const RelatedPost = styled(Link)`
 	text-decoration: none;
 	 &:hover {
 		 text-decoration: none;

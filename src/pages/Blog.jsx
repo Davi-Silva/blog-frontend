@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import BlogPostList from '../components/UI/lists/BlogPostList.component';
 
+import SubNavBar from '../components/UI/navbar/SubNavBar';
+
 class Blog extends Component {
   constructor(props) {
     super(props);
@@ -42,18 +44,21 @@ class Blog extends Component {
     console.log('postList:', postsList);
     return (
       <>
+        <SubNavBar media="Blog" category="" title="" />
         <div className="container" style={{ margin: '25px auto' }}>
           <div className="card-columns">
-            {postsList.reverse().map((post, key) => (
-              <BlogPostList
-                key={key}
-                type="Blog"
-                slug={post.slug}
-                imgSrc={post.src}
-                title={post.title}
-                publishedOn={post.publishedOn}
-              />
-            ))}
+            <ul>
+              {postsList.reverse().map((post, key) => (
+                <BlogPostList
+                  key={key}
+                  type="Blog"
+                  slug={post.slug}
+                  imgSrc={post.cover.url}
+                  title={post.title}
+                  publishedOn={post.publishedOn}
+                />
+              ))}
+            </ul>
           </div>
         </div>
       </>
