@@ -364,6 +364,7 @@ export default class Podcast extends Component {
                 {podcastTags}
                 <hr />
                 <MoreEpisodes to="/podcasts">More Episodes</MoreEpisodes>
+                <hr/>
                 <b style={{
                   margin: '10px 0'
                 }}
@@ -379,13 +380,14 @@ export default class Podcast extends Component {
                       style={{
                         listStyle: 'none',
                         display: 'inline-block',
-                        margin: '0 5px'
+                        margin: '0 5px',
+                        width: '120px',
                       }}
                       >
                         <RelatedPodcast to={podcast.slug}>
                           <img 
-                          width="150px"  
-                          height="100px" 
+                          width="120px"  
+                          height="120px" 
                           src={podcast.cover.url}
                           style={{
                             borderRadius: '5px'
