@@ -12,7 +12,7 @@ function Footer() {
               <P>
                   Developed by
                 {' '}
-                <A to="/">Davi Silva</A>
+                <A to="//github.com/Davi-Silva">Davi Silva</A>
               </P>
             </div>
           </div>

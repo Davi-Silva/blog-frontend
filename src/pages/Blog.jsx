@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 
+import {
+  FaSpinner,
+} from 'react-icons/fa';
 import BlogPostList from '../components/UI/lists/BlogPostList.component';
 
 import SubNavBar from '../components/UI/navbar/SubNavBar';
+
+
+import {
+  LoadingAllContent,
+} from '../styled-components/post.styled-components';
 
 class Blog extends Component {
   constructor(props) {
@@ -42,23 +50,35 @@ class Blog extends Component {
   render() {
     const { postsList } = this.state;
     console.log('postList:', postsList);
+    let allPosts;
+    if (postsList.length === 0) {
+      allPosts = (
+        <LoadingAllContent>
+          <FaSpinner />
+        </LoadingAllContent>
+      );
+    } else {
+      allPosts = (
+        <ul>
+          {postsList.reverse().map((post, key) => (
+            <BlogPostList
+              key={key}
+              type="Blog"
+              slug={post.slug}
+              imgSrc={post.cover.url}
+              title={post.title}
+              publishedOn={post.publishedOn}
+            />
+          ))}
+        </ul>
+      );
+    }
     return (
       <>
         <SubNavBar media="Blog" category="" title="" />
         <div className="container" style={{ margin: '25px auto' }}>
           <div className="card-columns">
-            <ul>
-              {postsList.reverse().map((post, key) => (
-                <BlogPostList
-                  key={key}
-                  type="Blog"
-                  slug={post.slug}
-                  imgSrc={post.cover.url}
-                  title={post.title}
-                  publishedOn={post.publishedOn}
-                />
-              ))}
-            </ul>
+            {allPosts}
           </div>
         </div>
       </>

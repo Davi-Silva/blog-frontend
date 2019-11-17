@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import {
+  FaSpinner,
+} from 'react-icons/fa';
 import SubNavBar from '../components/UI/navbar/SubNavBar';
 
 import {
@@ -9,6 +12,13 @@ import {
   Tags,
   LoadingTags,
   RelatedPost,
+  RelatedPostLabel,
+  LoadingRelatedPostLabel,
+  AllContent,
+  LoadingAllContent,
+  RelatedPostList,
+  RelatedPostLi,
+  RelatedPostH6,
 } from '../styled-components/post.styled-components';
 
 export default class Post extends Component {
@@ -37,16 +47,8 @@ export default class Post extends Component {
       const {
         slug, category, title, tags, content, publishedOn, updatedOn, cover,
       } = post[0];
-      const relatedCategoryPosts = await this.getPostByCategory(category);
+      const relatedCategoryPosts = await this.getPostByCategory(category, slug);
       console.log('relatedCategoryPosts:', relatedCategoryPosts);
-      let count = 0;
-      relatedCategoryPosts.map((post) => {
-        if(post.slug === slug) {
-          relatedCategoryPosts.splice(count, count + 1);
-          console.log('array:', relatedCategoryPosts)
-        }
-        count++;
-      })
       const dateFormatted = this.parseDate(publishedOn);
       const months = [
         'January',
@@ -118,10 +120,10 @@ export default class Post extends Component {
     return data;
   }
 
-  async getPostByCategory(category) {
+  async getPostByCategory(category, slug) {
     this.response = await fetch(
       // `https://cryptic-activist-backend.herokuapp.com/blog/get/category/${category}`,
-      `http://localhost:5000/blog/get/category/${category}`,
+      `http://localhost:5000/blog/get/category/newest/${slug}/${category}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -149,9 +151,12 @@ export default class Post extends Component {
 
   render() {
     const {
-      title, category, cover, coverAlt, content, tags, relatedCategoryPosts
+      title, category, cover, coverAlt, content, tags, relatedCategoryPosts,
     } = this.state;
     let postTags;
+    let postRelatedPost;
+    let loading;
+    let allContentPost;
     if (tags === '') {
       postTags = (
         <LoadingTags>Tags...</LoadingTags>
@@ -164,6 +169,59 @@ export default class Post extends Component {
         </Tags>
       );
     }
+    console.log('relatedCategoryPosts.found :', relatedCategoryPosts.found);
+    if (relatedCategoryPosts.found === false) {
+      postRelatedPost = (
+        <LoadingRelatedPostLabel />
+      );
+    } else {
+      postRelatedPost = (
+        <RelatedPostLabel>
+          Related Blog Posts
+          <br />
+          <RelatedPostList>
+            {
+              relatedCategoryPosts.map((post, key) => (
+                <RelatedPostLi
+                  key={key}
+                >
+                  <RelatedPost to={post.slug}>
+                    <img
+                      src={post.cover.url}
+                      style={{
+                        borderRadius: '5px',
+                      }}
+                      alt={post.cover.name}
+                    />
+                    <br />
+                    <RelatedPostH6>
+                      {post.title}
+                    </RelatedPostH6>
+                  </RelatedPost>
+                </RelatedPostLi>
+              ))
+            }
+          </RelatedPostList>
+        </RelatedPostLabel>
+      );
+    }
+
+    if (tags === '' || relatedCategoryPosts.length === 0) {
+      allContentPost = (
+        <LoadingAllContent>
+          <FaSpinner />
+        </LoadingAllContent>
+      );
+    } else {
+      allContentPost = (
+        <AllContent>
+          {postTags}
+          {postRelatedPost}
+        </AllContent>
+      );
+    }
+
+
     return (
       <>
         <SubNavBar media="Blog" category={category} title={title} />
@@ -177,52 +235,12 @@ export default class Post extends Component {
               <Title>
                 {title}
               </Title>
-              <Content dangerouslySetInnerHTML={{ __html: content }}/>
-              {postTags}
-              <b style={{
-                margin: '10px 0'
-              }}
-              >
-                Related Blog Posts
-              </b>
-              <br/>
-              {
-                relatedCategoryPosts.map((post, key) => {
-                  return (
-                    <li 
-                    key={key}
-                    style={{
-                      listStyle: 'none',
-                      display: 'inline-block',
-                      margin: '0 5px'
-                    }}
-                    >
-                      <RelatedPost to={post.slug}>
-                        <img 
-                        width="150px"  
-                        height="100px" 
-                        src={post.cover.url}
-                        style={{
-                          borderRadius: '5px'
-                        }}/>
-                        <br />
-                        <h6 style={{
-                          color: '#333',
-                          fontSize: '14px',
-                          fontWeight: '900',
-                          margin: '5px 0'
-                        }}>
-                          {post.title}
-                        </h6>
-                      </RelatedPost>
-                    </li>
-                  )
-                })
-              }
+              <Content dangerouslySetInnerHTML={{ __html: content }} />
+              {/* {postTags}
+              {postRelatedPost} */}
+              {allContentPost}
             </div>
-            <div className="col-lg-4 col-md-4 col-sm-4 col-12">
-
-            </div>
+            <div className="col-lg-4 col-md-4 col-sm-4 col-12" />
           </div>
         </div>
       </>

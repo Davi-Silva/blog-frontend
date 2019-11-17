@@ -189,7 +189,7 @@ export default class EditPodcast extends Component {
     console.log('slug:', slug);
     this.response = await fetch(
       // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${slug}`,
-      `http://localhost:5000/podcasts/get/${slug}`,
+      `http://localhost:5000/podcasts/get/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',

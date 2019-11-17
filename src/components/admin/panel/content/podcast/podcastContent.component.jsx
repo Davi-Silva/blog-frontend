@@ -1,7 +1,15 @@
 /* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 
+import {
+  FaSpinner,
+} from 'react-icons/fa';
 import List from './podcastList.component';
+
+
+import {
+  LoadingAllContent,
+} from '../../../../../styled-components/admin.styled-components';
 
 export default class PodcastContent extends Component {
   constructor(props) {
@@ -47,9 +55,9 @@ export default class PodcastContent extends Component {
     const { podcasts } = this.state;
     if (podcasts.length === 0) {
       list = (
-        <h6 style={{ color: '#999', textAlign: 'center' }}>
-          No Podcasts yet...
-        </h6>
+        <LoadingAllContent>
+          <FaSpinner />
+        </LoadingAllContent>
       );
     } else {
       list = (

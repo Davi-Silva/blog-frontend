@@ -2,7 +2,7 @@
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { opacity } from './animations';
+import { opacity, rotate } from './animations';
 
 export const Wrapper = styled.div`
 	margin: 20px auto 0px auto;
@@ -21,9 +21,9 @@ export const UploadedOn = styled.p`
 
 export const Title = styled.h1`
 	color: #333;
-	font-size: 30px;
+	font-size: 26px;
 	font-weight: 700;
-	text-align: center;
+	/* text-align: center; */
 	letter-spacing: 1px;
 	margin: 30px 0px;
 `;
@@ -52,6 +52,13 @@ export const Content = styled.div`
 	color: #333;
 	font-size: 16px;
 	margin: 10px 0px;
+	p {
+		width: 100%;
+		img {
+			width: 100%;
+			height: unset;
+		}
+	}
 `;
 
 export const LoadingDescription = styled.div`
@@ -116,9 +123,101 @@ export const LoadingTags = styled.p`
 	animation: ${opacity} 2s ease-in-out infinite;
 `;
 
+export const RelatedPostLabel = styled.b`
+	margin: 10px 0;
+	ul {
+		::-webkit-scrollbar {
+			height: 5px;
+			width: 10px;
+		}
+
+		::-webkit-scrollbar-track {
+			background: transparent;
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: #fff;
+			border: 1px solid #0058e4;
+			border-radius: 50px;
+		}
+
+		::-webkit-scrollbar-thumb:hover {
+			background: #0058e4;
+		}
+	}
+`;
+
+export const LoadingRelatedPostLabel = styled.b`
+	font-size: 14px;
+	animation: ${opacity} 2s ease-in-out infinite;
+`;
+
 export const RelatedPost = styled(Link)`
 	text-decoration: none;
 	 &:hover {
 		 text-decoration: none;
 	 }
+	 img {
+		width: unset;
+		height: 150px;
+		@media (max-width: 480px) {
+			width: unset;
+			height: 100px;
+		}
+	 }
+	 h6 {
+		 font-size: 13px;
+	 }
+`;
+
+export const AllContent = styled.div`
+
+`;
+
+export const LoadingAllContent = styled.div`
+	svg {
+		animation: ${rotate} 1s infinite;
+		color: #333;
+		font-size: 18px;
+		display: table;
+		margin: 25px auto;
+	}
+`;
+
+export const RelatedPostList = styled.ul`
+	margin-top: 10px;
+	height: 180px;
+	width: 100%;
+	transform: translate(-5px);
+	overflow-y: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;
+	@media (max-width: 480px) {
+		height: 130px;
+	}
+`;
+
+export const RelatedPostLi = styled.li`
+	list-style: none;
+	display: inline-block;
+	margin: 0 5px;
+	width: unset;
+	height: 170px;
+	@media (max-width: 480px) {
+		margin: 0 3px!important;
+		height: 120px;
+	}
+`;
+
+export const RelatedPostH6 = styled.h6`
+	color: #333;
+	font-size: 20px;
+	font-weight: 900;
+	margin: 5px 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	@media (max-width: 480px) {
+		font-size: 13px;
+	}
 `;

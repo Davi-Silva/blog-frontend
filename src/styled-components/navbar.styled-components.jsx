@@ -20,17 +20,49 @@ export const LinkA = styled(Link)`
     display: table;
     margin: 0 auto;
   }
-
+  @media (max-width: 320px) {
+    font-size: 12px;
+  }
+  @media (max-width: 240px) {
+    font-size: 11px;
+  }
 `;
 
 export const Brand = styled(Link)`
   color: #0058e4;
   font-weight: 900;
   letter-spacing: 1px;
+  @media (max-width: 768px) {
+    font-size: 17px;
+  }
+  @media (max-width: 440px) {
+    font-size: 16px;
+  }
+  @media (max-width: 320px) {
+    font-size: 15px;
+  }
+  @media (max-width: 240px) {
+    font-size: 13px;
+  }
 `;
 
 export const ToggleButton = styled.button`
   color: #0058e4;
+  :focus {
+    outline: none;
+  }
+  @media (max-width: 768px) {
+    font-size: 17px;
+  }
+  @media (max-width: 440px) {
+    font-size: 16px;
+  }
+  @media (max-width: 320px) {
+    font-size: 15px;
+  }
+  @media (max-width: 240px) {
+    font-size: 13px;
+  }
 `;
 
 export const SignUp = styled(Link)`

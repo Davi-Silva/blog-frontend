@@ -164,7 +164,11 @@ export default class List extends Component {
             <div className="col-10">
               <b
                 style={{
-                  color: '#999', marginBottom: '0px', float: 'left', fontSize: '12px', lineHeight: '24px',
+                  color: '#999',
+                  marginBottom: '0px',
+                  float: 'left',
+                  fontSize: '12px',
+                  lineHeight: '24px',
                 }}
               >
                 {`${type} > ${category}`}
@@ -173,14 +177,21 @@ export default class List extends Component {
               <br />
               <h5
                 style={{
-                  color: '#0058e4', marginBottom: '0px', float: 'left', textAlign: 'initial',
+                  color: '#0058e4',
+                  marginBottom: '0px',
+                  float: 'left',
+                  textAlign: 'initial',
                 }}
               >
                 {title}
               </h5>
               <br />
               <span
-                style={{ color: '#999', fontSize: '14px', float: 'left' }}
+                style={{
+                  color: '#999',
+                  fontSize: '14px',
+                  float: 'left',
+                }}
               >
                 {date}
               </span>

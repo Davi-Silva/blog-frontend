@@ -1,6 +1,7 @@
 /* eslint-disable no-tabs */
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { rotate } from './animations';
 
 export const H6 = styled.h6`
   color: #999;
@@ -419,4 +420,18 @@ export const UploadAudioMessage = styled.p`
   justify-content: center;
   align-items: center;
   padding: 15px 0;
+`;
+
+export const AllContent = styled.div`
+
+`;
+
+export const LoadingAllContent = styled.div`
+	svg {
+		animation: ${rotate} 1s infinite;
+		color: #999;
+		font-size: 18px;
+		display: table;
+		margin: 25px auto;
+	}
 `;

@@ -41,6 +41,27 @@ export const Cover = styled.img`
 		display: table;
 		margin: 0 auto; 
 	}
+
+	@media (max-width: 400px) {
+		width: 210px!important;
+		height: 210px!important;
+		display: table;
+		margin: 0 auto; 
+	}
+
+	@media (max-width: 330px) {
+		width: 180px!important;
+		height: 180px!important;
+		display: table;
+		margin: 0 auto; 
+	}
+
+	@media (max-width: 260px) {
+		width: 140px!important;
+		height: 140px!important;
+		display: table;
+		margin: 0 auto; 
+	}
 `;
 
 export const UploadedOn = styled.p`
@@ -144,9 +165,87 @@ export const LoadingTags = styled.p`
 	animation: ${opacity} 2s ease-in-out infinite;
 `;
 
+export const RelatedPodcastLabel = styled.b`
+	margin: 10px 0;
+	ul {
+		::-webkit-scrollbar {
+			height: 5px;
+			width: 10px;
+		}
+
+		::-webkit-scrollbar-track {
+			background: transparent;
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: #fff;
+			border: 1px solid #0058e4;
+			border-radius: 50px;
+		}
+
+		::-webkit-scrollbar-thumb:hover {
+			background: #0058e4;
+		}
+	}
+`;
+
+export const LoadingRelatedPodcastLabel = styled.b`
+font-size: 14px;
+	animation: ${opacity} 2s ease-in-out infinite;
+`;
+
 export const RelatedPodcast = styled(Link)`
 	text-decoration: none;
 	 &:hover {
 		 text-decoration: none;
 	 }
+	 img {
+		width: 110px;
+		height: 110px;
+		@media (max-width: 480px) {
+			width: 100px;
+			height: 100px;
+		}
+	 }
+	 h6 {
+		 font-size: 13px;
+	 }
+`;
+
+export const RelatedPodcastList = styled.ul`
+	margin-top: 10px;
+	height: 142px;
+	width: 100%;
+	transform: translate(-5px);
+	overflow-y: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;
+	@media (max-width: 480px) {
+		height: 132px;
+	}
+`;
+
+export const RelatedPodcastLi = styled.li`
+	list-style: none;
+	display: inline-block;
+	margin: 0 5px;
+	width: 110px;
+	height: 152px;
+	@media (max-width: 480px) {
+		margin: 0 3px!important;
+		width: 100px;
+	}
+`;
+
+export const RelatedPodcastH6 = styled.h6`
+	color: #333;
+	font-size: 14px;
+	font-weight: 900;
+	margin: 5px 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	@media (max-width: 480px) {
+		font-size: 13px;
+	}
 `;

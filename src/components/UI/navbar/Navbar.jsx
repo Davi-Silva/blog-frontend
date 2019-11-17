@@ -1,6 +1,10 @@
 import React from 'react';
 
 import {
+  FaBars,
+} from 'react-icons/fa';
+
+import {
   NavBar,
   LinkA,
   Brand,
@@ -25,7 +29,7 @@ export default function Navbar() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <i className="fas fa-bars" />
+            <FaBars />
           </ToggleButton>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
