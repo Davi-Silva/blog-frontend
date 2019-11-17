@@ -367,7 +367,6 @@ export default class Podcast extends Component {
         </>
       );
     }
-
     return (
       <>
         <SubNavBar media="Podcast" category={category} title={title} />

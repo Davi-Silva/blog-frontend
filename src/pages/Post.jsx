@@ -246,7 +246,6 @@ export default class Post extends Component {
         </>
       );
     }
-
     return (
       <>
         <SubNavBar media="Blog" category={category} title={title} />
