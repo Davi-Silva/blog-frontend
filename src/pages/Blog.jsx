@@ -7,7 +7,6 @@ import BlogPostList from '../components/UI/lists/BlogPostList.component';
 
 import SubNavBar from '../components/UI/navbar/SubNavBar';
 
-
 import {
   LoadingAllContent,
 } from '../styled-components/post.styled-components';
