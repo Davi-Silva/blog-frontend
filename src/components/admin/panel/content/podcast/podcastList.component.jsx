@@ -39,7 +39,15 @@ export default class List extends Component {
 
   componentDidMount() {
     const {
-      type, title, date, description, audioFileId, coverFileId, category, slug, liID,
+      type,
+      title,
+      date,
+      // description,
+      audioFileId,
+      coverFileId,
+      category,
+      slug,
+      liID,
     } = this.props;
     const typeLower = type.toLowerCase();
     const editTo = `/edit/${typeLower}/${slug}`;

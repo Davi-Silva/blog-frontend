@@ -1,5 +1,5 @@
 /* eslint-disable no-tabs */
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { opacity, rotate } from './animations';

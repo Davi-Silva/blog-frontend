@@ -4,7 +4,7 @@ import {
   FaSpinner,
 } from 'react-icons/fa';
 import PodcastsList from '../components/UI/lists/PodcastsList.component';
-import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
+// import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
 
 import SubNavBar from '../components/UI/navbar/SubNavBar';
 

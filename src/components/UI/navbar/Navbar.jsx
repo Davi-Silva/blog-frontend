@@ -9,7 +9,7 @@ import {
   LinkA,
   Brand,
   ToggleButton,
-  SignUp,
+  // SignUp,
 } from '../../../styled-components/navbar.styled-components';
 
 export default function Navbar() {

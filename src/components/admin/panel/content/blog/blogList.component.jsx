@@ -24,10 +24,7 @@ export default class List extends Component {
       category: '',
       title: '',
       date: null,
-      description: '',
-      short_description: '',
       slug: '',
-      audio_file_url: '',
       liID: '',
       editTo: '',
     };
@@ -38,10 +35,17 @@ export default class List extends Component {
 
   componentDidMount() {
     const {
-      type, title, date, content, coverFileId, category, slug, liID, path,
+      type,
+      title,
+      date,
+      content,
+      // coverFileId,
+      category,
+      slug,
+      liID,
+      path,
     } = this.props;
     console.log('type:', type);
-    const typeLower = type.toLowerCase();
     const editTo = `/edit/post/${slug}`;
     // const date = date;
     console.log('date:', date);

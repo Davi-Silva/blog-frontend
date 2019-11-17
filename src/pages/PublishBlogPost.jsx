@@ -92,19 +92,6 @@ export default class PublishBlogPost extends Component {
     await this.setStateAsync({ slug });
   }
 
-  async onChangeTitle(e) {
-    const { title } = this.state;
-    this.setStateAsync({
-      title: e.target.value,
-    });
-    setTimeout(() => {
-      this.changeSlugFromTitle(title);
-    }, 0);
-    setTimeout(() => {
-      this.disabledSubmitButton();
-    }, 0);
-  }
-
   handleEditorChange = async (e) => {
     console.log('Content was updated:', e.target.getContent());
     this.setStateAsync({
@@ -178,7 +165,16 @@ export default class PublishBlogPost extends Component {
 
   async onSubmit(e) {
     e.preventDefault();
-    const {isSlugValid, slug, category, title, content, tags, uploadedCovers, author } = this.state;
+    const {
+      isSlugValid,
+      slug,
+      category,
+      title,
+      content,
+      tags,
+      uploadedCovers,
+      // author
+    } = this.state;
     console.log('cover on submit:', uploadedCovers)
     const postInfo = {
       isSlugValid: isSlugValid,
@@ -316,7 +312,6 @@ export default class PublishBlogPost extends Component {
     });
   };
 
-
   componentWillUnmount() {
     this.state.uploadedCovers.forEach(file =>
       URL.revokeObjectURL(file.preview)
@@ -325,7 +320,13 @@ export default class PublishBlogPost extends Component {
 
 
   render() {
-    const { uploadedCovers, title, category, tags, allFieldsFilled } = this.state;
+    const {
+      uploadedCovers,
+      title,
+      category,
+      tags,
+      // allFieldsFilled
+    } = this.state;
     return (
       <>
         <SubNavBar media="Blog" category="Publish" title={title} />
@@ -393,9 +394,7 @@ export default class PublishBlogPost extends Component {
                       'insertdatetime media table paste code help wordcount'
                     ],
                     toolbar:
-                      'undo redo | formatselect | bold italic backcolor | \
-                      alignleft aligncenter alignright alignjustify | \
-                      bullist numlist outdent indent | removeformat | help'
+                      'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
                   }}
                   onChange={this.handleEditorChange}
                 />

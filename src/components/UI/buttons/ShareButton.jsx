@@ -3,7 +3,12 @@ import React, { Component } from 'react';
 import { css } from 'emotion';
 
 import {
-  FaTwitter, FaFacebook, FaGooglePlus, FaEnvelope, FaPinterest, FaLinkedin,
+  FaTwitter,
+  FaFacebook,
+  // FaGooglePlus,
+  // FaEnvelope,
+  // FaPinterest,
+  FaLinkedin,
 } from 'react-icons/fa';
 
 import { ShareButtonIconOnly, ShareBlockStandard } from 'react-custom-share';
@@ -41,7 +46,10 @@ export default class ShareButton extends Component {
 
   render() {
     const { img, text } = this.props;
-    const { containerClassName, stickyHeight } = this.state;
+    const { 
+      containerClassName,
+      // stickyHeight, 
+    } = this.state;
     console.log('imgSrc:', img);
     const shareBlockProps = {
       url: `${window.location.href}`,

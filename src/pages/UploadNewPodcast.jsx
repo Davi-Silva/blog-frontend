@@ -402,7 +402,16 @@ export default class UploadNewPodcast extends Component {
   }
 
   render() {
-    const { uploadedFiles, uploadedCovers, title, slug, category, tags, description, allFieldsFilled } = this.state;
+    const { 
+      uploadedFiles,
+      uploadedCovers,
+      title,
+      // slug,
+      category,
+      tags, 
+      // description,
+      allFieldsFilled
+    } = this.state;
     return (
       <>
         <SubNavBar media="Podcast" category="Upload" title={title} />
@@ -482,9 +491,7 @@ export default class UploadNewPodcast extends Component {
                           'insertdatetime media table paste code help wordcount'
                         ],
                         toolbar:
-                          'undo redo | formatselect | bold italic backcolor | \
-                          alignleft aligncenter alignright alignjustify | \
-                          bullist numlist outdent indent | removeformat | help'
+                          'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
                       }}
                       onChange={this.handleEditorChange}
                     />

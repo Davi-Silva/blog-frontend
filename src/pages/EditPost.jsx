@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import { Editor } from '@tinymce/tinymce-react';
+// import { Editor } from '@tinymce/tinymce-react';
 import slugify from 'slugify';
 
 import {
-  Input,
+  // Input,
   UploadedOn,
-  Update,
+  // Update,
 } from '../styled-components/edit-post.styled-components';
 
 import SubNavBar from '../components/UI/navbar/SubNavBar';
@@ -15,17 +15,17 @@ export default class EditPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: null,
-      slug: '',
+      // id: null,
+      // slug: '',
       title: '',
-      content: '',
+      // content: '',
       category: '',
-      cover: null,
-      coverURL: '',
-      tags: '',
-      publishedOn: '',
-      updatedOn: null,
-      updated: false,
+      // cover: null,
+      // coverURL: '',
+      // tags: '',
+      // publishedOn: '',
+      // updatedOn: null,
+      // updated: false,
     };
     this.setStateAsync = this.setStateAsync.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);

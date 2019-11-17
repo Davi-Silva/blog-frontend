@@ -75,7 +75,11 @@ export default class BlogPostList extends Component {
 
   render() {
     const {
-      title, imgSrc, slug, publishedOn, content
+      title,
+      imgSrc,
+      slug,
+      publishedOn,
+      // content
     } = this.state;
 
     return (

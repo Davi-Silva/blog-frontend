@@ -4,10 +4,10 @@ import { Editor } from '@tinymce/tinymce-react';
 import slugify from 'slugify';
 
 import SubNavBar from '../components/UI/navbar/SubNavBar';
-import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
+// import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
 
-import UploadCover from "../components/UI/admin/UploadFieldCover.component";
-import FileListCover from "../components/UI/admin/FileListCover.component";
+// import UploadCover from "../components/UI/admin/UploadFieldCover.component";
+// import FileListCover from "../components/UI/admin/FileListCover.component";
 
 import {
   Input,
@@ -230,15 +230,15 @@ export default class EditPodcast extends Component {
     const {
       title,
       description,
-      slug,
+      // slug,
       category,
-      audioFile,
-      cover,
-      coverURL,
+      // audioFile,
+      // cover,
+      // coverURL,
       tags,
       uploadedOn,
       updatedOn,
-      backButtonClassName,
+      // backButtonClassName,
     } = this.state;
     let podcastUpdated;
     console.log("Description:", description)
@@ -272,10 +272,11 @@ export default class EditPodcast extends Component {
               </div>
               <div className="col-lg-8 col-md-8 col-ms-12 col-12">
                 <main style={{marginTop: "25px"}}>
-                  <UploadedOn style={{ margin: "0",}}>
+                  {/* <UploadedOn style={{ margin: "0",}}>
                     Updated on&nbsp;
                     <span style={{ color: '#333', fontWeight: '700', margin: "10px 0" }}>Date</span>
-                  </UploadedOn>
+                  </UploadedOn> */}
+                  {podcastUpdated}
                   <Input
                       type="text"
                       id="title"
@@ -323,9 +324,7 @@ export default class EditPodcast extends Component {
                           'insertdatetime media table paste code help wordcount'
                         ],
                         toolbar:
-                          'undo redo | formatselect | bold italic backcolor | \
-                          alignleft aligncenter alignright alignjustify | \
-                          bullist numlist outdent indent | removeformat | help'
+                          'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
                       }}
                       onChange={this.handleEditorChange}
                     />
