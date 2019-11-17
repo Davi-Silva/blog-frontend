@@ -27,7 +27,6 @@ export default class Podcasts extends Component {
     await this.setStateAsync({ podcasts: podcastsList });
   }
 
-
   async getAllPodcasts() {
     // this.response = await fetch('https://cryptic-activist-backend.herokuapp.com/podcasts', {
     this.response = await fetch('http://localhost:5000/podcasts/short', {
@@ -84,7 +83,6 @@ export default class Podcasts extends Component {
         </>
       );
     }
-
     return (
       <>
         <SubNavBar media="Podcasts" category="" title="" />
