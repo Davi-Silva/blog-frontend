@@ -4,6 +4,10 @@ import { createMuiTheme, makeStyles } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import AudioPlayer from 'material-ui-audio-player';
 
+
+import {
+  FaSpinner,
+} from 'react-icons/fa';
 import ShareButtons from '../components/UI/buttons/ShareButton';
 
 import {
@@ -25,6 +29,7 @@ import {
   RelatedPodcastList,
   RelatedPodcastLi,
   RelatedPodcastH6,
+  LoadingAllContent,
 } from '../styled-components/podcast.styled-components';
 
 import SubNavBar from '../components/UI/navbar/SubNavBar';
@@ -248,159 +253,127 @@ export default class Podcast extends Component {
       title,
       audioFileUrl,
       description,
-      slug,
       tags,
       documentHeight,
       relatedCategoryPodcast,
     } = this.state;
+
+    let allContentPodcast;
     let podcastUpdated;
-    let podcastTitle;
-    let podcastCategory;
-    let podcastDescription;
-    let audioPlayer;
-    let podcastTags;
     let podcastRelatedPodcast;
-    if (title === '') {
-      podcastTitle = (
-        <LoadingTitle>Title...</LoadingTitle>
+    if (title === ''
+    || cover === ''
+    || coverAlt === ''
+    || description === ''
+    || category === ''
+    || tags === ''
+    || relatedCategoryPodcast.length === 0) {
+      allContentPodcast = (
+        <LoadingAllContent>
+          <FaSpinner />
+        </LoadingAllContent>
       );
     } else {
-      podcastTitle = (
-        <Title>{title}</Title>
-      );
-    }
-    if (category === '') {
-      podcastCategory = (
-        <LoadingCategory>Category...</LoadingCategory>
-      );
-    } else {
-      podcastCategory = (
-        <Category>
-          {category}
-        </Category>
-      );
-    }
-    if (audioFileUrl === '') {
-      audioPlayer = (
-        <LoadingAudio>Loading audio file...</LoadingAudio>
-      );
-    } else {
-      audioPlayer = (
-        <ThemeProvider theme={this.muiTheme}>
-          <AudioPlayer
-            elevation={0}
-            width="100%"
-            variation="default"
-            spacing={1}
-            height="55px"
-            order="standart"
-            preload="auto"
-            useStyles={this.useStyles}
-            src={audioFileUrl}
-            debug
-          />
-        </ThemeProvider>
-      );
-    }
-    if (description === '') {
-      podcastDescription = (
-        <LoadingDescription>Description...</LoadingDescription>
-      );
-    } else {
-      podcastDescription = (
-        <Description
-          dangerouslySetInnerHTML={{ __html: description }}
-        />
-      );
-    }
-    if (tags === '') {
-      podcastTags = (
-        <LoadingTags>Tags...</LoadingTags>
-      );
-    } else {
-      podcastTags = (
-        <Tags>
+      if (updatedOn === null) {
+        podcastUpdated = (
+          <UploadedOn>
+       Uploaded on&nbsp;
+            <span style={{ color: '#333', fontWeight: '700' }}>{uploadedOn}</span>
+          </UploadedOn>
+        );
+      } else {
+        podcastUpdated = (
+          <UploadedOn>
+         Updated on&nbsp;
+            <span style={{ color: '#333', fontWeight: '700' }}>{updatedOn}</span>
+          </UploadedOn>
+        );
+      }
+      if (relatedCategoryPodcast.length !== 0) {
+        podcastRelatedPodcast = (
+          <RelatedPodcastLabel>
+           Related Blog Posts
+            <br />
+            <RelatedPodcastList>
+              {
+               relatedCategoryPodcast.map((podcast, key) => (
+                 <RelatedPodcastLi
+                   key={key}
+                 >
+                   <RelatedPodcast to={podcast.slug}>
+                     <img
+                       src={podcast.cover.url}
+                       alt={podcast.cover.name}
+                       style={{
+                         borderRadius: '5px',
+                       }}
+                     />
+                     <br />
+                     <RelatedPodcastH6>
+                       {podcast.title}
+                     </RelatedPodcastH6>
+                   </RelatedPodcast>
+                 </RelatedPodcastLi>
+               ))
+             }
+            </RelatedPodcastList>
+          </RelatedPodcastLabel>
+        );
+      }
+      allContentPodcast = (
+        <>
+          <div className="col-lg-4 col-md-4 col-sm-12 col-12">
+            <aside style={{ marginTop: '20px' }}>
+              <CoverImage cover={cover} coverAlt={coverAlt} documentHeight={documentHeight} />
+              <ShareButtons img={cover} text={title} />
+            </aside>
+          </div>
+          <div className="col-lg-8 col-md-8 col-sm-12 col-12">
+            <Wrapper>
+              {podcastUpdated}
+              <Title>{title}</Title>
+              <Category>
+                {category}
+              </Category>
+              <ThemeProvider theme={this.muiTheme}>
+                <AudioPlayer
+                  elevation={0}
+                  width="100%"
+                  variation="default"
+                  spacing={1}
+                  height="55px"
+                  order="standart"
+                  preload="auto"
+                  useStyles={this.useStyles}
+                  src={audioFileUrl}
+                  debug
+                />
+              </ThemeProvider>
+              <Description
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+              <Tags>
         Tags:&nbsp;
-          <b style={{ fontSize: '16px' }}>{tags}</b>
-        </Tags>
-      );
-    }
-    if (relatedCategoryPodcast.length === 0) {
-      podcastRelatedPodcast = (
-        <LoadingRelatedPodcastLabel />
-      );
-    } else {
-      podcastRelatedPodcast = (
-        <RelatedPodcastLabel>
-          Related Blog Posts
-          <br />
-          <RelatedPodcastList>
-            {
-              relatedCategoryPodcast.map((podcast, key) => (
-                <RelatedPodcastLi
-                  key={key}
-                >
-                  <RelatedPodcast to={podcast.slug}>
-                    <img
-                      src={podcast.cover.url}
-                      alt={podcast.cover.name}
-                      style={{
-                        borderRadius: '5px',
-                      }}
-                    />
-                    <br />
-                    <RelatedPodcastH6>
-                      {podcast.title}
-                    </RelatedPodcastH6>
-                  </RelatedPodcast>
-                </RelatedPodcastLi>
-              ))
-            }
-          </RelatedPodcastList>
-        </RelatedPodcastLabel>
+                <b style={{ fontSize: '16px' }}>{tags}</b>
+              </Tags>
+              <hr />
+              <MoreEpisodes to="/podcasts">More Episodes</MoreEpisodes>
+              <hr />
+              {podcastRelatedPodcast}
+
+            </Wrapper>
+          </div>
+          {' '}
+        </>
       );
     }
 
-    if (updatedOn === null) {
-      podcastUpdated = (
-        <UploadedOn>
-      Uploaded on&nbsp;
-          <span style={{ color: '#333', fontWeight: '700' }}>{uploadedOn}</span>
-        </UploadedOn>
-      );
-    } else {
-      podcastUpdated = (
-        <UploadedOn>
-        Updated on&nbsp;
-          <span style={{ color: '#333', fontWeight: '700' }}>{updatedOn}</span>
-        </UploadedOn>
-      );
-    }
     return (
       <>
         <SubNavBar media="Podcast" category={category} title={title} />
         <div className="container">
           <div className="row">
-            <div className="col-lg-4 col-md-4 col-sm-12 col-12">
-              <aside style={{ marginTop: '20px' }}>
-                <CoverImage cover={cover} coverAlt={coverAlt} documentHeight={documentHeight} />
-                <ShareButtons img={cover} text={title} />
-              </aside>
-            </div>
-            <div className="col-lg-8 col-md-8 col-sm-12 col-12">
-              <Wrapper>
-                {podcastUpdated}
-                {podcastTitle}
-                {podcastCategory}
-                {audioPlayer}
-                {podcastDescription}
-                {podcastTags}
-                <hr />
-                <MoreEpisodes to="/podcasts">More Episodes</MoreEpisodes>
-                <hr />
-                {podcastRelatedPodcast}
-              </Wrapper>
-            </div>
+            {allContentPodcast}
           </div>
         </div>
       </>

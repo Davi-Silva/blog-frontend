@@ -2,7 +2,7 @@
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { opacity } from './animations';
+import { opacity, rotate } from './animations';
 
 export const Wrapper = styled.div`
 	margin: 20px auto 0px auto;
@@ -247,5 +247,16 @@ export const RelatedPodcastH6 = styled.h6`
 	text-overflow: ellipsis;
 	@media (max-width: 480px) {
 		font-size: 13px;
+	}
+`;
+
+export const LoadingAllContent = styled.div`
+	width: 100%;
+	svg {
+		animation: ${rotate} 1s infinite;
+		color: #333;
+		font-size: 18px;
+		display: table;
+		margin: 25px auto;
 	}
 `;

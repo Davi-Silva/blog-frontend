@@ -32,7 +32,7 @@ export default class List extends Component {
       editTo: '',
     };
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.onDeletePodcast = this.onDeletePodcast.bind(this);
+    this.onDeletePost = this.onDeletePost.bind(this);
     this.getPodcastBySlug = this.getPodcastBySlug.bind(this);
   }
 
@@ -42,7 +42,7 @@ export default class List extends Component {
     } = this.props;
     console.log('type:', type);
     const typeLower = type.toLowerCase();
-    const editTo = `/edit/${typeLower}/${slug}`;
+    const editTo = `/edit/post/${slug}`;
     // const date = date;
     console.log('date:', date);
 
@@ -80,7 +80,7 @@ export default class List extends Component {
     });
   }
 
-  async onDeletePodcast() {
+  async onDeletePost() {
     let podcast = await this.getPodcastBySlug();
     podcast = podcast[0];
     console.log('podcast.id:', podcast.id);
@@ -207,7 +207,7 @@ export default class List extends Component {
           id={liID}
           style={{ padding: '10px 10px 40px 10px' }}
         >
-          <Delete onClick={this.onDeletePodcast}>
+          <Delete onClick={this.onDeletePost}>
             <FaTrashAlt />
 &nbsp; Delete
           </Delete>
@@ -217,7 +217,7 @@ export default class List extends Component {
           </Edit>
           <GoTo to={`/blog/${slug}`}>
             <FaPodcast />
-&nbsp; Podcast Page
+&nbsp; Blog Page
           </GoTo>
         </div>
       </li>

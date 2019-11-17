@@ -12,6 +12,7 @@ import {
   Tags,
   LoadingTags,
   RelatedPost,
+  UploadedOn,
   RelatedPostLabel,
   LoadingRelatedPostLabel,
   AllContent,
@@ -151,96 +152,107 @@ export default class Post extends Component {
 
   render() {
     const {
-      title, category, cover, coverAlt, content, tags, relatedCategoryPosts,
+      title, category, cover, coverAlt, content, tags, relatedCategoryPosts, publishedOn,
     } = this.state;
-    let postTags;
-    let postRelatedPost;
-    let loading;
-    let allContentPost;
-    if (tags === '') {
-      postTags = (
-        <LoadingTags>Tags...</LoadingTags>
-      );
-    } else {
-      postTags = (
-        <Tags>
-        Tags:&nbsp;
-          <b style={{ fontSize: '16px' }}>{tags}</b>
-        </Tags>
-      );
-    }
-    console.log('relatedCategoryPosts.found :', relatedCategoryPosts.found);
-    if (relatedCategoryPosts.found === false) {
-      postRelatedPost = (
-        <LoadingRelatedPostLabel />
-      );
-    } else {
-      postRelatedPost = (
-        <RelatedPostLabel>
-          Related Blog Posts
-          <br />
-          <RelatedPostList>
-            {
-              relatedCategoryPosts.map((post, key) => (
-                <RelatedPostLi
-                  key={key}
-                >
-                  <RelatedPost to={post.slug}>
-                    <img
-                      src={post.cover.url}
-                      style={{
-                        borderRadius: '5px',
-                      }}
-                      alt={post.cover.name}
-                    />
-                    <br />
-                    <RelatedPostH6>
-                      {post.title}
-                    </RelatedPostH6>
-                  </RelatedPost>
-                </RelatedPostLi>
-              ))
-            }
-          </RelatedPostList>
-        </RelatedPostLabel>
-      );
-    }
 
-    if (tags === '' || relatedCategoryPosts.length === 0) {
+    let allContentPost;
+    let postPublished;
+    let postRelatedPost;
+
+    if (title === ''
+    || cover === ''
+    || coverAlt === ''
+    || content === ''
+    || tags === ''
+    || relatedCategoryPosts.length === 0
+    || publishedOn === '') {
       allContentPost = (
         <LoadingAllContent>
           <FaSpinner />
         </LoadingAllContent>
       );
     } else {
+      if (publishedOn === null) {
+        postPublished = (
+          <UploadedOn>
+      Uploaded on&nbsp;
+            <span style={{ color: '#333', fontWeight: '700' }}>{publishedOn}</span>
+          </UploadedOn>
+        );
+      } else {
+        postPublished = (
+          <UploadedOn>
+        Updated on&nbsp;
+            <span style={{ color: '#333', fontWeight: '700' }}>{publishedOn}</span>
+          </UploadedOn>
+        );
+      }
+      if (relatedCategoryPosts.found === false) {
+        postRelatedPost = (
+          <LoadingRelatedPostLabel />
+        );
+      } else {
+        postRelatedPost = (
+          <RelatedPostLabel>
+            Related Blog Posts
+            <br />
+            <RelatedPostList>
+              {
+                relatedCategoryPosts.map((post, key) => (
+                  <RelatedPostLi
+                    key={key}
+                  >
+                    <RelatedPost to={post.slug}>
+                      <img
+                        src={post.cover.url}
+                        style={{
+                          borderRadius: '5px',
+                        }}
+                        alt={post.cover.name}
+                      />
+                      <br />
+                      <RelatedPostH6>
+                        {post.title}
+                      </RelatedPostH6>
+                    </RelatedPost>
+                  </RelatedPostLi>
+                ))
+              }
+            </RelatedPostList>
+          </RelatedPostLabel>
+        );
+      }
       allContentPost = (
-        <AllContent>
-          {postTags}
-          {postRelatedPost}
-        </AllContent>
+        <>
+          <div className="col-lg-8 col-md-8 col-sm-8 col-12">
+            <Cover
+              src={cover}
+              alt={coverAlt}
+            />
+            {postPublished}
+            <Title>
+              {title}
+            </Title>
+            <Content dangerouslySetInnerHTML={{ __html: content }} />
+            <Tags>
+            Tags:&nbsp;
+              {' '}
+              <b style={{ fontSize: '16px' }}>{tags}</b>
+              {' '}
+            </Tags>
+            {postRelatedPost}
+          </div>
+          <div className="col-lg-4 col-md-4 col-sm-4 col-12" />
+        </>
       );
     }
-
 
     return (
       <>
         <SubNavBar media="Blog" category={category} title={title} />
         <div className="container">
           <div className="row">
-            <div className="col-lg-8 col-md-8 col-sm-8 col-12">
-              <Cover
-                src={cover}
-                alt={coverAlt}
-              />
-              <Title>
-                {title}
-              </Title>
-              <Content dangerouslySetInnerHTML={{ __html: content }} />
-              {/* {postTags}
-              {postRelatedPost} */}
-              {allContentPost}
-            </div>
-            <div className="col-lg-4 col-md-4 col-sm-4 col-12" />
+            {allContentPost}
           </div>
         </div>
       </>

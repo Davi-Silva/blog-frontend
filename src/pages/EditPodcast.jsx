@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
+import slugify from 'slugify';
 
 import SubNavBar from '../components/UI/navbar/SubNavBar';
 import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
@@ -11,8 +12,6 @@ import FileListCover from "../components/UI/admin/FileListCover.component";
 import {
   Input,
   UploadedOn,
-  Button,
-  Wrapper,
   Update,
 } from '../styled-components/edit-podcast.styled-components';
 
@@ -35,7 +34,6 @@ export default class EditPodcast extends Component {
       updated: false,
       uploadedFiles: [],
       uploadedCovers: [],
-      backButtonClassName: 'backPodcastButtonRelavite',
     };
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -44,14 +42,12 @@ export default class EditPodcast extends Component {
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.setStateAsync = this.setStateAsync.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.listenScrollEvent = this.listenScrollEvent.bind(this);
     this.changeSlugFromTitle = this.changeSlugFromTitle.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
     this.onChangeTags = this.onChangeTags.bind(this);
   }
 
   async componentDidMount() {
-    window.addEventListener('scroll', this.listenScrollEvent);
     const podcast = await this.getPodcastBySlug();
     console.log('edit podcast:', podcast);
     if (podcast.length > 0) {
@@ -113,12 +109,6 @@ export default class EditPodcast extends Component {
     }
   }
 
-  // async componentDidUpdate() {
-  //   const { history } = this.props;
-  //   history.push('/404');
-  // }
-
-
   async onSubmit(e) {
     e.preventDefault();
     const {
@@ -158,10 +148,9 @@ export default class EditPodcast extends Component {
   }
 
   async changeSlugFromTitle() {
-    const slug = this.state.title
-      .toLowerCase()
-      .split(' ')
-      .join('-');
+    const {title} = this.state;
+    let lowerCaseTitle = title.toLowerCase();
+    let slug = slugify(lowerCaseTitle);
     await this.setStateAsync({ slug });
   }
 
@@ -202,24 +191,6 @@ export default class EditPodcast extends Component {
     );
     const data = await this.response.json();
     return data;
-  }
-
-  async listenScrollEvent(e) {
-    if (window.scrollY > 56) {
-      await this.setStateAsync({ backButtonClassName: 'backPodcastButtonFixed' });
-      const { backButtonClassName } = this.state;
-      console.log(
-        'this.state.containerClassName:',
-        backButtonClassName,
-      );
-    } else {
-      await this.setStateAsync({ backButtonClassName: 'backPodcastButtonRelavite' });
-      const { backButtonClassName } = this.state;
-      console.log(
-        'this.state.containerClassName:',
-        backButtonClassName,
-      );
-    }
   }
 
   handleEditorChange = async (e) => {
@@ -292,61 +263,10 @@ export default class EditPodcast extends Component {
         <div className="container">
           <form onSubmit={this.onSubmit} method="POST">
             <div className="row">
-              {/* <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-                <form onSubmit={this.onSubmit} method="POST">
-                  <Wrapper>
-
-                    <BackButton to={`/podcast/${slug}`} className={backButtonClassName}>
-                      <i className="fas fa-chevron-left" />
-                    </BackButton>
-                    <img
-                      src={coverURL}
-                      alt="Cover"
-                      style={{ width: '100%' }}
-                    />
-                    <Update>
-                      <i className="fas fa-edit" />
-                    </Update>
-                    {podcastUpdated}
-                    <Input value={title} style={{ width: '100%' }} onChange={this.onChangeTitle} />
-                    <div style={{ margin: '50px 0px 20px 0px' }}>
-                      <Editor
-                        apiKey="z1imaefgqfqi5gkj9tp9blogndyf2gp0aj3fgubdtz73p658"
-                        initialValue={description}
-                        init={{
-                          height: 500,
-                          menubar: false,
-                          plugins: [
-                            'advlist autolink lists link image charmap print preview anchor',
-                            'searchreplace visualblocks code fullscreen',
-                            'insertdatetime media table paste code help wordcount',
-                          ],
-                          toolbar:
-                            'undo redo | formatselect | bold italic backcolor | \
-                            alignleft aligncenter alignright alignjustify | \
-                            bullist numlist outdent indent | removeformat | help',
-                        }}
-                        onChange={this.handleEditorChange}
-                      />
-                    </div>
-                  </Wrapper>
-                </form>
-              </div>
-              <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                <aside style={{ marginTop: '20px' }}>
-                  <AdvertisementSquare />
-                </aside>
-              </div> */}
               <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                 <aside style={{ marginTop: '20px' }}>
                   <div>
-                    {/* <UploadCover onUpload={this.handleUploadCover} />
-                    {!!uploadedCovers.length && (
-                      <FileListCover
-                        files={uploadedCovers}
-                        onDelete={this.handleDeleteCover}
-                      />
-                    )}*/}
+
                   </div>
                 </aside>
               </div>

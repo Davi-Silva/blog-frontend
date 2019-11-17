@@ -21,6 +21,7 @@ import CoursesCategory from './pages/CoursesCategory';
 import CoursesList from './pages/CoursesList';
 import Podcast from './pages/Podcast';
 import EditPodcast from './pages/EditPodcast';
+import EditPost from './pages/EditPost';
 import Podcasts from './pages/Podcasts';
 import UploadNewPodcast from './pages/UploadNewPodcast';
 import PublishBlogPost from './pages/PublishBlogPost';
@@ -60,6 +61,11 @@ function App() {
           exact
           path="/edit/podcast/:slug"
           render={(props) => <EditPodcast {...props} />}
+        />
+        <Route
+          exact
+          path="/edit/post/:slug"
+          render={(props) => <EditPost {...props} />}
         />
         <Route exact path="/404" component={PageNotFound} />
         <Route path="/upload/podcast" component={UploadNewPodcast} />

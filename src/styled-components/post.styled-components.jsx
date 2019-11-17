@@ -58,6 +58,16 @@ export const Content = styled.div`
 			width: 100%;
 			height: unset;
 		}
+		a {
+			img {
+				width: 100%;
+				height: unset;
+			}
+		}
+	}
+	img {
+		width: 100%;
+		height: unset;
 	}
 `;
 
@@ -175,6 +185,7 @@ export const AllContent = styled.div`
 `;
 
 export const LoadingAllContent = styled.div`
+	width: 100%;
 	svg {
 		animation: ${rotate} 1s infinite;
 		color: #333;
