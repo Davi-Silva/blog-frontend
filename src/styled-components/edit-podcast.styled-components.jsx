@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const UploadedOn = styled.p`
 	color: #999;
-	margin: 10px 25px;
+	margin: 10px 0px;
 `;
 
 export const Input = styled.input`

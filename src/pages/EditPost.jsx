@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-// import { Editor } from '@tinymce/tinymce-react';
+import { Editor } from '@tinymce/tinymce-react';
 import slugify from 'slugify';
 
 import {
-  // Input,
+  Input,
   UploadedOn,
   // Update,
 } from '../styled-components/edit-post.styled-components';
@@ -18,15 +18,19 @@ export default class EditPost extends Component {
       // id: null,
       // slug: '',
       title: '',
-      // content: '',
+      content: '',
       category: '',
       // cover: null,
       // coverURL: '',
-      // tags: '',
+      tags: '',
       // publishedOn: '',
       // updatedOn: null,
       // updated: false,
     };
+    this.onChangeContent = this.onChangeContent.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
+    this.onChangeTags = this.onChangeTags.bind(this)
+    this.handleEditorChange = this.handleEditorChange.bind(this);
     this.setStateAsync = this.setStateAsync.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.getPostBySlug = this.getPostBySlug.bind(this);
@@ -35,7 +39,6 @@ export default class EditPost extends Component {
 
   async componentDidMount() {
     const post = await this.getPostBySlug();
-    console.log('edit post:', post);
     if (post.length > 0) {
       const {
         id, slug, title, content, cover, category, tags, publishedOn, updatedOn,
@@ -94,15 +97,16 @@ export default class EditPost extends Component {
   }
 
   async onChangeTitle(e) {
+    const { title } = this.state;
     await this.setStateAsync({
       title: e.target.value,
     });
     setTimeout(() => {
-      this.changeSlugFromTitle(this.state.title);
+      this.changeSlugFromTitle(title);
     }, 0);
   }
 
-  async onChangeDescription(e) {
+  async onChangeContent(e) {
     await this.setStateAsync({
       description: e.target.value,
     });
@@ -123,7 +127,7 @@ export default class EditPost extends Component {
   async getPostBySlug() {
     const { match } = this.props;
     const { slug } = match.params;
-    console.log('slug:', slug);
+
     this.response = await fetch(
       // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${slug}`,
       `http://localhost:5000/blog/get/slug/${slug}`,
@@ -139,6 +143,12 @@ export default class EditPost extends Component {
     );
     const data = await this.response.json();
     return data;
+  }
+
+  handleEditorChange = async (e) => {
+    this.setStateAsync({
+      description: e.target.getContent(),
+    });
   }
 
   setStateAsync(state) {
@@ -161,7 +171,7 @@ export default class EditPost extends Component {
 
 
   render() {
-    const { title, category } = this.state;
+    const { title, category, content, tags } = this.state;
     return (
       <>
         <SubNavBar media="Blog" category={category} title={title} />
@@ -191,10 +201,73 @@ Cover Placeholder
 
                 </p>
               </div>
-              <UploadedOn style={{ margin: '0' }}>
+              <UploadedOn style={{ margin: '5px 0 0 0' }}>
                     Updated on&nbsp;
                 <span style={{ color: '#333', fontWeight: '700', margin: '10px 0' }}>Date</span>
               </UploadedOn>
+              <Input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Title..."
+                value={title}
+                autoComplete="off"
+                style={{
+                  color: '#333',
+                  fontSize: '26px',
+                  fontWeight: '700',
+                  margin: '30px 0',
+                  width: '100%',
+                  letterSpacing: '1px',
+                }}
+                onChange={this.onChangeTitle}
+                required
+              />
+              <Editor
+                apiKey="z1imaefgqfqi5gkj9tp9blogndyf2gp0aj3fgubdtz73p658"
+                initialValue={content}
+                init={{
+                  height: 500,
+                  menubar: false,
+                  plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount',
+                  ],
+                  toolbar:
+                    'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+                }}
+                onChange={this.handleEditorChange}
+              />
+              <ul
+                style={{ display: 'inline' }}
+              >
+                <li style={{ display: 'inline' }}>
+                  <p style={{
+                    marginBottom: '0px', marginTop: '0px', position: 'absolute', color: '#333',
+                  }}
+                  >
+Tags:
+
+                  </p>
+                </li>
+                <li style={{ display: 'inline', marginLeft: '45px', marginTop: '-20px' }}>
+                  <Input
+                    type="text"
+                    id="tags"
+                    name="tags"
+                    value={tags}
+                    autoComplete="off"
+                    style={{
+                      color: '#333',
+                      fontSize: '16px',
+                      fontWeight: '100',
+                    }}
+                    onChange={this.onChangeTags}
+                    required
+                  />
+                </li>
+              </ul>
             </div>
             <div className="col-lg-4 col-md-4 col-sm-4 col-12" />
           </div>

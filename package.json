@@ -19,6 +19,7 @@
         "material-ui-audio-player": "^1.0.6",
         "prop-types": "^15.7.2",
         "react": "^16.11.0",
+        "react-adsense": "^0.1.0",
         "react-circular-progressbar": "^2.0.2",
         "react-custom-share": "^0.4.8",
         "react-designable-audio-player": "kenfehling/react-designable-audio-player",

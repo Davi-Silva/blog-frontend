@@ -4,6 +4,7 @@ import {
   FaSpinner,
 } from 'react-icons/fa';
 import SubNavBar from '../components/UI/navbar/SubNavBar';
+import AdSense from '../components/UI/ads/AdvertisementSquare.component';
 
 import {
   Cover,
@@ -242,7 +243,9 @@ export default class Post extends Component {
             </Tags>
             {postRelatedPost}
           </div>
-          <div className="col-lg-4 col-md-4 col-sm-4 col-12" />
+          <div className="col-lg-4 col-md-4 col-sm-4 col-12">
+            <AdSense />
+          </div>
         </>
       );
     }

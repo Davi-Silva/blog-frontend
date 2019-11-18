@@ -25,15 +25,15 @@ export default class EditPodcast extends Component {
       title: '',
       description: '',
       category: '',
-      audioFile: null,
-      cover: null,
-      coverURL: '',
+      // audioFile: null,
+      // cover: null,
+      // coverURL: '',
       tags: '',
       uploadedOn: '',
       updatedOn: null,
-      updated: false,
-      uploadedFiles: [],
-      uploadedCovers: [],
+      // updated: false,
+      // uploadedFiles: [],
+      // uploadedCovers: [],
     };
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -49,7 +49,6 @@ export default class EditPodcast extends Component {
 
   async componentDidMount() {
     const podcast = await this.getPodcastBySlug();
-    console.log('edit podcast:', podcast);
     if (podcast.length > 0) {
       const {
         id, slug, title, description, audioFile, cover, category, tags, uploadedOn, updatedOn,
@@ -123,7 +122,6 @@ export default class EditPodcast extends Component {
       tags,
     };
     const res = await this.updatePodcast(podcastInfo);
-    console.log('res podcast update:', res);
     history.push(`/podcast/${slug}`);
     if (res.updated) {
       this.setStateAsync({
@@ -132,26 +130,14 @@ export default class EditPodcast extends Component {
     }
   }
 
-  setStateAsync(state) {
-    return new Promise((resolve) => {
-      this.setState(state, resolve);
-    });
-  }
-
   async onChangeTitle(e) {
+    const { title } = this.state;
     await this.setStateAsync({
       title: e.target.value,
     });
     setTimeout(() => {
-      this.changeSlugFromTitle(this.state.title);
+      this.changeSlugFromTitle(title);
     }, 0);
-  }
-
-  async changeSlugFromTitle() {
-    const {title} = this.state;
-    let lowerCaseTitle = title.toLowerCase();
-    let slug = slugify(lowerCaseTitle);
-    await this.setStateAsync({ slug });
   }
 
   async onChangeDescription(e) {
@@ -168,14 +154,19 @@ export default class EditPodcast extends Component {
 
   async onChangeTags(e) {
     this.setStateAsync({
-      tags: e.target.value
+      tags: e.target.value,
+    });
+  }
+
+  setStateAsync(state) {
+    return new Promise((resolve) => {
+      this.setState(state, resolve);
     });
   }
 
   async getPodcastBySlug() {
     const { match } = this.props;
     const { slug } = match.params;
-    console.log('slug:', slug);
     this.response = await fetch(
       // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${slug}`,
       `http://localhost:5000/podcasts/get/slug/${slug}`,
@@ -194,10 +185,16 @@ export default class EditPodcast extends Component {
   }
 
   handleEditorChange = async (e) => {
-    console.log('Content was updated:', e.target.getContent());
     this.setStateAsync({
-      description: e.target.getContent()
+      description: e.target.getContent(),
     });
+  }
+
+  async changeSlugFromTitle() {
+    const { title } = this.state;
+    const lowerCaseTitle = title.toLowerCase();
+    const slug = slugify(lowerCaseTitle);
+    await this.setStateAsync({ slug });
   }
 
   async updatePodcast(podcast) {
@@ -241,19 +238,18 @@ export default class EditPodcast extends Component {
       // backButtonClassName,
     } = this.state;
     let podcastUpdated;
-    console.log("Description:", description)
     if (updatedOn === null) {
       podcastUpdated = (
         <UploadedOn>
       Uploaded on&nbsp;
-          <span style={{ color: '#0058e4' }}>{uploadedOn}</span>
+          <span style={{ color: '#333', fontWeight: '900' }}>{uploadedOn}</span>
         </UploadedOn>
       );
     } else if (updatedOn !== null) {
       podcastUpdated = (
         <UploadedOn>
         Updated on&nbsp;
-          <span style={{ color: '#0058e4' }}>{updatedOn}</span>
+          <span style={{ color: '#333', fontWeight: '900' }}>{updatedOn}</span>
         </UploadedOn>
       );
     }
@@ -265,55 +261,53 @@ export default class EditPodcast extends Component {
             <div className="row">
               <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                 <aside style={{ marginTop: '20px' }}>
-                  <div>
-
-                  </div>
+                  <div />
                 </aside>
               </div>
               <div className="col-lg-8 col-md-8 col-ms-12 col-12">
-                <main style={{marginTop: "25px"}}>
+                <main style={{ marginTop: '25px' }}>
                   {/* <UploadedOn style={{ margin: "0",}}>
                     Updated on&nbsp;
                     <span style={{ color: '#333', fontWeight: '700', margin: "10px 0" }}>Date</span>
                   </UploadedOn> */}
                   {podcastUpdated}
                   <Input
-                      type="text"
-                      id="title"
-                      name="title"
-                      placeholder="Title..."
-                      value={title}
-                      autoComplete="off"
-                      style={{  
-                        color: "#333",
-                        fontSize: "23px",
-                        fontWeight: "900",
-                        margin: "10px 0",
-                        width: "100%"
-                      }}
-                      onChange={this.onChangeTitle}
-                      required
-                    />
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Title..."
+                    value={title}
+                    autoComplete="off"
+                    style={{
+                      color: '#333',
+                      fontSize: '23px',
+                      fontWeight: '900',
+                      margin: '10px 0',
+                      width: '100%',
+                    }}
+                    onChange={this.onChangeTitle}
+                    required
+                  />
                   <Input
-                      type="text"
-                      id="category"
-                      name="category"
-                      placeholder="Category..."
-                      value={category}
-                      autoComplete="off"
-                      style={{  
-                        color: "#999",
-                        fontSize: "16px",
-                        fontWeight: "100",
-                        margin: "10px 0",
-                        width: "100%"
-                      }}
-                      onChange={this.onChangeCategory}
-                      required
-                    />
-                  <div style={{margin: "50px 0px 20px 0px"}}>
+                    type="text"
+                    id="category"
+                    name="category"
+                    placeholder="Category..."
+                    value={category}
+                    autoComplete="off"
+                    style={{
+                      color: '#999',
+                      fontSize: '16px',
+                      fontWeight: '100',
+                      margin: '10px 0',
+                      width: '100%',
+                    }}
+                    onChange={this.onChangeCategory}
+                    required
+                  />
+                  <div style={{ margin: '50px 0px 20px 0px' }}>
                     <Editor
-                      apiKey='z1imaefgqfqi5gkj9tp9blogndyf2gp0aj3fgubdtz73p658'
+                      apiKey="z1imaefgqfqi5gkj9tp9blogndyf2gp0aj3fgubdtz73p658"
                       initialValue={description}
                       init={{
                         height: 500,
@@ -321,33 +315,40 @@ export default class EditPodcast extends Component {
                         plugins: [
                           'advlist autolink lists link image charmap print preview anchor',
                           'searchreplace visualblocks code fullscreen',
-                          'insertdatetime media table paste code help wordcount'
+                          'insertdatetime media table paste code help wordcount',
                         ],
                         toolbar:
-                          'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+                          'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
                       }}
                       onChange={this.handleEditorChange}
                     />
                   </div>
                   <ul
-                  style={{display: "inline"}}>
-                    <li style={{display: "inline"}}>
-                      <p style={{marginBottom: "0px", marginTop: "0px", position: "absolute", color: "#333"}}>Tags:</p>
+                    style={{ display: 'inline' }}
+                  >
+                    <li style={{ display: 'inline' }}>
+                      <p style={{
+                        marginBottom: '0px', marginTop: '0px', position: 'absolute', color: '#333',
+                      }}
+                      >
+Tags:
+
+                      </p>
                     </li>
-                    <li style={{display: "inline", marginLeft: "45px", marginTop: "-20px"}}>
+                    <li style={{ display: 'inline', marginLeft: '45px', marginTop: '-20px' }}>
                       <Input
-                          type="text"
-                          id="tags"
-                          name="tags"
-                          value={tags}
-                          autoComplete="off"
-                          style={{  
-                            color: "#333",
-                            fontSize: "16px",
-                            fontWeight: "100",
-                          }}
-                          onChange={this.onChangeTags}
-                          required
+                        type="text"
+                        id="tags"
+                        name="tags"
+                        value={tags}
+                        autoComplete="off"
+                        style={{
+                          color: '#333',
+                          fontSize: '16px',
+                          fontWeight: '100',
+                        }}
+                        onChange={this.onChangeTags}
+                        required
                       />
                     </li>
                   </ul>

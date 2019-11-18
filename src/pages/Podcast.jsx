@@ -3,11 +3,10 @@ import React, { Component } from 'react';
 import { createMuiTheme, makeStyles } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import AudioPlayer from 'material-ui-audio-player';
-
-
 import {
   FaSpinner,
 } from 'react-icons/fa';
+
 import ShareButtons from '../components/UI/buttons/ShareButton';
 
 import {
@@ -139,7 +138,6 @@ export default class Podcast extends Component {
         slug, category, title, tags, description, uploadedOn, updatedOn, audioFile, cover,
       } = podcast[0];
       const relatedCategoryPodcast = await this.getPodcastByCategory(category, slug);
-      console.log('relatedCategoryPodcast:', relatedCategoryPodcast);
       const dateFormatted = this.parseDate(uploadedOn);
       const months = [
         'January',

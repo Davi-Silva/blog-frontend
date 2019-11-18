@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import AdSense from 'react-adsense';
 
-import { AdSquare } from '../../../styled-components/advertisements.styled-components';
+// import { AdSquare } from '../../../styled-components/advertisements.styled-components';
 
 export default class AdvertisementSquare extends Component {
   constructor(props) {
@@ -34,14 +35,15 @@ export default class AdvertisementSquare extends Component {
   }
 
   render() {
-    const { containerClassName } = this.state;
+    // const { containerClassName } = this.state;
     return (
       <>
-        <AdSquare className={containerClassName}>
-          <p style={{ color: '#999', textAlign: 'center', marginTop: '15px' }}>
-						Advertisement
-          </p>
-        </AdSquare>
+        <AdSense.Google
+          client='ca-pub-3011749340662383'
+          slot='7806394673'
+          style={{ width: 500, height: 300, float: 'left' }}
+          format=''
+        />
       </>
     );
   }
