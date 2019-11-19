@@ -222,6 +222,7 @@ export const Container = styled.ul`
     /* display: flex;
     justify-content: space-between;
     align-items: center; */
+    list-style: none;
     color: #444;
     & + li {
       margin-top: 15px;

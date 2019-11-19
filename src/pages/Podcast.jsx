@@ -264,8 +264,7 @@ export default class Podcast extends Component {
     || coverAlt === ''
     || description === ''
     || category === ''
-    || tags === ''
-    || relatedCategoryPodcast.length === 0) {
+    || tags === '') {
       allContentPodcast = (
         <LoadingAllContent>
           <FaSpinner />
