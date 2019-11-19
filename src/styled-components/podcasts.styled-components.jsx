@@ -1,7 +1,8 @@
 /* eslint-disable no-tabs */
 import styled from 'styled-components';
-
 import { Link } from 'react-router-dom';
+
+import { rotate } from './animations';
 
 export const Wrapper = styled(Link)`
 	margin: 20px auto;
@@ -116,5 +117,39 @@ export const Category = styled.b`
 	}
 	@media (max-width: 340px) {
 		font-size: 10px;
+	}
+`;
+
+
+export const LoadingAllContent = styled.div`
+	width: 100%;
+	svg {
+		animation: ${rotate} 1s infinite;
+		color: #333;
+		font-size: 18px;
+		display: table;
+		margin: 25px auto;
+	}
+`;
+
+export const InfinitePodcastList = styled.ul`
+	margin-bottom: 0px;
+	div {
+		overflow: hidden;
+		::-webkit-scrollbar {
+			display: none;
+		}
+
+		::-webkit-scrollbar-track {
+			display: none;
+		}
+
+		::-webkit-scrollbar-thumb {
+			display: none;
+		}
+
+		::-webkit-scrollbar-thumb:hover {
+			display: none;
+		}
 	}
 `;

@@ -46,7 +46,7 @@ const FileList = ({ files, onDelete }) => (
           borderRadius: '5px',
           textAlign: 'center',
           height: '28px',
-          width: '100vw',
+          // width: '100vw',
           top: '200px',
           zIndex: '9999',
         }}
