@@ -245,6 +245,8 @@ export default class Post extends Component {
           </div>
           <div className="col-lg-4 col-md-4 col-sm-4 col-12">
             <AdSense />
+            <p>Some other content</p>
+            <p>Newsletter form here</p>
           </div>
         </>
       );

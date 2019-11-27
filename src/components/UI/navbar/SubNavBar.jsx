@@ -2,7 +2,11 @@
 import React, { Component } from 'react';
 
 import {
-  SubNavigatorBar, Ul, Li, Separator,
+  Container,
+  SubNavigatorBar,
+  Ul,
+  Li,
+  Separator,
 } from '../../../styled-components/subnavbar.styled-components';
 
 export default class SubNavBar extends Component {
@@ -69,13 +73,13 @@ export default class SubNavBar extends Component {
     }
     return (
       <SubNavigatorBar className={containerClassName}>
-        <div className="container">
+        <Container className="container">
           <div className="row">
             <div className="col-12">
               {subNavMenu}
             </div>
           </div>
-        </div>
+        </Container>
       </SubNavigatorBar>
     );
   }

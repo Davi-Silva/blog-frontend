@@ -64,7 +64,7 @@ export default class BlogContent extends Component {
     } else {
       list = (
         <ul>
-          {posts.reverse().map((post, key) => (
+          {posts.map((post, key) => (
             <List
               key={key}
               type={post.type}

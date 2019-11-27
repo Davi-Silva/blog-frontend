@@ -132,6 +132,25 @@ export const LoadingAllContent = styled.div`
 	}
 `;
 
+export const NoContentDiv = styled.div`
+	margin: 35px auto;
+	display: table;
+`;
+
+export const NoContentImg = styled.img`
+	height: 90px;
+	width: 90px;
+	margin: 5px auto;
+	display: table;
+`;
+
+export const NoContentP = styled.p`
+	color: #999;
+	font-size: 16px;
+	margin: 0 auto;
+	display: table;
+`;
+
 export const InfinitePodcastList = styled.ul`
 	margin-bottom: 0px;
 	div {

@@ -70,3 +70,20 @@ export const Separator = styled.span`
     font-size: 9px;
   }
 `;
+
+export const Container = styled.div`
+  padding-left: 15px!important;
+  padding-right: 15px!important;
+  @media (max-width: 991px) {
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+  }
+  @media (max-width: 768px) {
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+  }
+  @media (max-width: 577px) {
+    padding-left: 15px!important;
+    padding-right: 15px!important;
+  }
+`;

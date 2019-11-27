@@ -22,6 +22,25 @@ export const Panel = styled.div`
   }
 `;
 
+export const NoContentDiv = styled.div`
+	margin: 10px auto;
+	display: table;
+`;
+
+export const NoContentImg = styled.img`
+	height: 30px;
+	width: 30px;
+	margin: 5px auto;
+	display: table;
+`;
+
+export const NoContentP = styled.p`
+	color: #999;
+	font-size: 12px;
+	margin: 0 auto;
+	display: table;
+`;
+
 export const Li = styled.li`
   display: inline-block;
   list-style: none;

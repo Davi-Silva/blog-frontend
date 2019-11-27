@@ -6,9 +6,13 @@ import {
 } from 'react-icons/fa';
 import List from './podcastList.component';
 
+import BitcoinDoddle from '../../../../../static/img/no-content-img.png';
 
 import {
   LoadingAllContent,
+  NoContentDiv,
+  NoContentImg,
+  NoContentP,
 } from '../../../../../styled-components/admin.styled-components';
 
 export default class PodcastContent extends Component {
@@ -16,6 +20,7 @@ export default class PodcastContent extends Component {
     super(props);
     this.state = {
       podcasts: [],
+      found: false,
     };
     this.componentDidMount = this.componentDidMount(this);
   }
@@ -23,7 +28,16 @@ export default class PodcastContent extends Component {
   async componentDidMount() {
     const podcastsList = await this.getAllPodcasts();
     console.log('podcast:', podcastsList);
-    await this.setStateAsync({ podcasts: podcastsList });
+    if (!podcastsList.found) {
+      this.setStateAsync({
+        found: false
+      })
+    } else if (podcastsList.length > 0) {
+      await this.setStateAsync({
+        podcasts: podcastsList,
+        found: true,
+      });
+    }
   }
 
   setStateAsync(state) {
@@ -52,17 +66,25 @@ export default class PodcastContent extends Component {
 
   render() {
     let list;
-    const { podcasts } = this.state;
-    if (podcasts.length === 0) {
+    const {
+      podcasts,
+      found,
+     } = this.state;
+    if (!found) {
       list = (
-        <LoadingAllContent>
-          <FaSpinner />
-        </LoadingAllContent>
+      <>
+        <NoContentDiv>
+          <NoContentImg src={BitcoinDoddle} />
+          <NoContentP>
+            No Podcast has been found.
+          </NoContentP>
+        </NoContentDiv>
+        </>
       );
     } else {
       list = (
         <ul>
-          {podcasts.reverse().map((podcast, key) => (
+          {podcasts.map((podcast, key) => (
             <List
               key={podcast.id}
               type={podcast.type}

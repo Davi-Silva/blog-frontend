@@ -101,6 +101,54 @@ export const Description = styled.div`
 	color: #333;
 	font-size: 14px;
 	margin: 10px 0px;
+	img {
+		width: 100%;
+		height: unset;
+	}
+	div {
+		img {
+			width: 100%;
+			height: unset;
+		}
+	}
+	p {
+		img {
+			width: 100%;
+			height: unset;
+		}
+	}
+	a {
+		img {
+			width: 100%;
+			height: unset;
+		}
+	}
+	span {
+		img {
+			width: 100%;
+			height: unset;
+		}
+	}
+	li {
+		img {
+			width: 100%;
+			height: unset;
+		}
+	}
+	ul {
+		li {
+			img {
+				width: 100%;
+				height: unset;
+			}
+			a {
+				img {
+					width: 100%;
+					height: unset;
+				}
+			}
+		}
+	}
 `;
 
 export const LoadingDescription = styled.div`

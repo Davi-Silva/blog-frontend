@@ -175,6 +175,9 @@ export default class PublishBlogPost extends Component {
       uploadedCovers,
       // author
     } = this.state;
+    const {
+      history
+    } = this.props;
     console.log('cover on submit:', uploadedCovers)
     const postInfo = {
       isSlugValid: isSlugValid,
@@ -199,6 +202,7 @@ export default class PublishBlogPost extends Component {
         uploaded: res.uploaded
       });
       console.log(res);
+      history.push('/blog');
     } else {
       console.log("Slug is invalid");
     }

@@ -5,6 +5,8 @@ import {
   FaSpinner,
 } from 'react-icons/fa';
 
+import BitcoinDoddle from '../static/img/no-content-img.png';
+
 import PodcastsList from '../components/UI/lists/PodcastsList.component';
 // import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
 
@@ -13,6 +15,9 @@ import SubNavBar from '../components/UI/navbar/SubNavBar';
 import {
   LoadingAllContent,
   InfinitePodcastList,
+  NoContentDiv,
+  NoContentImg,
+  NoContentP,
 } from '../styled-components/podcasts.styled-components';
 
 export default class Podcasts extends Component {
@@ -23,6 +28,7 @@ export default class Podcasts extends Component {
       podcasts: [],
       page: 1,
       hasMore: null,
+      found: false,
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -33,13 +39,22 @@ export default class Podcasts extends Component {
   async componentDidMount() {
     const podcastsList = await this.getFirstPodcasts();
     let more = true;
-    if (podcastsList.length < 10) {
-      more = false;
+    if (!podcastsList.found) {
+      this.setStateAsync({
+        found: false,
+      });
+    } 
+    if (podcastsList.length > 0) {
+      if (podcastsList.length < 10) {
+        more = false;
+      }
+      await this.setStateAsync({
+        podcasts: podcastsList,
+        hasMore: more,
+        found: true,
+      });
     }
-    await this.setStateAsync({
-      podcasts: podcastsList,
-      hasMore: more,
-    });
+    console.log('podcastList:', podcastsList);
   }
 
   async getFirstPodcasts() {
@@ -99,13 +114,22 @@ export default class Podcasts extends Component {
   }
 
   render() {
-    const { podcasts, hasMore } = this.state;
+    const {
+      podcasts,
+      hasMore,
+      found
+    } = this.state;
     let allPodcasts;
-    if (podcasts.length === 0) {
+    if (!found) {
       allPodcasts = (
-        <LoadingAllContent>
-          <FaSpinner />
-        </LoadingAllContent>
+        <>
+        <NoContentDiv>
+          <NoContentImg src={BitcoinDoddle} />
+          <NoContentP>
+            No Podcast has been found.
+          </NoContentP>
+        </NoContentDiv>
+        </>
       );
     } else {
       allPodcasts = (

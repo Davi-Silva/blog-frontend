@@ -52,22 +52,53 @@ export const Content = styled.div`
 	color: #333;
 	font-size: 16px;
 	margin: 10px 0px;
-	p {
+	img {
 		width: 100%;
+		height: unset;
+	}
+	div {
 		img {
 			width: 100%;
 			height: unset;
 		}
-		a {
+	}
+	p {
+		img {
+			width: 100%;
+			height: unset;
+		}
+	}
+	a {
+		img {
+			width: 100%;
+			height: unset;
+		}
+	}
+	span {
+		img {
+			width: 100%;
+			height: unset;
+		}
+	}
+	li {
+		img {
+			width: 100%;
+			height: unset;
+		}
+	}
+	ul {
+		li {
 			img {
 				width: 100%;
 				height: unset;
 			}
+			a {
+				img {
+					width: 100%;
+					height: unset;
+				}
+			}
 		}
-	}
-	img {
-		width: 100%;
-		height: unset;
 	}
 `;
 
@@ -169,14 +200,14 @@ export const RelatedPost = styled(Link)`
 	 }
 	 img {
 		width: unset;
-		height: 150px;
+		height: 125px;
 		@media (max-width: 480px) {
 			width: unset;
 			height: 100px;
 		}
 	 }
 	 h6 {
-		 font-size: 13px;
+		 font-size: 14px;
 	 }
 `;
 

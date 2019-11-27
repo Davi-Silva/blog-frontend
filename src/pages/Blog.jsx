@@ -7,11 +7,16 @@ import {
 
 import BlogPostList from '../components/UI/lists/BlogPostList.component';
 
+import BitcoinDoddle from '../static/img/no-content-img.png';
+
 import SubNavBar from '../components/UI/navbar/SubNavBar';
 
 import {
   LoadingAllContent,
   InfinitePostList,
+  NoContentDiv,
+  NoContentImg,
+  NoContentP,
 } from '../styled-components/blog-posts.styled-components';
 
 export default class Blog extends Component {
@@ -21,6 +26,7 @@ export default class Blog extends Component {
       postsList: [],
       page: 1,
       hasMore: null,
+      found: false,
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.getFirstPosts = this.getFirstPosts.bind(this);
@@ -30,13 +36,21 @@ export default class Blog extends Component {
   async componentDidMount() {
     const postsList = await this.getFirstPosts();
     let more = true;
-    if (postsList.length < 10) {
-      more = false;
+    if (!postsList.found) {
+      this.setStateAsync({
+        found: false,
+      });
     }
-    await this.setStateAsync({
-      postsList,
-      hasMore: more,
-    });
+    if (postsList.length > 0) {
+      if (postsList.length < 10) {
+        more = false;
+      }
+      await this.setStateAsync({
+        postsList,
+        hasMore: more,
+        found: true,
+      });
+    }
   }
 
   async getFirstPosts() {
@@ -100,46 +114,68 @@ export default class Blog extends Component {
 
 
   render() {
-    const { postsList, hasMore } = this.state;
+    const {
+      postsList,
+      hasMore,
+      found,
+    } = this.state;
     console.log('postList:', postsList);
     let allPosts;
-    if (postsList.length === 0) {
+    if (!found) {
       allPosts = (
-        <LoadingAllContent>
-          <FaSpinner />
-        </LoadingAllContent>
+        <>
+          <div className="row">
+            <div className="col-12">
+              <NoContentDiv>
+                <NoContentImg src={BitcoinDoddle} />
+                <NoContentP>
+                  No blog posts has been found.
+                </NoContentP>
+              </NoContentDiv>
+            </div>
+          </div>
+        </>
       );
     } else {
       allPosts = (
         <>
-          <InfinitePostList>
-            <InfiniteScroll
-              dataLength={postsList.length}
-              next={this.getMorePosts}
-              hasMore={hasMore}
-              loader={(
-                <>
-                  <LoadingAllContent>
-                    <FaSpinner />
-                  </LoadingAllContent>
-                </>
-                )}
-              endMessage={(
-                <div />
-                )}
-            >
-              {postsList.reverse().map((post, key) => (
-                <BlogPostList
-                  key={key}
-                  type="Blog"
-                  slug={post.slug}
-                  imgSrc={post.cover.url}
-                  title={post.title}
-                  publishedOn={post.publishedOn}
-                />
-              ))}
-            </InfiniteScroll>
-          </InfinitePostList>
+          <div className="row">
+            <div className="col-7">
+              <InfinitePostList>
+                <InfiniteScroll
+                  dataLength={postsList.length}
+                  next={this.getMorePosts}
+                  hasMore={hasMore}
+                  loader={(
+                    <>
+                      <LoadingAllContent>
+                        <FaSpinner />
+                      </LoadingAllContent>
+                    </>
+                    )}
+                  endMessage={(
+                    <div />
+                    )}
+                >
+                  <div className="row">
+                    {postsList.reverse().map((post, key) => (
+                      <BlogPostList
+                        key={key}
+                        type="Blog"
+                        slug={post.slug}
+                        imgSrc={post.cover.url}
+                        title={post.title}
+                        publishedOn={post.publishedOn}
+                      />
+                    ))}
+                  </div>
+                </InfiniteScroll>
+              </InfinitePostList>
+            </div>
+            <div className="col-3">
+              <p>categories</p>
+            </div>
+          </div>
         </>
       );
     }
@@ -147,9 +183,7 @@ export default class Blog extends Component {
       <>
         <SubNavBar media="Blog" category="" title="" />
         <div className="container" style={{ margin: '25px auto' }}>
-          <div className="card-columns">
-            {allPosts}
-          </div>
+          {allPosts}
         </div>
       </>
     );
