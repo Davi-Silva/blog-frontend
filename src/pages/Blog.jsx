@@ -6,10 +6,10 @@ import {
 } from 'react-icons/fa';
 
 import BlogPostList from '../components/UI/lists/BlogPostList.component';
+import SubNavBar from '../components/UI/navbar/SubNavBar';
+import Newsletter from '../components/UI/newsletter/Newsletter.component';
 
 import BitcoinDoddle from '../static/img/no-content-img.png';
-
-import SubNavBar from '../components/UI/navbar/SubNavBar';
 
 import {
   LoadingAllContent,
@@ -140,7 +140,7 @@ export default class Blog extends Component {
       allPosts = (
         <>
           <div className="row">
-            <div className="col-7">
+            <div className="col-lg-9 col-md-9 col-sm-12 col-12">
               <InfinitePostList>
                 <InfiniteScroll
                   dataLength={postsList.length}
@@ -172,8 +172,8 @@ export default class Blog extends Component {
                 </InfiniteScroll>
               </InfinitePostList>
             </div>
-            <div className="col-3">
-              <p>categories</p>
+            <div className="col-lg-3 col-md-3 col-sm-12 col-12">
+              <Newsletter />
             </div>
           </div>
         </>

@@ -5,9 +5,13 @@ import {
 } from 'react-icons/fa';
 import List from './blogList.component';
 
+import BitcoinDoddle from '../../../../../static/img/no-content-img.png';
 
 import {
   LoadingAllContent,
+  NoContentDiv,
+  NoContentImg,
+  NoContentP,
 } from '../../../../../styled-components/admin.styled-components';
 
 
@@ -16,6 +20,7 @@ export default class BlogContent extends Component {
     super(props);
     this.state = {
       posts: [],
+      found: false,
     };
     this.getAllBlogPost = this.getAllBlogPost.bind(this);
     this.componentDidMount = this.componentDidMount(this);
@@ -23,7 +28,19 @@ export default class BlogContent extends Component {
 
   async componentDidMount() {
     const postsList = await this.getAllBlogPost();
-    console.log('podcast blog admin panel:', postsList);
+    console.log('postsList:', postsList);
+    if (!postsList.found) {
+      this.setStateAsync({
+        found: false,
+      });
+    }
+    if (postsList.length > 0) {
+      console.log('has found');
+      await this.setStateAsync({
+        posts: postsList,
+        found: true,
+      });
+    }
     await this.setStateAsync({ posts: postsList });
   }
 
@@ -54,12 +71,20 @@ export default class BlogContent extends Component {
 
   render() {
     let list;
-    const { posts } = this.state;
-    if (posts.length === 0) {
+    const {
+      posts,
+      found,
+    } = this.state;
+    if (!found) {
       list = (
-        <LoadingAllContent>
-          <FaSpinner />
-        </LoadingAllContent>
+        <>
+          <NoContentDiv>
+            <NoContentImg src={BitcoinDoddle} />
+            <NoContentP>
+            No Blog has been found.
+            </NoContentP>
+          </NoContentDiv>
+        </>
       );
     } else {
       list = (
@@ -83,7 +108,7 @@ export default class BlogContent extends Component {
 
 
     return (
-      <div style={{ height: '100%' }}>
+      <div>
         {list}
       </div>
     );

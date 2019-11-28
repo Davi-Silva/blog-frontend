@@ -99,7 +99,7 @@ export default function Navbar() {
                     Dashboard
                 </LinkA>
               </li> */}
-              {/* <li className="nav-item">
+              <li className="nav-item">
                 <LinkA
                   className="nav-link"
                   to="/admin"
@@ -116,7 +116,7 @@ export default function Navbar() {
                 >
                     Admin
                 </LinkA>
-              </li> */}
+              </li>
               {/* <li className="nav-item">
                 <LinkA
                   className="nav-link"

@@ -27,12 +27,13 @@ export default class PodcastContent extends Component {
 
   async componentDidMount() {
     const podcastsList = await this.getAllPodcasts();
-    console.log('podcast:', podcastsList);
+    console.log('podcastsList:', podcastsList);
     if (!podcastsList.found) {
       this.setStateAsync({
-        found: false
-      })
-    } else if (podcastsList.length > 0) {
+        found: false,
+      });
+    }
+    if (podcastsList.length > 0) {
       await this.setStateAsync({
         podcasts: podcastsList,
         found: true,
@@ -69,16 +70,16 @@ export default class PodcastContent extends Component {
     const {
       podcasts,
       found,
-     } = this.state;
+    } = this.state;
     if (!found) {
       list = (
-      <>
-        <NoContentDiv>
-          <NoContentImg src={BitcoinDoddle} />
-          <NoContentP>
+        <>
+          <NoContentDiv>
+            <NoContentImg src={BitcoinDoddle} />
+            <NoContentP>
             No Podcast has been found.
-          </NoContentP>
-        </NoContentDiv>
+            </NoContentP>
+          </NoContentDiv>
         </>
       );
     } else {

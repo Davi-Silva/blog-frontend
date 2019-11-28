@@ -13,8 +13,10 @@ export const Card = styled(Link)`
   }
 `;
 
-export const Cover = styled.img`
-  border-radius: 10px;
+export const Cover = styled.div`
+  border-radius: 6px;
+	height: 170px;
+	width: 100%;
 `;
 
 export const PublishedOn = styled.b`

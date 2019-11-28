@@ -90,6 +90,12 @@ export default class BlogPostList extends Component {
             src={imgSrc}
             alt="React.js"
             width="100%"
+            style={{
+              backgroundImage: `url(${imgSrc})`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+            }}
           />
           <PublishedOn>
             {publishedOn}
