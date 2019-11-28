@@ -16,7 +16,7 @@ export const Title = styled.h6`
   @media (max-width: 991px) {
     font-size: 8px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 766px) {
     font-size: 13px;
   }
 `;
@@ -49,7 +49,7 @@ export const Email = styled.input`
     font-size: 11px;
     border-radius: 3px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 766px) {
     font-size: 14px;
     padding: 8px 12px 8px 43px;
   }
@@ -72,7 +72,7 @@ export const Icon = styled.div`
     left: 40px;
     top: 39px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 766px) {
     left: 44px;
     top: 49px;
   }
@@ -80,7 +80,7 @@ export const Icon = styled.div`
 
 export const Separator = styled.div`
   height: 1px;
-  width: 30%;
+  width: 25%;
   background: #ddd;
   margin: 20px auto;
   display: table;

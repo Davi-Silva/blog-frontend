@@ -8,9 +8,9 @@ import {
   Email,
   Separator,
   Icon,
-} from '../../../styled-components/newsletter.styled-components';
+} from '../../../styled-components/newsletter-side.styled-components';
 
-export default class Newsletter extends Component {
+export default class NewsletterSide extends Component {
   constructor(props) {
     super(props);
     this.state = {

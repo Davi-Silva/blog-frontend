@@ -5,7 +5,7 @@ import {
 } from 'react-icons/fa';
 import SubNavBar from '../components/UI/navbar/SubNavBar';
 import AdSense from '../components/UI/ads/AdvertisementSquare.component';
-import Newsletter from '../components/UI/newsletter/Newsletter.component';
+import Newsletter from '../components/UI/newsletter/NewsletterSide.component';
 
 import {
   Cover,
@@ -226,7 +226,7 @@ export default class Post extends Component {
       }
       allContentPost = (
         <>
-          <div className="col-lg-9 col-md-9 col-sm-9 col-12">
+          <div className="col-lg-9 col-md-9 col-sm-12 col-12">
             <Cover
               src={cover}
               alt={coverAlt}
@@ -244,7 +244,7 @@ export default class Post extends Component {
             </Tags>
             {postRelatedPost}
           </div>
-          <div className="col-lg-3 col-md-3 col-sm-3 col-12">
+          <div className="col-lg-3 col-md-3 col-sm-12 col-12">
             <Newsletter />
             <AdSense />
           </div>

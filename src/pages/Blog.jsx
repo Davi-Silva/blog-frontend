@@ -7,7 +7,7 @@ import {
 
 import BlogPostList from '../components/UI/lists/BlogPostList.component';
 import SubNavBar from '../components/UI/navbar/SubNavBar';
-import Newsletter from '../components/UI/newsletter/Newsletter.component';
+import NewsletterSide from '../components/UI/newsletter/NewsletterSide.component';
 
 import BitcoinDoddle from '../static/img/no-content-img.png';
 
@@ -173,7 +173,7 @@ export default class Blog extends Component {
               </InfinitePostList>
             </div>
             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-              <Newsletter />
+              <NewsletterSide />
             </div>
           </div>
         </>

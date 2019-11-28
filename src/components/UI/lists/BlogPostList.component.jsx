@@ -84,7 +84,11 @@ export default class BlogPostList extends Component {
 
     return (
       <>
-        <Card to={`/blog/${slug}`} className="col-4" style={{ border: 'none' }}>
+        <Card
+          to={`/blog/${slug}`}
+          className="col-lg-4 col-md-6 col-sm-6 col-12"
+          style={{ border: 'none' }}
+        >
           <Cover
             className="card-img-top img-fluid"
             src={imgSrc}
