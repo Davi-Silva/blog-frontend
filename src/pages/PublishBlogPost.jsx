@@ -14,6 +14,7 @@ import SubNavBar from '../components/UI/navbar/SubNavBar';
 import {
   Input,
   Button,
+  Warning
 } from '../styled-components/forms.styled-components';
 
 export default class PublishBlogPost extends Component {
@@ -28,8 +29,11 @@ export default class PublishBlogPost extends Component {
       content: '',
       uploaded: null,
       uploadedCovers: [],
+      coverUploaded: false,
       author: '',
-      allFieldsFilled: false
+      allFieldsFilled: false,
+      enableCoverUploader: false,
+      warning: false,
     };
     this.verifySlug = this.verifySlug.bind(this);
     this.publishPost = this.publishPost.bind(this);
@@ -79,10 +83,25 @@ export default class PublishBlogPost extends Component {
     });
     setTimeout(() => {
       this.changeSlugFromTitle(title);
-    }, 0);
-    setTimeout(() => {
+      this.enableCoverUploader(title);
       this.disabledSubmitButton();
     }, 0);
+  }
+
+  async enableCoverUploader(title) {
+    if (title.length > 0) {
+      setTimeout(() => {
+        this.setStateAsync({
+          enableCoverUploader: true,
+        });
+      }, 0)
+    } else if (title.length === 0 || title === '') {
+      setTimeout(() => {
+        this.setStateAsync({
+          enableCoverUploader: false,
+        });
+      }, 0)
+    }
   }
 
   async changeSlugFromTitle() {
@@ -173,38 +192,46 @@ export default class PublishBlogPost extends Component {
       content,
       tags,
       uploadedCovers,
+      allFieldsFilled,
       // author
+
     } = this.state;
     const {
       history
     } = this.props;
-    console.log('cover on submit:', uploadedCovers)
-    const postInfo = {
-      isSlugValid: isSlugValid,
-      slug,
-      category: category,
-      title: title,
-      content: content,
-      tags: tags,
-      cover: uploadedCovers[0].id,
-      author: 'Davi Silva',
-    };
-    console.log("podcast_info:", postInfo);
-    console.log(
-      "uploadedCovers:",
-      uploadedCovers[uploadedCovers.length - 1].id
-    );
-    let isSlugValidRes = await this.verifySlug(this.state.slug);
-    console.log("isSlugValidRes:", isSlugValidRes);
-    if (isSlugValidRes.valid) {
-      let res = await this.publishPost(postInfo);
-      this.setStateAsync({
-        uploaded: res.uploaded
-      });
-      console.log(res);
-      history.push('/blog');
+    if (allFieldsFilled) {
+      console.log('cover on submit:', uploadedCovers)
+      const postInfo = {
+        isSlugValid: isSlugValid,
+        slug,
+        category: category,
+        title: title,
+        content: content,
+        tags: tags,
+        cover: uploadedCovers[0].id,
+        author: 'Davi Silva',
+      };
+      console.log("podcast_info:", postInfo);
+      console.log(
+        "uploadedCovers:",
+        uploadedCovers[uploadedCovers.length - 1].id
+      );
+      let isSlugValidRes = await this.verifySlug(this.state.slug);
+      console.log("isSlugValidRes:", isSlugValidRes);
+      if (isSlugValidRes.valid) {
+        let res = await this.publishPost(postInfo);
+        this.setStateAsync({
+          uploaded: res.uploaded
+        });
+        console.log(res);
+        history.push('/blog');
+      } else {
+        console.log("Slug is invalid");
+      }
     } else {
-      console.log("Slug is invalid");
+      this.setStateAsync({
+        warning: true,
+      })
     }
   }
 
@@ -229,13 +256,19 @@ export default class PublishBlogPost extends Component {
 
   async disabledSubmitButton() {
     const {
-      category, title, tags, content, uploadedCovers,
+      category,
+      title,
+      tags,
+      content,
+      uploadedCovers,
+      coverUploaded,
     } = this.state;
     if (category !== ''
      && title !== ''
      && tags !== ''
      && content !== ''
-     && uploadedCovers.length > 0) {
+     && uploadedCovers.length > 0
+     && coverUploaded) {
       await this.setStateAsync({
         allFieldsFilled: true,
       });
@@ -300,6 +333,10 @@ export default class PublishBlogPost extends Component {
           id: response.data._id,
           url: response.data.url
         });
+        this.setStateAsync({
+          coverUploaded: true,
+        })
+        this.disabledSubmitButton();
       })
       .catch(() => {
         this.updateFileCover(uploadedCovers.id, {
@@ -329,8 +366,51 @@ export default class PublishBlogPost extends Component {
       title,
       category,
       tags,
+      warning,
       // allFieldsFilled
+      enableCoverUploader,
     } = this.state;
+
+    let coverUploader;
+    let warningDiv;
+
+    if (enableCoverUploader) {
+      coverUploader = (
+        <>
+          <UploadCover onUpload={this.handleUploadCover} />
+          {!!uploadedCovers.length && (
+            <FileListCover
+              files={uploadedCovers}
+              onDelete={this.handleDeleteCover}
+            />
+          )}
+        </>
+      );
+    } else {
+      coverUploader = (
+        <>
+          <h1>Cover Uploader</h1>
+        </>
+      );
+    }
+
+    if(warning) {
+      warningDiv = (
+        <>
+          <Warning>
+            All fileds must be filled
+          </Warning>
+        </>
+      );
+    } else {
+      warningDiv = (
+        <>
+
+        </>
+      );
+    }
+    
+
     return (
       <>
         <SubNavBar media="Blog" category="Publish" title={title} />
@@ -338,13 +418,7 @@ export default class PublishBlogPost extends Component {
           <div className="row">
             <div className="col-12">
               <div style={{ height: '300px', width: '100%' }}>
-                <UploadCover onUpload={this.handleUploadCover} />
-                {!!uploadedCovers.length && (
-                  <FileListCover
-                    files={uploadedCovers}
-                    onDelete={this.handleDeleteCover}
-                  />
-                )}
+              {coverUploader}
               </div>
             </div>
           </div>
@@ -368,6 +442,7 @@ export default class PublishBlogPost extends Component {
                     marginBottom: '25px'
                   }}
                   onChange={this.onChangeTitle}
+                  onInput={this.enableCoverUploader}
                   required
                 />
                 <Input
@@ -387,23 +462,31 @@ export default class PublishBlogPost extends Component {
                   onChange={this.onChangeCategory}
                   required
                 />
-                <Editor
-                  apiKey='z1imaefgqfqi5gkj9tp9blogndyf2gp0aj3fgubdtz73p658'
-                  init={{
-                    height: 500,
-                    menubar: false,
-                    plugins: [
-                      'advlist autolink lists link image charmap print preview anchor',
-                      'searchreplace visualblocks code fullscreen',
-                      'insertdatetime media table paste code help wordcount'
-                    ],
-                    toolbar:
-                      'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+                <div
+                  style={{
+                    marginBottom: '20px',
                   }}
-                  onChange={this.handleEditorChange}
-                />
+                >
+                  <Editor
+                    apiKey='z1imaefgqfqi5gkj9tp9blogndyf2gp0aj3fgubdtz73p658'
+                    init={{
+                      height: 500,
+                      menubar: false,
+                      plugins: [
+                        'advlist autolink lists link image charmap print preview anchor',
+                        'searchreplace visualblocks code fullscreen',
+                        'insertdatetime media table paste code help wordcount'
+                      ],
+                      toolbar:
+                        'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+                    }}
+                    onChange={this.handleEditorChange}
+                  />
+                </div>
                 <ul
-                  style={{display: "inline"}}>
+                  style={{
+                    display: "inline",
+                  }}>
                   <li style={{display: "inline"}}>
                     <p style={{marginBottom: "0px", marginTop: "0px", position: "absolute", color: "#333"}}>Tags:</p>
                   </li>
@@ -424,6 +507,7 @@ export default class PublishBlogPost extends Component {
                     />
                   </li>
                 </ul>
+                {warningDiv}
                 <Button>Publish</Button>
               </form>
             </div>

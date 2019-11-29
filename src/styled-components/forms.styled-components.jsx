@@ -69,3 +69,16 @@ export const A = styled(Link)`
 export const Alert = styled.div`
   display: none;
 `;
+
+export const Warning = styled.div`
+	border: 1px solid #d42626;
+  border-radius: 3px;
+	padding: 5px 10px;
+	color: #d42626;
+	font-size: 12px;
+  margin: 7px auto;
+  display: table;
+  cursor: default;
+  background: #d426260f;
+  text-transform: uppercase;
+`;

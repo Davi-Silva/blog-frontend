@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -51,11 +51,16 @@ function App() {
           path="/podcast/:slug"
           render={(props) => <Podcast {...props} />}
         />
-        <Route exact path="/blog" component={Blog} />
+        <Route
+          exact
+          path="/blog"
+          component={Blog}
+        />
         <Route
           exact
           path="/blog/:slug"
-          render={(props) => <Post {...props} />}
+          component={Post}
+          // render={(props) => <Post {...props} />}
         />
         <Route
           exact

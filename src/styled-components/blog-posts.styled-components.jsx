@@ -82,3 +82,4 @@ export const NoContentP = styled.p`
 	margin: 0 auto;
 	display: table;
 `;
+

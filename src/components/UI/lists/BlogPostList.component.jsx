@@ -50,9 +50,14 @@ export default class BlogPostList extends Component {
     } ${
       dateFormatted.getFullYear()}`;
 
+    let tempTitle = title;
+    if (title.length > 50) {
+      tempTitle = `${title.substring(0, 50).trim()}...`;
+    }
+
     await this.setStateAsync({
       type,
-      title,
+      title: tempTitle,
       publishedOn: formattedDate,
       slug,
       imgSrc,

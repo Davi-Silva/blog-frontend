@@ -25,6 +25,7 @@ import {
 } from '../styled-components/post.styled-components';
 
 export default class Post extends Component {
+  _isMounted = false;
   constructor(props) {
     super(props);
     this.state = {
@@ -45,6 +46,7 @@ export default class Post extends Component {
   }
 
   async componentDidMount() {
+    this._isMounted = true;
     const post = await this.getPostBySlug();
     if (post.length > 0) {
       const {
@@ -69,33 +71,37 @@ export default class Post extends Component {
       ];
       const formattedDate = `${months[dateFormatted.getMonth()]} ${dateFormatted.getDate()} ${dateFormatted.getFullYear()}`;
       if (updatedOn === null) {
-        await this.setStateAsync({
-          slug,
-          category,
-          title,
-          content,
-          tags,
-          publishedOn: formattedDate,
-          cover: cover.url,
-          coverAlt: cover.name,
-          relatedCategoryPosts,
-        });
+        if (this._isMounted) {
+          await this.setStateAsync({
+            slug,
+            category,
+            title,
+            content,
+            tags,
+            publishedOn: formattedDate,
+            cover: cover.url,
+            coverAlt: cover.name,
+            relatedCategoryPosts,
+          });
+        }
       }
       if (updatedOn !== null) {
         const dateFormattedUpdated = this.parseDate(updatedOn);
         const formattedDateUpdated = `${months[dateFormattedUpdated.getMonth()]} ${dateFormattedUpdated.getDate()} ${dateFormattedUpdated.getFullYear()}`;
-        await this.setStateAsync({
-          slug,
-          category,
-          title,
-          content,
-          tags,
-          publishedOn: formattedDate,
-          updatedOn: formattedDateUpdated,
-          cover: cover.url,
-          coverAlt: cover.name,
-          relatedCategoryPosts,
-        });
+        if (this._isMounted) {
+          await this.setStateAsync({
+            slug,
+            category,
+            title,
+            content,
+            tags,
+            publishedOn: formattedDate,
+            updatedOn: formattedDateUpdated,
+            cover: cover.url,
+            coverAlt: cover.name,
+            relatedCategoryPosts,
+          });
+        }
       }
     } else {
       const { history } = this.props;
@@ -150,6 +156,10 @@ export default class Post extends Component {
   parseDate(input) {
     this.parts = input.match(/(\d+)/g);
     return new Date(this.parts[0], this.parts[1] - 1, this.parts[2]);
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
