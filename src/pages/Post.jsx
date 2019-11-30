@@ -194,7 +194,7 @@ export default class Post extends Component {
       } else {
         postPublished = (
           <UploadedOn>
-        Updated on&nbsp;
+        Published on&nbsp;
             <span style={{ color: '#333', fontWeight: '700' }}>{publishedOn}</span>
           </UploadedOn>
         );

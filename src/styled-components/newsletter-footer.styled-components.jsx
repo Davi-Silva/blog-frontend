@@ -1,34 +1,26 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  background: transparent;
-  border-radius: 5px;
-  width: 100%;
-  padding: 20px 15px;
-  @media (max-width: 768px) {
-    padding: 20px 0px;
-  }
-`;
-
 export const Title = styled.h6`
   color: #999;
-  font-size: 11px;
-  text-align: center;
+  font-size: 10px;
   text-transform: uppercase;
+  margin-bottom: 0px;
+  font-weight: 700;
   @media (max-width: 991px) {
-    font-size: 8px;
+    font-size: 9px;
   }
   @media (max-width: 766px) {
-    font-size: 13px;
+    text-align: center;
+    margin-top: 25px;
   }
 `;
 
 export const Email = styled.input`
-  background: #f5f5f5;
+  background: #fff;
   color: #aaa;
-  font-size: 14px;
-  padding: 10px 15px 10px 50px;
+  font-size: 13px;
+  padding: 10px 15px 10px 33px;
   border: none;
   border-radius: 5px;
   letter-spacing: 1px;
@@ -42,26 +34,28 @@ export const Email = styled.input`
   }
   &:focus {
     outline: none;
-    background: #fff;
+    background: #f5f5f5;
   }
   &:hover {
-    background: #fff;
+    background: #f5f5f5;
   }
   @media (max-width: 991px) {
-    padding: 6px 20px 6px 30px;
+    padding: 6px 20px 6px 25px;
     font-size: 11px;
     border-radius: 3px;
   }
   @media (max-width: 766px) {
     font-size: 14px;
     padding: 8px 12px 8px 43px;
+    margin-top: 7px;
   }
 `;
 
 export const Icon = styled.div`
   position: absolute;
-  left: 47px;
-  top: 49px;
+  left: 26px;
+  top: 21px;
+  font-size: 13px;
   svg {
     color: #aaa;
     @media (max-width: 991px) {
@@ -72,19 +66,11 @@ export const Icon = styled.div`
     }
   }
   @media (max-width: 991px) {
-    left: 40px;
-    top: 39px;
+    left: 23px;
+    top: 14px;
   }
   @media (max-width: 766px) {
-    left: 30px;
-    top: 47px;
+    left: 29px;
+    top: 49px;
   }
-`;
-
-export const Separator = styled.div`
-  height: 1px;
-  width: 25%;
-  background: #ddd;
-  margin: 20px auto;
-  display: table;
 `;

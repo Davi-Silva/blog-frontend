@@ -17,6 +17,24 @@ export const Cover = styled.img`
 export const UploadedOn = styled.p`
 	color: #999;
 	margin: 10px 0px;
+	font-size: 16px;
+	@media (max-width: 1199px) {
+		margin: 7px 0px;
+	}
+	@media (max-width: 991px) {
+		margin: 5px 0px;
+	}
+	@media (max-width: 768px) {
+		font-size: 14px;
+	}
+	@media (max-width: 400px) {
+		font-size: 13px;
+		margin: 5px 0px;
+	}
+	@media (max-width: 300px) {
+		font-size: 12px;
+		margin: 3px 0px;
+	}
 `;
 
 export const Title = styled.h1`
@@ -26,6 +44,23 @@ export const Title = styled.h1`
 	/* text-align: center; */
 	letter-spacing: 1px;
 	margin: 30px 0px;
+	@media (max-width: 1199px) {
+		font-size: 25px;
+	}
+	@media (max-width: 991px) {
+		margin: 5px 0px;
+	}
+	@media (max-width: 768px) {
+		font-size: 14px;
+	}
+	@media (max-width: 400px) {
+		font-size: 13px;
+		margin: 5px 0px;
+	}
+	@media (max-width: 300px) {
+		font-size: 12px;
+		margin: 3px 0px;
+	}
 `;
 
 export const LoadingTitle = styled.h1`
@@ -179,7 +214,6 @@ export const RelatedPostLabel = styled.b`
 		::-webkit-scrollbar-thumb {
 			background: #fff;
 			border: 1px solid #0058e4;
-			border-radius: 50px;
 		}
 
 		::-webkit-scrollbar-thumb:hover {
@@ -242,12 +276,14 @@ export const RelatedPostList = styled.ul`
 export const RelatedPostLi = styled.li`
 	list-style: none;
 	display: inline-block;
+	max-width: 389px;
 	margin: 0 5px;
 	width: unset;
 	height: 170px;
 	@media (max-width: 480px) {
 		margin: 0 3px!important;
 		height: 120px;
+		max-width: 311px;
 	}
 `;
 

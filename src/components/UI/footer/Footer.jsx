@@ -1,14 +1,32 @@
 import React from 'react';
 
 import {
+  FaTwitter,
+  FaFacebook,
+  FaLinkedin,
+  FaInstagram,
+} from 'react-icons/fa';
+
+import QRCodeImg from '../../../static/img/qrcode.png';
+
+import {
   FooterDiv,
   P,
   Github,
   Header,
   Ul,
   Li,
-  LinkTo
+  LinkTo,
+  SocialMediaTitle,
+  SocialMediaUl,
+  SocialMediaLi,
+  SocialMediaLink,
+  LinkToPolicies,
+  QRCode,
+  Donate,
 } from '../../../styled-components/footer.styled-components';
+
+import NewsletterFooter from '../newsletter/NewsletterFooter.component';
 
 function Footer() {
   return (
@@ -16,50 +34,122 @@ function Footer() {
       <FooterDiv>
         <div className="container">
           <div className="row">
-            <div className="col-lg-3 col-md-3 col-sm- 12 col-12">
-              <Header>
+            <div className="col-lg-2 col-md-2 col-sm-12 col-12">
+              <Donate>
+                Donate
+              </Donate>
+              <QRCode
+                src={QRCodeImg}
+              />
+            </div>
+            <div className="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div className="row">
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12">
+                  <Header>
                 Blog
-              </Header>
-              <Ul>
-                <Li>
-                  <LinkTo
-                    to="/blog/"
-                  >
+                  </Header>
+                  <Ul>
+                    <Li>
+                      <LinkTo
+                        to="/blog/"
+                      >
                     Home
-                  </LinkTo>
-                </Li>
-              </Ul>
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm- 12 col-12">
-              <Header>
+                      </LinkTo>
+                    </Li>
+                  </Ul>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12">
+                  <Header>
                 Podcasts
-              </Header>
-              <Ul>
-                <Li>
-                  <LinkTo
-                    to="/podcasts/"
-                  >
+                  </Header>
+                  <Ul>
+                    <Li>
+                      <LinkTo
+                        to="/podcasts/"
+                      >
                     Home
-                  </LinkTo>
-                </Li>
-              </Ul>
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm- 12 col-12">
-              <Header>
+                      </LinkTo>
+                    </Li>
+                  </Ul>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12">
+                  <Header>
                 Courses
-              </Header>
-              <Ul>
-                <Li>
-                  <LinkTo
-                    to="/courses/"
-                  >
-                    Home
-                  </LinkTo>
-                </Li>
-              </Ul>
+                  </Header>
+                  <Ul>
+                    <Li>
+                      <LinkTo
+                        to="/courses/"
+                      >
+                    Coming Soon
+                      </LinkTo>
+                    </Li>
+                  </Ul>
+                </div>
+              </div>
+              <div
+                className="row"
+                style={{
+                  marginTop: '6px',
+                }}
+              >
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12">
+                  <LinkToPolicies>
+                  Terms
+                    {' '}
+                    &
+                    {' '}
+Conditions
+                  </LinkToPolicies>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12">
+                  <LinkToPolicies>
+                    Privacy Policy
+                  </LinkToPolicies>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12">
+                  <LinkToPolicies>
+                    Newsletter
+                  </LinkToPolicies>
+                </div>
+                <div className="col-lg-3 col-md-3 col-sm-12 col-12" />
+                <div className="col-lg-3 col-md-3 col-sm-12 col-12" />
+              </div>
             </div>
-            <div className="col-lg-3 col-md-3 col-sm- 12 col-12">
-              Newsletter
+            <div className="col-lg-3 col-md-3 col-sm-12 col-12">
+              <NewsletterFooter />
+              <div
+                style={{
+                  marginTop: '20px',
+                  marginBottom: '5px',
+                }}
+              >
+                <SocialMediaTitle>
+                Social Medias
+                </SocialMediaTitle>
+                <SocialMediaUl>
+                  <SocialMediaLi>
+                    <SocialMediaLink to="//www.instagram.com/" target="_blank">
+                      <FaTwitter />
+                    </SocialMediaLink>
+                  </SocialMediaLi>
+                  <SocialMediaLi>
+                    <SocialMediaLink to="//www.facebook.com/" target="_blank">
+                      <FaFacebook />
+                    </SocialMediaLink>
+                  </SocialMediaLi>
+                  <SocialMediaLi>
+                    <SocialMediaLink to="//www.instagram.com/" target="_blank">
+                      <FaInstagram />
+                    </SocialMediaLink>
+                  </SocialMediaLi>
+                  <SocialMediaLi>
+                    <SocialMediaLink to="//www.linkedin.com/" target="_blank">
+                      <FaLinkedin />
+                    </SocialMediaLink>
+                  </SocialMediaLi>
+                </SocialMediaUl>
+              </div>
             </div>
           </div>
           <div className="row">
