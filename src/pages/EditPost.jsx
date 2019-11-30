@@ -6,7 +6,7 @@ import slugify from 'slugify';
 import {
   Input,
   UploadedOn,
-  // Update,
+  Update,
 } from '../styled-components/edit-post.styled-components';
 
 import SubNavBar from '../components/UI/navbar/SubNavBar';
@@ -209,7 +209,7 @@ Cover Placeholder
                 type="text"
                 id="title"
                 name="title"
-                placeholder="Title..."
+                placeholder="Title"
                 value={title}
                 autoComplete="off"
                 style={{
@@ -221,6 +221,22 @@ Cover Placeholder
                   letterSpacing: '1px',
                 }}
                 onChange={this.onChangeTitle}
+                required
+              />
+              <Input 
+                type="text"
+                id="category"
+                name="category"
+                value={category}
+                autoComplete="off"
+                style={{
+                  color: '#999',
+                  fontSize: '16px',
+                  fontWeight: '100',
+                  margin: '10px 0px',
+                  width: '100%',
+                }}
+                onChange={this.onChangeCategory}
                 required
               />
               <Editor

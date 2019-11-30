@@ -1,5 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  // withRouter,
+} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -26,6 +30,8 @@ import Podcasts from './pages/Podcasts';
 import UploadNewPodcast from './pages/UploadNewPodcast';
 import PublishBlogPost from './pages/PublishBlogPost';
 import PageNotFound from './pages/PageNotFound';
+import TermsConditions from './pages/TermsConditions';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 import UserProvider from './contexts/UserProvider';
 
@@ -41,6 +47,8 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/about" component={About} />
         <Route path="/profile" component={Profile} />
+        <Route path="/terms-and-conditions" component={TermsConditions} />
+        <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/course" component={Course} />
         <Route path="/courses/categories" component={CoursesCategories} />
         <Route path="/courses/category" component={CoursesCategory} />

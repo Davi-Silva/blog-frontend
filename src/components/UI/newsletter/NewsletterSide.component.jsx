@@ -20,7 +20,7 @@ export default class NewsletterSide extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     // this.SignupNewletter = this.SignupNewletter.bind(this);
-    this.ValidateEmail = this.ValidateEmail.bind(this);
+    // this.ValidateEmail = this.ValidateEmail.bind(this);
   }
 
   onChangeEmail(e) {
@@ -49,11 +49,11 @@ export default class NewsletterSide extends Component {
   }
 
 
-  ValidateEmail() {
-    const { email } = this.state;
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  }
+  // ValidateEmail() {
+  //   const { email } = this.state;
+  //   const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //   return re.test(email);
+  // }
 
 
   // SignupNewletter() {

@@ -1,15 +1,15 @@
 /* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 
-import {
-  FaSpinner,
-} from 'react-icons/fa';
+// import {
+//   FaSpinner,
+// } from 'react-icons/fa';
 import List from './podcastList.component';
 
 import BitcoinDoddle from '../../../../../static/img/no-content-img.png';
 
 import {
-  LoadingAllContent,
+  // LoadingAllContent,
   NoContentDiv,
   NoContentImg,
   NoContentP,

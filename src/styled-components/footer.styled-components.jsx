@@ -98,12 +98,39 @@ export const LinkToPolicies = styled(Link)`
 	font-weight: 700;
 	letter-spacing: 1px;
 	transition: all .3s ease-in-out;
+	p {
+		margin-bottom: 0px;
+		margin-top: 5px;
+		@media (max-width: 768px) {
+			margin-bottom: 0px;
+			margin-top: 0px;
+		}
+	}
 	&:hover {
 		text-decoration: none;
+	}
+	@media (max-width: 991px) {
+		line-height: 14px;
 	}
 	@media (max-width: 768px) {
 		display: table;
 		margin: 5px auto;
+	}
+`;
+
+export const CopyRight = styled.p`
+	color: #999;
+	font-size: 11px;
+	font-weight: 300;
+	letter-spacing: 1px;
+	margin-top: 6px;
+	@media (max-width: 991px) {
+		line-height: 14px;
+	}
+	@media (max-width: 768px) {
+		line-height: 0px;
+		text-align: center;
+		margin-top: 12px;
 	}
 `;
 

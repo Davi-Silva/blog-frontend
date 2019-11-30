@@ -32,7 +32,7 @@ export default class Post extends Component {
       category: '',
       title: '',
       content: '',
-      tags: '',
+      tags: [],
       publishedOn: null,
       updatedOn: null,
       cover: '',
@@ -215,14 +215,24 @@ export default class Post extends Component {
                     key={key}
                   >
                     <RelatedPost to={post.slug}>
-                      <img
+                      {/* <img
                         src={post.cover.url}
                         style={{
                           borderRadius: '5px',
                         }}
                         alt={post.cover.name}
+                      /> */}
+                      <div
+                        style={{
+                          backgroundImage: `url(${post.cover.url})`,
+                          backgroundSize: 'cover',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'center',
+                          height: '100px',
+                          width: '100%',
+                          borderRadius: '5px',
+                        }}
                       />
-                      <br />
                       <RelatedPostH6>
                         {post.title}
                       </RelatedPostH6>

@@ -35,7 +35,6 @@ export default class SubNavBar extends Component {
 
   async listenScrollEvent(e) {
     const container = window.document.body.children[1].children[2];
-    const { progressScrollBar } = this.refs;
     if (window.scrollY >= 44) {
       container.className = 'container fixedSubNavBarContainer';
       await this.setStateAsync({ containerClassName: 'subNavBarFixed' });
@@ -48,7 +47,6 @@ export default class SubNavBar extends Component {
   render() {
     const {
       containerClassName,
-      scrolled,
     } = this.state;
     const { media, category, title } = this.props;
     let subNavMenu;

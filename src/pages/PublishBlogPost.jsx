@@ -14,7 +14,8 @@ import SubNavBar from '../components/UI/navbar/SubNavBar';
 import {
   Input,
   Button,
-  Warning
+  Warning,
+  BlogPostCoverUploaderPlaceholder,
 } from '../styled-components/forms.styled-components';
 
 export default class PublishBlogPost extends Component {
@@ -389,7 +390,9 @@ export default class PublishBlogPost extends Component {
     } else {
       coverUploader = (
         <>
-          <h1>Cover Uploader</h1>
+          <BlogPostCoverUploaderPlaceholder>
+            <p>Give this blog post a Title before uploading a cover</p>
+          </BlogPostCoverUploaderPlaceholder>
         </>
       );
     }
@@ -431,7 +434,7 @@ export default class PublishBlogPost extends Component {
                   type="text"
                   id="title"
                   name="title"
-                  placeholder="Title..."
+                  placeholder="Title"
                   value={title}
                   autoComplete="off"
                   style={{  
@@ -439,7 +442,7 @@ export default class PublishBlogPost extends Component {
                     fontSize: "26px",
                     fontWeight: "900",
                     width: "100%",
-                    marginBottom: '25px'
+                    marginBottom: '25px',
                   }}
                   onChange={this.onChangeTitle}
                   onInput={this.enableCoverUploader}

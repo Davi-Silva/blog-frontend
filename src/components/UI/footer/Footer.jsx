@@ -24,6 +24,7 @@ import {
   LinkToPolicies,
   QRCode,
   Donate,
+  CopyRight,
 } from '../../../styled-components/footer.styled-components';
 
 import NewsletterFooter from '../newsletter/NewsletterFooter.component';
@@ -94,23 +95,25 @@ function Footer() {
                 }}
               >
                 <div className="col-lg-4 col-md-4 col-sm-12 col-12">
-                  <LinkToPolicies>
-                  Terms
-                    {' '}
-                    &
-                    {' '}
-Conditions
+                  <LinkToPolicies
+                    to="/terms-and-conditions"
+                  >
+                    <p>
+                      Terms {'&'} Conditions
+                    </p>
                   </LinkToPolicies>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-12 col-12">
-                  <LinkToPolicies>
+                  <LinkToPolicies
+                    to="/privacy-policy"
+                  >
                     Privacy Policy
                   </LinkToPolicies>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-12 col-12">
-                  <LinkToPolicies>
-                    Newsletter
-                  </LinkToPolicies>
+                  <CopyRight>
+                    © {new Date().getFullYear()} Cryptic Activist
+                  </CopyRight>
                 </div>
                 <div className="col-lg-3 col-md-3 col-sm-12 col-12" />
                 <div className="col-lg-3 col-md-3 col-sm-12 col-12" />

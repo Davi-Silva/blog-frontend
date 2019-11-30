@@ -7,10 +7,15 @@ export const Header = styled.h5`
 
 export const Input = styled.input`
   border: none;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  transition-delay: .15s;
   :focus {
     border-bottom: none;
     outline: none;
+    background: #f5f5f5;
+  }
+  :hover {
+    background: #f5f5f5;
   }
   ::placeholder {
     color: #333;
@@ -43,6 +48,8 @@ export const Button = styled.button`
   border: none;
   color: #999;
   width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
   font-weight: 900;
   padding: 8px 0px;
   transition: all 0.3s ease-in-out;
@@ -71,14 +78,33 @@ export const Alert = styled.div`
 `;
 
 export const Warning = styled.div`
-	border: 1px solid #d42626;
+  border: 1px solid #d42626;
   border-radius: 3px;
-	padding: 5px 10px;
-	color: #d42626;
-	font-size: 12px;
+  padding: 5px 10px;
+  color: #d42626;
+  font-size: 12px;
   margin: 7px auto;
   display: table;
   cursor: default;
   background: #d426260f;
   text-transform: uppercase;
+`;
+
+export const BlogPostCoverUploaderPlaceholder = styled.div`
+  margin-top: 5px;
+  margin-left: 6px;
+  border: 1px dashed #0058e4;
+  border-radius: 4px;
+  width: 99%;
+  height: 300px;
+  display: table;
+  z-index: 99999;
+  cursor: pointer;
+
+  p {
+    display: table;
+    margin: 15px auto;
+    color: #999;
+    font-size: 16px;
+  }
 `;

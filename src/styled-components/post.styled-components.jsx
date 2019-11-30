@@ -262,28 +262,28 @@ export const LoadingAllContent = styled.div`
 
 export const RelatedPostList = styled.ul`
 	margin-top: 10px;
-	height: 180px;
+	height: 140px;
 	width: 100%;
 	transform: translate(-5px);
 	overflow-y: scroll;
 	overflow-y: hidden;
 	white-space: nowrap;
 	@media (max-width: 480px) {
-		height: 130px;
+		height: 135px;
 	}
 `;
 
 export const RelatedPostLi = styled.li`
 	list-style: none;
 	display: inline-block;
-	max-width: 389px;
+	width: 180px!important;
 	margin: 0 5px;
 	width: unset;
-	height: 170px;
+	height: 140px;
 	@media (max-width: 480px) {
 		margin: 0 3px!important;
 		height: 120px;
-		max-width: 311px;
+		width: 150px!important;
 	}
 `;
 
