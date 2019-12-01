@@ -11,7 +11,7 @@ import BitcoinDoddle from '../static/img/no-content-img.png';
 import BlogPostList from '../components/UI/lists/BlogPostList.component';
 import SubNavBar from '../components/UI/navbar/SubNavBar';
 import NewsletterSide from '../components/UI/newsletter/NewsletterSide.component';
-
+import RecentCategories from '../components/UI/categories/RecentCategoriesBlogPost';
 
 import {
   LoadingAllContent,
@@ -191,6 +191,7 @@ export default class BlogPostsByTags extends Component {
             </div>
             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
               <NewsletterSide />
+              <RecentCategories />
             </div>
           </div>
         </>

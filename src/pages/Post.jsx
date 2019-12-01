@@ -7,6 +7,8 @@ import {
 import SubNavBar from '../components/UI/navbar/SubNavBar';
 import AdSense from '../components/UI/ads/AdvertisementSquare.component';
 import Newsletter from '../components/UI/newsletter/NewsletterSide.component';
+import RecentCategories from '../components/UI/categories/RecentCategoriesBlogPost';
+
 
 import {
   Cover,
@@ -287,6 +289,7 @@ export default class Post extends Component {
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-12">
             <Newsletter />
+            <RecentCategories />
             <AdSense />
           </div>
         </>
