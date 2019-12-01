@@ -47,6 +47,7 @@ export default class BlogPostsByTags extends Component {
       tag: slug,
     });
     const postsList = await this.getFirstPosts(slug);
+    console.log('postsList:', postsList);
     let more = true;
     if (!postsList.found) {
       this.setStateAsync({
@@ -54,12 +55,14 @@ export default class BlogPostsByTags extends Component {
       });
     }
     if (postsList.length > 0) {
+      console.log('its coming through');
       if (postsList.length < 10) {
         more = false;
       }
       await this.setStateAsync({
         posts: postsList,
         hasMore: more,
+        found: true,
       });
     }
   }
@@ -134,31 +137,27 @@ export default class BlogPostsByTags extends Component {
       hasMore,
       found,
     } = this.state;
-    return (
-      <>
-        <div className="container">
+    let allPosts;
+    if (!found) {
+      allPosts = (
+        <>
+          <div className="row">
+            <div className="col-12">
+              <NoContentDiv>
+                <NoContentImg src={BitcoinDoddle} />
+                <NoContentP>
+                  No blog posts has been found.
+                </NoContentP>
+              </NoContentDiv>
+            </div>
+          </div>
+        </>
+      );
+    } else {
+      allPosts = (
+        <>
           <div className="row">
             <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-              <ByTagDiv>
-                <li
-                  style={{
-                    display: 'inline',
-                  }}
-                >
-                  <ByTag>
-                Tag:
-                  </ByTag>
-                </li>
-                <li
-                  style={{
-                    display: 'inline',
-                  }}
-                >
-                  <ByTagName>
-                    {tag}
-                  </ByTagName>
-                </li>
-              </ByTagDiv>
               <InfinitePostList>
                 <InfiniteScroll
                   dataLength={posts.length}
@@ -194,6 +193,16 @@ export default class BlogPostsByTags extends Component {
               <NewsletterSide />
             </div>
           </div>
+        </>
+      );
+    }
+
+
+    return (
+      <>
+        <SubNavBar media="Blog" category="Tag" title={`${tag}`} />
+        <div className="container" style={{ margin: '25px auto' }}>
+          {allPosts}
         </div>
       </>
     );

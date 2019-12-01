@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import slugify from 'slugify';
 
 import {
   FaSpinner,
@@ -273,7 +274,7 @@ export default class Post extends Component {
                   return (
                     <>
                       <TagLi>
-                        <Tag to={`/blog/tags/${tag}`}>
+                        <Tag to={`/blog/tags/${slugify(tag.toLowerCase())}`}>
                           {tag}
                         </Tag>
                       </TagLi>

@@ -28,8 +28,6 @@ export default class PodcastsList extends Component {
       title, date, category, slug, cover,
     } = this.props;
 
-    console.log('date:', date);
-
     const dateFormatted = await this.parseDate(date);
     const months = [
       'January',

@@ -54,7 +54,6 @@ export default class Podcasts extends Component {
         found: true,
       });
     }
-    console.log('podcastList:', podcastsList);
   }
 
   async getFirstPodcasts() {
@@ -70,6 +69,7 @@ export default class Podcasts extends Component {
       },
     });
     const data = await this.response.json();
+    console.log('podcastList:', data);
     return data;
   }
 
@@ -81,8 +81,13 @@ export default class Podcasts extends Component {
 
   async getMorePodcasts() {
     const { page, podcasts } = this.state;
+    this.setStateAsync({
+      page: page + 1,
+    });
+    const tempPage = page + 1;
+    console.log(`http://localhost:5000/podcasts/short?page=${tempPage}`);
     // this.response = await fetch('https://cryptic-activist-backend.herokuapp.com/podcasts', {
-    this.response = await fetch(`http://localhost:5000/podcasts/short?page=${page}`, {
+    this.response = await fetch(`http://localhost:5000/podcasts/short?page=${tempPage}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -92,6 +97,7 @@ export default class Podcasts extends Component {
       },
     });
     const data = await this.response.json();
+    console.log('podcastList:', data);
     if (data.length < 10) {
       this.setStateAsync({
         podcasts: podcasts.concat(data),
@@ -102,11 +108,6 @@ export default class Podcasts extends Component {
         });
       }, 10);
     } else {
-      this.setStateAsync({
-        page: page + 1,
-      });
-
-      console.log('data getMorePodcasts:', data);
       this.setStateAsync({
         podcasts: podcasts.concat(data),
       });
@@ -149,7 +150,7 @@ export default class Podcasts extends Component {
                   <div />
                 )}
               >
-                {podcasts.reverse().map((podcast, key) => (
+                {podcasts.map((podcast, key) => (
                   <PodcastsList
                     key={key}
                     category={podcast.category}

@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   background: transparent;
   border-radius: 5px;
   width: 100%;
-  padding: 20px 15px;
+  padding: 20px 15px 15px 15px;
   @media (max-width: 768px) {
     padding: 20px 0px;
   }
@@ -85,6 +85,6 @@ export const Separator = styled.div`
   height: 1px;
   width: 25%;
   background: #ddd;
-  margin: 20px auto;
+  margin: 30px auto 0px auto;
   display: table;
 `;

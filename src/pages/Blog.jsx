@@ -8,6 +8,7 @@ import {
 import BlogPostList from '../components/UI/lists/BlogPostList.component';
 import SubNavBar from '../components/UI/navbar/SubNavBar';
 import NewsletterSide from '../components/UI/newsletter/NewsletterSide.component';
+import RecentCategories from '../components/UI/categories/RecentCategoriesBlogPost';
 
 import BitcoinDoddle from '../static/img/no-content-img.png';
 
@@ -79,8 +80,13 @@ export default class Blog extends Component {
   async getMorePosts() {
     const { page, postsList } = this.state;
     console.log('page:', page);
+    this.setStateAsync({
+      page: page + 1,
+    });
+    const tempPage = page + 1;
+    console.log(`http://localhost:5000/blog/short?page=${tempPage}`);
     // this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/short?page=${page}`, {
-    this.response = await fetch(`http://localhost:5000/blog/short?page=${page}`, {
+    this.response = await fetch(`http://localhost:5000/blog/short?page=${tempPage}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -90,7 +96,7 @@ export default class Blog extends Component {
       },
     });
     const data = await this.response.json();
-    console.log('data more:', data);
+    console.log('postsList:', data);
     if (data.length < 10) {
       this.setStateAsync({
         postsList: postsList.concat(data),
@@ -101,11 +107,6 @@ export default class Blog extends Component {
         });
       }, 10);
     } else {
-      this.setStateAsync({
-        page: page + 1,
-      });
-
-      console.log('data getMorePosts:', data);
       this.setStateAsync({
         postsList: postsList.concat(data),
       });
@@ -158,7 +159,7 @@ export default class Blog extends Component {
                     )}
                 >
                   <div className="row">
-                    {postsList.reverse().map((post, key) => (
+                    {postsList.map((post, key) => (
                       <BlogPostList
                         key={key}
                         type="Blog"
@@ -174,6 +175,7 @@ export default class Blog extends Component {
             </div>
             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
               <NewsletterSide />
+              <RecentCategories />
             </div>
           </div>
         </>

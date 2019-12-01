@@ -27,8 +27,6 @@ export default class BlogPostList extends Component {
       .join('-');
     const editTo = `/edit/${typeLower}/${titleLower}`;
 
-    console.log('date:', publishedOn);
-
     const dateFormatted = await this.parseDate(publishedOn);
     const months = [
       'January',

@@ -1,0 +1,79 @@
+import React, { Component } from 'react';
+import slugify from 'slugify';
+
+import {
+  Wrapper,
+  Title,
+  CategoriesUl,
+  CategoriesLi,
+  CategoryLink,
+} from '../../../styled-components/recent-category-blog-post.styled.components';
+
+export default class RecentCategoriesBlogPost extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      categories: [],
+    };
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.getCategories = this.getCategories.bind(this);
+  }
+
+  async componentDidMount() {
+    const categoriesList = await this.getCategories();
+    console.log('categoriesList:', categoriesList);
+    this.setStateAsync({
+      categories: categoriesList,
+    });
+  }
+
+  async getCategories() {
+    this.response = await fetch('http://localhost:5000/blog/get/categories/newest/5', {
+      method: 'GET',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await this.response.json();
+    console.log('data first:', data);
+    return data;
+  }
+
+  setStateAsync(state) {
+    return new Promise((resolve) => {
+      this.setState(state, resolve);
+    });
+  }
+
+  render() {
+    const { categories } = this.state;
+    return (
+      <>
+        <Wrapper>
+          <Title>
+          Recent Categories
+          </Title>
+          <CategoriesUl>
+            {categories.map((category, key) => (
+              <CategoriesLi
+                key={key}
+                style={{
+                  listStyle: 'none',
+                }}
+              >
+                <CategoryLink
+                  to={`/blog/category/${slugify(category.toLowerCase())}`}
+                >
+                  {category}
+                </CategoryLink>
+              </CategoriesLi>
+            ))}
+          </CategoriesUl>
+        </Wrapper>
+      </>
+    );
+  }
+}
