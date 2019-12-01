@@ -11,7 +11,9 @@ import {
   Cover,
   Title,
   Content,
-  Tags,
+  TagsUl,
+  TagLi,
+  Tag,
   // LoadingTags,
   RelatedPost,
   UploadedOn,
@@ -43,6 +45,7 @@ export default class Post extends Component {
     this.getPostBySlug = this.getPostBySlug.bind(this);
     this.getPostByCategory = this.getPostByCategory.bind(this);
     this.parseDate = this.parseDate.bind(this);
+    this.covertAllTags = this.covertAllTags.bind(this);
   }
 
   async componentDidMount() {
@@ -53,6 +56,7 @@ export default class Post extends Component {
         slug, category, title, tags, content, publishedOn, updatedOn, cover,
       } = post[0];
       const relatedCategoryPosts = await this.getPostByCategory(category, slug);
+      // this.covertAllTags()
       console.log('relatedCategoryPosts:', relatedCategoryPosts);
       const dateFormatted = this.parseDate(publishedOn);
       const months = [
@@ -158,6 +162,13 @@ export default class Post extends Component {
     return new Date(this.parts[0], this.parts[1] - 1, this.parts[2]);
   }
 
+  covertAllTags() {
+    const {tags} = this.state;
+    let tagsArray = tags.splice(tags);
+    console.log('tagsArray:', tagsArray);
+
+  }
+
   componentWillUnmount() {
     this._isMounted = false;
   }
@@ -256,12 +267,21 @@ export default class Post extends Component {
               {title}
             </Title>
             <Content dangerouslySetInnerHTML={{ __html: content }} />
-            <Tags>
-            Tags:&nbsp;
-              {' '}
-              <b style={{ fontSize: '16px' }}>{tags}</b>
-              {' '}
-            </Tags>
+            <TagsUl>
+              {
+                tags.map((tag) => {
+                  return (
+                    <>
+                      <TagLi>
+                        <Tag to={`/blog/tags/${tag}`}>
+                          {tag}
+                        </Tag>
+                      </TagLi>
+                    </>
+                  );
+                })
+              }
+            </TagsUl>
             {postRelatedPost}
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-12">

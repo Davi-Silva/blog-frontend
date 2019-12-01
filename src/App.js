@@ -16,6 +16,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import Blog from './pages/Blog';
+import BlogPostByTags from './pages/BlogPostsByTags';
 import Post from './pages/Post';
 import About from './pages/About';
 import Profile from './pages/Profile';
@@ -69,6 +70,11 @@ function App() {
           path="/blog/:slug"
           component={Post}
           // render={(props) => <Post {...props} />}
+        />
+        <Route
+          exact
+          path="/blog/tags/:slug"
+          component={BlogPostByTags}
         />
         <Route
           exact

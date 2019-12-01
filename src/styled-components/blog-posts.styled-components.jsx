@@ -83,3 +83,26 @@ export const NoContentP = styled.p`
 	display: table;
 `;
 
+export const ByTagDiv = styled.ul`
+	display: block;
+	margin: 8px 0;
+`;
+
+export const ByTag = styled.b`
+	color: #333;
+	font-size: 11px;
+	margin: 15px 5px 15px 0px;
+	font-weight: 900;
+	width: 20px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+`;
+
+export const ByTagName = styled.span`
+	color: #999;
+	font-size: 13px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+`;

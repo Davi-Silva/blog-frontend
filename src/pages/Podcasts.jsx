@@ -43,7 +43,7 @@ export default class Podcasts extends Component {
       this.setStateAsync({
         found: false,
       });
-    } 
+    }
     if (podcastsList.length > 0) {
       if (podcastsList.length < 10) {
         more = false;
@@ -117,18 +117,18 @@ export default class Podcasts extends Component {
     const {
       podcasts,
       hasMore,
-      found
+      found,
     } = this.state;
     let allPodcasts;
     if (!found) {
       allPodcasts = (
         <>
-        <NoContentDiv>
-          <NoContentImg src={BitcoinDoddle} />
-          <NoContentP>
+          <NoContentDiv>
+            <NoContentImg src={BitcoinDoddle} />
+            <NoContentP>
             No Podcast has been found.
-          </NoContentP>
-        </NoContentDiv>
+            </NoContentP>
+          </NoContentDiv>
         </>
       );
     } else {

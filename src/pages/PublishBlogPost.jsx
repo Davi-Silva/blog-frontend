@@ -27,6 +27,7 @@ export default class PublishBlogPost extends Component {
       title: '',
       category: '',
       tags: '',
+      tagsArray: [],
       content: '',
       uploaded: null,
       uploadedCovers: [],
@@ -47,6 +48,7 @@ export default class PublishBlogPost extends Component {
     this.handleDeleteCover = this.handleDeleteCover.bind(this);
     this.changeSlugFromTitle = this.changeSlugFromTitle.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.tagsToArray = this.tagsToArray.bind(this);
   }
 
   async componentDidMount() {
@@ -68,11 +70,7 @@ export default class PublishBlogPost extends Component {
   async componentDidUpdate() {
     const { uploaded, uploadedCovers } = this.state;
     const res = await this.setGlobalVariable();
-
-    console.log('covers:', uploadedCovers)
-    console.log('resolve:', res);
     if (uploaded) {
-      console.log('Blog Post Publish');
       this.props.history.push('/admin');
     }
   }
@@ -113,7 +111,6 @@ export default class PublishBlogPost extends Component {
   }
 
   handleEditorChange = async (e) => {
-    console.log('Content was updated:', e.target.getContent());
     this.setStateAsync({
       content: e.target.getContent()
     });
@@ -134,8 +131,20 @@ export default class PublishBlogPost extends Component {
       tags: e.target.value,
     });
     setTimeout(() => {
+      this.tagsToArray();
+    },0 );
+    setTimeout(() => {
       this.disabledSubmitButton();
     }, 0);
+  }
+
+  tagsToArray() {
+    const {tags} = this.state;
+    let tempTags = tags.split(', ');
+    console.log('tempTags:', tempTags);
+    this.setStateAsync({
+      tagsArray: tempTags,
+    });
   }
 
   setStateAsync(state) {
@@ -191,7 +200,7 @@ export default class PublishBlogPost extends Component {
       category,
       title,
       content,
-      tags,
+      tagsArray,
       uploadedCovers,
       allFieldsFilled,
       // author
@@ -201,30 +210,22 @@ export default class PublishBlogPost extends Component {
       history
     } = this.props;
     if (allFieldsFilled) {
-      console.log('cover on submit:', uploadedCovers)
       const postInfo = {
         isSlugValid: isSlugValid,
         slug,
         category: category,
         title: title,
         content: content,
-        tags: tags,
+        tags: tagsArray,
         cover: uploadedCovers[0].id,
         author: 'Davi Silva',
       };
-      console.log("podcast_info:", postInfo);
-      console.log(
-        "uploadedCovers:",
-        uploadedCovers[uploadedCovers.length - 1].id
-      );
       let isSlugValidRes = await this.verifySlug(this.state.slug);
-      console.log("isSlugValidRes:", isSlugValidRes);
       if (isSlugValidRes.valid) {
         let res = await this.publishPost(postInfo);
         this.setStateAsync({
           uploaded: res.uploaded
         });
-        console.log(res);
         history.push('/blog');
       } else {
         console.log("Slug is invalid");
