@@ -135,7 +135,7 @@ export default class Podcasts extends Component {
     } else {
       allPodcasts = (
         <>
-          <div className="col-lg-7 col-md-7 col-sm-7 col-12">
+          <div className="col-lg-7 col-md-7 col-sm-12 col-12">
             <InfinitePodcastList>
               <InfiniteScroll
                 dataLength={podcasts.length}
