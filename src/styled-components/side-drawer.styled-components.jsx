@@ -62,7 +62,7 @@ export const ProfileName = styled.span`
 
 export const SideDrawerUl = styled.ul`
   width: 100%;
-  margin: 20px 0;
+  margin: 10px 0;
 `;
 
 export const SideDrawerLi = styled.li`

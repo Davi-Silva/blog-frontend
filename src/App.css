@@ -318,12 +318,24 @@ textarea::-webkit-scrollbar-thumb:hover {
 }
 
 .relativeSubNavBarContainer {
-	padding-top: 0px;
+	padding-bottom: 3px;
+	border-bottom: 1px solid #0058e4;
+}
+
+.relativeSubNavBarContainer div {
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .fixedSubNavBarContainer {
-	padding-top: 35px;
+	padding-bottom: 3px;
+	position: fixed!important;
+	background: #fff;
+	z-index: 9999;
+	transform: translateY(-53px);
+	border-bottom: 1px solid #0058e4;
 }
+
 
 .card-columns {
 	column-count: 3;
@@ -359,6 +371,9 @@ textarea::-webkit-scrollbar-thumb:hover {
 	.card-columns {
 		column-count: 3;
 	}
+	.fixedSubNavBarContainer {
+		transform: translateY(-42px);
+	}
 }
 
 @media (max-width: 870px) {
@@ -388,6 +403,20 @@ textarea::-webkit-scrollbar-thumb:hover {
 	}
 	.card-columns {
 		column-count: 2;
+	}
+
+	.fixedSubNavBarContainer {
+		transform: translateY(-37px);
+	}
+
+	.fixedSubNavBarContainer div {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.relativeSubNavBarContainer div {
+		padding-left: 0;
+		padding-right: 0;
 	}
 }
 
