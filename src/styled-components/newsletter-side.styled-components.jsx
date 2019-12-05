@@ -5,7 +5,15 @@ export const Wrapper = styled.div`
   background: transparent;
   border-radius: 5px;
   width: 100%;
-  padding: 20px 15px 15px 15px;
+  padding: 15px;
+  &::after {
+    content: '';
+    height: 1px;
+    width: 25%;
+    display: table;
+    margin: 25px auto 0px auto;
+    background: #ddd;
+  }
   @media (max-width: 768px) {
     padding: 20px 0px;
   }
@@ -61,7 +69,7 @@ export const Email = styled.input`
 export const Icon = styled.div`
   position: absolute;
   left: 47px;
-  top: 49px;
+  top: 246px;
   svg {
     color: #aaa;
     @media (max-width: 991px) {
@@ -79,12 +87,4 @@ export const Icon = styled.div`
     left: 30px;
     top: 47px;
   }
-`;
-
-export const Separator = styled.div`
-  height: 1px;
-  width: 25%;
-  background: #ddd;
-  margin: 30px auto 0px auto;
-  display: table;
 `;

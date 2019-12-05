@@ -174,8 +174,8 @@ export default class Blog extends Component {
               </InfinitePostList>
             </div>
             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-              <NewsletterSide />
               <RecentCategories />
+              <NewsletterSide />
             </div>
           </div>
         </>

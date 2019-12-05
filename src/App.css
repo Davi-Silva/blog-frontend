@@ -74,14 +74,6 @@ textarea::-webkit-scrollbar-thumb:hover {
 	display: block;
 }
 
-.subNavBarFixed {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 999;
-	border-top: 1px solid #fff!important;
-}
-
 .backPodcastButtonRelavite {
 	border-radius: 50px;
 	background: #0058e4;
@@ -315,6 +307,14 @@ textarea::-webkit-scrollbar-thumb:hover {
 	margin-top: -13%!important;
 	animation: hideShadow .5s ease-in;
 	animation-fill-mode: forwards;
+}
+
+.subNavBarFixed {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 999;
+	border-top: 1px solid #fff!important;
 }
 
 .relativeSubNavBarContainer {

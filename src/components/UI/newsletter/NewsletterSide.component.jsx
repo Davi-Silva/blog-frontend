@@ -27,9 +27,9 @@ export default class NewsletterSide extends Component {
     this.setStateAsync({
       email: e.target.value,
     });
-    setTimeout(() => {
-      this.ValidateEmail();
-    }, 0);
+    // setTimeout(() => {
+    //   this.ValidateEmail();
+    // }, 0);
   }
 
   onSubmit(e) {
@@ -77,7 +77,6 @@ export default class NewsletterSide extends Component {
               <FaEnvelope />
             </Icon>
           </form>
-          <Separator />
         </Wrapper>
       </>
     );

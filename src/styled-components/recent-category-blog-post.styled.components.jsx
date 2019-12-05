@@ -5,6 +5,14 @@ import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   margin: 11px 0;
+  &::after {
+    content: '';
+    height: 1px;
+    width: 25%;
+    display: table;
+    margin: 25px auto 0px auto;
+    background: #ddd;
+  }
 `;
 
 export const Title = styled.h6`

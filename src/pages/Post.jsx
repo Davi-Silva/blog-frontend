@@ -288,9 +288,15 @@ export default class Post extends Component {
             {postRelatedPost}
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-            <Newsletter />
-            <RecentCategories />
-            <AdSense />
+            {/* <div
+              style={{
+                marginTop: '25px',
+              }}
+            > */}
+              <RecentCategories />
+              <Newsletter />
+              <AdSense />
+            {/* </div> */}
           </div>
         </>
       );
