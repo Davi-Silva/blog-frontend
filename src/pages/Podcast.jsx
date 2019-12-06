@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { createMuiTheme, makeStyles } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import AudioPlayer from 'material-ui-audio-player';
+import slugify from 'slugify';
+
 import {
   FaSpinner,
 } from 'react-icons/fa';
@@ -15,7 +17,9 @@ import {
   Title,
   Category,
   Description,
-  Tags,
+  TagsUl,
+  TagLi,
+  Tag,
   UploadedOn,
   MoreEpisodes,
   // LoadingTitle,
@@ -43,7 +47,7 @@ export default class Podcast extends Component {
       category: '',
       title: '',
       description: '',
-      tags: '',
+      tags: [],
       uploadedOn: null,
       updatedOn: null,
       audioFileUrl: '',
@@ -130,13 +134,22 @@ export default class Podcast extends Component {
     this.setStateAsync = this.setStateAsync.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.getPodcastByCategory = this.getPodcastByCategory.bind(this);
+    this.covertAllTags = this.covertAllTags.bind(this);
   }
 
   async componentDidMount() {
     const podcast = await this.getPodcastBySlug();
     if (podcast.length > 0) {
       const {
-        slug, category, title, tags, description, uploadedOn, updatedOn, audioFile, cover,
+        slug,
+        category,
+        title,
+        tags,
+        description,
+        uploadedOn,
+        updatedOn,
+        audioFile,
+        cover,
       } = podcast[0];
       const relatedCategoryPodcast = await this.getPodcastByCategory(category, slug);
       const dateFormatted = this.parseDate(uploadedOn);
@@ -240,6 +253,12 @@ export default class Podcast extends Component {
   parseDate(input) {
     this.parts = input.match(/(\d+)/g);
     return new Date(this.parts[0], this.parts[1] - 1, this.parts[2]);
+  }
+
+  covertAllTags() {
+    const { tags } = this.state;
+    const tagsArray = tags.splice(tags);
+    console.log('tagsArray:', tagsArray);
   }
 
   render() {
@@ -350,10 +369,19 @@ export default class Podcast extends Component {
               <Description
                 dangerouslySetInnerHTML={{ __html: description }}
               />
-              <Tags>
-        Tags:&nbsp;
-                <b style={{ fontSize: '16px' }}>{tags}</b>
-              </Tags>
+              <TagsUl>
+                {
+                tags.map((tag, key) => (
+                  <>
+                    <TagLi key={key}>
+                      <Tag to={`/podcasts/tag/${slugify(tag.toLowerCase())}`}>
+                        {tag}
+                      </Tag>
+                    </TagLi>
+                  </>
+                ))
+              }
+              </TagsUl>
               <hr />
               <MoreEpisodes to="/podcasts">More Episodes</MoreEpisodes>
               <hr />

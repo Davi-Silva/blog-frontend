@@ -99,8 +99,12 @@ function Footer() {
                     to="/terms-and-conditions"
                   >
                     <p>
-                      Terms {'&'} Conditions
-                    </p>
+                      Terms 
+{' '}
+{'&'}
+{' '}
+Conditions
+</p>
                   </LinkToPolicies>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-12 col-12">
@@ -112,8 +116,12 @@ function Footer() {
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                   <CopyRight>
-                    © {new Date().getFullYear()} Cryptic Activist
-                  </CopyRight>
+                    © 
+{' '}
+{new Date().getFullYear()}
+{' '}
+Cryptic Activist
+</CopyRight>
                 </div>
                 <div className="col-lg-3 col-md-3 col-sm-12 col-12" />
                 <div className="col-lg-3 col-md-3 col-sm-12 col-12" />
@@ -132,7 +140,7 @@ function Footer() {
                 </SocialMediaTitle>
                 <SocialMediaUl>
                   <SocialMediaLi>
-                    <SocialMediaLink to="//www.instagram.com/" target="_blank">
+                    <SocialMediaLink to="//www.twitter.com/" target="_blank">
                       <FaTwitter />
                     </SocialMediaLink>
                   </SocialMediaLi>

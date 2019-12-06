@@ -35,6 +35,7 @@ export default class UploadNewPodcast extends Component {
       title: "",
       description: "",
       tags: "",
+      tagsArray: [],
       isSlugValid: true,
       uploaded: null,
       uploadedFiles: [],
@@ -50,6 +51,7 @@ export default class UploadNewPodcast extends Component {
     this.onChangeTags = this.onChangeTags.bind(this);
     this.setGlobalVariable = this.setGlobalVariable.bind(this);
     this.handleEditorChange = this.handleEditorChange.bind(this);
+    this.tagsToArray = this.tagsToArray.bind(this);
   }
 
   async verifySlug(slug) {
@@ -149,20 +151,41 @@ export default class UploadNewPodcast extends Component {
       tags: e.target.value
     });
     setTimeout(() => {
+      this.tagsToArray();
+    }, 0);
+    setTimeout(() => {
       this.disabledSubmitButton();
     }, 0);
   }
 
+  tagsToArray() {
+    const {tags} = this.state;
+    let tempTags = tags.split(', ');
+    console.log('tempTags:', tempTags);
+    this.setStateAsync({
+      tagsArray: tempTags,
+    });
+  }
+
   async onSubmit(e) {
     e.preventDefault();
-    const {isSlugValid, slug, category, title, description, tags, uploadedCovers, uploadedFiles} = this.state;
+    const {
+      isSlugValid,
+      slug,
+      category,
+      title,
+      description,
+      tagsArray,
+      uploadedCovers,
+      uploadedFiles
+    } = this.state;
     const podcastInfo = {
       isSlugValid: isSlugValid,
       slug,
       category: category,
       title: title,
       description: description,
-      tags: tags,
+      tags: tagsArray,
       cover: uploadedCovers[uploadedCovers.length - 1].id,
       audioFile: uploadedFiles[uploadedFiles.length - 1].id
     };

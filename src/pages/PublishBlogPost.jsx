@@ -204,7 +204,6 @@ export default class PublishBlogPost extends Component {
       uploadedCovers,
       allFieldsFilled,
       // author
-
     } = this.state;
     const {
       history

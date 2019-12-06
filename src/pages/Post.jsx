@@ -56,7 +56,14 @@ export default class Post extends Component {
     const post = await this.getPostBySlug();
     if (post.length > 0) {
       const {
-        slug, category, title, tags, content, publishedOn, updatedOn, cover,
+        slug,
+        category,
+        title,
+        tags,
+        content,
+        publishedOn,
+        updatedOn,
+        cover,
       } = post[0];
       const relatedCategoryPosts = await this.getPostByCategory(category, slug);
       // this.covertAllTags()
@@ -169,7 +176,6 @@ export default class Post extends Component {
     const {tags} = this.state;
     let tagsArray = tags.splice(tags);
     console.log('tagsArray:', tagsArray);
-
   }
 
   componentWillUnmount() {
@@ -178,7 +184,14 @@ export default class Post extends Component {
 
   render() {
     const {
-      title, category, cover, coverAlt, content, tags, relatedCategoryPosts, publishedOn,
+      title,
+      category,
+      cover,
+      coverAlt, 
+      content,
+      tags,
+      relatedCategoryPosts,
+      publishedOn,
     } = this.state;
 
     let allContentPost;
