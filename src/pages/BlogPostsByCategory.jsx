@@ -27,7 +27,7 @@ export default class BlogPostsByCategory extends Component {
     super(props);
     this.state = {
       posts: [],
-      tag: '',
+      category: '',
       page: 1,
       hasMore: null,
       found: false,
@@ -41,7 +41,7 @@ export default class BlogPostsByCategory extends Component {
     const { slug } = match.params;
 
     this.setStateAsync({
-      tag: slug,
+      category: slug,
     });
     const postsList = await this.getFirstPosts(slug);
     console.log('postsList:', postsList);
@@ -64,12 +64,12 @@ export default class BlogPostsByCategory extends Component {
     }
   }
 
-  async getFirstPosts(tag) {
+  async getFirstPosts(category) {
     const {
       page,
     } = this.state;
-    console.log('tag:', tag);
-    this.response = await fetch(`http://localhost:5000/blog/get/tag/${tag}?page=${page}`, {
+    console.log('category:', category);
+    this.response = await fetch(`http://localhost:5000/blog/get/category/${category}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -91,11 +91,11 @@ export default class BlogPostsByCategory extends Component {
   async getMorePosts() {
     const {
       page,
-      tag,
+      category,
       posts,
     } = this.state;
     // this.response = await fetch('https://cryptic-activist-backend.herokuapp.com/podcasts', {
-    this.response = await fetch(`http://localhost:5000/blog/get/tag/${tag}?page=${page}`, {
+    this.response = await fetch(`http://localhost:5000/blog/get/category/${category}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -128,7 +128,7 @@ export default class BlogPostsByCategory extends Component {
 
   render() {
     const {
-      tag,
+      category,
       posts,
       hasMore,
       found,
@@ -176,7 +176,7 @@ export default class BlogPostsByCategory extends Component {
                         key={key}
                         type="Blog"
                         slug={post.slug}
-                        imgSrc={post.coverUrl}
+                        imgSrc={post.cover.url}
                         title={post.title}
                         publishedOn={post.publishedOn}
                       />
@@ -197,7 +197,7 @@ export default class BlogPostsByCategory extends Component {
 
     return (
       <>
-        <SubNavBar media="Blog" category="Tag" title={`${tag}`} />
+        <SubNavBar media="Blog" category="Category" title={`${category.replace(/^\w/, (c) => c.toUpperCase())}`} />
         <div className="container" style={{ margin: '25px auto' }}>
           {allPosts}
         </div>

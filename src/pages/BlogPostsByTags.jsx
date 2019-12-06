@@ -197,7 +197,7 @@ export default class BlogPostsByTags extends Component {
 
     return (
       <>
-        <SubNavBar media="Blog" category="Tag" title={`${tag}`} />
+        <SubNavBar media="Blog" category="Tag" title={`${tag.replace(/^\w/, (c) => c.toUpperCase())}`} />
         <div className="container" style={{ margin: '25px auto' }}>
           {allPosts}
         </div>

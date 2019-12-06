@@ -36,15 +36,6 @@ export const Drawer = styled.nav`
       transform: scale(0.95, 0.95) rotate(45deg);
     }
   }
-  /* @media (max-width: 991px) {
-    width: 350px;
-  }
-  @media (max-width: 768px) {
-    width: 300px;
-  }
-  @media (max-width: 600px) {
-    width: 275px;
-  } */
 `;
 
 export const ProfileImage = styled.img`
@@ -77,6 +68,14 @@ export const SideDrawerLinkTo = styled(Link)`
 
   &:hover {
     color: #0058e4;
+    text-decoration: none;
+  }
+`;
+
+export const SideDrawerLinkToAdmin = styled(Link)`
+  transition: all .3s ease-in-out;
+
+  &:hover {
     text-decoration: none;
   }
 `;

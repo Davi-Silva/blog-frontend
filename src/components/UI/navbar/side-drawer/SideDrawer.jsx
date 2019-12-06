@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 
 import {
   FaPlus,
@@ -12,6 +14,7 @@ import {
   SideDrawerUl,
   SideDrawerLi,
   SideDrawerLinkTo,
+  SideDrawerLinkToAdmin,
   Button,
 } from '../../../../styled-components/side-drawer.styled-components';
 
@@ -37,28 +40,30 @@ export default class SideDrawer extends Component {
       <>
         <BackgroundDrawer onClick={this.handleClose} />
         <Drawer>
-          <ul>
-            <li
-              style={{
-                listStyle: 'none',
-                display: 'inline',
-              }}
-            >
-              <ProfileImage
-                src={ProfilePlaceholder}
-              />
-            </li>
-            <li
-              style={{
-                listStyle: 'none',
-                display: 'inline',
-              }}
-            >
-              <ProfileName>
+          <SideDrawerLinkToAdmin to="/admin">
+            <ul>
+              <li
+                style={{
+                  listStyle: 'none',
+                  display: 'inline',
+                }}
+              >
+                <ProfileImage
+                  src={ProfilePlaceholder}
+                />
+              </li>
+              <li
+                style={{
+                  listStyle: 'none',
+                  display: 'inline',
+                }}
+              >
+                <ProfileName>
                 Name
-              </ProfileName>
-            </li>
-          </ul>
+                </ProfileName>
+              </li>
+            </ul>
+          </SideDrawerLinkToAdmin>
           <Button
             onClick={this.handleClose}
           >

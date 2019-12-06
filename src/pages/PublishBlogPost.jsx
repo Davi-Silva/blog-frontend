@@ -119,7 +119,7 @@ export default class PublishBlogPost extends Component {
 
   async onChangeCategory(e) {
     this.setStateAsync({
-      category: e.target.value,
+      category: e.target.value.replace(/^\w/, (c) => c.toUpperCase()),
     });
     setTimeout(() => {
       this.disabledSubmitButton();
@@ -128,7 +128,7 @@ export default class PublishBlogPost extends Component {
 
   async onChangeTags(e) {
     this.setStateAsync({
-      tags: e.target.value,
+      tags: e.target.value.toLowerCase(),
     });
     setTimeout(() => {
       this.tagsToArray();
