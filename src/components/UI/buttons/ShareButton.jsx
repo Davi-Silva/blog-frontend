@@ -31,16 +31,16 @@ export default class ShareButton extends Component {
   }
 
   listenScrollEvent = e =>  {
-    const height = window.document.body.children[1].children[2].clientHeight;
-    if (window.scrollY > 44 && window.scrollY <= (height * 0.8)) {
-      this.setState({ containerClassName: 'shareButtonsFixed', stickyHeight: null });
-    }
-    if (window.scrollY <= 44) {
-      this.setState({ containerClassName: 'shareButtonsRelative', stickyHeight: null });
-    }
-    if (window.scrollY > (height * 0.8)) {
-      this.setState({ containerClassName: 'shareButtonsSticky', stickyHeight: (height * 0.8) });
-    }
+    // const height = window.document.body.children[1].children[2].clientHeight;
+    // if (window.scrollY > 44 && window.scrollY <= (height * 0.8)) {
+    //   this.setState({ containerClassName: 'shareButtonsFixed', stickyHeight: null });
+    // }
+    // if (window.scrollY <= 44) {
+    //   this.setState({ containerClassName: 'shareButtonsRelative', stickyHeight: null });
+    // }
+    // if (window.scrollY > (height * 0.8)) {
+    //   this.setState({ containerClassName: 'shareButtonsSticky', stickyHeight: (height * 0.8) });
+    // }
   }
 
 
@@ -63,30 +63,39 @@ export default class ShareButton extends Component {
       longtext: 'Take a look at this super website I have just found.',
     };
     return (
-      <ShareBlockStandard
-        {...shareBlockProps}
-        className={`${containerClassName} ${css`
-            margin-top: 3px;
-            position: relative;
-            button {
-                margin: 0px;
-                svg {
-                    fill: #0058e4;
-                    height: 22px;
+      <>
+        <div
+          style={{
+            position: 'sticky',
+            top: '50px',
+          }}
+        >
+          <ShareBlockStandard
+            {...shareBlockProps}
+            className={`${containerClassName} ${css`
+                margin-top: 3px;
+                position: relative;
+                button {
+                    margin: 0px;
+                    svg {
+                        fill: #0058e4;
+                        height: 22px;
+                        &:hover {
+                            fill: #fff;
+                        }
+                    }
+                    &:focus {
+                        outline: none;
+                    }
                     &:hover {
-                        fill: #fff;
+                        background: #0058e4;
+                        box-shadow: none;
                     }
                 }
-                &:focus {
-                    outline: none;
-                }
-                &:hover {
-                    background: #0058e4;
-                    box-shadow: none;
-                }
-            }
-        `}`}
-      />
+            `}`}
+          />
+        </div>
+      </>
     );
   }
 }

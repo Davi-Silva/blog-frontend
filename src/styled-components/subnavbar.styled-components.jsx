@@ -3,6 +3,8 @@
 import styled from 'styled-components';
 
 export const SubNavigatorBar = styled.nav`
+  position: sticky;
+  top: 0;
   padding: 0 0 3px 0;
   background: #fff;
   margin-top: -1px;

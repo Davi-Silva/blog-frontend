@@ -272,10 +272,10 @@ export default class Post extends Component {
             <Content dangerouslySetInnerHTML={{ __html: content }} />
             <TagsUl>
               {
-                tags.map((tag) => {
+                tags.map((tag, key) => {
                   return (
                     <>
-                      <TagLi>
+                      <TagLi key={key}>
                         <Tag to={`/blog/tags/${slugify(tag.toLowerCase())}`}>
                           {tag}
                         </Tag>
@@ -288,15 +288,15 @@ export default class Post extends Component {
             {postRelatedPost}
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-            {/* <div
+            <div
               style={{
-                marginTop: '25px',
+                marginTop: '33px',
               }}
-            > */}
+            >
               <RecentCategories />
               <Newsletter />
               <AdSense />
-            {/* </div> */}
+            </div>
           </div>
         </>
       );

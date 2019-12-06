@@ -1,6 +1,8 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import {
   BrowserRouter as Router,
+  Switch,
   Route,
   // withRouter,
 } from 'react-router-dom';
@@ -17,6 +19,7 @@ import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import Blog from './pages/Blog';
 import BlogPostByTags from './pages/BlogPostsByTags';
+import BlogPostByCategory from './pages/BlogPostsByCategory';
 import Post from './pages/Post';
 import About from './pages/About';
 import Profile from './pages/Profile';
@@ -69,7 +72,6 @@ function App() {
           exact
           path="/blog/:slug"
           component={Post}
-          // render={(props) => <Post {...props} />}
         />
         <Route
           exact
@@ -78,6 +80,11 @@ function App() {
         />
         <Route
           exact
+          path="/blog/category/:slug"
+          component={BlogPostByCategory}
+        />
+        <Route
+          exacth
           path="/edit/podcast/:slug"
           render={(props) => <EditPodcast {...props} />}
         />
@@ -89,8 +96,8 @@ function App() {
         <Route exact path="/404" component={PageNotFound} />
         <Route path="/upload/podcast" component={UploadNewPodcast} />
         <Route path="/publish/blog" component={PublishBlogPost} />
+        <Footer />
       </UserProvider>
-      <Footer />
     </Router>
   );
 }

@@ -11,6 +11,7 @@ import ShareButtons from '../components/UI/buttons/ShareButton';
 
 import {
   Wrapper,
+  Aside,
   Title,
   Category,
   Description,
@@ -320,10 +321,10 @@ export default class Podcast extends Component {
       allContentPodcast = (
         <>
           <div className="col-lg-4 col-md-4 col-sm-12 col-12">
-            <aside style={{ marginTop: '20px' }}>
+            <Aside>
               <CoverImage cover={cover} coverAlt={coverAlt} documentHeight={documentHeight} />
               <ShareButtons img={cover} text={title} />
-            </aside>
+            </Aside>
           </div>
           <div className="col-lg-8 col-md-8 col-sm-12 col-12">
             <Wrapper>

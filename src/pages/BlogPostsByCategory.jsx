@@ -22,7 +22,7 @@ import {
 } from '../styled-components/blog-posts.styled-components';
 
 
-export default class BlogPostsByTags extends Component {
+export default class BlogPostsByCategory extends Component {
   constructor(props) {
     super(props);
     this.state = {

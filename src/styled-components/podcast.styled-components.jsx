@@ -6,6 +6,18 @@ import { opacity, rotate } from './animations';
 
 export const Wrapper = styled.div`
 	margin: 20px auto 0px auto;
+	position: sticky;
+	top: 30px;
+`;
+
+export const Aside = styled.aside`
+	margin-top: 20px;
+	position: sticky;
+	top: 50px;
+	@media (max-width: 768px) {
+		position: relative!important;
+		top: unset;
+	}
 `;
 
 export const Cover = styled.img`

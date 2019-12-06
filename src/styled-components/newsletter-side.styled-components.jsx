@@ -67,9 +67,9 @@ export const Email = styled.input`
 `;
 
 export const Icon = styled.div`
-  position: absolute;
-  left: 47px;
-  top: 246px;
+  position: relative;
+  left: 17px;
+  top: -33px;
   svg {
     color: #aaa;
     @media (max-width: 991px) {

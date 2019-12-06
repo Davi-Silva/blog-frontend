@@ -18,17 +18,17 @@ export default class CoverImage extends Component {
     }
     
     listenScrollEvent = e => {
-      // const {documentHeight} = this.props;
-      let height = window.document.body.children[1].children[2].clientHeight;
-      if (window.scrollY > 44 && window.scrollY <= (height * 0.8)) {
-          this.setState({ containerClassName: "podcastCoverImageFixed", stickyHeight: null });
-      } 
-      if(window.scrollY <= 44) {
-          this.setState({ containerClassName: "podcastCoverImageRelative", stickyHeight: null });
-      } 
-      if (window.scrollY > (height * 0.8)){
-        this.setState({ containerClassName: "podcastCoverImageSticky", stickyHeight: (height * 0.8) });
-      }
+      // // const {documentHeight} = this.props;
+      // let height = window.document.body.children[1].children[2].clientHeight;
+      // if (window.scrollY > 44 && window.scrollY <= (height * 0.8)) {
+      //     this.setState({ containerClassName: "podcastCoverImageFixed", stickyHeight: null });
+      // } 
+      // if(window.scrollY <= 44) {
+      //     this.setState({ containerClassName: "podcastCoverImageRelative", stickyHeight: null });
+      // } 
+      // if (window.scrollY > (height * 0.8)){
+      //   this.setState({ containerClassName: "podcastCoverImageSticky", stickyHeight: (height * 0.8) });
+      // }
     };
 
     componentDidMount() {
