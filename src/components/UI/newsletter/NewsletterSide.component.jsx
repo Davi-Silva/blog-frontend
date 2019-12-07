@@ -6,7 +6,7 @@ import {
   Wrapper,
   Title,
   Email,
-  Separator,
+  // Separator,
   Icon,
 } from '../../../styled-components/newsletter-side.styled-components';
 
@@ -36,9 +36,7 @@ export default class NewsletterSide extends Component {
     const { isEmailValid } = this.state;
     e.preventDefault();
     if (isEmailValid) {
-      console.log('Email is Valid');
     } else {
-      console.log('Email is Invalid');
     }
   }
 

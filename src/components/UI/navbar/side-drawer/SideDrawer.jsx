@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
 
 import {
   FaPlus,

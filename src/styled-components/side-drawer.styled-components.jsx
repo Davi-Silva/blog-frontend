@@ -2,8 +2,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { showSideDrawer } from './animations';
-
 export const BackgroundDrawer = styled.div`
   position: fixed;
   background: rgba(0, 0, 0, .2);

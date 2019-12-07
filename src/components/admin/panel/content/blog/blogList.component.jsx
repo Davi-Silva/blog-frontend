@@ -45,10 +45,8 @@ export default class List extends Component {
       liID,
       path,
     } = this.props;
-    console.log('type:', type);
     const editTo = `/edit/post/${slug}`;
     // const date = date;
-    console.log('date:', date);
 
     const dateFormatted = this.parseDate(date);
     const months = [
@@ -87,9 +85,6 @@ export default class List extends Component {
   async onDeletePost() {
     let podcast = await this.getPodcastBySlug();
     podcast = podcast[0];
-    console.log('podcast.id:', podcast.id);
-    console.log('podcast.cover.id:', podcast.cover.id);
-    console.log('podcast.audio_file.id:', podcast.audio_file.id);
     // await fetch(
     //   `https://cryptic-activist-backend.herokuapp.com/podcasts/delete/audio/${podcast.cover._id}`,
     //   {

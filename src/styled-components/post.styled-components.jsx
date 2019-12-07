@@ -319,3 +319,9 @@ export const RelatedPostH6 = styled.h6`
 		font-size: 13px;
 	}
 `;
+
+export const StickyWrapper = styled.div`
+	margin-top: 33px;
+	position: sticky;
+	top: 63px;
+`;

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 
 import { css } from 'emotion';
@@ -21,36 +22,22 @@ export default class ShareButton extends Component {
       stickyHeight: null,
       sticked: null,
     };
-
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.listenScrollEven = this.listenScrollEvent.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener('scroll', this.listenScrollEvent);
   }
 
-  listenScrollEvent = e =>  {
-    // const height = window.document.body.children[1].children[2].clientHeight;
-    // if (window.scrollY > 44 && window.scrollY <= (height * 0.8)) {
-    //   this.setState({ containerClassName: 'shareButtonsFixed', stickyHeight: null });
-    // }
-    // if (window.scrollY <= 44) {
-    //   this.setState({ containerClassName: 'shareButtonsRelative', stickyHeight: null });
-    // }
-    // if (window.scrollY > (height * 0.8)) {
-    //   this.setState({ containerClassName: 'shareButtonsSticky', stickyHeight: (height * 0.8) });
-    // }
-  }
-
-
   render() {
-    const { img, text } = this.props;
-    const { 
+    const {
+      // img,
+      text,
+    } = this.props;
+    const {
       containerClassName,
-      // stickyHeight, 
+      // stickyHeight,
     } = this.state;
-    console.log('imgSrc:', img);
     const shareBlockProps = {
       url: `${window.location.href}`,
       button: ShareButtonIconOnly,

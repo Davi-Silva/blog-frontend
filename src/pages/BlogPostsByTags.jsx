@@ -19,6 +19,7 @@ import {
   NoContentDiv,
   NoContentImg,
   NoContentP,
+  StickyWrapper,
 } from '../styled-components/blog-posts.styled-components';
 
 
@@ -44,7 +45,6 @@ export default class BlogPostsByTags extends Component {
       tag: slug,
     });
     const postsList = await this.getFirstPosts(slug);
-    console.log('postsList:', postsList);
     let more = true;
     if (!postsList.found) {
       this.setStateAsync({
@@ -52,7 +52,6 @@ export default class BlogPostsByTags extends Component {
       });
     }
     if (postsList.length > 0) {
-      console.log('its coming through');
       if (postsList.length < 10) {
         more = false;
       }
@@ -68,7 +67,6 @@ export default class BlogPostsByTags extends Component {
     const {
       page,
     } = this.state;
-    console.log('tag:', tag);
     this.response = await fetch(`http://localhost:5000/blog/get/tag/${tag}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
@@ -118,8 +116,6 @@ export default class BlogPostsByTags extends Component {
       this.setStateAsync({
         page: page + 1,
       });
-
-      console.log('data getMorePodcasts:', data);
       this.setStateAsync({
         podcasts: posts.concat(data),
       });
@@ -186,8 +182,10 @@ export default class BlogPostsByTags extends Component {
               </InfinitePostList>
             </div>
             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-              <RecentCategories />
-              <NewsletterSide />
+              <StickyWrapper>
+                <RecentCategories />
+                <NewsletterSide />
+              </StickyWrapper>
             </div>
           </div>
         </>

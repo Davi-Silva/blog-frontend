@@ -6,7 +6,7 @@ import slugify from 'slugify';
 import {
   Input,
   UploadedOn,
-  Update,
+  // Update,
 } from '../styled-components/edit-post.styled-components';
 
 import SubNavBar from '../components/UI/navbar/SubNavBar';

@@ -25,20 +25,16 @@ export default class RelatedCategory extends Component {
 
   componentDidMount() {
     const { category, slug } = this.props;
-    console.log('related category:', category);
-    console.log('slug:', slug);
     this.setState({
       categoryPodcast: category,
       slugPodcast: slug,
     });
     const { categoryPodcast } = this.state;
     const relatedCategoryPodcast = this.getPodcastByCategory(categoryPodcast);
-    console.log('relatedCategoryPodcast:', relatedCategoryPodcast);
     let count = 0;
     relatedCategoryPodcast.map((podcast) => {
       if (podcast.slug === slug) {
         relatedCategoryPodcast.splice(count, count + 1);
-        console.log('array:', relatedCategoryPodcast);
       }
       count++;
     });

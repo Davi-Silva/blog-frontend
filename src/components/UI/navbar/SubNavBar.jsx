@@ -16,7 +16,6 @@ export default class SubNavBar extends Component {
       containerClassName: '',
     };
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.listenScrollEvent = this.listenScrollEvent.bind(this);
   }
 
   async componentDidMount() {
@@ -31,18 +30,6 @@ export default class SubNavBar extends Component {
     return new Promise((resolve) => {
       this.setState(state, resolve);
     });
-  }
-
-  async listenScrollEvent(e) {
-    // const container = window.document.body.children[1].children[3];
-    // console.log('window.document.body.children[1].children[3]:', window.document.body.children[1].children[3]);
-    // if (window.scrollY >= 40) {
-    //   container.className = 'container-fluid fixedSubNavBarContainer';
-    //   await this.setStateAsync({ containerClassName: 'subNavBarFixed' });
-    // } else {
-    //   container.className = 'container-fluid relativeSubNavBarContainer';
-    //   await this.setStateAsync({ containerClassName: 'subNavBarRelative' });
-    // }
   }
 
   render() {

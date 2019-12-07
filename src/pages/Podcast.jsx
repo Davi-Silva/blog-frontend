@@ -134,7 +134,7 @@ export default class Podcast extends Component {
     this.setStateAsync = this.setStateAsync.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.getPodcastByCategory = this.getPodcastByCategory.bind(this);
-    this.covertAllTags = this.covertAllTags.bind(this);
+    // this.covertAllTags = this.covertAllTags.bind(this);
   }
 
   async componentDidMount() {
@@ -255,11 +255,10 @@ export default class Podcast extends Component {
     return new Date(this.parts[0], this.parts[1] - 1, this.parts[2]);
   }
 
-  covertAllTags() {
-    const { tags } = this.state;
-    const tagsArray = tags.splice(tags);
-    console.log('tagsArray:', tagsArray);
-  }
+  // covertAllTags() {
+  //   const { tags } = this.state;
+  //   const tagsArray = tags.splice(tags);
+  // }
 
   render() {
     const {
@@ -374,7 +373,7 @@ export default class Podcast extends Component {
                 tags.map((tag, key) => (
                   <>
                     <TagLi key={key}>
-                      <Tag to={`/podcasts/tag/${slugify(tag.toLowerCase())}`}>
+                      <Tag to={`/podcasts/tags/${slugify(tag.toLowerCase())}`}>
                         {tag}
                       </Tag>
                     </TagLi>

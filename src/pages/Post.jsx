@@ -5,7 +5,7 @@ import {
   FaSpinner,
 } from 'react-icons/fa';
 import SubNavBar from '../components/UI/navbar/SubNavBar';
-import AdSense from '../components/UI/ads/AdvertisementSquare.component';
+// import AdSense from '../components/UI/ads/AdvertisementSquare.component';
 import Newsletter from '../components/UI/newsletter/NewsletterSide.component';
 import RecentCategories from '../components/UI/categories/RecentCategoriesBlogPost';
 
@@ -27,6 +27,7 @@ import {
   RelatedPostList,
   RelatedPostLi,
   RelatedPostH6,
+  StickyWrapper,
 } from '../styled-components/post.styled-components';
 
 export default class Post extends Component {
@@ -48,7 +49,7 @@ export default class Post extends Component {
     this.getPostBySlug = this.getPostBySlug.bind(this);
     this.getPostByCategory = this.getPostByCategory.bind(this);
     this.parseDate = this.parseDate.bind(this);
-    this.covertAllTags = this.covertAllTags.bind(this);
+    // this.covertAllTags = this.covertAllTags.bind(this);
   }
 
   async componentDidMount() {
@@ -67,7 +68,6 @@ export default class Post extends Component {
       } = post[0];
       const relatedCategoryPosts = await this.getPostByCategory(category, slug);
       // this.covertAllTags()
-      console.log('relatedCategoryPosts:', relatedCategoryPosts);
       const dateFormatted = this.parseDate(publishedOn);
       const months = [
         'January',
@@ -172,11 +172,10 @@ export default class Post extends Component {
     return new Date(this.parts[0], this.parts[1] - 1, this.parts[2]);
   }
 
-  covertAllTags() {
-    const {tags} = this.state;
-    let tagsArray = tags.splice(tags);
-    console.log('tagsArray:', tagsArray);
-  }
+  // covertAllTags() {
+  //   const {tags} = this.state;
+  //   let tagsArray = tags.splice(tags);
+  // }
 
   componentWillUnmount() {
     this._isMounted = false;
@@ -301,15 +300,10 @@ export default class Post extends Component {
             {postRelatedPost}
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-            <div
-              style={{
-                marginTop: '33px',
-              }}
-            >
+            <StickyWrapper>
               <RecentCategories />
               <Newsletter />
-              <AdSense />
-            </div>
+            </StickyWrapper>
           </div>
         </>
       );

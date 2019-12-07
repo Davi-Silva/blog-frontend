@@ -15,7 +15,6 @@ import {
   ToggleButton,
   // SignUp,
   LinkAProfile,
-  Button,
 } from '../../../styled-components/navbar.styled-components';
 
 export default class Navbar extends Component {
@@ -31,12 +30,10 @@ export default class Navbar extends Component {
 
   componentDidMount() {
     if (window.screen.width <= 991) {
-      console.log('window.screen.width:', window.screen.width);
       this.setState({
         mobile: true,
       });
     } else if (window.screen.width > 991) {
-      console.log('window.screen.width:', window.screen.width);
       this.setState({
         mobile: false,
       });
@@ -49,7 +46,6 @@ export default class Navbar extends Component {
     } = this.state;
     const sideDrawer = window.document.body.children[1].children[1];
     const sideBackgroundDrawer = window.document.body.children[1].children[0];
-    console.log('container:', sideDrawer);
     if (!showSideDrawer) {
       sideDrawer.classList.remove('hideSideDrawer');
       sideBackgroundDrawer.classList.remove('hideBackgroundSideDrawer');

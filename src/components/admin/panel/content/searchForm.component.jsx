@@ -64,26 +64,17 @@ export default class SearchForm extends Component {
         .toLowerCase()
         .split(' ')
         .join('-');
-      console.log('slug:', slug);
       if (podcast.slug === slug) {
-        console.log('Slug is equal');
         if (medias.length === 0) {
-          console.log('this.state.medias.length:', medias.length);
           medias.push(podcast);
-          console.log('medias:', medias);
-          console.log('this.state.medias.length:', medias.length);
         }
         if (medias.length > 1) {
           if (!medias[0].slug.includes(slug)) {
-            console.log('DIFFERENT this.state.medias.length:', medias.length);
-            console.log('medias:', medias);
             medias.pop();
-            console.log('ATER EQUAL this.state.medias.length:', medias.length);
           }
         }
       }
     });
-    console.log('this.state.medias:', medias);
   }
 
   render() {

@@ -21,7 +21,6 @@ export default class RecentCategoriesBlogPost extends Component {
 
   async componentDidMount() {
     const categoriesList = await this.getCategories();
-    console.log('categoriesList:', categoriesList);
     this.setStateAsync({
       categories: categoriesList,
     });
@@ -38,7 +37,6 @@ export default class RecentCategoriesBlogPost extends Component {
       },
     });
     const data = await this.response.json();
-    console.log('data first:', data);
     return data;
   }
 

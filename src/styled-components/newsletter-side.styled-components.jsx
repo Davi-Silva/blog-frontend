@@ -80,11 +80,15 @@ export const Icon = styled.div`
     }
   }
   @media (max-width: 991px) {
-    left: 40px;
-    top: 39px;
+    left: 11px;
+    top: -26px;
   }
   @media (max-width: 766px) {
-    left: 30px;
-    top: 47px;
+    left: 16px;
+    top: -33px;
+  }
+  @media (max-width: 576px) {
+    left: 16px;
+    top: -32px;
   }
 `;

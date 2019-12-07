@@ -2,7 +2,7 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
+  // Switch,
   Route,
   // withRouter,
 } from 'react-router-dom';
@@ -31,6 +31,8 @@ import Podcast from './pages/Podcast';
 import EditPodcast from './pages/EditPodcast';
 import EditPost from './pages/EditPost';
 import Podcasts from './pages/Podcasts';
+import PodcastsByTags from './pages/PodcastsByTags';
+import PodcastsByCategory from './pages/PodcastsByCategory';
 import UploadNewPodcast from './pages/UploadNewPodcast';
 import PublishBlogPost from './pages/PublishBlogPost';
 import PageNotFound from './pages/PageNotFound';
@@ -82,6 +84,16 @@ function App() {
           exact
           path="/blog/category/:slug"
           component={BlogPostByCategory}
+        />
+        <Route
+          exact
+          path="/podcasts/tags/:slug"
+          component={PodcastsByTags}
+        />
+        <Route
+          exact
+          path="/podcasts/category/:slug"
+          component={PodcastsByCategory}
         />
         <Route
           exacth

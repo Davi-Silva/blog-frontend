@@ -161,7 +161,6 @@ export default class UploadNewPodcast extends Component {
   tagsToArray() {
     const {tags} = this.state;
     let tempTags = tags.split(', ');
-    console.log('tempTags:', tempTags);
     this.setStateAsync({
       tagsArray: tempTags,
     });
@@ -189,25 +188,14 @@ export default class UploadNewPodcast extends Component {
       cover: uploadedCovers[uploadedCovers.length - 1].id,
       audioFile: uploadedFiles[uploadedFiles.length - 1].id
     };
-    console.log("podcast_info:", podcastInfo);
-    console.log(
-      "uploadedFiles:",
-      uploadedFiles[uploadedFiles.length - 1].id
-    );
-    console.log(
-      "uploadedCovers:",
-      uploadedCovers[uploadedCovers.length - 1].id
-    );
     let isSlugValidRes = await this.verifySlug(this.state.slug);
-    console.log("isSlugValidRes:", isSlugValidRes);
     if (isSlugValidRes.valid) {
       let res = await this.uploadPodcast(podcastInfo);
       this.setStateAsync({
         uploaded: res.uploaded
       });
-      console.log(res);
     } else {
-      console.log("Slug is invalid");
+      // console.log("Slug is invalid");
     }
   }
 
@@ -233,10 +221,8 @@ export default class UploadNewPodcast extends Component {
 
   async componentDidUpdate() {
     let res = await this.setGlobalVariable();
-
-    console.log("resolve:", res);
+    console.log('res:', res);
     if (this.state.uploaded) {
-      console.log("Podcast Uploaded");
       this.props.history.push("/admin");
     }
   }
@@ -411,7 +397,6 @@ export default class UploadNewPodcast extends Component {
   };
 
   handleEditorChange = async (e) => {
-    console.log('Content was updated:', e.target.getContent());
     this.setStateAsync({
       description: e.target.getContent()
     });

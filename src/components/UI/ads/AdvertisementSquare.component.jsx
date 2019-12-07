@@ -17,16 +17,8 @@ export default class AdvertisementSquare extends Component {
   listenScrollEvent = e => {
 		if (window.scrollY > 56) {
 			this.setState({ containerClassName: "adSquareContainerFixed" });
-			// console.log(
-			// 	"this.state.containerClassName:",
-			// 	this.state.containerClassName
-			// );
 		} else {
 			this.setState({ containerClassName: "adSquareContainerRelative" });
-			// console.log(
-			// 	"this.state.containerClassName:",
-			// 	this.state.containerClassName
-			// );
 		}
 	};
 

@@ -28,14 +28,12 @@ export default class BlogContent extends Component {
 
   async componentDidMount() {
     const postsList = await this.getAllBlogPost();
-    console.log('postsList:', postsList);
     if (!postsList.found) {
       this.setStateAsync({
         found: false,
       });
     }
     if (postsList.length > 0) {
-      console.log('has found');
       await this.setStateAsync({
         posts: postsList,
         found: true,

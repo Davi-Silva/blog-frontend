@@ -172,3 +172,9 @@ export const InfinitePodcastList = styled.ul`
 		}
 	}
 `;
+
+export const StickyWrapper = styled.div`
+	margin-top: 33px;
+	position: sticky;
+	top: 63px;
+`;

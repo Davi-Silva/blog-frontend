@@ -52,7 +52,6 @@ export default class List extends Component {
     const typeLower = type.toLowerCase();
     const editTo = `/edit/${typeLower}/${slug}`;
     // const date = date;
-    console.log('date:', date);
 
     const dateFormatted = this.parseDate(date);
     const months = [
@@ -130,7 +129,6 @@ export default class List extends Component {
 
   async getPodcastBySlug() {
     const { slug } = this.state;
-    console.log('slug:', slug);
     this.response = await fetch(
       // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${slug}`,
       `http://localhost:5000/podcasts/get/${slug}`,

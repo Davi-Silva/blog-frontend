@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 import {
   Header,
@@ -6,8 +6,8 @@ import {
   Button,
   P,
   A,
-  Alert
-} from "../styled-components/forms.styled-components";
+  Alert,
+} from '../styled-components/forms.styled-components';
 
 class Register extends Component {
   constructor(props) {
@@ -20,13 +20,13 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      name: "",
-      email: "",
-      password: "",
-      password2: "",
+      name: '',
+      email: '',
+      password: '',
+      password2: '',
       alertMsg: {
-        msgs: []
-      }
+        msgs: [],
+      },
     };
   }
 
@@ -34,40 +34,40 @@ class Register extends Component {
 
   onChangeName(e) {
     this.setState({
-      name: e.target.value
+      name: e.target.value,
     });
   }
 
   onChangeEmail(e) {
     this.setState({
-      email: e.target.value
+      email: e.target.value,
     });
   }
 
   onChangePassword(e) {
     this.setState({
-      password: e.target.value
+      password: e.target.value,
     });
   }
 
   onChangePassword2(e) {
     this.setState({
-      password2: e.target.value
+      password2: e.target.value,
     });
   }
 
   async registerUser(registerInfo) {
-    let response = await fetch("https://cryptic-activist-backend.herokuapp.com/users/register", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
+    const response = await fetch('https://cryptic-activist-backend.herokuapp.com/users/register', {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(registerInfo)
+      body: JSON.stringify(registerInfo),
     });
-    let data = await response.json();
+    const data = await response.json();
     return data;
   }
 
@@ -78,15 +78,14 @@ class Register extends Component {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
     };
 
     this.registerUser(registerInfo)
       .then(() => {
-        console.log("Registerd successully");
-        window.location = "/login";
+        window.location = '/login';
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -98,13 +97,13 @@ class Register extends Component {
             role="alert"
             onChange={this.onChangeAlert}
           >
-            {this.state.alertMsg.msgs.map(msg => {
-              return msg;
-            })}
+            {this.state.alertMsg.msgs.map((msg) => msg)}
           </Alert>
           <div className="form-container">
             <Header className="text-center mb-3">
-              <i className="fas fa-user-plus"></i> Sign Up
+              <i className="fas fa-user-plus" />
+              {' '}
+Sign Up
             </Header>
             <form onSubmit={this.onSubmit}>
               <Input
@@ -139,7 +138,9 @@ class Register extends Component {
               <Button type="submit">Register</Button>
             </form>
             <P className="mt-1">
-              Have An Account? <A href="/login">Login</A>
+              Have An Account?
+              {' '}
+              <A href="/login">Login</A>
             </P>
           </div>
         </div>

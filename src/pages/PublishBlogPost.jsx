@@ -68,8 +68,12 @@ export default class PublishBlogPost extends Component {
   }
 
   async componentDidUpdate() {
-    const { uploaded, uploadedCovers } = this.state;
+    const {
+      uploaded,
+      // uploadedCovers
+    } = this.state;
     const res = await this.setGlobalVariable();
+    console.log('res:', res);
     if (uploaded) {
       this.props.history.push('/admin');
     }
@@ -141,7 +145,6 @@ export default class PublishBlogPost extends Component {
   tagsToArray() {
     const {tags} = this.state;
     let tempTags = tags.split(', ');
-    console.log('tempTags:', tempTags);
     this.setStateAsync({
       tagsArray: tempTags,
     });
@@ -227,7 +230,6 @@ export default class PublishBlogPost extends Component {
         });
         history.push('/blog');
       } else {
-        console.log("Slug is invalid");
       }
     } else {
       this.setStateAsync({

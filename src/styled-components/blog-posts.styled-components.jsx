@@ -106,3 +106,8 @@ export const ByTagName = styled.span`
 	text-transform: uppercase;
 	letter-spacing: 1px;
 `;
+
+export const StickyWrapper = styled.div`
+	position: sticky;
+	top: 60px;
+`;

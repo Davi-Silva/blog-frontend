@@ -18,6 +18,7 @@ import {
   NoContentDiv,
   NoContentImg,
   NoContentP,
+  StickyWrapper,
 } from '../styled-components/blog-posts.styled-components';
 
 export default class Blog extends Component {
@@ -67,7 +68,6 @@ export default class Blog extends Component {
       },
     });
     const data = await this.response.json();
-    console.log('data first:', data);
     return data;
   }
 
@@ -79,12 +79,10 @@ export default class Blog extends Component {
 
   async getMorePosts() {
     const { page, postsList } = this.state;
-    console.log('page:', page);
     this.setStateAsync({
       page: page + 1,
     });
     const tempPage = page + 1;
-    console.log(`http://localhost:5000/blog/short?page=${tempPage}`);
     // this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/short?page=${page}`, {
     this.response = await fetch(`http://localhost:5000/blog/short?page=${tempPage}`, {
       method: 'GET',
@@ -96,7 +94,6 @@ export default class Blog extends Component {
       },
     });
     const data = await this.response.json();
-    console.log('postsList:', data);
     if (data.length < 10) {
       this.setStateAsync({
         postsList: postsList.concat(data),
@@ -120,7 +117,6 @@ export default class Blog extends Component {
       hasMore,
       found,
     } = this.state;
-    console.log('postList:', postsList);
     let allPosts;
     if (!found) {
       allPosts = (
@@ -174,8 +170,10 @@ export default class Blog extends Component {
               </InfinitePostList>
             </div>
             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-              <RecentCategories />
-              <NewsletterSide />
+              <StickyWrapper>
+                <RecentCategories />
+                <NewsletterSide />
+              </StickyWrapper>
             </div>
           </div>
         </>

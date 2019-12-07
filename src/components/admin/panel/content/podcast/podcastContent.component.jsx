@@ -27,7 +27,6 @@ export default class PodcastContent extends Component {
 
   async componentDidMount() {
     const podcastsList = await this.getAllPodcasts();
-    console.log('podcastsList:', podcastsList);
     if (!podcastsList.found) {
       this.setStateAsync({
         found: false,

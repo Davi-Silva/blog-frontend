@@ -340,3 +340,9 @@ export const LoadingAllContent = styled.div`
 		margin: 25px auto;
 	}
 `;
+
+export const StickyWrapper = styled.div`
+	margin-top: 33px;
+	position: sticky;
+	top: 63px;
+`;

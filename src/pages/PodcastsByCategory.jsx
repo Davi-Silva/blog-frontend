@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -8,8 +9,6 @@ import {
 import BitcoinDoddle from '../static/img/no-content-img.png';
 
 import PodcastsList from '../components/UI/lists/PodcastsList.component';
-// import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
-
 import SubNavBar from '../components/UI/navbar/SubNavBar';
 import NewsletterSide from '../components/UI/newsletter/NewsletterSide.component';
 import RecentCategories from '../components/UI/categories/RecentCategoriesPodcast';
@@ -23,24 +22,29 @@ import {
   StickyWrapper,
 } from '../styled-components/podcasts.styled-components';
 
-export default class Podcasts extends Component {
+export default class PodcastsByCategory extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       podcasts: [],
+      category: '',
       page: 1,
       hasMore: null,
       found: false,
     };
-
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.getFirstPodcasts = this.getFirstPodcasts.bind(this);
-    this.getMorePodcasts = this.getMorePodcasts.bind(this);
+    this.getFirstPosts = this.getFirstPosts.bind(this);
+    this.getMorePosts = this.getMorePosts.bind(this);
   }
 
   async componentDidMount() {
-    const podcastsList = await this.getFirstPodcasts();
+    const { match } = this.props;
+    const { slug } = match.params;
+
+    this.setStateAsync({
+      category: slug,
+    });
+    const podcastsList = await this.getFirstPosts(slug);
     let more = true;
     if (!podcastsList.found) {
       this.setStateAsync({
@@ -59,10 +63,11 @@ export default class Podcasts extends Component {
     }
   }
 
-  async getFirstPodcasts() {
-    const { page } = this.state;
-    // this.response = await fetch('https://cryptic-activist-backend.herokuapp.com/podcasts', {
-    this.response = await fetch(`http://localhost:5000/podcasts/short?page=${page}`, {
+  async getFirstPosts(category) {
+    const {
+      page,
+    } = this.state;
+    this.response = await fetch(`http://localhost:5000/podcasts/get/category/${category}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -81,14 +86,14 @@ export default class Podcasts extends Component {
     });
   }
 
-  async getMorePodcasts() {
-    const { page, podcasts } = this.state;
-    this.setStateAsync({
-      page: page + 1,
-    });
-    const tempPage = page + 1;
+  async getMorePosts() {
+    const {
+      page,
+      category,
+      podcasts,
+    } = this.state;
     // this.response = await fetch('https://cryptic-activist-backend.herokuapp.com/podcasts', {
-    this.response = await fetch(`http://localhost:5000/podcasts/short?page=${tempPage}`, {
+    this.response = await fetch(`http://localhost:5000/podcasts/get/category/${category}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -100,7 +105,7 @@ export default class Podcasts extends Component {
     const data = await this.response.json();
     if (data.length < 10) {
       this.setStateAsync({
-        podcasts: podcasts.concat(data),
+        posts: podcasts.concat(data),
       });
       setTimeout(() => {
         this.setStateAsync({
@@ -108,6 +113,10 @@ export default class Podcasts extends Component {
         });
       }, 10);
     } else {
+      this.setStateAsync({
+        page: page + 1,
+      });
+
       this.setStateAsync({
         podcasts: podcasts.concat(data),
       });
