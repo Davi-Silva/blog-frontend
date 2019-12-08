@@ -3,6 +3,107 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { rotate } from './animations';
 
+export const AdminWrapper = styled.div`
+  padding: 0;
+`;
+
+export const Column = styled.div`
+  padding: 0 15px;
+  @media (max-width: 1199px) {
+    padding-right: 10px;
+  }
+  @media (max-width: 1106px) {
+    padding-right: 5px;
+  }
+  @media (max-width: 991px) {
+    padding-right: 0px;
+  }
+  @media (max-width: 767px) {
+    padding-right: 15px;
+    height: 1000px;
+  }
+`;
+
+export const AdminUl = styled.ul`
+  padding: 0;
+  @media (max-width: 767px) {
+    width: 100%;
+    position: sticky;
+    top: 0;
+  }
+`;
+
+export const AdminLi = styled.li`
+  list-style: none;
+  width: 100%;
+  height: 100px;
+  transition: all .2s ease-in-out;
+  &:hover {
+    color: #0058e4;
+  }
+  @media (max-width: 767px) {
+    display: inline-block;
+    width: 25%;
+    height: 70px;
+  }
+`;
+
+export const AdminButton = styled.button`
+  color: #888;
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+  transform: translateY(30px);
+  background: transparent;
+  border: none;
+  transition: all .2s ease-in-out;
+  @media (max-width: 767px) {
+    transform: translateY(14px);
+  }
+  &:hover {
+    text-decoration: none;
+    color: #0058e4;
+  }
+  &:focus {
+    outline: none;
+  }
+  svg {
+    margin: 0 auto;
+    display: table;
+    font-size: 22px;
+    @media (max-width: 566px) {
+      font-size: 20px;
+    }
+    @media (max-width: 400px) {
+      font-size: 18px;
+    }
+    @media (max-width: 272px) {
+      font-size: 16px;
+    }
+  }
+  span {
+    margin: 0 auto;
+    display: table;
+    font-size: 14px;
+    margin-top: 4px;
+    @media (max-width: 566px) {
+      font-size: 13px;
+    }
+    @media (max-width: 400px) {
+      font-size: 12px;
+    }
+    @media (max-width: 272px) {
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    width: unset!important;
+    height: unset!important;
+  }
+`;
+
 export const H6 = styled.h6`
   color: #999;
   font-weight: 900;
