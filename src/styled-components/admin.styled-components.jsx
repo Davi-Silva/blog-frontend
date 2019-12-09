@@ -20,15 +20,17 @@ export const Column = styled.div`
   }
   @media (max-width: 767px) {
     padding-right: 15px;
-    height: 1000px;
   }
 `;
 
 export const AdminUl = styled.ul`
   padding: 0;
+  position: sticky;
+  top: 0;
   @media (max-width: 767px) {
     width: 100%;
     position: sticky;
+    margin-bottom: 0px!important;
     top: 0;
   }
 `;
@@ -48,13 +50,84 @@ export const AdminLi = styled.li`
   }
 `;
 
+export const AdminLi2 = styled.li`
+  list-style: none;
+  width: 100%;
+  height: 100px;
+  transform: translateY(49px);
+  transition: all .2s ease-in-out;
+  &:hover {
+    color: #0058e4;
+  }
+  @media (max-width: 767px) {
+    display: inline-block;
+    transform: translateY(0px);
+    width: 33%;
+    height: 55px;
+  }
+`;
+
 export const AdminButton = styled.button`
   color: #888;
   width: 100%;
   height: 100%;
   display: block;
   margin: 0 auto;
-  transform: translateY(30px);
+  background: transparent;
+  border: none;
+  transition: all .2s ease-in-out;
+  @media (max-width: 767px) {
+    transform: translateY(14px);
+  }
+  &:hover {
+    text-decoration: none;
+    color: #0058e4;
+  }
+  &:focus {
+    outline: none;
+  }
+  svg {
+    margin: 0 auto;
+    display: table;
+    font-size: 22px;
+    @media (max-width: 566px) {
+      font-size: 20px;
+    }
+    @media (max-width: 400px) {
+      font-size: 18px;
+    }
+    @media (max-width: 272px) {
+      font-size: 16px;
+    }
+  }
+  span {
+    margin: 0 auto;
+    display: table;
+    font-size: 14px;
+    margin-top: 4px;
+    @media (max-width: 566px) {
+      font-size: 13px;
+    }
+    @media (max-width: 400px) {
+      font-size: 12px;
+    }
+    @media (max-width: 272px) {
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    width: unset!important;
+    height: unset!important;
+  }
+`;
+
+export const AdminSubButton = styled.button`
+  color: #888;
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
   background: transparent;
   border: none;
   transition: all .2s ease-in-out;

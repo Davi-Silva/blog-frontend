@@ -106,5 +106,6 @@ export const BlogPostCoverUploaderPlaceholder = styled.div`
     margin: 15px auto;
     color: #999;
     font-size: 16px;
+    text-align: center;
   }
 `;

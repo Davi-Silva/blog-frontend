@@ -5,6 +5,9 @@ import {
   FaBlog,
   FaPodcast,
   FaCog,
+  FaPlus,
+  FaSearch,
+  FaEdit,
 } from 'react-icons/fa';
 
 import CoursePanel from '../components/admin/panel/course.component';
@@ -12,12 +15,16 @@ import PodcastPanel from '../components/admin/panel/podcast.component';
 import BlogPanel from '../components/admin/panel/blog.component';
 import SettingsPanel from '../components/admin/panel/settings.component';
 
+import PublishBlogPost from './PublishBlogPost';
+
 import {
   Column,
   AdminWrapper,
   AdminUl,
   AdminLi,
+  AdminLi2,
   AdminButton,
+  AdminSubButton,
 } from '../styled-components/admin.styled-components';
 
 export default class Admin extends Component {
@@ -28,11 +35,19 @@ export default class Admin extends Component {
       blog: false,
       podcasts: false,
       settings: false,
+      subMenu: {
+        add: false,
+        edit: false,
+        search: false,
+      },
     };
     this.onChangeCourse = this.onChangeCourse.bind(this);
     this.onChangeBlog = this.onChangeBlog.bind(this);
     this.onChangePodcasts = this.onChangePodcasts.bind(this);
     this.onChangeSettings = this.onChangeSettings.bind(this);
+    this.onChangeAdd = this.onChangeAdd.bind(this);
+    this.onChangeEdit = this.onChangeEdit.bind(this);
+    this.onChangeSearch = this.onChangeSearch.bind(this);
   }
 
   onChangeCourse() {
@@ -41,6 +56,11 @@ export default class Admin extends Component {
       blog: false,
       podcasts: false,
       settings: false,
+      subMenu: {
+        add: false,
+        edit: false,
+        search: false,
+      },
     });
   }
 
@@ -50,6 +70,11 @@ export default class Admin extends Component {
       blog: true,
       podcasts: false,
       settings: false,
+      subMenu: {
+        add: false,
+        edit: false,
+        search: false,
+      },
     });
   }
 
@@ -59,6 +84,11 @@ export default class Admin extends Component {
       blog: false,
       podcasts: true,
       settings: false,
+      subMenu: {
+        add: false,
+        edit: false,
+        search: false,
+      },
     });
   }
 
@@ -68,6 +98,41 @@ export default class Admin extends Component {
       blog: false,
       podcasts: false,
       settings: true,
+      subMenu: {
+        add: false,
+        edit: false,
+        search: false,
+      },
+    });
+  }
+
+  onChangeAdd() {
+    this.setState({
+      subMenu: {
+        add: true,
+        edit: false,
+        search: false,
+      },
+    });
+  }
+
+  onChangeEdit() {
+    this.setState({
+      subMenu: {
+        add: false,
+        edit: true,
+        search: false,
+      },
+    });
+  }
+
+  onChangeSearch() {
+    this.setState({
+      subMenu: {
+        add: false,
+        edit: false,
+        search: true,
+      },
     });
   }
 
@@ -77,12 +142,143 @@ export default class Admin extends Component {
       blog,
       podcasts,
       settings,
+      subMenu,
     } = this.state;
 
     let coursesVar;
     let blogVar;
     let podcastsVar;
     let settingsVar;
+    let subMenuVar;
+    let addVar;
+    let editVar;
+    let searchVar;
+    let publishBlogPost;
+
+    if (courses || blog || podcasts || settings) {
+      addVar = (
+        <>
+          <AdminSubButton
+            onClick={this.onChangeAdd}
+          >
+            <FaPlus />
+          </AdminSubButton>
+        </>
+      );
+      editVar = (
+        <>
+          <AdminSubButton
+            onClick={this.onChangeEdit}
+          >
+            <FaEdit />
+          </AdminSubButton>
+        </>
+      );
+      searchVar = (
+        <>
+          <AdminSubButton
+            onClick={this.onChangeSearch}
+          >
+            <FaSearch />
+          </AdminSubButton>
+        </>
+      );
+
+      if (subMenu.add) {
+        addVar = (
+          <>
+            <AdminSubButton
+              onClick={this.onChangeAdd}
+              style={{
+                color: '#0058e4',
+              }}
+            >
+              <FaPlus />
+            </AdminSubButton>
+          </>
+        );
+        if (blog) {
+          publishBlogPost = (
+            <>
+              <PublishBlogPost />
+            </>
+          );
+        }
+      } else {
+        addVar = (
+          <>
+            <AdminSubButton
+              onClick={this.onChangeAdd}
+            >
+              <FaPlus />
+            </AdminSubButton>
+          </>
+        );
+      }
+
+      if (subMenu.edit) {
+        editVar = (
+          <>
+            <AdminSubButton
+              onClick={this.onChangeEdit}
+              style={{
+                color: '#0058e4',
+              }}
+            >
+              <FaEdit />
+            </AdminSubButton>
+          </>
+        );
+      } else {
+        editVar = (
+          <>
+            <AdminSubButton
+              onClick={this.onChangeEdit}
+            >
+              <FaEdit />
+            </AdminSubButton>
+          </>
+        );
+      }
+
+      if (subMenu.search) {
+        searchVar = (
+          <>
+            <AdminSubButton
+              onClick={this.onChangeSearch}
+              style={{
+                color: '#0058e4',
+              }}
+            >
+              <FaSearch />
+            </AdminSubButton>
+          </>
+        );
+      } else {
+        searchVar = (
+          <>
+            <AdminSubButton
+              onClick={this.onChangeSearch}
+            >
+              <FaSearch />
+            </AdminSubButton>
+          </>
+        );
+      }
+    } else {
+      addVar = (
+        <>
+        </>
+      );
+      editVar = (
+        <>
+        </>
+      );
+      searchVar = (
+        <>
+        </>
+      );
+    }
 
     if (courses) {
       coursesVar = (
@@ -232,6 +428,8 @@ export default class Admin extends Component {
             <Column className="col-lg-1 col-md-1 col-sm-12 col-12">
               <AdminUl>
                 <AdminLi>
+                  {' '}
+                  {subMenuVar}
                   {coursesVar}
                 </AdminLi>
                 <AdminLi>
@@ -245,8 +443,22 @@ export default class Admin extends Component {
                 </AdminLi>
               </AdminUl>
             </Column>
-
-
+            <Column className="col-lg-1 col-md-1 col-sm-12 col-12">
+              <AdminUl>
+                <AdminLi2>
+                  {addVar}
+                </AdminLi2>
+                <AdminLi2>
+                  {editVar}
+                </AdminLi2>
+                <AdminLi2>
+                  {searchVar}
+                </AdminLi2>
+              </AdminUl>
+            </Column>
+            <div className="col-lg-10 col-md-10 col-sm-12 col-12">
+              {publishBlogPost}
+            </div>
           </div>
         </AdminWrapper>
       </>
