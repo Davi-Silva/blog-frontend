@@ -352,18 +352,19 @@ export const Edit = styled(Link)`
   font-size: 12px;
   border: none;
   padding: 3px 7px;
+  font-weight: 700;
   background-color: #fff;
-  border-radius: 50px;
-  border: 1px solid #0058e4;
+  border-radius: 4px;
   color: #0058e4;
   transition: all .3s ease-in-out;
+  transition-delay: .1s;
   &:focus {
     outline: none;
   }
   &:hover {
-    color: #fff;
+    color: #0058e4;
     text-decoration: none;
-    background-color: #0058e4;
+    background-color: #d0dcef;
   }
 `;
 
@@ -371,19 +372,21 @@ export const Delete = styled.button`
   margin-left: 5px;
   float: right;
   font-size: 12px;
-  border: 1px solid #cc2222;
+  border: none;
   padding: 3px 7px;
+  font-weight: 700;
   background-color: #fff;
-  border-radius: 50px;
+  border-radius: 4px;
   color: #cc2222;
   transition: all .3s ease-in-out;
+  transition-delay: .1s;
   &:focus {
     outline: none;
   }
   &:hover {
-    color: #fff;
+    color: #cc2222;
     text-decoration: none;
-    background-color: #cc2222;
+    background-color: #ffd5d5;
   }
 `;
 
@@ -391,19 +394,20 @@ export const GoTo = styled(Link)`
   color: #333;
   margin-right: 10px;
   float: right;
-  border: 1px solid #333;
   font-size: 12px;
   padding: 3px 7px;
-  border-radius: 50px;
+  font-weight: 700;
+  border-radius: 4px;
   background-color: #fff;
   transition: all 0.3s ease-in-out;
+  transition-delay: .1s;
   &:focus {
     outline: none;
   }
   &:hover {
-    color: #fff;
+    color: #333;
     text-decoration: none;
-    background-color: #333;
+    background-color: #e4e4e4;
   }
 `;
 

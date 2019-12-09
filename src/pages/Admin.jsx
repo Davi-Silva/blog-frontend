@@ -9,6 +9,7 @@ import {
   FaPlus,
   FaSearch,
   FaEdit,
+  FaListUl,
 } from 'react-icons/fa';
 
 import CoursePanel from '../components/admin/panel/course.component';
@@ -20,6 +21,9 @@ import PublishBlogPost from './PublishBlogPost';
 import UploadNewPodcast from './UploadNewPodcast';
 import EditPost from './EditPost';
 import EditPodcast from './EditPodcast';
+
+import BlogPostContent from '../components/admin/panel/content/blog/blogContent.component';
+import PodcastContent from '../components/admin/panel/content/podcast/podcastContent.component';
 
 import {
   Column,
@@ -157,7 +161,7 @@ export default class Admin extends Component {
     let settingsVar;
     let subMenuVar;
     let addVar;
-    let editVar;
+    let listAllVar;
     let searchVar;
     let publishBlogPost;
     let uploadNewPodcast;
@@ -231,6 +235,54 @@ export default class Admin extends Component {
         );
       }
 
+      if (subMenu.edit) {
+        listAllVar = (
+          <>
+            <AdminSubButton
+              onClick={this.onChangeEdit}
+              style={{
+                color: '#0058e4',
+              }}
+            >
+              <FaListUl />
+            </AdminSubButton>
+          </>
+        );
+        if (blog) {
+          publishBlogPost = (
+            <>
+              <BlogPostContent />
+            </>
+          );
+          uploadNewPodcast = (
+            <>
+            </>
+          );
+        }
+        if (podcasts) {
+          publishBlogPost = (
+            <>
+            </>
+          );
+          uploadNewPodcast = (
+            <>
+              <PodcastContent />
+            </>
+          );
+        }
+      } else {
+        listAllVar = (
+          <>
+            <AdminSubButton
+              onClick={this.onChangeEdit}
+            >
+              <FaListUl />
+            </AdminSubButton>
+          </>
+        );
+      }
+
+
       if (subMenu.search) {
         searchVar = (
           <>
@@ -260,7 +312,7 @@ export default class Admin extends Component {
         <>
         </>
       );
-      editVar = (
+      listAllVar = (
         <>
         </>
       );
@@ -440,6 +492,9 @@ export default class Admin extends Component {
                 </AdminLi2>
                 <AdminLi2>
                   {searchVar}
+                </AdminLi2>
+                <AdminLi2>
+                  {listAllVar}
                 </AdminLi2>
               </AdminUl>
             </Column>

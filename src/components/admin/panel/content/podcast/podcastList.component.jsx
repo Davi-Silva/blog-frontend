@@ -158,7 +158,11 @@ export default class List extends Component {
       type, category, title, date, path, liID, slug, editTo,
     } = this.state;
     return (
-      <li style={{ margin: '0px 15px 6px 0px' }}>
+      <li style={{
+        margin: '0 10px 5px 10px',
+        listStyle: 'none',
+      }}
+      >
         <ToggleButton
           type="button"
           data-toggle="collapse"
