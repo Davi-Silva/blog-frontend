@@ -86,6 +86,10 @@ export default class List extends Component {
   }
 
   async onDeletePodcast() {
+    const {
+      ConcatNewPodcastsList,
+    } = this.props;
+    const concatNewPodcastsList = ConcatNewPodcastsList;
     const podcast = await this.getPodcastBySlug();
     const { id } = podcast[0];
     const { audioFileId, coverFileId } = this.state;
@@ -125,13 +129,14 @@ export default class List extends Component {
         'Content-Type': 'application/json',
       },
     });
+    concatNewPodcastsList(podcast);
   }
 
   async getPodcastBySlug() {
     const { slug } = this.state;
     this.response = await fetch(
       // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${slug}`,
-      `http://localhost:5000/podcasts/get/${slug}`,
+      `http://localhost:5000/podcasts/get/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',

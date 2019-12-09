@@ -30,7 +30,7 @@ export default class List extends Component {
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.onDeletePost = this.onDeletePost.bind(this);
-    this.getPodcastBySlug = this.getPodcastBySlug.bind(this);
+    this.getBlogPostBySlug = this.getBlogPostBySlug.bind(this);
   }
 
   componentDidMount() {
@@ -83,33 +83,24 @@ export default class List extends Component {
   }
 
   async onDeletePost() {
-    let podcast = await this.getPodcastBySlug();
-    podcast = podcast[0];
-    // await fetch(
-    //   `https://cryptic-activist-backend.herokuapp.com/podcasts/delete/audio/${podcast.cover._id}`,
-    //   {
-    //     method: "DELETE",
-    //     mode: "cors",
-    //     cache: "no-cache",
-    //     credentials: "same-origin",
-    //     headers: {
-    //       "Content-Type": "application/json"
-    //     }
-    //   }
-    // );
-    // await fetch(
-    //   `https://cryptic-activist-backend.herokuapp.com/podcasts/delete/cover/${podcast.audio_file._id}`,
-    //   {
-    //     method: "DELETE",
-    //     mode: "cors",
-    //     cache: "no-cache",
-    //     credentials: "same-origin",
-    //     headers: {
-    //       "Content-Type": "application/json"
-    //     }
-    //   }
-    // );
-    await fetch(`https://cryptic-activist-backend.herokuapp.com/podcasts/delete/${podcast.id}`, {
+    let post = await this.getBlogPostBySlug();
+    post = post[0];
+    await fetch(
+      `http://localhost:5000/blog/delete/cover/${post.cover._id}`,
+      // `https://cryptic-activist-backend.herokuapp.com/blog/delete/audio/${post.cover._id}`,
+      {
+        method: 'DELETE',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+
+    // await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/delete/${podcast.id}`, {
+    await fetch(`http://localhost:5000/blog/delete/${post.id}`, {
       method: 'DELETE',
       mode: 'cors',
       cache: 'no-cache',
@@ -120,11 +111,12 @@ export default class List extends Component {
     });
   }
 
-  async getPodcastBySlug() {
+  async getBlogPostBySlug() {
     const { slug } = this.state;
     const response = await fetch(
-      `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${slug}`,
-      // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${this.state.slug}`,
+      // `https://cryptic-activist-backend.herokuapp.com/blog/get/${slug}`,
+      // `https://cryptic-activist-backend.herokuapp.com/blog/get/${this.state.slug}`,
+      `http://localhost:5000/blog/get/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',

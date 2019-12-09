@@ -37,6 +37,7 @@ export default class Blog extends Component {
 
   async componentDidMount() {
     const postsList = await this.getFirstPosts();
+    console.log('postsList:', postsList);
     let more = true;
     if (!postsList.found) {
       this.setStateAsync({
@@ -78,6 +79,7 @@ export default class Blog extends Component {
   }
 
   async getMorePosts() {
+    console.log('ON BLOG PAGE');
     const { page, postsList } = this.state;
     this.setStateAsync({
       page: page + 1,

@@ -23,6 +23,7 @@ export default class PodcastContent extends Component {
       found: false,
     };
     this.componentDidMount = this.componentDidMount(this);
+    this.concatNewPodcastsList = this.concatNewPodcastsList.bind(this);
   }
 
   async componentDidMount() {
@@ -64,6 +65,32 @@ export default class PodcastContent extends Component {
     return data;
   }
 
+  async concatNewPodcastsList(podcast) {
+    const {
+      podcasts,
+    } = this.state;
+    // podcasts.forEach((p) => {
+    //   if (p.id === podcast[0].id) {
+    //     console.log('id found');
+    //     p.inde
+    //   }
+    // });
+    const index = podcasts.findIndex((x) => x.id === podcast[0].id);
+    if (index > -1) {
+      podcasts.splice(index, 1);
+    }
+    console.log('index:', index);
+    console.log('podcasts:', podcasts);
+    this.setStateAsync({
+      podcasts,
+    });
+    if (podcasts.length === 0) {
+      this.setStateAsync({
+        found: false,
+      });
+    }
+  }
+
   render() {
     let list;
     const {
@@ -97,6 +124,7 @@ export default class PodcastContent extends Component {
               liID={`p-${key}`}
               audioFileId={podcast.audioFile._id}
               coverFileId={podcast.cover._id}
+              ConcatNewPodcastsList={this.concatNewPodcastsList}
             />
           ))}
         </ul>

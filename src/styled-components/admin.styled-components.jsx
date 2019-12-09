@@ -237,13 +237,13 @@ export const ToggleButton = styled.button`
   border: 1px solid #fff;
   transition: all 0.2s ease-in-out;
   &:hover {
-    box-shadow: inset 0px 0px 7px rgba(0, 0, 0, 0.2);
-    border: 1px solid #0058e4;
+    box-shadow: inset 0px 0px 7px rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.04);
   }
   &:focus {
     outline: none;
-    border: 1px solid #0058e4;
-    box-shadow: inset 0px 0px 7px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0px 0px 7px rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.04);
   }
 `;
 
@@ -351,7 +351,7 @@ export const Edit = styled(Link)`
   float: right;
   font-size: 12px;
   border: none;
-  padding: 3px 7px;
+  padding: 4px 7px;
   font-weight: 700;
   background-color: #fff;
   border-radius: 4px;
@@ -364,7 +364,7 @@ export const Edit = styled(Link)`
   &:hover {
     color: #0058e4;
     text-decoration: none;
-    background-color: #d0dcef;
+    background-color: #e2ecfd;
   }
 `;
 
@@ -373,7 +373,7 @@ export const Delete = styled.button`
   float: right;
   font-size: 12px;
   border: none;
-  padding: 3px 7px;
+  padding: 4px 7px;
   font-weight: 700;
   background-color: #fff;
   border-radius: 4px;
@@ -386,7 +386,7 @@ export const Delete = styled.button`
   &:hover {
     color: #cc2222;
     text-decoration: none;
-    background-color: #ffd5d5;
+    background-color: #ffe5e5;
   }
 `;
 
@@ -395,7 +395,7 @@ export const GoTo = styled(Link)`
   margin-right: 10px;
   float: right;
   font-size: 12px;
-  padding: 3px 7px;
+  padding: 4px 7px;
   font-weight: 700;
   border-radius: 4px;
   background-color: #fff;
@@ -407,7 +407,7 @@ export const GoTo = styled(Link)`
   &:hover {
     color: #333;
     text-decoration: none;
-    background-color: #e4e4e4;
+    background-color: #ececec;
   }
 `;
 
@@ -625,11 +625,34 @@ export const AllContent = styled.div`
 `;
 
 export const LoadingAllContent = styled.div`
+	width: 100%;
 	svg {
 		animation: ${rotate} 1s infinite;
-		color: #999;
+		color: #333;
 		font-size: 18px;
 		display: table;
 		margin: 25px auto;
+	}
+`;
+
+export const InfinitePostList = styled.ul`
+	margin-bottom: 0px;
+	div {
+		overflow: hidden;
+		::-webkit-scrollbar {
+			display: none;
+		}
+
+		::-webkit-scrollbar-track {
+			display: none;
+		}
+
+		::-webkit-scrollbar-thumb {
+			display: none;
+		}
+
+		::-webkit-scrollbar-thumb:hover {
+			display: none;
+		}
 	}
 `;

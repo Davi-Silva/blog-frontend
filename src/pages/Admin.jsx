@@ -163,8 +163,8 @@ export default class Admin extends Component {
     let addVar;
     let listAllVar;
     let searchVar;
-    let publishBlogPost;
-    let uploadNewPodcast;
+    let allBlogPost;
+    let allPodcast;
     let editPost;
     let editPodcast;
 
@@ -202,22 +202,22 @@ export default class Admin extends Component {
           </>
         );
         if (blog) {
-          publishBlogPost = (
+          allBlogPost = (
             <>
               <PublishBlogPost History={history} />
             </>
           );
-          uploadNewPodcast = (
+          allPodcast = (
             <>
             </>
           );
         }
         if (podcasts) {
-          publishBlogPost = (
+          allBlogPost = (
             <>
             </>
           );
-          uploadNewPodcast = (
+          allPodcast = (
             <>
               <UploadNewPodcast History={history} />
             </>
@@ -249,22 +249,22 @@ export default class Admin extends Component {
           </>
         );
         if (blog) {
-          publishBlogPost = (
+          allBlogPost = (
             <>
               <BlogPostContent />
             </>
           );
-          uploadNewPodcast = (
+          allPodcast = (
             <>
             </>
           );
         }
         if (podcasts) {
-          publishBlogPost = (
+          allBlogPost = (
             <>
             </>
           );
-          uploadNewPodcast = (
+          allPodcast = (
             <>
               <PodcastContent />
             </>
@@ -499,8 +499,8 @@ export default class Admin extends Component {
               </AdminUl>
             </Column>
             <div className="col-lg-10 col-md-10 col-sm-12 col-12">
-              {publishBlogPost}
-              {uploadNewPodcast}
+              {allBlogPost}
+              {allPodcast}
             </div>
           </div>
         </AdminWrapper>
