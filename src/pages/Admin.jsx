@@ -16,6 +16,9 @@ import BlogPanel from '../components/admin/panel/blog.component';
 import SettingsPanel from '../components/admin/panel/settings.component';
 
 import PublishBlogPost from './PublishBlogPost';
+import UploadNewPodcast from './UploadNewPodcast';
+import EditPost from './EditPost';
+import EditPodcast from './EditPodcast';
 
 import {
   Column,
@@ -154,6 +157,9 @@ export default class Admin extends Component {
     let editVar;
     let searchVar;
     let publishBlogPost;
+    let uploadNewPodcast;
+    let editPost;
+    let editPodcast;
 
     if (courses || blog || podcasts || settings) {
       addVar = (
@@ -203,6 +209,21 @@ export default class Admin extends Component {
               <PublishBlogPost />
             </>
           );
+          uploadNewPodcast = (
+            <>
+            </>
+          );
+        }
+        if (podcasts) {
+          publishBlogPost = (
+            <>
+            </>
+          );
+          uploadNewPodcast = (
+            <>
+              <UploadNewPodcast />
+            </>
+          );
         }
       } else {
         addVar = (
@@ -229,6 +250,28 @@ export default class Admin extends Component {
             </AdminSubButton>
           </>
         );
+        if (blog) {
+          publishBlogPost = (
+            <>
+              <EditPost />
+            </>
+          );
+          uploadNewPodcast = (
+            <>
+            </>
+          );
+        }
+        if (podcasts) {
+          publishBlogPost = (
+            <>
+            </>
+          );
+          uploadNewPodcast = (
+            <>
+              <EditPodcast />
+            </>
+          );
+        }
       } else {
         editVar = (
           <>
@@ -458,6 +501,7 @@ export default class Admin extends Component {
             </Column>
             <div className="col-lg-10 col-md-10 col-sm-12 col-12">
               {publishBlogPost}
+              {uploadNewPodcast}
             </div>
           </div>
         </AdminWrapper>
