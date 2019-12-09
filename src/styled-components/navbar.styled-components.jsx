@@ -63,13 +63,13 @@ export const ToggleButton = styled.button`
     font-size: 17px;
   }
   @media (max-width: 440px) {
-    font-size: 16px;
+    font-size: 17px;
   }
   @media (max-width: 320px) {
-    font-size: 15px;
+    font-size: 16px;
   }
   @media (max-width: 240px) {
-    font-size: 13px;
+    font-size: 15px;
   }
 `;
 
