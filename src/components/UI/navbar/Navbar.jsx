@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import {
   FaBars,
+  FaSearch,
 } from 'react-icons/fa';
 
 import SideDrawer from './side-drawer/SideDrawer';
@@ -70,9 +71,6 @@ export default class Navbar extends Component {
         <SideDrawer ShowSideDrawer={showSideDrawer} HandleSideDrawer={this.handleSideDrawer} />
         <NavBar className="navbar navbar-expand-lg">
           <div className="container">
-            <Brand className="navbar-brand" to="/">
-                CrypticActivist
-            </Brand>
             <ToggleButton
               className="navbar-toggler"
               type="button"
@@ -82,6 +80,17 @@ export default class Navbar extends Component {
               aria-label="Toggle navigation"
             >
               <FaBars />
+            </ToggleButton>
+            <Brand className="navbar-brand" to="/">
+                CrypticActivist
+            </Brand>
+            <ToggleButton
+              className="navbar-toggler"
+              type="button"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <FaSearch />
             </ToggleButton>
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">

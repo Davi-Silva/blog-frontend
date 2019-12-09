@@ -223,7 +223,10 @@ export default class UploadNewPodcast extends Component {
     let res = await this.setGlobalVariable();
     console.log('res:', res);
     if (this.state.uploaded) {
-      this.props.history.push("/admin");
+      const {
+        History
+      } = this.props;
+      History.push("/podcasts");
     }
   }
 

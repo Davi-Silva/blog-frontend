@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 
 import {
@@ -148,6 +149,8 @@ export default class Admin extends Component {
       subMenu,
     } = this.state;
 
+    const { history } = this.props;
+
     let coursesVar;
     let blogVar;
     let podcastsVar;
@@ -168,15 +171,6 @@ export default class Admin extends Component {
             onClick={this.onChangeAdd}
           >
             <FaPlus />
-          </AdminSubButton>
-        </>
-      );
-      editVar = (
-        <>
-          <AdminSubButton
-            onClick={this.onChangeEdit}
-          >
-            <FaEdit />
           </AdminSubButton>
         </>
       );
@@ -206,7 +200,7 @@ export default class Admin extends Component {
         if (blog) {
           publishBlogPost = (
             <>
-              <PublishBlogPost />
+              <PublishBlogPost History={history} />
             </>
           );
           uploadNewPodcast = (
@@ -221,7 +215,7 @@ export default class Admin extends Component {
           );
           uploadNewPodcast = (
             <>
-              <UploadNewPodcast />
+              <UploadNewPodcast History={history} />
             </>
           );
         }
@@ -232,53 +226,6 @@ export default class Admin extends Component {
               onClick={this.onChangeAdd}
             >
               <FaPlus />
-            </AdminSubButton>
-          </>
-        );
-      }
-
-      if (subMenu.edit) {
-        editVar = (
-          <>
-            <AdminSubButton
-              onClick={this.onChangeEdit}
-              style={{
-                color: '#0058e4',
-              }}
-            >
-              <FaEdit />
-            </AdminSubButton>
-          </>
-        );
-        if (blog) {
-          publishBlogPost = (
-            <>
-              <EditPost />
-            </>
-          );
-          uploadNewPodcast = (
-            <>
-            </>
-          );
-        }
-        if (podcasts) {
-          publishBlogPost = (
-            <>
-            </>
-          );
-          uploadNewPodcast = (
-            <>
-              <EditPodcast />
-            </>
-          );
-        }
-      } else {
-        editVar = (
-          <>
-            <AdminSubButton
-              onClick={this.onChangeEdit}
-            >
-              <FaEdit />
             </AdminSubButton>
           </>
         );
@@ -490,9 +437,6 @@ export default class Admin extends Component {
               <AdminUl>
                 <AdminLi2>
                   {addVar}
-                </AdminLi2>
-                <AdminLi2>
-                  {editVar}
                 </AdminLi2>
                 <AdminLi2>
                   {searchVar}

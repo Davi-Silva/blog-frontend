@@ -209,7 +209,7 @@ export default class PublishBlogPost extends Component {
       // author
     } = this.state;
     const {
-      history
+      History
     } = this.props;
     if (allFieldsFilled) {
       const postInfo = {
@@ -228,7 +228,7 @@ export default class PublishBlogPost extends Component {
         this.setStateAsync({
           uploaded: res.uploaded
         });
-        history.push('/blog');
+        History.push('/blog');
       } else {
       }
     } else {
