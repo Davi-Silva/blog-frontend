@@ -17,23 +17,111 @@ import {
 } from '../../../../styled-components/side-drawer.styled-components';
 
 import ProfilePlaceholder from '../../../../static/img/profile-placeholder.png';
+// import UserProvider from '../../../../contexts/UserProvider';
 
 export default class SideDrawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       // showDrawer: true,
+      displayName: '',
+      photo: '',
     };
     this.handleClose = this.handleClose.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  async componentDidMount() {
+    const {
+      UserData,
+    } = this.props;
+    // console.log('UserData.photos[0].value:', UserData);
+    this.setStateAsync({
+      displayName: UserData.displayName,
+    });
+  }
+
+  setStateAsync(state) {
+    return new Promise((resolve) => {
+      this.setState(state, resolve);
+    });
   }
 
   handleClose() {
-    const { HandleSideDrawer } = this.props;
+    const {
+      HandleSideDrawer,
+    } = this.props;
     const closeDrawer = HandleSideDrawer;
     closeDrawer();
   }
 
+
   render() {
+    const {
+      UserData,
+    } = this.props;
+    const {
+      displayName,
+      photos,
+    } = UserData;
+    let profileImage;
+    let profileImageUrl;
+    let profileName;
+    // UserData.photos.map((photo) => {
+    //   console.log('photo:', photo);
+    // });
+    if (photos !== undefined) {
+      console.log('userInfo NOT UNDEFINED:', photos[0].value);
+      profileImageUrl = photos[0].value;
+      profileImage = (
+        <>
+          <ProfileImage
+            src={profileImageUrl}
+          />
+        </>
+      );
+      profileName = (
+        <>
+          <ProfileName>
+            {displayName}
+          </ProfileName>
+        </>
+      );
+    } else {
+      profileImage = (
+        <>
+          <ProfileImage
+            src={ProfilePlaceholder}
+          />
+        </>
+      );
+      profileName = (
+        <>
+          <ProfileName>
+            Signup
+          </ProfileName>
+        </>
+      );
+    }
+
+    // if (photos !== undefined) {
+    //   profileImage = (
+    //     <>
+    //       <ProfileImage
+    //         src={ProfilePlaceholder}
+    //       />
+    //     </>
+    //   );
+    // } else {
+    //   profileImage = (
+    //     <>
+    //       <ProfileImage
+    //         src={photos[0].value}
+    //       />
+    //     </>
+    //   );
+    // }
+
     return (
       <>
         <BackgroundDrawer onClick={this.handleClose} />
@@ -46,9 +134,7 @@ export default class SideDrawer extends Component {
                   display: 'inline',
                 }}
               >
-                <ProfileImage
-                  src={ProfilePlaceholder}
-                />
+                {profileImage}
               </li>
               <li
                 style={{
@@ -56,9 +142,7 @@ export default class SideDrawer extends Component {
                   display: 'inline',
                 }}
               >
-                <ProfileName>
-                Name
-                </ProfileName>
+                {profileName}
               </li>
             </ul>
           </SideDrawerLinkToAdmin>

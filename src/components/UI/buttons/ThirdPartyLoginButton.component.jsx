@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+/* eslint-disable react/prop-types */
+import React, { Component } from 'react';
 // import { Link } from "react-router-dom";
 
 // import { Container } from './styles';
@@ -9,53 +10,67 @@ export default class LoginButton extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
 
     this.state = {
-      icon: "",
-      backgroundColor: "",
-      providerName: "",
-      endpoint: ""
+      icon: '',
+      backgroundColor: '',
+      providerName: '',
+      endpoint: '',
     };
   }
 
   componentDidMount() {
+    const {
+      icon,
+      backgroundColor,
+      providerName,
+      endpoint,
+    } = this.props;
     this.setState({
-      icon: this.props.icon,
-      backgroundColor: this.props.backgroundColor,
-      providerName: this.props.providerName,
-      endpoint: this.props.endpoint
+      icon,
+      backgroundColor,
+      providerName,
+      endpoint,
     });
   }
 
   render() {
+    const {
+      endpoint,
+      backgroundColor,
+      icon,
+      providerName,
+    } = this.state;
     return (
-      <React.Fragment>
+      <>
         <a
-          href={this.state.endpoint}
+          href={endpoint}
           style={{
-            color: "#fff",
-            backgroundColor: `${this.state.backgroundColor}`,
-            padding: "12px 30px",
-            display: "inline-block",
-            width: "100%",
-            textAlign: "center",
-            borderRadius: "3px",
-            fontSize: "14px"
+            color: '#fff',
+            backgroundColor: `${backgroundColor}`,
+            padding: '12px 30px',
+            display: 'inline-block',
+            width: '100%',
+            textAlign: 'center',
+            borderRadius: '3px',
+            fontSize: '14px',
           }}
         >
           <div className="row">
             <div className="col-2 p-0">
               <i
-                className={`fab fa-${this.state.icon}`}
-                style={{ fontSize: "20px" }}
-              ></i>
+                className={`fab fa-${icon}`}
+                style={{ fontSize: '20px' }}
+              />
             </div>
             <div className="col-10 p-0">
-              <span style={{ textDecoration: "none" }}>
-                Login with {this.state.providerName}
+              <span style={{ textDecoration: 'none' }}>
+                Login with
+                {' '}
+                {providerName}
               </span>
             </div>
           </div>
         </a>
-      </React.Fragment>
+      </>
     );
   }
 }

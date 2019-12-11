@@ -18,7 +18,6 @@ import {
   NoContentDiv,
   NoContentImg,
   NoContentP,
-  StickyWrapper,
 } from '../styled-components/blog-posts.styled-components';
 
 export default class Blog extends Component {
@@ -45,19 +44,23 @@ export default class Blog extends Component {
       });
     }
     if (postsList.length > 0) {
+      console.log('postList.length:', postsList.length);
       if (postsList.length < 10) {
         more = false;
       }
+      console.log('more:', more);
       await this.setStateAsync({
         postsList,
         hasMore: more,
         found: true,
       });
     }
+    this.getMorePosts();
   }
 
   async getFirstPosts() {
     const { page } = this.state;
+    console.log('getFirstPosts');
     // this.response = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/short', {
     this.response = await fetch(`http://localhost:5000/blog/short?page=${page}`, {
       method: 'GET',
@@ -79,12 +82,13 @@ export default class Blog extends Component {
   }
 
   async getMorePosts() {
-    console.log('ON BLOG PAGE');
     const { page, postsList } = this.state;
+    console.log('page:', page);
     this.setStateAsync({
       page: page + 1,
     });
     const tempPage = page + 1;
+    console.log(`http://localhost:5000/blog/short?page=${tempPage}`);
     // this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/short?page=${page}`, {
     this.response = await fetch(`http://localhost:5000/blog/short?page=${tempPage}`, {
       method: 'GET',
@@ -96,6 +100,7 @@ export default class Blog extends Component {
       },
     });
     const data = await this.response.json();
+    console.log('postsList:', data);
     if (data.length < 10) {
       this.setStateAsync({
         postsList: postsList.concat(data),
@@ -172,10 +177,8 @@ export default class Blog extends Component {
               </InfinitePostList>
             </div>
             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-              <StickyWrapper>
-                <RecentCategories />
-                <NewsletterSide />
-              </StickyWrapper>
+              <RecentCategories />
+              <NewsletterSide />
             </div>
           </div>
         </>

@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
-import React, { Component } from 'react';
+import React, {
+  Component,
+  // useContext,
+} from 'react';
 
 import {
   FaLaptopCode,
@@ -8,19 +11,19 @@ import {
   FaCog,
   FaPlus,
   FaSearch,
-  FaEdit,
+  // FaEdit,
   FaListUl,
 } from 'react-icons/fa';
 
-import CoursePanel from '../components/admin/panel/course.component';
-import PodcastPanel from '../components/admin/panel/podcast.component';
-import BlogPanel from '../components/admin/panel/blog.component';
-import SettingsPanel from '../components/admin/panel/settings.component';
+// import CoursePanel from '../components/admin/panel/course.component';
+// import PodcastPanel from '../components/admin/panel/podcast.component';
+// import BlogPanel from '../components/admin/panel/blog.component';
+// import SettingsPanel from '../components/admin/panel/settings.component';
 
 import PublishBlogPost from './PublishBlogPost';
 import UploadNewPodcast from './UploadNewPodcast';
-import EditPost from './EditPost';
-import EditPodcast from './EditPodcast';
+// import EditPost from './EditPost';
+// import EditPodcast from './EditPodcast';
 
 import BlogPostContent from '../components/admin/panel/content/blog/blogContent.component';
 import PodcastContent from '../components/admin/panel/content/podcast/podcastContent.component';
@@ -165,8 +168,8 @@ export default class Admin extends Component {
     let searchVar;
     let allBlogPost;
     let allPodcast;
-    let editPost;
-    let editPodcast;
+    // let editPost;
+    // let editPodcast;
 
     if (courses || blog || podcasts || settings) {
       addVar = (

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import {
   FaBars,
@@ -6,95 +6,187 @@ import {
 } from 'react-icons/fa';
 
 import SideDrawer from './side-drawer/SideDrawer';
+import UserMenu from './user-menu/UserMenu';
 
 import ProfilePlaceholder from '../../../static/img/profile-placeholder.png';
+
+import UserProvider from '../../../contexts/UserProvider';
 
 import {
   NavBar,
   LinkA,
   Brand,
   ToggleButton,
-  // SignUp,
-  LinkAProfile,
+  SignUp,
+  // LinkAProfile,
+  ButtonProfile,
 } from '../../../styled-components/navbar.styled-components';
 
-export default class Navbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showSideDrawer: false,
-      mobile: false,
-    };
-    this.handleSideDrawer = this.handleSideDrawer.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
+const Navbar = () => {
+  const [navState, setNavState] = useState({
+    showSideDrawer: false,
+    showUserMenu: false,
+    mobile: false,
+  });
+
+  let profielImageUrl;
+  let UserDiv;
+  let UserMenuDiv;
+  const userInfo = useContext(UserProvider.context);
+  const {
+    displayName,
+    photos,
+  } = userInfo;
+
+  const handleUserMenu = () => {
+    if (navState.showUserMenu) {
+      setNavState({
+        showUserMenu: false,
+      });
+    } else {
+      setNavState({
+        showUserMenu: true,
+      });
+    }
+  };
+
+  const closeUserMenuOnClick = () => {
+    setNavState({
+      showUserMenu: false,
+    });
+  };
+
+  const onScroll = () => {
+    console.log('scrollY:', window.scrollY);
+    if (window.scrollY > 0) {
+      setNavState({
+        showUserMenu: false,
+      });
+    }
+  };
+
+  if (userInfo.photos !== undefined) {
+    profielImageUrl = photos[0].value;
+    UserDiv = (
+      <>
+        <ButtonProfile
+          onClick={handleUserMenu}
+        >
+          <img
+            src={profielImageUrl}
+            alt="Profile Placeholder"
+            style={{
+              width: '35px',
+              height: '35px',
+              borderRadius: '50px',
+            }}
+          />
+        </ButtonProfile>
+      </>
+    );
+    if (navState.showUserMenu) {
+      UserMenuDiv = (
+        <>
+          <UserMenu displayName={displayName} CloseUserMenuOnClick={closeUserMenuOnClick} />
+        </>
+      );
+    } else {
+      UserMenuDiv = (
+        <>
+        </>
+      );
+    }
+  } else {
+    profielImageUrl = ProfilePlaceholder;
+    UserDiv = (
+      <>
+        <SignUp
+          className="nav-link"
+          to="/login"
+          onClick={() => {
+            document
+              .querySelector('#navbarResponsive')
+              .classList.remove('show');
+          }}
+        >
+                      Login
+        </SignUp>
+      </>
+    );
+
+    UserMenuDiv = (
+      <>
+      </>
+    );
   }
 
-  componentDidMount() {
+  useEffect(() => {
     if (window.screen.width <= 991) {
-      this.setState({
+      setNavState({
         mobile: true,
       });
     } else if (window.screen.width > 991) {
-      this.setState({
+      setNavState({
         mobile: false,
       });
     }
-  }
+  }, []);
 
-  handleSideDrawer() {
-    const {
-      showSideDrawer,
-    } = this.state;
+  const handleSideDrawer = () => {
     const sideDrawer = window.document.body.children[1].children[1];
     const sideBackgroundDrawer = window.document.body.children[1].children[0];
-    if (!showSideDrawer) {
+    if (!navState.showSideDrawer) {
       sideDrawer.classList.remove('hideSideDrawer');
       sideBackgroundDrawer.classList.remove('hideBackgroundSideDrawer');
       sideDrawer.classList.add('showSideDrawer');
       sideBackgroundDrawer.classList.add('showBackgroundSideDrawer');
-      this.setState({ showSideDrawer: true });
+      setNavState({ showSideDrawer: true });
     } else {
       sideDrawer.classList.remove('showSideDrawer');
       sideBackgroundDrawer.classList.remove('showBackgroundSideDrawer');
       sideDrawer.classList.add('hideSideDrawer');
       sideBackgroundDrawer.classList.add('hideBackgroundSideDrawer');
-      this.setState({ showSideDrawer: false });
+      setNavState({ showSideDrawer: false });
     }
-  }
+  };
 
-  render() {
-    const {
-      showSideDrawer,
-    } = this.state;
-    return (
-      <>
-        <SideDrawer ShowSideDrawer={showSideDrawer} HandleSideDrawer={this.handleSideDrawer} />
-        <NavBar className="navbar navbar-expand-lg">
-          <div className="container">
-            <ToggleButton
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              onClick={this.handleSideDrawer}
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <FaBars />
-            </ToggleButton>
-            <Brand className="navbar-brand" to="/">
+
+  return (
+    <>
+      <SideDrawer
+        ShowSideDrawer={navState.showSideDrawer}
+        HandleSideDrawer={handleSideDrawer}
+        UserData={userInfo}
+      />
+      <NavBar
+        className="navbar navbar-expand-lg"
+        onScroll={onScroll}
+      >
+        <div className="container">
+          <ToggleButton
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            onClick={handleSideDrawer}
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <FaBars />
+          </ToggleButton>
+          <Brand className="navbar-brand" to="/">
                 CrypticActivist
-            </Brand>
-            <ToggleButton
-              className="navbar-toggler"
-              type="button"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <FaSearch />
-            </ToggleButton>
-            <div className="collapse navbar-collapse" id="navbarResponsive">
-              <ul className="navbar-nav ml-auto">
-                {/* <li className="nav-item">
+          </Brand>
+          <ToggleButton
+            className="navbar-toggler"
+            type="button"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <FaSearch />
+          </ToggleButton>
+          <div className="collapse navbar-collapse" id="navbarResponsive">
+            <ul className="navbar-nav ml-auto">
+              {/* <li className="nav-item">
                   <LinkA
                     className="nav-link"
                     to="/"
@@ -108,46 +200,46 @@ export default class Navbar extends Component {
                     <span className="sr-only">(current)</span>
                   </LinkA>
                 </li> */}
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/blog"
-                    onClick={() => {
-                      document
-                        .querySelector('#navbarResponsive')
-                        .classList.remove('show');
-                    }}
-                  >
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/blog"
+                  onClick={() => {
+                    document
+                      .querySelector('#navbarResponsive')
+                      .classList.remove('show');
+                  }}
+                >
                       Blog
-                  </LinkA>
-                </li>
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/podcasts"
-                    onClick={() => {
-                      document
-                        .querySelector('#navbarResponsive')
-                        .classList.remove('show');
-                    }}
-                  >
+                </LinkA>
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/podcasts"
+                  onClick={() => {
+                    document
+                      .querySelector('#navbarResponsive')
+                      .classList.remove('show');
+                  }}
+                >
                       Podcasts
-                  </LinkA>
-                </li>
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/courses"
-                    onClick={() => {
-                      document
-                        .querySelector('#navbarResponsive')
-                        .classList.remove('show');
-                    }}
-                  >
+                </LinkA>
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/courses"
+                  onClick={() => {
+                    document
+                      .querySelector('#navbarResponsive')
+                      .classList.remove('show');
+                  }}
+                >
                       Courses
-                  </LinkA>
-                </li>
-                {/* <li className="nav-item">
+                </LinkA>
+              </li>
+              {/* <li className="nav-item">
                   <LinkA
                     className="nav-link"
                     to="/dashboard"
@@ -160,33 +252,10 @@ export default class Navbar extends Component {
                       Dashboard
                   </LinkA>
                 </li> */}
-                <li className="nav-item">
-                  <LinkAProfile
-                    className="nav-link"
-                    to="/admin"
-                    params={{
-                      name: 'Davi Silva',
-                      email: 'davi@davi.com',
-                      created_on: '2019',
-                    }}
-                    onClick={() => {
-                      document
-                        .querySelector('#navbarResponsive')
-                        .classList.remove('show');
-                    }}
-                  >
-                    <img
-                      src={ProfilePlaceholder}
-                      alt="Profile Placeholder"
-                      style={{
-                        width: '35px',
-                        height: '35px',
-                        borderRadius: '50px',
-                      }}
-                    />
-                  </LinkAProfile>
-                </li>
-                {/* <li className="nav-item">
+              <li className="nav-item">
+                {UserDiv}
+              </li>
+              {/* <li className="nav-item">
                   <LinkA
                     className="nav-link"
                     to="/about"
@@ -199,7 +268,7 @@ export default class Navbar extends Component {
                       About
                   </LinkA>
                 </li> */}
-                {/* <li className="nav-item">
+              {/* <li className="nav-item">
                   <LinkA
                     className="nav-link"
                     to="/login"
@@ -212,7 +281,7 @@ export default class Navbar extends Component {
                       Login
                   </LinkA>
                 </li> */}
-                {/* <li className="nav-item">
+              {/* <li className="nav-item">
                   <SignUp
                     className="nav-link"
                     to="/signup"
@@ -225,7 +294,7 @@ export default class Navbar extends Component {
                       Sign Up
                   </SignUp>
                 </li> */}
-                {/* <li className="nav-item">
+              {/* <li className="nav-item">
                   <LinkA
                     className="nav-link"
                     // to="//cryptic-activist-backend.herokuapp.com/auth/logout"
@@ -241,11 +310,13 @@ export default class Navbar extends Component {
                       Logout
                   </LinkA>
                 </li> */}
-              </ul>
-            </div>
+            </ul>
           </div>
-        </NavBar>
-      </>
-    );
-  }
-}
+        </div>
+      </NavBar>
+      {UserMenuDiv}
+    </>
+  );
+};
+
+export default Navbar;

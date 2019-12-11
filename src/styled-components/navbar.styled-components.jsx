@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const NavBar = styled.nav`
   /* border: 1px solid rgba(0, 0, 0, 0.1); */
+  background: transparent;
   border: none;
   padding: .05rem 1rem;
 `;
@@ -36,21 +37,33 @@ export const LinkAProfile = styled(Link)`
   }
 `;
 
+export const ButtonProfile = styled.button`
+  border: none;
+  background: transparent;
+  margin-top: 7px;
+  margin-left: 5px;
+  border-radius: 50px;
+  &:focus {
+    outline: none;
+  }
+  @media (max-width: 991px) {
+    display: table;
+    margin: 0 auto;
+  }
+`;
+
 export const Brand = styled(Link)`
   color: #0058e4;
   font-weight: 900;
   letter-spacing: 1px;
+  @media (max-width: 991px) {
+    margin-right: 0px;
+  }
   @media (max-width: 768px) {
     font-size: 17px;
   }
   @media (max-width: 440px) {
     font-size: 16px;
-  }
-  @media (max-width: 320px) {
-    font-size: 15px;
-  }
-  @media (max-width: 240px) {
-    font-size: 13px;
   }
 `;
 
@@ -65,23 +78,26 @@ export const ToggleButton = styled.button`
   @media (max-width: 440px) {
     font-size: 17px;
   }
-  @media (max-width: 320px) {
-    font-size: 16px;
-  }
-  @media (max-width: 240px) {
-    font-size: 15px;
-  }
 `;
 
 export const SignUp = styled(Link)`
   background-color: #fff;
-  border: 1px solid #0058e4;
+  border: none;
   color: #0058e4;
-  border-radius: 50px;
+  border-radius: 4px;
   padding: 3px 7px;
-  margin-top: 4px;
-  font-weight: 100;
+  margin-top: 13px;
+  font-weight: 700;
   font-size: 13px;
+  transition: .2s all ease-in-out;
+  transition-delay: .1s;
+  &:hover {
+    background: #edf5ff;
+  }
+  &:active {
+    background: #edf5ff;
+  }
+
 `;
 
 export const Button = styled.button`

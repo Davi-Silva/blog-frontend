@@ -1,74 +1,74 @@
-import AmazonIcon from "../static/img/amazon.png";
-import FacebookIcon from "../static/img/facebook.png";
-import GithubIcon from "../static/img/github.png";
-import GoogleIcon from "../static/img/google.png";
-import InstagramIcon from "../static/img/instagram.png";
-import SpotifyIcon from "../static/img/spotify.png";
-import TwitchIcon from "../static/img/twitch.png";
+import AmazonIcon from '../static/img/amazon.png';
+import FacebookIcon from '../static/img/facebook.png';
+import GithubIcon from '../static/img/github.png';
+import GoogleIcon from '../static/img/google.png';
+import InstagramIcon from '../static/img/instagram.png';
+import SpotifyIcon from '../static/img/spotify.png';
+import TwitchIcon from '../static/img/twitch.png';
 
 export const data = [
   {
     img: AmazonIcon,
-    name: "amazon",
-    href: "auth/amazon",
-    alt: "amazon-icon",
-    color: "#F9AE31",
-    txt: "Login with Amazon"
+    name: 'amazon',
+    href: 'auth/amazon',
+    alt: 'amazon-icon',
+    color: '#F9AE31',
+    txt: 'Login with Amazon',
   },
   {
     img: FacebookIcon,
-    name: "facebook",
-    href: "auth/facebook",
-    alt: "facebook-icon",
-    color: "#3B5899",
-    txt: "Login with Facebook"
+    name: 'facebook',
+    href: 'auth/facebook',
+    alt: 'facebook-icon',
+    color: '#3B5899',
+    txt: 'Login with Facebook',
   },
   {
     img: GithubIcon,
-    name: "github",
-    href: "auth/github",
-    alt: "github-icon",
-    color: "#333333",
-    txt: "Login with Github"
+    name: 'github',
+    href: 'auth/github',
+    alt: 'github-icon',
+    color: '#333333',
+    txt: 'Login with Github',
   },
   {
     img: GoogleIcon,
-    name: "google",
-    href: "auth/google",
-    alt: "google-icon",
-    color: "#CB4024",
-    txt: "Login with Google"
+    name: 'google',
+    href: 'auth/google',
+    alt: 'google-icon',
+    color: '#CB4024',
+    txt: 'Login with Google',
   },
   {
     img: InstagramIcon,
-    name: "instagram",
-    href: "auth/instagram",
-    alt: "instagram-icon",
+    name: 'instagram',
+    href: 'auth/instagram',
+    alt: 'instagram-icon',
     colors: {
-      leftBot: "#fec564",
-      leftTop: "#5258cf",
-      rightTop: "#893dc2",
-      rightBot: "#d9317a",
+      leftBot: '#fec564',
+      leftTop: '#5258cf',
+      rightTop: '#893dc2',
+      rightBot: '#d9317a',
       baseCoat:
-        "linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%)"
+        'linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%)',
     },
-    color: "#d9317a",
-    txt: "Login with Instagram"
+    color: '#d9317a',
+    txt: 'Login with Instagram',
   },
   {
     img: SpotifyIcon,
-    name: "spotify",
-    href: "auth/spotify",
-    alt: "spotify-icon",
-    color: "#1EB954",
-    txt: "Login with Spotify"
+    name: 'spotify',
+    href: 'auth/spotify',
+    alt: 'spotify-icon',
+    color: '#1EB954',
+    txt: 'Login with Spotify',
   },
   {
     img: TwitchIcon,
-    name: "twitch.js",
-    href: "auth/twitch",
-    alt: "twitch-icon",
-    color: "#5F3BAD",
-    txt: "Login with Twitch"
-  }
+    name: 'twitch.js',
+    href: 'auth/twitch',
+    alt: 'twitch-icon',
+    color: '#5F3BAD',
+    txt: 'Login with Twitch',
+  },
 ];

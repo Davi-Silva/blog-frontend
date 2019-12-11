@@ -6,7 +6,7 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    fetch('https://cryptic-activist-backend.herokuapp.com/user')
+    fetch('http://localhost:5000/user')
       // fetch("https://cryptic-activist-backend.herokuapp.com/user")
       .then((res) => res.json())
       .then((res) => {
@@ -16,7 +16,11 @@ const UserProvider = ({ children }) => {
       });
   }, []);
 
-  return <context.Provider value={user}>{children}</context.Provider>;
+  return (
+    <context.Provider value={user}>
+      {children}
+    </context.Provider>
+  );
 };
 
 UserProvider.context = context;

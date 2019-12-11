@@ -49,21 +49,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 	background: #999;
 }
 
-@media (max-width: 470px) {
-	body::-webkit-scrollbar {
-		height: 5px;
-		width: 7px;
-	}
-}
-
-@media (max-width: 430px) {
-	body::-webkit-scrollbar {
-		height: 5px;
-		width: 5px;
-	}
-}
-
-@media (max-width: 400px) {
+@media (max-width: 991px) {
 	body::-webkit-scrollbar {
 		display: none;
 	}

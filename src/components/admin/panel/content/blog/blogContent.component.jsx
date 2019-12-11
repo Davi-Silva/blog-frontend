@@ -24,7 +24,7 @@ export default class BlogContent extends Component {
     this.state = {
       posts: [],
       page: 1,
-      hasMore: null,
+      hasMore: false,
       found: false,
     };
     this.getFirstPosts = this.getFirstPosts.bind(this);
@@ -51,6 +51,9 @@ export default class BlogContent extends Component {
       });
     }
     await this.setStateAsync({ posts: postsList });
+    setTimeout(() => {
+      this.getMorePosts();
+    }, 2000);
   }
 
   setStateAsync(state) {
@@ -82,7 +85,6 @@ export default class BlogContent extends Component {
       page,
       posts,
     } = this.state;
-    console.log('getMorePosts');
     this.setStateAsync({
       page: page + 1,
     });
@@ -137,8 +139,8 @@ export default class BlogContent extends Component {
         <InfinitePostList>
           <InfiniteScroll
             dataLength={posts.length}
-            next={this.getMorePosts}
             hasMore={hasMore}
+            next={this.getMorePosts}
             loader={(
               <>
                 <LoadingAllContent>
