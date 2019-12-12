@@ -45,6 +45,7 @@ const SearchForm = (props) => {
           type="text"
           onChange={handleSearch}
           placeholder="Search"
+          autoFocus
         />
         <Background
           onClick={handleCloseSearcfForm}
