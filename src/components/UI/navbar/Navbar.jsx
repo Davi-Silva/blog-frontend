@@ -196,7 +196,10 @@ const Navbar = () => {
                 CrypticActivist
           </Brand>
           <ToggleButton
+            className="navbar-toggler"
             type="button"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
             <FaSearch
               onClick={handleSearchForm}
