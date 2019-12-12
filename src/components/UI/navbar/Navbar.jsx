@@ -8,6 +8,7 @@ import {
 
 import SideDrawer from './side-drawer/SideDrawer';
 import UserMenu from './user-menu/UserMenu';
+import SearchForm from './search-form/SearchForm';
 
 import UserProvider from '../../../contexts/UserProvider';
 
@@ -22,37 +23,60 @@ import {
 } from '../../../styled-components/navbar.styled-components';
 
 const Navbar = () => {
-  const [navState, setNavState] = useState({
+  const [sideDrawerState, setSideDrawerState] = useState({
     showSideDrawer: false,
+  });
+  const [userMenuState, setUserMenuState] = useState({
     showUserMenu: false,
-    mobile: false,
+  });
+  const [searchFormState, setSearchFormState] = useState({
+    showSearchForm: true,
   });
 
   let UserDiv;
   let UserMenuDiv;
+  let SearchFormDiv;
   const userInfo = useContext(UserProvider.context);
 
   const handleUserMenu = () => {
-    if (navState.showUserMenu) {
-      setNavState({
+    if (userMenuState.showUserMenu) {
+      setUserMenuState({
         showUserMenu: false,
       });
     } else {
-      setNavState({
+      setUserMenuState({
         showUserMenu: true,
       });
     }
   };
 
+  const handleSearchForm = () => {
+    if (searchFormState.showSearchForm) {
+      setSearchFormState({
+        showSearchForm: false,
+      });
+    } else {
+      setSearchFormState({
+        showSearchForm: true,
+      });
+    }
+  };
+
   const closeUserMenuOnClick = () => {
-    setNavState({
+    setUserMenuState({
       showUserMenu: false,
+    });
+  };
+
+  const closeSearchFormOnClick = () => {
+    setSearchFormState({
+      showSearchForm: false,
     });
   };
 
   const onScroll = () => {
     if (window.scrollY > 0) {
-      setNavState({
+      setUserMenuState({
         showUserMenu: false,
       });
     }
@@ -80,7 +104,7 @@ const Navbar = () => {
         </ButtonProfile>
       </>
     );
-    if (navState.showUserMenu) {
+    if (userMenuState.showUserMenu) {
       UserMenuDiv = (
         <>
           <UserMenu displayName={name} CloseUserMenuOnClick={closeUserMenuOnClick} />
@@ -88,6 +112,18 @@ const Navbar = () => {
       );
     } else {
       UserMenuDiv = (
+        <>
+        </>
+      );
+    }
+    if (searchFormState.showSearchForm) {
+      SearchFormDiv = (
+        <>
+          <SearchForm SearchFormOnClick={closeSearchFormOnClick} />
+        </>
+      );
+    } else {
+      SearchFormDiv = (
         <>
         </>
       );
@@ -115,33 +151,21 @@ const Navbar = () => {
     );
   }
 
-  useEffect(() => {
-    if (window.screen.width <= 991) {
-      setNavState({
-        mobile: true,
-      });
-    } else if (window.screen.width > 991) {
-      setNavState({
-        mobile: false,
-      });
-    }
-  }, []);
-
   const handleSideDrawer = () => {
     const sideDrawer = window.document.body.children[1].children[1];
     const sideBackgroundDrawer = window.document.body.children[1].children[0];
-    if (!navState.showSideDrawer) {
+    if (!sideDrawerState.showSideDrawer) {
       sideDrawer.classList.remove('hideSideDrawer');
       sideBackgroundDrawer.classList.remove('hideBackgroundSideDrawer');
       sideDrawer.classList.add('showSideDrawer');
       sideBackgroundDrawer.classList.add('showBackgroundSideDrawer');
-      setNavState({ showSideDrawer: true });
+      setSideDrawerState({ showSideDrawer: true });
     } else {
       sideDrawer.classList.remove('showSideDrawer');
       sideBackgroundDrawer.classList.remove('showBackgroundSideDrawer');
       sideDrawer.classList.add('hideSideDrawer');
       sideBackgroundDrawer.classList.add('hideBackgroundSideDrawer');
-      setNavState({ showSideDrawer: false });
+      setSideDrawerState({ showSideDrawer: false });
     }
   };
 
@@ -149,7 +173,7 @@ const Navbar = () => {
   return (
     <>
       <SideDrawer
-        ShowSideDrawer={navState.showSideDrawer}
+        ShowSideDrawer={sideDrawerState.showSideDrawer}
         HandleSideDrawer={handleSideDrawer}
         UserData={userInfo}
       />
@@ -176,8 +200,10 @@ const Navbar = () => {
             type="button"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            onClick={handleSearchForm}
           >
             <FaSearch />
+            {SearchFormDiv}
           </ToggleButton>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
