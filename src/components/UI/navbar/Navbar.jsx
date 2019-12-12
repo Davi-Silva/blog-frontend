@@ -30,7 +30,7 @@ const Navbar = () => {
     showUserMenu: false,
   });
   const [searchFormState, setSearchFormState] = useState({
-    showSearchForm: true,
+    showSearchForm: false,
   });
 
   let UserDiv;
