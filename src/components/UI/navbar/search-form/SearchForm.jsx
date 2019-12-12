@@ -1,9 +1,6 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 
-import {
-  FaPlus,
-  // FaUser,
-} from 'react-icons/fa';
 import {
   Form,
   Input,
@@ -29,6 +26,16 @@ const SearchForm = (props) => {
     submitSearch();
   };
 
+  const handleCloseSearcfForm = () => {
+    const {
+      SearchFormOnClick,
+    } = props;
+    console.log('CloseSearchFormOnClick:', SearchFormOnClick);
+    const closeSearchForm = SearchFormOnClick;
+    closeSearchForm();
+  };
+
+
   console.log('SEARCHBAR:', props);
 
   return (
@@ -39,7 +46,9 @@ const SearchForm = (props) => {
           onChange={handleSearch}
           placeholder="Search"
         />
-        <Background />
+        <Background
+          onClick={handleCloseSearcfForm}
+        />
       </Form>
     </>
   );

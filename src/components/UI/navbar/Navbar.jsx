@@ -196,13 +196,11 @@ const Navbar = () => {
                 CrypticActivist
           </Brand>
           <ToggleButton
-            className="navbar-toggler"
             type="button"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            onClick={handleSearchForm}
           >
-            <FaSearch />
+            <FaSearch
+              onClick={handleSearchForm}
+            />
             {SearchFormDiv}
           </ToggleButton>
           <div className="collapse navbar-collapse" id="navbarResponsive">

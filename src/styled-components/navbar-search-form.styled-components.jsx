@@ -20,6 +20,9 @@ export const Input = styled.input`
   padding: 7px 10px;
   border: 1px solid #0058e4;
   width: 100%;
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Background = styled.div`

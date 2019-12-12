@@ -67,6 +67,8 @@ export const Brand = styled(Link)`
 export const ToggleButton = styled.button`
   color: #0058e4;
   padding: 0;
+  background: #fff;
+  border: none;
   :focus {
     outline: none;
   }
