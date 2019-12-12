@@ -44,6 +44,7 @@ const SideDrawer = (props) => {
     ProfileImageDiv = (
       <>
         <ProfileImage
+          onClick={handleClose}
           src={profileImage}
         />
       </>
