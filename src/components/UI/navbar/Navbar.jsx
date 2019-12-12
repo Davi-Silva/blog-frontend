@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import _ from 'lodash';
 
 import {
   FaBars,
@@ -7,8 +8,6 @@ import {
 
 import SideDrawer from './side-drawer/SideDrawer';
 import UserMenu from './user-menu/UserMenu';
-
-import ProfilePlaceholder from '../../../static/img/profile-placeholder.png';
 
 import UserProvider from '../../../contexts/UserProvider';
 
@@ -29,14 +28,9 @@ const Navbar = () => {
     mobile: false,
   });
 
-  let profielImageUrl;
   let UserDiv;
   let UserMenuDiv;
   const userInfo = useContext(UserProvider.context);
-  const {
-    displayName,
-    photos,
-  } = userInfo;
 
   const handleUserMenu = () => {
     if (navState.showUserMenu) {
@@ -57,7 +51,6 @@ const Navbar = () => {
   };
 
   const onScroll = () => {
-    console.log('scrollY:', window.scrollY);
     if (window.scrollY > 0) {
       setNavState({
         showUserMenu: false,
@@ -65,15 +58,18 @@ const Navbar = () => {
     }
   };
 
-  if (userInfo.photos !== undefined) {
-    profielImageUrl = photos[0].value;
+  if (!_.isEmpty(userInfo)) {
+    const {
+      profileImage,
+      name,
+    } = userInfo[0];
     UserDiv = (
       <>
         <ButtonProfile
           onClick={handleUserMenu}
         >
           <img
-            src={profielImageUrl}
+            src={profileImage}
             alt="Profile Placeholder"
             style={{
               width: '35px',
@@ -87,7 +83,7 @@ const Navbar = () => {
     if (navState.showUserMenu) {
       UserMenuDiv = (
         <>
-          <UserMenu displayName={displayName} CloseUserMenuOnClick={closeUserMenuOnClick} />
+          <UserMenu displayName={name} CloseUserMenuOnClick={closeUserMenuOnClick} />
         </>
       );
     } else {
@@ -97,7 +93,6 @@ const Navbar = () => {
       );
     }
   } else {
-    profielImageUrl = ProfilePlaceholder;
     UserDiv = (
       <>
         <SignUp
@@ -186,20 +181,6 @@ const Navbar = () => {
           </ToggleButton>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
-              {/* <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/"
-                    onClick={() => {
-                      document
-                        .querySelector('#navbarResponsive')
-                        .classList.remove('show');
-                    }}
-                  >
-                      Home
-                    <span className="sr-only">(current)</span>
-                  </LinkA>
-                </li> */}
               <li className="nav-item">
                 <LinkA
                   className="nav-link"
@@ -239,77 +220,9 @@ const Navbar = () => {
                       Courses
                 </LinkA>
               </li>
-              {/* <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/dashboard"
-                    onClick={() => {
-                      document
-                        .querySelector('#navbarResponsive')
-                        .classList.remove('show');
-                    }}
-                  >
-                      Dashboard
-                  </LinkA>
-                </li> */}
               <li className="nav-item">
                 {UserDiv}
               </li>
-              {/* <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/about"
-                    onClick={() => {
-                      document
-                        .querySelector('#navbarResponsive')
-                        .classList.remove('show');
-                    }}
-                  >
-                      About
-                  </LinkA>
-                </li> */}
-              {/* <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/login"
-                    onClick={() => {
-                      document
-                        .querySelector('#navbarResponsive')
-                        .classList.remove('show');
-                    }}
-                  >
-                      Login
-                  </LinkA>
-                </li> */}
-              {/* <li className="nav-item">
-                  <SignUp
-                    className="nav-link"
-                    to="/signup"
-                    onClick={() => {
-                      document
-                        .querySelector('#navbarResponsive')
-                        .classList.remove('show');
-                    }}
-                  >
-                      Sign Up
-                  </SignUp>
-                </li> */}
-              {/* <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    // to="//cryptic-activist-backend.herokuapp.com/auth/logout"
-                    to="/auth/logout"
-                    // to="//localhost:5000/auth/logout"
-                    // onClick={() => {
-                    //   window.location.href = 'https://cryptic-activist-backend.herokuapp.com/auth/logout';
-                    // }}
-                    onClick={() => {
-                      window.location.href = 'http://localhost:5000/auth/logout';
-                    }}
-                  >
-                      Logout
-                  </LinkA>
-                </li> */}
             </ul>
           </div>
         </div>

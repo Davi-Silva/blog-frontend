@@ -2,6 +2,7 @@ import React, {
   useContext,
   // useState,
 } from 'react';
+import _ from 'lodash';
 // import {
 //   FaGithub,
 // } from 'react-icons/fa';
@@ -20,62 +21,61 @@ import {
 
 const Profile = () => {
   const userInfo = useContext(UserProvider.context);
-  console.log('UserInfo:', userInfo);
-  let profielImageUrl;
+  console.log('userInfo profile:', userInfo);
   let UserImageDiv;
-  const {
-    photos,
-    displayName,
-    profileUrl,
-  } = userInfo;
-  if (userInfo.photos !== undefined) {
-    profielImageUrl = photos[0].value;
+  let ProfileCoverImage;
+  let displayName = '';
+
+
+  if (!_.isEmpty(userInfo)) {
+    const {
+      name,
+      profileImage,
+    } = userInfo[0];
+    displayName = name;
     UserImageDiv = (
       <>
         <ProfileImage
-          src={profielImageUrl}
+          src={profileImage}
           alt="Profile Placeholder"
         />
       </>
     );
+    ProfileCoverImage = (
+      <>
+        <Cover
+          alt="Profile Placeholder"
+          style={{
+            backgroundImage: `url(${profileImage})`,
+          }}
+        />
+      </>
+    );
   } else {
-    profielImageUrl = ProfilePlaceholder;
     UserImageDiv = (
       <>
         <ProfileImage
-          src={profielImageUrl}
+          src={ProfilePlaceholder}
           alt="Profile Placeholder"
+        />
+      </>
+    );
+    ProfileCoverImage = (
+      <>
+        <Cover
+          alt="Profile Placeholder"
+          style={{
+            backgroundImage: `url(${ProfilePlaceholder})`,
+          }}
         />
       </>
     );
   }
 
+
   return (
-  // <div className="page">
-  //   <p className="page-title" style={{ textAlign: 'center' }}>
-  //     {text}
-  //   </p>
-
-  //   <Col className="col-12" style={{ verticalAlign: 'top' }}>
-  //     <DataTags
-  //       options={options}
-  //       onClick={(option) => setSelected(option)}
-  //       selected={selected}
-  //     />
-  //   </Col>
-
-  //   <Col className="col-12">
-  //     <Terminal userData={userData} selected={selected} />
-  //   </Col>
-  //   <div style={{ marginBottom: 20 }} />
-  // </div>
-
     <>
-      <Cover
-        style={{
-          backgroundImage: `url(${profielImageUrl})`,
-        }}
-      />
+      {ProfileCoverImage}
       <div className="container">
         <div className="row">
           <div className="col-lg-3 col-md-3 col-sm-12 col-12">
@@ -89,12 +89,12 @@ const Profile = () => {
               <DisplayName>
                 {displayName}
               </DisplayName>
-              <Label>
+              {/* <Label>
             Github Profile
               </Label>
               <DisplayName>
                 {profileUrl}
-              </DisplayName>
+              </DisplayName> */}
             </Wrapper>
           </div>
         </div>

@@ -60,23 +60,21 @@ export const Brand = styled(Link)`
     margin-right: 0px;
   }
   @media (max-width: 768px) {
-    font-size: 17px;
-  }
-  @media (max-width: 440px) {
-    font-size: 16px;
+    font-size: 20px;
   }
 `;
 
 export const ToggleButton = styled.button`
   color: #0058e4;
+  padding: 0;
   :focus {
     outline: none;
   }
   @media (max-width: 768px) {
-    font-size: 17px;
+    font-size: 21px;
   }
   @media (max-width: 440px) {
-    font-size: 17px;
+    font-size: 19px;
   }
 `;
 

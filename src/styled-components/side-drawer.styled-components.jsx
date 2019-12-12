@@ -55,13 +55,15 @@ export const SideDrawerUl = styled.ul`
 `;
 
 export const SideDrawerLi = styled.li`
-  margin: 3px 0;
+  margin: 10px 0;
   list-style: none;
 `;
 
 export const SideDrawerLinkTo = styled(Link)`
   color: #999;
-  font-size: 13px;
+  font-size: 15px;
+  width: 100%;
+  padding: 5px 0;
   transition: all .3s ease-in-out;
 
   &:hover {
