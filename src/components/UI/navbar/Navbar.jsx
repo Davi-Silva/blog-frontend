@@ -149,6 +149,19 @@ const Navbar = () => {
       <>
       </>
     );
+
+    if (searchFormState.showSearchForm) {
+      SearchFormDiv = (
+        <>
+          <SearchForm SearchFormOnClick={closeSearchFormOnClick} />
+        </>
+      );
+    } else {
+      SearchFormDiv = (
+        <>
+        </>
+      );
+    }
   }
 
   const handleSideDrawer = () => {
