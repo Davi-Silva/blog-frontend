@@ -16,7 +16,7 @@ const FileList = ({ files, onDelete }) => (
         <FileInfo>
           <PreviewAudio src={uploadedFile.preview} />
           <div style={{
-            position: 'absolute', display: 'block', width: '240%', background: '#fff', left: '5px', top: '120px', padding: '2px 5px', borderRadius: '5px',
+            position: 'absolute', display: 'block', width: '98%', background: '#fff', left: '5px', top: '186px', padding: '2px 5px', borderRadius: '5px',
           }}
           >
             <strong style={{ width: '100%' }}>{uploadedFile.name}</strong>
@@ -33,7 +33,7 @@ const FileList = ({ files, onDelete }) => (
         </FileInfo>
         <div
           style={{
-            position: 'absolute', background: '#fff', left: '0px', top: '190px', padding: '2px 5px', borderRadius: '5px',
+            position: 'absolute', background: '#fff', left: '0px', top: '255px', padding: '2px 5px', borderRadius: '5px',
           }}
         >
           {!uploadedFile.uploaded && !uploadedFile.error && (

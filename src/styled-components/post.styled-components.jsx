@@ -135,6 +135,15 @@ export const Content = styled.div`
 			}
 		}
 	}
+	pre {
+		background: #444;
+		border-radius: 5px;
+		padding: 7px 15px;
+		code {
+			color: #fff;
+			font-size: 16px;
+		}
+	}
 `;
 
 export const LoadingDescription = styled.div`

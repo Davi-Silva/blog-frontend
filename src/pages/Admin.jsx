@@ -62,8 +62,11 @@ export default class Admin extends Component {
   }
 
   onChangeCourse() {
+    const {
+      courses,
+    } = this.state;
     this.setState({
-      courses: true,
+      courses: !courses,
       blog: false,
       podcasts: false,
       settings: false,
@@ -76,9 +79,12 @@ export default class Admin extends Component {
   }
 
   onChangeBlog() {
+    const {
+      blog,
+    } = this.state;
     this.setState({
       courses: false,
-      blog: true,
+      blog: !blog,
       podcasts: false,
       settings: false,
       subMenu: {
@@ -90,10 +96,13 @@ export default class Admin extends Component {
   }
 
   onChangePodcasts() {
+    const {
+      podcasts,
+    } = this.state;
     this.setState({
       courses: false,
       blog: false,
-      podcasts: true,
+      podcasts: !podcasts,
       settings: false,
       subMenu: {
         add: false,
@@ -104,11 +113,14 @@ export default class Admin extends Component {
   }
 
   onChangeSettings() {
+    const {
+      settings,
+    } = this.state;
     this.setState({
       courses: false,
       blog: false,
       podcasts: false,
-      settings: true,
+      settings: !settings,
       subMenu: {
         add: false,
         edit: false,
@@ -118,9 +130,12 @@ export default class Admin extends Component {
   }
 
   onChangeAdd() {
+    const {
+      subMenu,
+    } = this.state;
     this.setState({
       subMenu: {
-        add: true,
+        add: !subMenu.add,
         edit: false,
         search: false,
       },
@@ -128,21 +143,27 @@ export default class Admin extends Component {
   }
 
   onChangeEdit() {
+    const {
+      subMenu,
+    } = this.state;
     this.setState({
       subMenu: {
         add: false,
-        edit: true,
+        edit: !subMenu.edit,
         search: false,
       },
     });
   }
 
   onChangeSearch() {
+    const {
+      subMenu,
+    } = this.state;
     this.setState({
       subMenu: {
         add: false,
         edit: false,
-        search: true,
+        search: !subMenu.search,
       },
     });
   }
@@ -454,22 +475,8 @@ export default class Admin extends Component {
       <>
         <AdminWrapper
           className="container-fluid"
-          // style={{ backgroundColor: 'rgba(0,0,0,0.05)' }}
         >
           <div className="row">
-            {/* <div className="col-lg-6 col-md-6 col-sm-12 col-12 p-0">
-              <CoursePanel />
-            </div>
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12 p-0">
-              <PodcastPanel />
-            </div>
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12 p-0">
-              <BlogPanel />
-            </div>
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12 p-0">
-              <SettingsPanel />
-            </div> */}
-
             <Column className="col-lg-1 col-md-1 col-sm-12 col-12">
               <AdminUl>
                 <AdminLi>

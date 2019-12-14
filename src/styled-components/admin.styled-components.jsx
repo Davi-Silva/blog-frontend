@@ -412,8 +412,8 @@ export const GoTo = styled(Link)`
 `;
 
 export const Container = styled.ul`
-  top: 20px;
-  position: absolute;
+    top: -250px;
+    position: relative;
 
   li {
     /* display: flex;
@@ -499,7 +499,8 @@ export const Preview = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
-  margin-left: 50px;
+  display: table;
+  margin: 0 auto;
 `;
 
 export const PreviewAudio = styled.div`

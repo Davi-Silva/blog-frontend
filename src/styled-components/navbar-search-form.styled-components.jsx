@@ -17,11 +17,15 @@ export const Form = styled.form`
 export const Input = styled.input`
   background: #fff;
   border: none;
-  padding: 7px 10px;
-  border: 1px solid #0058e4;
+  padding: 9px 10px;
+  border: 1px solid #b3b3b3;
   width: 100%;
+  color: #999;
   &:focus {
     outline: none;
+  }
+  &::placeholder {
+    color: #999;
   }
 `;
 

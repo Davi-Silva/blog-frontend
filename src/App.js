@@ -26,7 +26,7 @@ import Profile from './pages/Profile';
 import Course from './pages/Course';
 import CoursesCategories from './pages/CoursesCategories';
 import CoursesCategory from './pages/CoursesCategory';
-import CoursesList from './pages/CoursesList';
+import Courses from './pages/Courses';
 import Podcast from './pages/Podcast';
 import EditPodcast from './pages/EditPodcast';
 import EditPost from './pages/EditPost';
@@ -58,7 +58,7 @@ function App() {
         <Route path="/course" component={Course} />
         <Route path="/courses/categories" component={CoursesCategories} />
         <Route path="/courses/category" component={CoursesCategory} />
-        <Route path="/courses" component={CoursesList} />
+        <Route path="/courses" component={Courses} />
         <Route exact path="/podcasts" component={Podcasts} />
         <Route
           exact

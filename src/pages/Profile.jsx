@@ -1,13 +1,17 @@
 import React, {
   useContext,
   // useState,
+  lazy,
+  Suspense,
 } from 'react';
-import _ from 'lodash';
-// import {
-//   FaGithub,
-// } from 'react-icons/fa';
-import UserProvider from '../contexts/UserProvider';
 
+import _ from 'lodash';
+
+import {
+  FaSpinner,
+} from 'react-icons/fa';
+
+import UserProvider from '../contexts/UserProvider';
 
 import ProfilePlaceholder from '../static/img/profile-placeholder.png';
 
@@ -17,14 +21,21 @@ import {
   ProfileImage,
   Label,
   DisplayName,
+  LoadingProfileImage,
 } from '../styled-components/profile.styled.components';
 
-const Profile = () => {
+import {
+  LoadingAllContent,
+} from '../styled-components/podcasts.styled-components';
+
+const Profile = (props) => {
   const userInfo = useContext(UserProvider.context);
   console.log('userInfo profile:', userInfo);
   let UserImageDiv;
   let ProfileCoverImage;
   let displayName = '';
+
+  console.log('props:', props);
 
 
   if (!_.isEmpty(userInfo)) {
@@ -54,10 +65,15 @@ const Profile = () => {
   } else {
     UserImageDiv = (
       <>
-        <ProfileImage
-          src={ProfilePlaceholder}
-          alt="Profile Placeholder"
-        />
+        <LoadingProfileImage
+          style={{
+            backgroundColor: '#eee',
+          }}
+        >
+          <LoadingAllContent>
+            <FaSpinner />
+          </LoadingAllContent>
+        </LoadingProfileImage>
       </>
     );
     ProfileCoverImage = (
@@ -65,9 +81,13 @@ const Profile = () => {
         <Cover
           alt="Profile Placeholder"
           style={{
-            backgroundImage: `url(${ProfilePlaceholder})`,
+            backgroundColor: '#eee',
           }}
-        />
+        >
+          <LoadingAllContent>
+            <FaSpinner />
+          </LoadingAllContent>
+        </Cover>
       </>
     );
   }

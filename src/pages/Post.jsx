@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import slugify from 'slugify';
-
 import {
   FaSpinner,
 } from 'react-icons/fa';

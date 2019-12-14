@@ -18,6 +18,7 @@ import {
   NoContentDiv,
   NoContentImg,
   NoContentP,
+  StickyWrapper,
 } from '../styled-components/blog-posts.styled-components';
 
 export default class Blog extends Component {
@@ -177,8 +178,10 @@ export default class Blog extends Component {
               </InfinitePostList>
             </div>
             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-              <RecentCategories />
-              <NewsletterSide />
+              <StickyWrapper>
+                <RecentCategories />
+                <NewsletterSide />
+              </StickyWrapper>
             </div>
           </div>
         </>

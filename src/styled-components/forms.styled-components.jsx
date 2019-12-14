@@ -109,3 +109,48 @@ export const BlogPostCoverUploaderPlaceholder = styled.div`
     text-align: center;
   }
 `;
+
+export const PodcastCoverUploaderPlaceholder = styled.div`
+  border: 1px dashed #0058e4;
+  border-radius: 4px;
+  height: 250px;
+  width: 250px;
+  padding: 15px;
+  display: table;
+  margin: 0 auto;
+  z-index: 99999;
+  cursor: pointer;
+
+  p {
+    display: table;
+    margin: 0 auto;
+    color: #999;
+    font-size: 16px;
+    text-align: center;
+  }
+`;
+
+export const DivAside = styled.div`
+  @media (max-width: 768px) {
+    height: 255px;
+  }
+`;
+
+
+export const PodcastAudioFileUploaderPlaceholder = styled.div`
+  border: 1px dashed #0058e4;
+  border-radius: 4px;
+  height: 72px;
+  width: 100%;
+  padding: 15px;
+  display: table;
+  margin: 0 auto;
+  z-index: 99999;
+  p {
+    display: table;
+    margin: 0 auto;
+    color: #999;
+    font-size: 16px;
+    text-align: center;
+  }
+`;

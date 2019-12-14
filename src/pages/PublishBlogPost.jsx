@@ -163,7 +163,7 @@ export default class PublishBlogPost extends Component {
       title,
     };
     // let response = fetch("https://cryptic-activist-backend.herokuapp.com/podcasts/set/global-variable", {
-    const response = fetch('http://localhost:5000/blog/set/global-variable', {
+    const response = fetch('http://localhost:5000/admin/blog/set/global-variable', {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
@@ -179,7 +179,7 @@ export default class PublishBlogPost extends Component {
 
   async verifySlug(slug) {
     this.response = await fetch(
-      `http://localhost:5000/blog/validation/slug/${slug}`,
+      `http://localhost:5000/admin/blog/validation/slug/${slug}`,
       // `https://cryptic-activist-backend.herokuapp.com/podcasts/validation/slug/${slug}`,
       {
         method: 'GET',
@@ -240,7 +240,7 @@ export default class PublishBlogPost extends Component {
 
   async publishPost(podcast) {
     this.response = await fetch(
-      'http://localhost:5000/blog/publish',
+      'http://localhost:5000/admin/blog/publish',
       // "https://cryptic-activist-backend.herokuapp.com/podcasts/upload",
       {
         method: 'POST',
@@ -321,7 +321,7 @@ export default class PublishBlogPost extends Component {
     data.append("file", uploadedCovers.file, uploadedCovers.name);
 
     api
-      .post("/blog/publish/cover", data, {
+      .post("/admin/blog/publish/cover", data, {
         onUploadProgress: e => {
           const progress = parseInt(Math.round((e.loaded * 100) / e.total));
 
@@ -349,7 +349,7 @@ export default class PublishBlogPost extends Component {
   };
 
   handleDeleteCover = async id => {
-    await api.delete(`/blog/delete/cover/${id}`);
+    await api.delete(`/admin/blog/delete/cover/${id}`);
 
     this.setState({
       uploadedCovers: this.state.uploadedCovers.filter(file => file.id !== id)
@@ -393,7 +393,7 @@ export default class PublishBlogPost extends Component {
       coverUploader = (
         <>
           <BlogPostCoverUploaderPlaceholder>
-            <p>Give this blog post a Title before uploading a cover</p>
+            <p>Give this blog post a <strong>Title</strong> before uploading a cover</p>
           </BlogPostCoverUploaderPlaceholder>
         </>
       );
@@ -475,15 +475,17 @@ export default class PublishBlogPost extends Component {
                   <Editor
                     apiKey='z1imaefgqfqi5gkj9tp9blogndyf2gp0aj3fgubdtz73p658'
                     init={{
+                      extended_valid_elements : "script[src|async|defer|type|charset]",
                       height: 500,
-                      menubar: false,
+                      menubar: 'tools',
                       plugins: [
                         'advlist autolink lists link image charmap print preview anchor',
                         'searchreplace visualblocks code fullscreen',
-                        'insertdatetime media table paste code help wordcount'
+                        'insertdatetime media table paste code help wordcount',
+                        'codesample code',
                       ],
                       toolbar:
-                        'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+                        'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | codesample | code'
                     }}
                     onChange={this.handleEditorChange}
                   />

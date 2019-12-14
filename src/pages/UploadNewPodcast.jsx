@@ -18,7 +18,10 @@ import SubNavBar from '../components/UI/navbar/SubNavBar';
 
 import {
   Input,
-  Button
+  Button,
+  PodcastCoverUploaderPlaceholder,
+  PodcastAudioFileUploaderPlaceholder,
+  DivAside,
 } from "../styled-components/forms.styled-components";
 
 import {
@@ -40,7 +43,9 @@ export default class UploadNewPodcast extends Component {
       uploaded: null,
       uploadedFiles: [],
       uploadedCovers: [],
-      allFieldsFilled: false
+      allFieldsFilled: false,
+      enableCoverUploader: false,
+      warning: false,
     };
     this.verifySlug = this.verifySlug.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
@@ -52,6 +57,7 @@ export default class UploadNewPodcast extends Component {
     this.setGlobalVariable = this.setGlobalVariable.bind(this);
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.tagsToArray = this.tagsToArray.bind(this);
+    this.enableCoverUploader = this.enableCoverUploader.bind(this);
   }
 
   async verifySlug(slug) {
@@ -98,7 +104,20 @@ export default class UploadNewPodcast extends Component {
   }
 
   async disabledSubmitButton() {
-    if (this.state.category !== "" && this.state.title !== "" && this.state.tags !== "" && this.state.description !== "" && this.state.uploadedFiles.length > 0 && this.state.uploadedCovers.length > 0) {
+    const {
+      category,
+      title,
+      tags,
+      description,
+      uploadedFiles,
+      uploadedCovers,
+    } = this.state;
+    if (category !== ""
+    && title !== ""
+    && tags !== ""
+    && description !== ""
+    && uploadedFiles.length > 0
+    && uploadedCovers.length > 0) {
       await this.setStateAsync({
         allFieldsFilled: true
       });
@@ -110,13 +129,15 @@ export default class UploadNewPodcast extends Component {
   }
 
   async onChangeTitle(e) {
+    const {
+      title
+    } = this.state;
     this.setStateAsync({
       title: e.target.value
     });
     setTimeout(() => {
-      this.changeSlugFromTitle(this.state.title);
-    }, 0);
-    setTimeout(() => {
+      this.changeSlugFromTitle(title);
+      this.enableCoverUploader(title);
       this.disabledSubmitButton();
     }, 0);
   }
@@ -405,6 +426,22 @@ export default class UploadNewPodcast extends Component {
     });
   }
 
+  async enableCoverUploader(title) {
+    if (title.length > 0) {
+      setTimeout(() => {
+        this.setStateAsync({
+          enableCoverUploader: true,
+        });
+      }, 0)
+    } else if (title.length === 0 || title === '') {
+      setTimeout(() => {
+        this.setStateAsync({
+          enableCoverUploader: false,
+        });
+      }, 0)
+    }
+  }
+
   componentWillUnmount() {
     this.state.uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
     this.state.uploadedCovers.forEach(file =>
@@ -417,12 +454,54 @@ export default class UploadNewPodcast extends Component {
       uploadedFiles,
       uploadedCovers,
       title,
-      // slug,
       category,
       tags, 
-      // description,
-      allFieldsFilled
+      allFieldsFilled,
+      enableCoverUploader,
     } = this.state;
+    let coverUploader;
+    let audioFileUploader;
+
+    if (enableCoverUploader) {
+      coverUploader = (
+        <>
+          <UploadCover onUpload={this.handleUploadCover} />
+          {!!uploadedCovers.length && (
+            <FileListCover
+              files={uploadedCovers}
+              onDelete={this.handleDeleteCover}
+            />
+          )}
+        </>
+      );
+      audioFileUploader = (
+        <>
+          <Upload onUpload={this.handleUpload} />
+          {!!uploadedFiles.length && (
+            <FileList
+              files={uploadedFiles}
+              onDelete={this.handleDelete}
+            />
+          )}
+        </>
+      );
+    } else {
+      coverUploader = (
+        <>
+          <PodcastCoverUploaderPlaceholder>
+            <p>Give this podcast a <strong>Title</strong> before uploading a cover</p>
+          </PodcastCoverUploaderPlaceholder>
+        </>
+      );
+      audioFileUploader = (
+        <>
+          <PodcastAudioFileUploaderPlaceholder>
+            <p>Give this podcast a <strong>Title</strong> before uploading a audio file</p>
+          </PodcastAudioFileUploaderPlaceholder>
+        </>
+      );
+    }
+
     return (
       <>
         <SubNavBar media="Podcast" category="Upload" title={title} />
@@ -431,15 +510,9 @@ export default class UploadNewPodcast extends Component {
             <div className="row">
               <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                 <aside style={{ marginTop: '20px' }}>
-                  <div>
-                    <UploadCover onUpload={this.handleUploadCover} />
-                    {!!uploadedCovers.length && (
-                      <FileListCover
-                        files={uploadedCovers}
-                        onDelete={this.handleDeleteCover}
-                      />
-                    )}
-                  </div>
+                  <DivAside>
+                    {coverUploader}
+                  </DivAside>
                 </aside>
               </div>
               <div className="col-lg-8 col-md-8 col-sm-12 col-12">
@@ -482,13 +555,7 @@ export default class UploadNewPodcast extends Component {
                       required
                     />
                   <div>
-                    <Upload onUpload={this.handleUpload} />
-                    {!!uploadedFiles.length && (
-                      <FileList
-                        files={uploadedFiles}
-                        onDelete={this.handleDelete}
-                      />
-                    )}
+                    {audioFileUploader}
                   </div>
                   <div style={{margin: "50px 0px 20px 0px"}}>
                     <Editor
