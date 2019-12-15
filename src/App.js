@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import {
@@ -24,9 +25,11 @@ import Post from './pages/Post';
 import About from './pages/About';
 import Profile from './pages/Profile';
 import Course from './pages/Course';
+import CoursesHome from './pages/CoursesHome';
+import CoursesRelatedProgram from './pages/CoursesRelatedProgram';
 import CoursesCategories from './pages/CoursesCategories';
 import CoursesCategory from './pages/CoursesCategory';
-import Courses from './pages/Courses';
+import MyCourses from './pages/MyCourses';
 import Podcast from './pages/Podcast';
 import EditPodcast from './pages/EditPodcast';
 import EditPost from './pages/EditPost';
@@ -55,10 +58,16 @@ function App() {
         <Route path="/profile" component={Profile} />
         <Route path="/terms-and-conditions" component={TermsConditions} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
-        <Route path="/course" component={Course} />
+        <Route exact path="/course/:slug" component={Course} />
+        <Route exact path="/courses" component={CoursesHome} />
+        <Route
+          exact
+          path="/courses/program/:slug"
+          render={(props) => <CoursesRelatedProgram {...props} />}
+        />
         <Route path="/courses/categories" component={CoursesCategories} />
         <Route path="/courses/category" component={CoursesCategory} />
-        <Route path="/courses" component={Courses} />
+        <Route path="/my-courses" component={MyCourses} />
         <Route exact path="/podcasts" component={Podcasts} />
         <Route
           exact

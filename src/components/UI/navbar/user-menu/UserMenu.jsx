@@ -7,7 +7,8 @@ import {
   ProfileDiv,
   Profile,
   MenuOpitionUl,
-  // MenuOpitionLi,
+  MenuOpitionLi,
+  LinkTo,
 } from '../../../../styled-components/user-menu.styled-components';
 
 const UserMenu = (props) => {
@@ -40,13 +41,24 @@ const UserMenu = (props) => {
           </Profile>
         </ProfileDiv>
         <hr />
-        {/* <BioDiv>
-          <Bio>
-            Bio test. dfgdfg gfh
-          </Bio>
-        </BioDiv>
-        <hr /> */}
-        <MenuOpitionUl />
+        <MenuOpitionUl>
+          <MenuOpitionLi>
+            <LinkTo
+              to="/admin"
+              onClick={handleCloseOnClick}
+            >
+              Admin
+            </LinkTo>
+          </MenuOpitionLi>
+          <MenuOpitionLi>
+            <LinkTo
+              to="/my-courses"
+              onClick={handleCloseOnClick}
+            >
+              My Courses
+            </LinkTo>
+          </MenuOpitionLi>
+        </MenuOpitionUl>
       </Wrapper>
     </>
   );

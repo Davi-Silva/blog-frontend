@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
-import React, {
-  Component,
-  // useContext,
-} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import _ from 'lodash';
 
 import {
   FaLaptopCode,
@@ -15,10 +13,7 @@ import {
   FaListUl,
 } from 'react-icons/fa';
 
-// import CoursePanel from '../components/admin/panel/course.component';
-// import PodcastPanel from '../components/admin/panel/podcast.component';
-// import BlogPanel from '../components/admin/panel/blog.component';
-// import SettingsPanel from '../components/admin/panel/settings.component';
+import UserProvider from '../contexts/UserProvider';
 
 import PublishBlogPost from './PublishBlogPost';
 import UploadNewPodcast from './UploadNewPodcast';
@@ -38,483 +33,509 @@ import {
   AdminSubButton,
 } from '../styled-components/admin.styled-components';
 
-export default class Admin extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      courses: false,
+const Admin = (props) => {
+  const userInfo = useContext(UserProvider.context);
+  const [coursesState, setCoursesState] = useState({
+    courses: false,
+  });
+  const [blogState, setBlogState] = useState({
+    blog: false,
+  });
+  const [podcastsState, setPodcastsState] = useState({
+    podcasts: false,
+  });
+  const [settingsState, setSettingsState] = useState({
+    settings: false,
+  });
+  const [subMenuState, setSubMenuState] = useState({
+    subMenu: {
+      add: false,
+      edit: false,
+      search: false,
+    },
+  });
+
+  if (!_.isEmpty(userInfo)) {
+    console.log('userInfo:', userInfo);
+  }
+
+  const onChangeCourse = () => {
+    setCoursesState({
+      courses: !coursesState.courses,
+    });
+    setBlogState({
       blog: false,
+    });
+    setPodcastsState({
       podcasts: false,
+    });
+    setSettingsState({
       settings: false,
-      subMenu: {
-        add: false,
-        edit: false,
-        search: false,
-      },
-    };
-    this.onChangeCourse = this.onChangeCourse.bind(this);
-    this.onChangeBlog = this.onChangeBlog.bind(this);
-    this.onChangePodcasts = this.onChangePodcasts.bind(this);
-    this.onChangeSettings = this.onChangeSettings.bind(this);
-    this.onChangeAdd = this.onChangeAdd.bind(this);
-    this.onChangeEdit = this.onChangeEdit.bind(this);
-    this.onChangeSearch = this.onChangeSearch.bind(this);
-  }
-
-  onChangeCourse() {
-    const {
-      courses,
-    } = this.state;
-    this.setState({
-      courses: !courses,
-      blog: false,
-      podcasts: false,
-      settings: false,
+    });
+    setSubMenuState({
       subMenu: {
         add: false,
         edit: false,
         search: false,
       },
     });
-  }
+  };
 
-  onChangeBlog() {
-    const {
-      blog,
-    } = this.state;
-    this.setState({
+  const onChangeBlog = () => {
+    console.log('Click me motherfucker');
+    setCoursesState({
       courses: false,
-      blog: !blog,
+    });
+    setBlogState({
+      blog: !blogState.blog,
+    });
+    setPodcastsState({
       podcasts: false,
+    });
+    setSettingsState({
       settings: false,
+    });
+    setSubMenuState({
       subMenu: {
         add: false,
         edit: false,
         search: false,
       },
     });
-  }
+  };
 
-  onChangePodcasts() {
-    const {
-      podcasts,
-    } = this.state;
-    this.setState({
+  const onChangePodcasts = () => {
+    setCoursesState({
       courses: false,
+    });
+    setBlogState({
       blog: false,
-      podcasts: !podcasts,
+    });
+    setPodcastsState({
+      podcasts: !podcastsState.podcasts,
+    });
+    setSettingsState({
       settings: false,
+    });
+    setSubMenuState({
       subMenu: {
         add: false,
         edit: false,
         search: false,
       },
     });
-  }
+  };
 
-  onChangeSettings() {
-    const {
-      settings,
-    } = this.state;
-    this.setState({
+  const onChangeSettings = () => {
+    setCoursesState({
       courses: false,
+    });
+    setBlogState({
       blog: false,
+    });
+    setPodcastsState({
       podcasts: false,
-      settings: !settings,
+    });
+    setSettingsState({
+      settings: !settingsState.settings,
+    });
+    setSubMenuState({
       subMenu: {
         add: false,
         edit: false,
         search: false,
       },
     });
-  }
+  };
 
-  onChangeAdd() {
-    const {
-      subMenu,
-    } = this.state;
-    this.setState({
+  const onChangeAdd = () => {
+    setSubMenuState({
       subMenu: {
-        add: !subMenu.add,
+        add: !subMenuState.add,
         edit: false,
         search: false,
       },
     });
-  }
+  };
 
-  onChangeEdit() {
-    const {
-      subMenu,
-    } = this.state;
-    this.setState({
+  const onChangeEdit = () => {
+    setSubMenuState({
       subMenu: {
         add: false,
-        edit: !subMenu.edit,
+        edit: !subMenuState.edit,
         search: false,
       },
     });
-  }
+  };
 
-  onChangeSearch() {
-    const {
-      subMenu,
-    } = this.state;
-    this.setState({
+
+  const onChangeSearch = () => {
+    setSubMenuState({
       subMenu: {
         add: false,
         edit: false,
-        search: !subMenu.search,
+        search: !subMenuState.search,
       },
     });
-  }
+  };
 
-  render() {
-    const {
-      courses,
-      blog,
-      podcasts,
-      settings,
-      subMenu,
-    } = this.state;
+  const { history } = props;
 
-    const { history } = this.props;
+  let coursesVar;
+  let blogVar;
+  let podcastsVar;
+  let settingsVar;
+  let subMenuVar;
+  let addVar;
+  let listAllVar;
+  let searchVar;
+  let allBlogPost;
+  let allPodcast;
+  // let editPost;
+  // let editPodcast;
 
-    let coursesVar;
-    let blogVar;
-    let podcastsVar;
-    let settingsVar;
-    let subMenuVar;
-    let addVar;
-    let listAllVar;
-    let searchVar;
-    let allBlogPost;
-    let allPodcast;
-    // let editPost;
-    // let editPodcast;
+  const {
+    courses,
+  } = coursesState;
+  const {
+    blog,
+  } = blogState;
+  const {
+    podcasts,
+  } = podcastsState;
+  const {
+    settings,
+  } = settingsState;
+  const {
+    subMenu,
+  } = subMenuState;
+  console.log('coursesState:', courses);
 
-    if (courses || blog || podcasts || settings) {
+  if (courses || blog || podcasts || settings) {
+    addVar = (
+      <>
+        <AdminSubButton
+          onClick={onChangeAdd}
+        >
+          <FaPlus />
+        </AdminSubButton>
+      </>
+    );
+    searchVar = (
+      <>
+        <AdminSubButton
+          onClick={onChangeSearch}
+        >
+          <FaSearch />
+        </AdminSubButton>
+      </>
+    );
+
+    if (subMenu.add) {
       addVar = (
         <>
           <AdminSubButton
-            onClick={this.onChangeAdd}
+            onClick={onChangeAdd}
+            style={{
+              color: '#0058e4',
+            }}
           >
             <FaPlus />
           </AdminSubButton>
         </>
       );
-      searchVar = (
-        <>
-          <AdminSubButton
-            onClick={this.onChangeSearch}
-          >
-            <FaSearch />
-          </AdminSubButton>
-        </>
-      );
-
-      if (subMenu.add) {
-        addVar = (
+      if (blog) {
+        allBlogPost = (
           <>
-            <AdminSubButton
-              onClick={this.onChangeAdd}
-              style={{
-                color: '#0058e4',
-              }}
-            >
-              <FaPlus />
-            </AdminSubButton>
+            <PublishBlogPost History={history} />
           </>
         );
-        if (blog) {
-          allBlogPost = (
-            <>
-              <PublishBlogPost History={history} />
-            </>
-          );
-          allPodcast = (
-            <>
-            </>
-          );
-        }
-        if (podcasts) {
-          allBlogPost = (
-            <>
-            </>
-          );
-          allPodcast = (
-            <>
-              <UploadNewPodcast History={history} />
-            </>
-          );
-        }
-      } else {
-        addVar = (
+        allPodcast = (
           <>
-            <AdminSubButton
-              onClick={this.onChangeAdd}
-            >
-              <FaPlus />
-            </AdminSubButton>
           </>
         );
       }
-
-      if (subMenu.edit) {
-        listAllVar = (
+      if (podcasts) {
+        allBlogPost = (
           <>
-            <AdminSubButton
-              onClick={this.onChangeEdit}
-              style={{
-                color: '#0058e4',
-              }}
-            >
-              <FaListUl />
-            </AdminSubButton>
           </>
         );
-        if (blog) {
-          allBlogPost = (
-            <>
-              <BlogPostContent />
-            </>
-          );
-          allPodcast = (
-            <>
-            </>
-          );
-        }
-        if (podcasts) {
-          allBlogPost = (
-            <>
-            </>
-          );
-          allPodcast = (
-            <>
-              <PodcastContent />
-            </>
-          );
-        }
-      } else {
-        listAllVar = (
+        allPodcast = (
           <>
-            <AdminSubButton
-              onClick={this.onChangeEdit}
-            >
-              <FaListUl />
-            </AdminSubButton>
-          </>
-        );
-      }
-
-
-      if (subMenu.search) {
-        searchVar = (
-          <>
-            <AdminSubButton
-              onClick={this.onChangeSearch}
-              style={{
-                color: '#0058e4',
-              }}
-            >
-              <FaSearch />
-            </AdminSubButton>
-          </>
-        );
-      } else {
-        searchVar = (
-          <>
-            <AdminSubButton
-              onClick={this.onChangeSearch}
-            >
-              <FaSearch />
-            </AdminSubButton>
+            <UploadNewPodcast History={history} />
           </>
         );
       }
     } else {
       addVar = (
         <>
+          <AdminSubButton
+            onClick={onChangeAdd}
+          >
+            <FaPlus />
+          </AdminSubButton>
         </>
       );
+    }
+
+    if (subMenu.edit) {
       listAllVar = (
         <>
+          <AdminSubButton
+            onClick={onChangeEdit}
+            style={{
+              color: '#0058e4',
+            }}
+          >
+            <FaListUl />
+          </AdminSubButton>
         </>
       );
+      if (blog) {
+        allBlogPost = (
+          <>
+            <BlogPostContent />
+          </>
+        );
+        allPodcast = (
+          <>
+          </>
+        );
+      }
+      if (podcasts) {
+        allBlogPost = (
+          <>
+          </>
+        );
+        allPodcast = (
+          <>
+            <PodcastContent />
+          </>
+        );
+      }
+    } else {
+      listAllVar = (
+        <>
+          <AdminSubButton
+            onClick={onChangeEdit}
+          >
+            <FaListUl />
+          </AdminSubButton>
+        </>
+      );
+    }
+
+
+    if (subMenu.search) {
       searchVar = (
         <>
-        </>
-      );
-    }
-
-    if (courses) {
-      coursesVar = (
-        <>
-          <AdminButton
-            onClick={this.onChangeCourse}
+          <AdminSubButton
+            onClick={onChangeSearch}
             style={{
               color: '#0058e4',
             }}
           >
-            <FaLaptopCode />
-            <span>
-              Course
-            </span>
-          </AdminButton>
+            <FaSearch />
+          </AdminSubButton>
         </>
       );
     } else {
-      coursesVar = (
+      searchVar = (
         <>
-          <AdminButton
-            onClick={this.onChangeCourse}
+          <AdminSubButton
+            onClick={onChangeSearch}
           >
-            <FaLaptopCode />
-            <span>
-              Course
-            </span>
-          </AdminButton>
+            <FaSearch />
+          </AdminSubButton>
         </>
       );
     }
-
-    if (blog) {
-      blogVar = (
-        <>
-          <AdminButton
-            onClick={this.onChangeBlog}
-            style={{
-              color: '#0058e4',
-            }}
-          >
-            <FaBlog />
-            <span>
-              Blog
-            </span>
-          </AdminButton>
-        </>
-      );
-    } else {
-      blogVar = (
-        <>
-          <AdminButton
-            onClick={this.onChangeBlog}
-          >
-            <FaBlog />
-            <span>
-              Blog
-            </span>
-          </AdminButton>
-        </>
-      );
-    }
-
-    if (podcasts) {
-      podcastsVar = (
-        <>
-          <AdminButton
-            onClick={this.onChangePodcasts}
-            style={{
-              color: '#0058e4',
-            }}
-          >
-            <FaPodcast />
-            <span>
-              Podcast
-            </span>
-          </AdminButton>
-        </>
-      );
-    } else {
-      podcastsVar = (
-        <>
-          <AdminButton
-            onClick={this.onChangePodcasts}
-          >
-            <FaPodcast />
-            <span>
-              Podcast
-            </span>
-          </AdminButton>
-        </>
-      );
-    }
-
-    if (settings) {
-      settingsVar = (
-        <>
-          <AdminButton
-            onClick={this.onChangeSettings}
-            style={{
-              color: '#0058e4',
-            }}
-          >
-            <FaCog />
-            <span>
-              Settings
-            </span>
-          </AdminButton>
-        </>
-      );
-    } else {
-      settingsVar = (
-        <>
-          <AdminButton
-            onClick={this.onChangeSettings}
-          >
-            <FaCog />
-            <span>
-              Settings
-            </span>
-          </AdminButton>
-        </>
-      );
-    }
-
-
-    return (
+  } else {
+    addVar = (
       <>
-        <AdminWrapper
-          className="container-fluid"
-        >
-          <div className="row">
-            <Column className="col-lg-1 col-md-1 col-sm-12 col-12">
-              <AdminUl>
-                <AdminLi>
-                  {' '}
-                  {subMenuVar}
-                  {coursesVar}
-                </AdminLi>
-                <AdminLi>
-                  {blogVar}
-                </AdminLi>
-                <AdminLi>
-                  {podcastsVar}
-                </AdminLi>
-                <AdminLi>
-                  {settingsVar}
-                </AdminLi>
-              </AdminUl>
-            </Column>
-            <Column className="col-lg-1 col-md-1 col-sm-12 col-12">
-              <AdminUl>
-                <AdminLi2>
-                  {addVar}
-                </AdminLi2>
-                <AdminLi2>
-                  {searchVar}
-                </AdminLi2>
-                <AdminLi2>
-                  {listAllVar}
-                </AdminLi2>
-              </AdminUl>
-            </Column>
-            <div className="col-lg-10 col-md-10 col-sm-12 col-12">
-              {allBlogPost}
-              {allPodcast}
-            </div>
-          </div>
-        </AdminWrapper>
+      </>
+    );
+    listAllVar = (
+      <>
+      </>
+    );
+    searchVar = (
+      <>
       </>
     );
   }
-}
+
+  if (courses) {
+    coursesVar = (
+      <>
+        <AdminButton
+          onClick={onChangeCourse}
+          style={{
+            color: '#0058e4',
+          }}
+        >
+          <FaLaptopCode />
+          <span>
+              Course
+          </span>
+        </AdminButton>
+      </>
+    );
+  } else {
+    console.log('coursesState:', coursesState);
+    coursesVar = (
+      <>
+        <AdminButton
+          onClick={onChangeCourse}
+        >
+          <FaLaptopCode />
+          <span>
+              Course
+          </span>
+        </AdminButton>
+      </>
+    );
+  }
+
+  if (blog) {
+    blogVar = (
+      <>
+        <AdminButton
+          onClick={onChangeBlog}
+          style={{
+            color: '#0058e4',
+          }}
+        >
+          <FaBlog />
+          <span>
+              Blog
+          </span>
+        </AdminButton>
+      </>
+    );
+  } else {
+    blogVar = (
+      <>
+        <AdminButton
+          onClick={onChangeBlog}
+        >
+          <FaBlog />
+          <span>
+              Blog
+          </span>
+        </AdminButton>
+      </>
+    );
+  }
+
+  if (podcasts) {
+    podcastsVar = (
+      <>
+        <AdminButton
+          onClick={onChangePodcasts}
+          style={{
+            color: '#0058e4',
+          }}
+        >
+          <FaPodcast />
+          <span>
+              Podcast
+          </span>
+        </AdminButton>
+      </>
+    );
+  } else {
+    podcastsVar = (
+      <>
+        <AdminButton
+          onClick={onChangePodcasts}
+        >
+          <FaPodcast />
+          <span>
+              Podcast
+          </span>
+        </AdminButton>
+      </>
+    );
+  }
+
+  if (settings) {
+    settingsVar = (
+      <>
+        <AdminButton
+          onClick={onChangeSettings}
+          style={{
+            color: '#0058e4',
+          }}
+        >
+          <FaCog />
+          <span>
+              Settings
+          </span>
+        </AdminButton>
+      </>
+    );
+  } else {
+    settingsVar = (
+      <>
+        <AdminButton
+          onClick={onChangeSettings}
+        >
+          <FaCog />
+          <span>
+              Settings
+          </span>
+        </AdminButton>
+      </>
+    );
+  }
+
+
+  return (
+    <>
+      <AdminWrapper
+        className="container-fluid"
+      >
+        <div className="row">
+          <Column className="col-lg-1 col-md-1 col-sm-12 col-12">
+            <AdminUl>
+              <AdminLi>
+                {' '}
+                {subMenuVar}
+                {coursesVar}
+              </AdminLi>
+              <AdminLi>
+                {blogVar}
+              </AdminLi>
+              <AdminLi>
+                {podcastsVar}
+              </AdminLi>
+              <AdminLi>
+                {settingsVar}
+              </AdminLi>
+            </AdminUl>
+          </Column>
+          <Column className="col-lg-1 col-md-1 col-sm-12 col-12">
+            <AdminUl>
+              <AdminLi2>
+                {addVar}
+              </AdminLi2>
+              <AdminLi2>
+                {searchVar}
+              </AdminLi2>
+              <AdminLi2>
+                {listAllVar}
+              </AdminLi2>
+            </AdminUl>
+          </Column>
+          <div className="col-lg-10 col-md-10 col-sm-12 col-12">
+            {allBlogPost}
+            {allPodcast}
+          </div>
+        </div>
+      </AdminWrapper>
+    </>
+  );
+};
+
+export default Admin;

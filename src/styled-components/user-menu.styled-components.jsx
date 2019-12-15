@@ -60,13 +60,29 @@ export const Profile = styled(Link)`
 `;
 
 export const MenuOpitionUl = styled.ul`
-  height: 100px;
   display: table;
-  margin: 5px auto;
+  width: 100%;
+  margin-bottom: 0px;
 `;
 
 export const MenuOpitionLi = styled.li`
-  height: 100px;
   display: table;
-  margin: 5px auto;
+  width: 100%;
+  color: #333;
+  font-size: 13px;
+  transition: .2s all ease-in-out;
+  &:hover {
+    background: rgba(0, 0, 0, 0.025);
+  }
+`;
+
+export const LinkTo = styled(Link)`
+  color: #333;
+  text-align: center;
+  padding: 5px 0;
+  display: block;
+  &:hover {
+    color: #333;
+    text-decoration: none;
+  }
 `;

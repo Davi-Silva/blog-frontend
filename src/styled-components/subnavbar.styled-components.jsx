@@ -77,8 +77,8 @@ export const Container = styled.div`
   padding-left: 15px!important;
   padding-right: 15px!important;
   @media (max-width: 991px) {
-    padding-left: 0px!important;
-    padding-right: 0px!important;
+    padding-left: 15px!important;
+    padding-right: 15px!important;
   }
   @media (max-width: 768px) {
     padding-left: 0px!important;

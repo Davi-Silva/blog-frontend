@@ -46,10 +46,6 @@ export const ButtonProfile = styled.button`
   &:focus {
     outline: none;
   }
-  @media (max-width: 991px) {
-    display: table;
-    margin: 0 auto;
-  }
 `;
 
 export const Brand = styled(Link)`

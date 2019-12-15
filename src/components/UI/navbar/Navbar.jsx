@@ -191,7 +191,7 @@ const Navbar = () => {
         UserData={userInfo}
       />
       <NavBar
-        className="navbar navbar-expand-lg"
+        className="navbar navbar-expand-md"
         onScroll={onScroll}
       >
         <div className="container">
