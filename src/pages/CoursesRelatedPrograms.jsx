@@ -5,17 +5,11 @@ import React, { useContext, useState, useEffect } from 'react';
 import {
   ProgramCover,
   ProgramTitle,
-  JourneyDiv,
-  JourneyTitle,
-  JourneyP,
-  JourneyBuyAllCourses,
-  ProgressDiv,
-  Progress,
 } from '../styled-components/courses-related-program.styled-component';
 
 import Cover from '../static/img/course-img.jpg';
 
-const CoursesRelatedProgram = (props) => {
+const CoursesRelatedPrograms = (props) => {
   const {
     params,
   } = props.match;
@@ -79,38 +73,9 @@ const CoursesRelatedProgram = (props) => {
         }}
       >
         <ProgramTitle>
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                {params.slug}
-              </div>
-            </div>
-          </div>
+          {params.slug}
         </ProgramTitle>
       </ProgramCover>
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-7 col-md-7 col-sm-7 col-12">
-            <JourneyDiv>
-              <JourneyTitle>Your Program Journey</JourneyTitle>
-              <JourneyP>
-              Track and plan your progress through the 11 courses in this program.
-              To complete the program, you must earn a verified certificate for each course.
-              </JourneyP>
-            </JourneyDiv>
-            <JourneyBuyAllCourses>
-              Upgrade All Remaining Courses ( $1089.00 $980.10 USD )
-            </JourneyBuyAllCourses>
-          </div>
-          <div className="col-lg-5 col-md-5 col-sm-5 col-12">
-            <ProgressDiv>
-              <Progress>
-            Progress
-              </Progress>
-            </ProgressDiv>
-          </div>
-        </div>
-      </div>
     </>
   );
 };
