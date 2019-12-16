@@ -64,28 +64,6 @@ export const UnderTopCoverStrap = styled.div`
   }
 `;
 
-export const RecentlyPublishedCourses = styled.h3`
-  color: #333;
-  font-size: 16px;
-  letter-spacing: 1px;
-  margin-top: 15px;
-`;
-
-export const Wrapper = styled.div`
-  border: 1px solid #efefef;
-  border-radius: 4px;
-  color: #333;
-  width: 100%;
-  background: #fff;
-  height: 250px;
-  margin: 0 0 25px 0;
-  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.15);
-  transition: .2s all ease-in-out;
-  &:hover {
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
-    border: 1px solid #e2e2e2;
-  }
-`;
 
 export const WrapperMostViewed = styled.div`
   border: 1px solid #efefef;
@@ -101,26 +79,6 @@ export const WrapperMostViewed = styled.div`
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
     border: 1px solid #e2e2e2;
   }
-`;
-
-export const CourseCoverLink = styled(Link)`
-  width: 100%;
-  height: 150px;
-`;
-
-export const PulbishedOnDate = styled.p`
-  margin-bottom: 0;
-  font-size: 13px;
-`;
-
-export const CourseCover = styled.div`
-  width: 100%;
-  height: 100px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
 `;
 
 export const RelatedProgramDiv = styled.div`
@@ -146,33 +104,6 @@ export const ReplatedProgram = styled(Link)`
   b {
     font-size: 13px;
     /* text-transform: uppercase; */
-  }
-`;
-
-export const Content = styled.div`
-  padding: 10px;
-`;
-
-export const Title = styled(Link)`
-  color: #333;
-  font-size: 16px;
-  letter-spacing: 1px;
-  display: table;
-  transition: .2s all ease-in-out;
-  &:hover {
-    text-decoration: none;
-    color: #0058e4;
-  }
-`;
-
-export const Author = styled(Link)`
-  color: #333;
-  font-size: 12px;
-  position: relative;
-  top: 49px;
-  &:hover {
-    text-decoration: none;
-    color: #0058e4;
   }
 `;
 
@@ -208,14 +139,6 @@ export const StatementWrapper = styled.div`
   margin: 25px auto;
 `;
 
-export const Filter = styled.div`
-  background: #f2f3f5;
-  width: 200px;
-  height: 300px;
-  display: table;
-  margin: 0 auto;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
-`;
 
 export const MostViewed = styled.div`
   padding: 15px 0;
