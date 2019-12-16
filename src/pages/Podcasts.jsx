@@ -152,22 +152,24 @@ export default class Podcasts extends Component {
                   <div />
                 )}
               >
-                {podcasts.map((podcast, key) => (
-                  <PodcastsList
-                    key={key}
-                    category={podcast.category}
-                    title={podcast.title}
-                    date={podcast.uploadedOn}
-                    slug={podcast.slug}
-                    cover={podcast.cover.url}
-                    liID={`p-${key}`}
-                  />
-                ))}
+                <div className="row">
+                  {podcasts.map((podcast, key) => (
+                    <PodcastsList
+                      key={key}
+                      category={podcast.category}
+                      title={podcast.title}
+                      date={podcast.uploadedOn}
+                      slug={podcast.slug}
+                      cover={podcast.cover.url}
+                      liID={`p-${key}`}
+                    />
+                  ))}
+                </div>
               </InfiniteScroll>
             </InfinitePodcastList>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-            <aside style={{ marginTop: '20px' }}>
+            <aside>
               <StickyWrapper>
                 <RecentCategories />
                 <NewsletterSide />
@@ -180,7 +182,7 @@ export default class Podcasts extends Component {
     return (
       <>
         <SubNavBar media="Podcasts" category="" title="" />
-        <div className="container">
+        <div className="container" style={{ marginTop: '25px' }}>
           <div className="row">
             {allPodcasts}
           </div>

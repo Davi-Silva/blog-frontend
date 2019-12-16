@@ -80,4 +80,4 @@ const CoursesRelatedPrograms = (props) => {
   );
 };
 
-export default CoursesRelatedProgram;
+export default CoursesRelatedPrograms;

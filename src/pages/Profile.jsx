@@ -69,11 +69,7 @@ const Profile = (props) => {
           style={{
             backgroundColor: '#eee',
           }}
-        >
-          <LoadingAllContent>
-            <FaSpinner />
-          </LoadingAllContent>
-        </LoadingProfileImage>
+        />
       </>
     );
     ProfileCoverImage = (
@@ -83,11 +79,7 @@ const Profile = (props) => {
           style={{
             backgroundColor: '#eee',
           }}
-        >
-          <LoadingAllContent>
-            <FaSpinner />
-          </LoadingAllContent>
-        </Cover>
+        />
       </>
     );
   }

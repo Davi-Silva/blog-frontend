@@ -5,12 +5,14 @@ import { Link } from 'react-router-dom';
 import { rotate } from './animations';
 
 export const Wrapper = styled(Link)`
-	margin: 20px auto;
+	margin: 0 auto 20px auto;
 	display: table;
 	transition: all 0.2s ease-in-out;
-	width: 100%;
+	border-radius: 4px;
+	width: 99%;
 	&:hover {
 		text-decoration: none;
+		/* box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25); */
 	}
 `;
 
@@ -51,11 +53,15 @@ export const Cover = styled.img`
   }
 `;
 
-export const Title = styled.div`
+export const Title = styled.h4`
 	color: #333;
 	font-weight: 900;
 	font-size: 18px;
 	margin-bottom: 0px;
+	max-width: 245px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 	@media (max-width: 991px) {
 		font-size: 17px;
 	}
@@ -174,7 +180,6 @@ export const InfinitePodcastList = styled.ul`
 `;
 
 export const StickyWrapper = styled.div`
-	margin-top: 33px;
 	position: sticky;
-	top: 63px;
+	top: 33px;
 `;

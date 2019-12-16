@@ -17,7 +17,7 @@ import Cover from '../../../static/img/course-img.jpg';
 
 import ShareButtonsCouse from '../buttons/ShareButtonCourse';
 
-const CoursesHomeList = (props) => {
+const CoursesHomeListMostViewed = (props) => {
   const {
     cover,
     title,
@@ -58,4 +58,4 @@ const CoursesHomeList = (props) => {
   );
 };
 
-export default CoursesHomeList;
+export default CoursesHomeListMostViewed;

@@ -1,23 +1,23 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import slugify from 'slugify';
 
 import {
-  Wrapper,
+  WrapperMostViewed,
   CourseCoverLink,
   CourseCover,
   RelatedProgramDiv,
   ReplatedProgram,
   Content,
   Title,
-  Author,
-} from '../../../styled-components/my-courses-list.styled-components';
+  AuthorMostViewed,
+  PulbishedOnDate,
+} from '../../../styled-components/courses-home-list.styled-components';
 
 import Cover from '../../../static/img/course-img.jpg';
 
 import ShareButtonsCouse from '../buttons/ShareButtonCourse';
 
-const CoursesRelatedProgramList = (props) => {
+const CoursesHomeListRecentlyPublished = (props) => {
   const {
     cover,
     title,
@@ -27,9 +27,14 @@ const CoursesRelatedProgramList = (props) => {
   } = props;
 
   return (
-    <Wrapper className="container">
-      <div className="row">
-        <div className="col-lg-4 col-md-4 col-sm-4 col-12 p-0">
+    <>
+      <li
+        style={{
+          display: 'inline-block',
+          marginRight: '25px',
+        }}
+      >
+        <WrapperMostViewed>
           <CourseCoverLink
             to="/course/test"
           >
@@ -39,26 +44,25 @@ const CoursesRelatedProgramList = (props) => {
               }}
             />
           </CourseCoverLink>
-        </div>
-        <div className="col-lg-8 col-md-8 col-sm-8 col-12 p-0">
           <Content>
             <Title
               to="/course/test"
             >
               {title}
             </Title>
-            <Author
+            <PulbishedOnDate>
+              {publishedOn}
+            </PulbishedOnDate>
+            <AuthorMostViewed
               to="/profile"
             >
               {author}
-            </Author>
-            <p>{publishedOn}</p>
-            <ShareButtonsCouse />
+            </AuthorMostViewed>
           </Content>
-        </div>
-      </div>
-    </Wrapper>
+        </WrapperMostViewed>
+      </li>
+    </>
   );
 };
 
-export default CoursesRelatedProgramList;
+export default CoursesHomeListRecentlyPublished;
