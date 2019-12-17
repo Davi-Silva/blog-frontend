@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Wrapper,
@@ -9,7 +9,7 @@ import {
   Title,
   Author,
   Li,
-  PulbishedOnDate,
+  // PulbishedOnDate,
   Price,
 } from '../../../../styled-components/components/most-viewed-courses.styled-components';
 
@@ -19,7 +19,7 @@ const CoursesHomeListRecentlyPublished = (props) => {
   const {
     title,
     author,
-    publishedOn,
+    // publishedOn,
     price,
   } = props;
 
@@ -72,3 +72,10 @@ const CoursesHomeListRecentlyPublished = (props) => {
 };
 
 export default CoursesHomeListRecentlyPublished;
+
+CoursesHomeListRecentlyPublished.propTypes = {
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  // publishedOn: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+};

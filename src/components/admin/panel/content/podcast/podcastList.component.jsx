@@ -1,5 +1,6 @@
-/* eslint-disable react/prop-types */
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   FaSortDown,
@@ -25,7 +26,7 @@ export default class List extends Component {
       category: '',
       title: '',
       date: null,
-      shortDescription: '',
+      // shortDescription: '',
       slug: '',
       liID: '',
       editTo: '',
@@ -42,7 +43,6 @@ export default class List extends Component {
       type,
       title,
       date,
-      // description,
       audioFileId,
       coverFileId,
       category,
@@ -226,19 +226,32 @@ export default class List extends Component {
           <Delete onClick={this.onDeletePodcast}>
             <FaTrashAlt />
             &nbsp;
-Delete
+            Delete
           </Delete>
           <Edit to={editTo}>
             <FaRegEdit />
-&nbsp; Edit
+            &nbsp; Edit
           </Edit>
           <GoTo to={`/podcast/${slug}`}>
             <FaPodcast />
-&nbsp;
-Podcast Page
+            &nbsp;
+            Podcast Page
           </GoTo>
         </div>
       </li>
     );
   }
 }
+
+List.propsTypes = {
+  type: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  audioFileId: PropTypes.string.isRequired,
+  coverFileId: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  liID: PropTypes.string.isRequired,
+  ConcatNewPodcastsList: PropTypes.func.isRequired,
+};

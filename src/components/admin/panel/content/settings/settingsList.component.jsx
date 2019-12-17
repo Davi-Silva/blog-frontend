@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   ToggleButton,
@@ -12,9 +12,9 @@ export default class List extends Component {
     this.state = {
       settingName: '',
       description: '',
-      status: '',
+      // status: '',
       path: '',
-      subSettings: null,
+      // subSettings: null,
       liID: '',
     };
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -22,14 +22,19 @@ export default class List extends Component {
 
   componentDidMount() {
     const {
-      settingName, description, status, path, subSettings, liID,
+      settingName,
+      description,
+      // status,
+      path,
+      // subSettings,
+      liID,
     } = this.props;
     this.setState({
       settingName,
       description,
-      status,
+      // status,
       path,
-      subSettings,
+      // subSettings,
       liID,
     });
   }
@@ -75,3 +80,10 @@ export default class List extends Component {
     );
   }
 }
+
+List.propTypes = {
+  settingName: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  liID: PropTypes.string.isRequired,
+};

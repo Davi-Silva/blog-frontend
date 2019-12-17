@@ -43,7 +43,6 @@ export default class Podcast extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slug: '',
       category: '',
       title: '',
       description: '',
@@ -58,7 +57,7 @@ export default class Podcast extends Component {
     };
 
     this.muiTheme = createMuiTheme({});
-    this.useStyles = makeStyles((theme) => ({
+    this.useStyles = makeStyles(() => ({
       playIcon: {
         color: '#0058e4',
         height: '25px',
@@ -312,9 +311,9 @@ export default class Podcast extends Component {
             <br />
             <RelatedPodcastList>
               {
-               relatedCategoryPodcast.map((podcast, key) => (
+               relatedCategoryPodcast.map((podcast) => (
                  <RelatedPodcastLi
-                   key={key}
+                   key={podcast.id}
                  >
                    <RelatedPodcast to={podcast.slug}>
                      <img
@@ -370,9 +369,9 @@ export default class Podcast extends Component {
               />
               <TagsUl>
                 {
-                tags.map((tag, key) => (
+                tags.map((tag) => (
                   <>
-                    <TagLi key={key}>
+                    <TagLi key={tag.id}>
                       <Tag to={`/podcasts/tags/${slugify(tag.toLowerCase())}`}>
                         {tag}
                       </Tag>

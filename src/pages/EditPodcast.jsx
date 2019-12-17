@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { Component } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import slugify from 'slugify';

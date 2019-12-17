@@ -55,9 +55,9 @@ export default class RecentCategoriesBlogPost extends Component {
           Recent Categories
           </Title>
           <CategoriesUl>
-            {categories.map((category, key) => (
+            {categories.map((category) => (
               <CategoriesLi
-                key={key}
+                key={category.id}
                 style={{
                   listStyle: 'none',
                 }}

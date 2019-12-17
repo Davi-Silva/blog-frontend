@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import slugify from 'slugify';
 import {
   FaSpinner,
@@ -30,7 +31,6 @@ import {
 } from '../styled-components/post.styled-components';
 
 export default class Post extends Component {
-  _isMounted = false;
   constructor(props) {
     super(props);
     this.state = {
@@ -52,7 +52,6 @@ export default class Post extends Component {
   }
 
   async componentDidMount() {
-    this._isMounted = true;
     const post = await this.getPostBySlug();
     if (post.length > 0) {
       const {
@@ -84,37 +83,34 @@ export default class Post extends Component {
       ];
       const formattedDate = `${months[dateFormatted.getMonth()]} ${dateFormatted.getDate()} ${dateFormatted.getFullYear()}`;
       if (updatedOn === null) {
-        if (this._isMounted) {
-          await this.setStateAsync({
-            slug,
-            category,
-            title,
-            content,
-            tags,
-            publishedOn: formattedDate,
-            cover: cover.url,
-            coverAlt: cover.name,
-            relatedCategoryPosts,
-          });
-        }
+        await this.setStateAsync({
+          slug,
+          category,
+          title,
+          content,
+          tags,
+          publishedOn: formattedDate,
+          cover: cover.url,
+          coverAlt: cover.name,
+          relatedCategoryPosts,
+        });
       }
       if (updatedOn !== null) {
         const dateFormattedUpdated = this.parseDate(updatedOn);
         const formattedDateUpdated = `${months[dateFormattedUpdated.getMonth()]} ${dateFormattedUpdated.getDate()} ${dateFormattedUpdated.getFullYear()}`;
-        if (this._isMounted) {
-          await this.setStateAsync({
-            slug,
-            category,
-            title,
-            content,
-            tags,
-            publishedOn: formattedDate,
-            updatedOn: formattedDateUpdated,
-            cover: cover.url,
-            coverAlt: cover.name,
-            relatedCategoryPosts,
-          });
-        }
+
+        await this.setStateAsync({
+          slug,
+          category,
+          title,
+          content,
+          tags,
+          publishedOn: formattedDate,
+          updatedOn: formattedDateUpdated,
+          cover: cover.url,
+          coverAlt: cover.name,
+          relatedCategoryPosts,
+        });
       }
     } else {
       const { history } = this.props;
@@ -171,25 +167,17 @@ export default class Post extends Component {
     return new Date(this.parts[0], this.parts[1] - 1, this.parts[2]);
   }
 
-  // covertAllTags() {
-  //   const {tags} = this.state;
-  //   let tagsArray = tags.splice(tags);
-  // }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
   render() {
     const {
       title,
       category,
       cover,
-      coverAlt, 
+      coverAlt,
       content,
       tags,
       relatedCategoryPosts,
       publishedOn,
+      updatedOn,
     } = this.state;
 
     let allContentPost;
@@ -212,8 +200,8 @@ export default class Post extends Component {
       if (publishedOn === null) {
         postPublished = (
           <UploadedOn>
-      Uploaded on&nbsp;
-            <span style={{ color: '#333', fontWeight: '700' }}>{publishedOn}</span>
+      Updated on&nbsp;
+            <span style={{ color: '#333', fontWeight: '700' }}>{updatedOn}</span>
           </UploadedOn>
         );
       } else {
@@ -235,9 +223,9 @@ export default class Post extends Component {
             <br />
             <RelatedPostList>
               {
-                relatedCategoryPosts.map((post, key) => (
+                relatedCategoryPosts.map((post) => (
                   <RelatedPostLi
-                    key={key}
+                    key={post.id}
                   >
                     <RelatedPost to={post.slug}>
                       {/* <img
@@ -283,17 +271,15 @@ export default class Post extends Component {
             <Content dangerouslySetInnerHTML={{ __html: content }} />
             <TagsUl>
               {
-                tags.map((tag, key) => {
-                  return (
-                    <>
-                      <TagLi key={key}>
-                        <Tag to={`/blog/tags/${slugify(tag.toLowerCase())}`}>
-                          {tag}
-                        </Tag>
-                      </TagLi>
-                    </>
-                  );
-                })
+                tags.map((tag) => (
+                  <>
+                    <TagLi key={tag.id}>
+                      <Tag to={`/blog/tags/${slugify(tag.toLowerCase())}`}>
+                        {tag}
+                      </Tag>
+                    </TagLi>
+                  </>
+                ))
               }
             </TagsUl>
             {postRelatedPost}
@@ -319,3 +305,13 @@ export default class Post extends Component {
     );
   }
 }
+
+Post.propTypes = {
+  history: PropTypes.shape,
+  match: PropTypes.shape,
+};
+
+Post.defaultProps = {
+  history: Object,
+  match: Object,
+};

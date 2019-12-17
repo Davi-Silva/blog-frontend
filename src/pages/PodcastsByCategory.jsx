@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -159,15 +159,15 @@ export default class PodcastsByCategory extends Component {
                   <div />
                 )}
               >
-                {podcasts.map((podcast, key) => (
+                {podcasts.map((podcast) => (
                   <PodcastsList
-                    key={key}
+                    key={podcast.id}
                     category={podcast.category}
                     title={podcast.title}
                     date={podcast.uploadedOn}
                     slug={podcast.slug}
                     cover={podcast.cover.url}
-                    liID={`p-${key}`}
+                    liID={`p-${podcast.id}`}
                   />
                 ))}
               </InfiniteScroll>

@@ -1,8 +1,11 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {
-  Card, Cover, PublishedOn, Title,
+  Card,
+  Cover,
+  PublishedOn,
+  Title,
 } from '../../../styled-components/blog-posts.styled-components';
 
 export default class BlogPostList extends Component {
@@ -18,7 +21,11 @@ export default class BlogPostList extends Component {
 
   async componentDidMount() {
     const {
-      type, imgSrc, title, publishedOn, slug,
+      type,
+      imgSrc,
+      title,
+      publishedOn,
+      slug,
     } = this.props;
     const typeLower = type.toLowerCase();
     const titleLower = title
@@ -113,3 +120,11 @@ export default class BlogPostList extends Component {
     );
   }
 }
+
+BlogPostList.propTypes = {
+  type: PropTypes.string.isRequired,
+  imgSrc: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  publishedOn: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+};

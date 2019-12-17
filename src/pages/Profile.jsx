@@ -1,19 +1,13 @@
 import React, {
   useContext,
   // useState,
-  lazy,
-  Suspense,
 } from 'react';
 
 import _ from 'lodash';
 
-import {
-  FaSpinner,
-} from 'react-icons/fa';
 
 import UserProvider from '../contexts/UserProvider';
 
-import ProfilePlaceholder from '../static/img/profile-placeholder.png';
 
 import {
   Cover,
@@ -24,20 +18,11 @@ import {
   LoadingProfileImage,
 } from '../styled-components/profile.styled.components';
 
-import {
-  LoadingAllContent,
-} from '../styled-components/podcasts.styled-components';
-
-const Profile = (props) => {
+const Profile = () => {
   const userInfo = useContext(UserProvider.context);
-  console.log('userInfo profile:', userInfo);
   let UserImageDiv;
   let ProfileCoverImage;
   let displayName = '';
-
-  console.log('props:', props);
-
-
   if (!_.isEmpty(userInfo)) {
     const {
       name,

@@ -79,8 +79,6 @@ export default class PodcastContent extends Component {
     if (index > -1) {
       podcasts.splice(index, 1);
     }
-    console.log('index:', index);
-    console.log('podcasts:', podcasts);
     this.setStateAsync({
       podcasts,
     });

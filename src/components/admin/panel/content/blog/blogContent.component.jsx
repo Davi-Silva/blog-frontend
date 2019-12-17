@@ -153,16 +153,16 @@ export default class BlogContent extends Component {
                     )}
           >
 
-            {posts.map((post, key) => (
+            {posts.map((post) => (
               <List
-                key={key}
+                key={post.id}
                 type={post.type}
                 category={post.category}
                 title={post.title}
                 date={post.publishedOn}
                 content={post.content}
                 slug={post.slug}
-                liID={`b-${key}`}
+                liID={`b-${post.id}`}
                 coverFileId={post.cover._id}
               />
             ))}

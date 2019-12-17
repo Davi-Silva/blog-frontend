@@ -1,6 +1,7 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import slugify from 'slugify';
+import PropTypes from 'prop-types';
 
 import {
   Wrapper,
@@ -19,7 +20,7 @@ import ShareButtonsCouse from '../buttons/ShareButtonCourse';
 
 const MyCoursesList = (props) => {
   const {
-    cover,
+    // cover,
     title,
     author,
     publishedOn,
@@ -73,3 +74,10 @@ const MyCoursesList = (props) => {
 };
 
 export default MyCoursesList;
+
+MyCoursesList.propTypes = {
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  publishedOn: PropTypes.string.isRequired,
+  relatedProgram: PropTypes.string.isRequired,
+};

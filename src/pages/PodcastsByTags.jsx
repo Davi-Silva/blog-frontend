@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -45,7 +45,6 @@ export default class PodcastsByTag extends Component {
       category: slug,
     });
     const podcastsList = await this.getFirstPosts(slug);
-    console.log('podcastsList:', podcastsList);
     let more = true;
     if (!podcastsList.found) {
       this.setStateAsync({
@@ -160,15 +159,15 @@ export default class PodcastsByTag extends Component {
                   <div />
                 )}
               >
-                {podcasts.map((podcast, key) => (
+                {podcasts.map((podcast) => (
                   <PodcastsList
-                    key={key}
+                    key={podcast.id}
                     category={podcast.category}
                     title={podcast.title}
                     date={podcast.uploadedOn}
                     slug={podcast.slug}
                     cover={podcast.coverUrl}
-                    liID={`p-${key}`}
+                    liID={`p-${podcast.id}`}
                   />
                 ))}
               </InfiniteScroll>

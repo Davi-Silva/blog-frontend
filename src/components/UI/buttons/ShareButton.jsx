@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { Component } from 'react';
 
 import { css } from 'emotion';
@@ -32,7 +32,7 @@ export default class ShareButton extends Component {
   render() {
     const {
       // img,
-      text,
+      textButtons,
     } = this.props;
     const {
       containerClassName,
@@ -46,7 +46,7 @@ export default class ShareButton extends Component {
         { network: 'Facebook', icon: FaFacebook },
         { network: 'Linkedin', icon: FaLinkedin },
       ],
-      text: `${text}`,
+      text: `${textButtons}`,
       longtext: 'Take a look at this super website I have just found.',
     };
     return (

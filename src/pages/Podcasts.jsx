@@ -41,7 +41,6 @@ export default class Podcasts extends Component {
 
   async componentDidMount() {
     const podcastsList = await this.getFirstPodcasts();
-    console.log('podcastList:', podcastsList);
     let more = true;
     if (!podcastsList.found) {
       this.setStateAsync({
@@ -83,7 +82,6 @@ export default class Podcasts extends Component {
   }
 
   async getMorePodcasts() {
-    console.log('ON PODCASTS PAGE');
     const { page, podcasts } = this.state;
     this.setStateAsync({
       page: page + 1,
@@ -153,15 +151,15 @@ export default class Podcasts extends Component {
                 )}
               >
                 <div className="row">
-                  {podcasts.map((podcast, key) => (
+                  {podcasts.map((podcast) => (
                     <PodcastsList
-                      key={key}
+                      key={podcast.id}
                       category={podcast.category}
                       title={podcast.title}
                       date={podcast.uploadedOn}
                       slug={podcast.slug}
                       cover={podcast.cover.url}
-                      liID={`p-${key}`}
+                      liID={`p-${podcast.id}`}
                     />
                   ))}
                 </div>

@@ -1,5 +1,6 @@
-/* eslint-disable react/prop-types */
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   FaSearch,
@@ -38,7 +39,9 @@ export default class SearchForm extends Component {
   }
 
   async getAllMedias() {
-    const { media } = this.props;
+    const {
+      media,
+    } = this.props;
     this.response = await fetch(
       // "https://cryptic-activist-backend.herokuapp.com/podcasts/",
       `https://cryptic-activist-backend.herokuapp.com/${media}/`,
@@ -97,3 +100,7 @@ export default class SearchForm extends Component {
     );
   }
 }
+
+SearchForm.propTypes = {
+  media: PropTypes.string.isRequired,
+};

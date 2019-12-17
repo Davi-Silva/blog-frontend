@@ -1,5 +1,6 @@
-/* eslint-disable react/prop-types */
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Wrapper,
@@ -25,7 +26,11 @@ export default class PodcastsList extends Component {
 
   async componentDidMount() {
     const {
-      title, date, category, slug, cover,
+      title,
+      date,
+      category,
+      slug,
+      cover,
     } = this.props;
 
     const dateFormatted = await this.parseDate(date);
@@ -82,26 +87,9 @@ export default class PodcastsList extends Component {
       <>
         <div className="col-lg-6 col-md-6 col-sm-12 col-12">
           <Wrapper to={`/podcast/${slug}`}>
-            {/* <div className="row">
-              <div className="col-md-5 col-sm-3 col-5">
-                <Cover src={cover} />
-              </div>
-              <div className="col-md-7 col-sm-9 col-7 p-0">
-                <UploadedOn>
-                  <b style={{ color: '#333' }}>{date}</b>
-                </UploadedOn>
-                <Title>
-                  {title}
-                </Title>
-                <Category>
-                  {category}
-                </Category>
-              </div>
-            </div> */}
             <ul
               style={{
                 height: '100px',
-                // display: 'block',
               }}
             >
               <li
@@ -141,3 +129,11 @@ export default class PodcastsList extends Component {
     );
   }
 }
+
+PodcastsList.propTypes = {
+  title: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  cover: PropTypes.string.isRequired,
+};

@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
-import slugify from 'slugify';
+// import slugify from 'slugify';
+import PropTypes from 'prop-types';
 
 import {
   Wrapper,
@@ -20,11 +20,11 @@ import Cover from '../../../../static/img/course-img.jpg';
 
 const CoursesHomeListMostViewed = (props) => {
   const {
-    cover,
+    // cover,
     title,
     author,
-    publishedOn,
-    relatedProgram,
+    // publishedOn,
+    // relatedProgram,
     price,
   } = props;
 
@@ -77,3 +77,10 @@ const CoursesHomeListMostViewed = (props) => {
 };
 
 export default CoursesHomeListMostViewed;
+
+CoursesHomeListMostViewed.propTypes = {
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  // publishedOn: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+};

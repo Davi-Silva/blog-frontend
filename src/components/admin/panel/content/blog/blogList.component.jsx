@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   FaSortDown,
@@ -38,12 +38,9 @@ export default class List extends Component {
       type,
       title,
       date,
-      content,
-      // coverFileId,
       category,
       slug,
       liID,
-      path,
     } = this.props;
     const editTo = `/edit/post/${slug}`;
     // const date = date;
@@ -74,19 +71,21 @@ export default class List extends Component {
       category,
       title,
       date: formattedDate,
-      content,
       slug,
-      audio_file_url: path,
       liID,
       editTo,
     });
   }
 
   async onDeletePost() {
-    let post = await this.getBlogPostBySlug();
-    post = post[0];
+    const post = await this.getBlogPostBySlug();
+    // post = post[0];
+    const {
+      cover,
+      id,
+    } = post[0];
     await fetch(
-      `http://localhost:5000/blog/delete/cover/${post.cover._id}`,
+      `http://localhost:5000/blog/delete/cover/${cover._id}`,
       // `https://cryptic-activist-backend.herokuapp.com/blog/delete/audio/${post.cover._id}`,
       {
         method: 'DELETE',
@@ -100,7 +99,7 @@ export default class List extends Component {
     );
 
     // await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/delete/${podcast.id}`, {
-    await fetch(`http://localhost:5000/blog/delete/${post.id}`, {
+    await fetch(`http://localhost:5000/blog/delete/${id}`, {
       method: 'DELETE',
       mode: 'cors',
       cache: 'no-cache',
@@ -219,3 +218,21 @@ export default class List extends Component {
     );
   }
 }
+
+List.propTypes = {
+  type: PropTypes.string,
+  title: PropTypes.string,
+  date: PropTypes.string,
+  category: PropTypes.string,
+  slug: PropTypes.string,
+  liID: PropTypes.string,
+};
+
+List.defaultProps = {
+  type: '',
+  title: '',
+  date: '',
+  category: '',
+  slug: '',
+  liID: '',
+};

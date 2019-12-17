@@ -99,12 +99,12 @@ function Footer() {
                     to="/terms-and-conditions"
                   >
                     <p>
-                      Terms 
-{' '}
-{'&'}
-{' '}
+                      Terms
+                      {' '}
+                      &
+                      {' '}
 Conditions
-</p>
+                    </p>
                   </LinkToPolicies>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-12 col-12">
@@ -116,12 +116,12 @@ Conditions
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                   <CopyRight>
-                    © 
-{' '}
-{new Date().getFullYear()}
-{' '}
+                    ©
+                    {' '}
+                    {new Date().getFullYear()}
+                    {' '}
 Cryptic Activist
-</CopyRight>
+                  </CopyRight>
                 </div>
                 <div className="col-lg-3 col-md-3 col-sm-12 col-12" />
                 <div className="col-lg-3 col-md-3 col-sm-12 col-12" />

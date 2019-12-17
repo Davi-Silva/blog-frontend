@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { Component } from 'react';
 
 import {
@@ -16,7 +16,6 @@ export default class RelatedCategory extends Component {
     this.state = {
       relatedCategoryPodcast: [],
       categoryPodcast: '',
-      slugPodcast: '',
     };
     this.setStateAsync = this.setStateAsync.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -27,16 +26,15 @@ export default class RelatedCategory extends Component {
     const { category, slug } = this.props;
     this.setState({
       categoryPodcast: category,
-      slugPodcast: slug,
     });
     const { categoryPodcast } = this.state;
     const relatedCategoryPodcast = this.getPodcastByCategory(categoryPodcast);
     let count = 0;
-    relatedCategoryPodcast.map((podcast) => {
+    relatedCategoryPodcast.forEach((podcast) => {
       if (podcast.slug === slug) {
         relatedCategoryPodcast.splice(count, count + 1);
       }
-      count++;
+      count += 1;
     });
     this.setState({
       relatedCategoryPodcast,
@@ -83,9 +81,9 @@ export default class RelatedCategory extends Component {
           <br />
           <RelatedPodcastList>
             {
-              relatedCategoryPodcast.map((podcast, key) => (
+              relatedCategoryPodcast.map((podcast) => (
                 <RelatedPodcastLi
-                  key={key}
+                  key={podcast.id}
                 >
                   <RelatedPodcast to={podcast.slug}>
                     <img
