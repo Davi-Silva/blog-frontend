@@ -63,16 +63,16 @@ function App() {
         <Route
           exact
           path="/courses/program/:slug"
-          render={(props) => <CoursesRelatedProgram {...props} />}
+          component={CoursesRelatedProgram}
         />
         <Route path="/courses/categories" component={CoursesCategories} />
-        <Route path="/courses/category" component={CoursesCategory} />
+        <Route path="/courses/category/:slug" component={CoursesCategory} />
         <Route path="/my-courses" component={MyCourses} />
         <Route exact path="/podcasts" component={Podcasts} />
         <Route
           exact
           path="/podcast/:slug"
-          render={(props) => <Podcast {...props} />}
+          component={Podcast}
         />
         <Route
           exact

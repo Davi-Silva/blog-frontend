@@ -2,57 +2,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const TopCover = styled.div`
-  width: 100%;
-  height: 500px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
-
-export const TopCoverContent = styled.div`
-  margin: 150px 0;
-`;
-
-export const TopCoverTitle = styled.h1`
-  font-size: 30px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  color: #fff;
-`;
-
-export const TopCoverP = styled.p`
-  font-size: 18px;
-  letter-spacing: 1px;
-  color: #fff;
-`;
-
-
-export const TopCoverSearchInput = styled.span`
-  background: #fff;
-  color: #999;
-  padding: 10px;
-  font-size: 18px;
-  border-radius: 2px;
-  border: none;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
-  input {
-    border: none;
-    &:focus {
-      outline: none;
-      color: #999;
-    }
-    &::placeholder {
-      color: #999;
-      font-size: 18px;
-      font-weight: 200px;
-    }
-  }
-  svg {
-    margin: 0 4px 0px 18px;
-  }
-`;
-
 export const UnderTopCoverStrap = styled.div`
   width: 100%;
   height: 70px;
@@ -63,7 +12,6 @@ export const UnderTopCoverStrap = styled.div`
     color: #fff;
   }
 `;
-
 
 export const WrapperMostViewed = styled.div`
   border: 1px solid #efefef;
@@ -124,22 +72,6 @@ export const StickyWrapper = styled.div`
   margin: 41px 0 25px 0;
 `;
 
-export const StatementDiv = styled.div`
-  width: 100%;
-  /* height: 200px; */
-  background: #f2f3f5;
-`;
-
-export const StatementWrapper = styled.div`
-  background: #fff;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
-  width: 100%;
-  height: 150px;
-  display: table;
-  margin: 25px auto;
-`;
-
-
 export const MostViewed = styled.div`
   padding: 15px 0;
 `;
@@ -149,89 +81,4 @@ export const MostViewedTitle = styled.h3`
   font-size: 16px;
   letter-spacing: 1px;
   margin-top: 15px;
-`;
-
-export const Newsletter = styled.div`
-  width: 100%;
-  background: #353535;
-  padding: 25px 0;
-`;
-
-export const NewsletterDiv = styled.div`
-  width: 100%;
-  margin: 50px 0;
-`;
-
-export const NewsletterTitle = styled.h3`
-  color: #fff;
-  font-size: 20px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-align: center;
-`;
-
-export const NewsletterP = styled.p`
-  color: #fff;
-  font-size: 16px;
-  text-align: center;
-`;
-
-export const NewsletterInput = styled.span`
-  background: #fff;
-  color: #999;
-  padding: 10px;
-  font-size: 18px;
-  border-radius: 2px;
-  display: table;
-  margin: 5px auto;
-  border: none;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
-  input {
-    border: none;
-    &:focus {
-      outline: none;
-      color: #999;
-    }
-    &::placeholder {
-      color: #999;
-      font-size: 18px;
-      font-weight: 200px;
-    }
-  }
-  svg {
-    margin: 0 4px 0px 18px;
-  }
-`;
-
-export const RecentCategoriesDiv = styled.div`
-  width: 100%;
-  margin: 15px 0;
-`;
-
-export const RecentCategoriesTitle = styled.h3`
-  color: #333;
-  font-size: 16px;
-  letter-spacing: 1px;
-  margin-top: 15px;
-`;
-
-export const RecentCategoriesWrap = styled.div`
-  background: #fff;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
-  border: 1px solid #f2f3f5;
-  letter-spacing: 1px;
-  padding: 11px 17px;
-  margin-bottom: 20px;
-  transition: .2s all ease-in-out;
-  &:hover {
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
-  }
-  svg {
-    font-size: 30px;
-  }
-  span {
-    color: #333;
-    font-size: 14px;
-    margin-left: 15px;
-  }
 `;
