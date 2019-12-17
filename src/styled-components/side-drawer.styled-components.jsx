@@ -8,6 +8,7 @@ export const BackgroundDrawer = styled.div`
   z-index: 9999999999;
   height: 100%;
   width: 100%;
+  top: 41px;
   display: none;
 `;
 
@@ -16,6 +17,7 @@ export const Drawer = styled.nav`
   width: 250px;
   background: #fff;
   position: fixed;
+  top: 41px;
   z-index: 99999999999;
   padding: 15px;
   transform: translateX(-250px);

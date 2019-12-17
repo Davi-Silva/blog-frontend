@@ -189,6 +189,9 @@ const Navbar = () => {
         ShowSideDrawer={sideDrawerState.showSideDrawer}
         HandleSideDrawer={handleSideDrawer}
         UserData={userInfo}
+        style={{
+          top: '30px',
+        }}
       />
       <NavBar
         className="navbar navbar-expand-md"

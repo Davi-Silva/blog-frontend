@@ -23,6 +23,7 @@ background: #fff;
     letter-spacing: 1px;
     color: #333;
     width: 100%;
+    height: 54px;
     display: block;
     padding: 11px 17px;
     margin-bottom: 20px;

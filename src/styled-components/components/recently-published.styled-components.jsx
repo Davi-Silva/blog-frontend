@@ -29,6 +29,9 @@ export const Ul = styled.ul`
   ::-webkit-scrollbar {
     display: none;
   }
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const Li = styled.li`

@@ -4,6 +4,9 @@ export const StatementDiv = styled.div`
   width: 100%;
   /* height: 200px; */
   background: #f2f3f5;
+  @media (max-width: 576px) {
+    padding: 20px 0;
+  }
 `;
 
 export const StatementWrapper = styled.div`
@@ -14,6 +17,9 @@ export const StatementWrapper = styled.div`
   display: table;
   margin: 25px auto;
   /* padding: 10px; */
+  @media (max-width: 576px) {
+    margin: 5px auto;
+  }
 `;
 
 export const Ul = styled.ul`
