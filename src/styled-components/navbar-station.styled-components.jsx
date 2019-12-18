@@ -68,6 +68,7 @@ export const Brand = styled(Link)`
   @media (max-width: 768px) {
     font-size: 14px;
     p {
+      line-height: 13px;
       span {
         font-size: 16px;
       }
