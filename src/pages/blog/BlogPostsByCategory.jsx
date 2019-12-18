@@ -6,12 +6,12 @@ import {
   FaSpinner,
 } from 'react-icons/fa';
 
-import BitcoinDoddle from '../static/img/no-content-img.png';
+import BitcoinDoddle from '../../static/img/no-content-img.png';
 
-import BlogPostList from '../components/UI/lists/BlogPostList.component';
-import SubNavBar from '../components/UI/navbar/SubNavBar';
-import NewsletterSide from '../components/UI/newsletter/NewsletterSide.component';
-import RecentCategories from '../components/UI/categories/RecentCategoriesBlogPost';
+import BlogPostList from '../../components/UI/lists/BlogPostList.component';
+import SubNavBar from '../../components/UI/navbar/SubNavBar';
+import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.component';
+import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
 
 import {
   LoadingAllContent,
@@ -20,15 +20,15 @@ import {
   NoContentImg,
   NoContentP,
   StickyWrapper,
-} from '../styled-components/blog-posts.styled-components';
+} from '../../styled-components/blog-posts.styled-components';
 
 
-export default class BlogPostsByTags extends Component {
+export default class BlogPostsByCategory extends Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
-      tag: '',
+      category: '',
       page: 1,
       hasMore: null,
       found: false,
@@ -42,7 +42,7 @@ export default class BlogPostsByTags extends Component {
     const { slug } = match.params;
 
     this.setStateAsync({
-      tag: slug,
+      category: slug,
     });
     const postsList = await this.getFirstPosts(slug);
     let more = true;
@@ -63,11 +63,11 @@ export default class BlogPostsByTags extends Component {
     }
   }
 
-  async getFirstPosts(tag) {
+  async getFirstPosts(category) {
     const {
       page,
     } = this.state;
-    this.response = await fetch(`http://localhost:5000/blog/get/tag/${tag}?page=${page}`, {
+    this.response = await fetch(`http://localhost:5000/blog/get/category/${category}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -89,11 +89,11 @@ export default class BlogPostsByTags extends Component {
   async getMorePosts() {
     const {
       page,
-      tag,
+      category,
       posts,
     } = this.state;
     // this.response = await fetch('https://cryptic-activist-backend.herokuapp.com/podcasts', {
-    this.response = await fetch(`http://localhost:5000/blog/get/tag/${tag}?page=${page}`, {
+    this.response = await fetch(`http://localhost:5000/blog/get/category/${category}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -116,6 +116,7 @@ export default class BlogPostsByTags extends Component {
       this.setStateAsync({
         page: page + 1,
       });
+
       this.setStateAsync({
         podcasts: posts.concat(data),
       });
@@ -124,7 +125,7 @@ export default class BlogPostsByTags extends Component {
 
   render() {
     const {
-      tag,
+      category,
       posts,
       hasMore,
       found,
@@ -172,7 +173,7 @@ export default class BlogPostsByTags extends Component {
                         key={key}
                         type="Blog"
                         slug={post.slug}
-                        imgSrc={post.coverUrl}
+                        imgSrc={post.cover.url}
                         title={post.title}
                         publishedOn={post.publishedOn}
                       />
@@ -195,7 +196,7 @@ export default class BlogPostsByTags extends Component {
 
     return (
       <>
-        <SubNavBar media="Blog" category="Tag" title={`${tag.replace(/^\w/, (c) => c.toUpperCase())}`} />
+        <SubNavBar media="Blog" category="Category" title={`${category.replace(/^\w/, (c) => c.toUpperCase())}`} />
         <div className="container" style={{ margin: '25px auto' }}>
           {allPosts}
         </div>

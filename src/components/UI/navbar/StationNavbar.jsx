@@ -4,20 +4,26 @@ import _ from 'lodash';
 import {
   FaBars,
   FaSearch,
+  FaTh,
+  FaShoppingCart,
 } from 'react-icons/fa';
 
 import SideDrawer from './side-drawer/SideDrawer';
 import UserMenu from './user-menu/UserMenu';
-import SearchForm from './search-form/SearchForm';
+import CoursesSearchForm from './search-form/CoursesSearchForm';
+import CoursesSearchFormDesktop from './search-form/CoursesSearchFormDesktop';
 
 import UserProvider from '../../../contexts/UserProvider';
 
 import {
   NavBar,
   LinkA,
+  LinkIcon,
+  LinkIconGrid,
   Brand,
   ToggleButton,
   SignUp,
+  Separator,
   // LinkAProfile,
   ButtonProfile,
 } from '../../../styled-components/navbar-station.styled-components';
@@ -120,7 +126,7 @@ const Navbar = () => {
     if (searchFormState.showSearchForm) {
       SearchFormDiv = (
         <>
-          <SearchForm SearchFormOnClick={closeSearchFormOnClick} />
+          <CoursesSearchForm SearchFormOnClick={closeSearchFormOnClick} />
         </>
       );
     } else {
@@ -154,7 +160,7 @@ const Navbar = () => {
     if (searchFormState.showSearchForm) {
       SearchFormDiv = (
         <>
-          <SearchForm SearchFormOnClick={closeSearchFormOnClick} />
+          <CoursesSearchForm SearchFormOnClick={closeSearchFormOnClick} />
         </>
       );
     } else {
@@ -221,7 +227,7 @@ const Navbar = () => {
           >
             <FaBars />
           </ToggleButton>
-          <Brand className="navbar-brand" to="/">
+          <Brand className="navbar-brand" to="/courses">
             <p>
               CrypticActivist
             </p>
@@ -231,6 +237,9 @@ const Navbar = () => {
               </span>
             </p>
           </Brand>
+          <LinkIconGrid>
+            <FaTh />
+          </LinkIconGrid>
           <ToggleButton
             className="navbar-toggler"
             type="button"
@@ -245,43 +254,39 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <LinkA
-                  className="nav-link"
-                  to="/blog"
-                  onClick={() => {
-                    document
-                      .querySelector('#navbarResponsive')
-                      .classList.remove('show');
-                  }}
-                >
-                      Blog
-                </LinkA>
+                <CoursesSearchFormDesktop />
               </li>
               <li className="nav-item">
                 <LinkA
                   className="nav-link"
-                  to="/podcasts"
+                  to="/"
                   onClick={() => {
                     document
                       .querySelector('#navbarResponsive')
                       .classList.remove('show');
                   }}
                 >
-                      Podcasts
+                      <p>Go to</p> <p>CrypticActivist</p>
                 </LinkA>
               </li>
+              <li
+                style={{
+                  margin: '16px 5px 0px 7px',
+                }}
+              >
+                <Separator />
+              </li>
               <li className="nav-item">
-                <LinkA
+                <LinkIcon
                   className="nav-link"
-                  to="/courses"
-                  onClick={() => {
-                    document
-                      .querySelector('#navbarResponsive')
-                      .classList.remove('show');
-                  }}
+                  // onClick={() => {
+                  //   document
+                  //     .querySelector('#navbarResponsive')
+                  //     .classList.remove('show');
+                  // }}
                 >
-                      Courses
-                </LinkA>
+                  <FaShoppingCart />
+                </LinkIcon>
               </li>
               <li className="nav-item">
                 {UserDiv}

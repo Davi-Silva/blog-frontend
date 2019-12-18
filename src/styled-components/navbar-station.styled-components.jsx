@@ -15,8 +15,15 @@ export const LinkA = styled(Link)`
   font-size: 13px;
   transition: all 0.2s ease-in-out;
   line-height: 35px;
+  margin-left: 5px;
   :hover {
     color: #0058e4;
+  }
+  p {
+    line-height: 14px;
+    margin-bottom: 0;
+    text-align: center;
+    transform: translateY(3px);
   }
   @media (max-width: 991px) {
     display: table;
@@ -27,6 +34,58 @@ export const LinkA = styled(Link)`
   }
   @media (max-width: 240px) {
     font-size: 11px;
+  }
+`;
+
+export const LinkIcon = styled.button`
+  color: #999;
+  text-decoration: none;
+  font-weight: 100;
+  background: #fff;
+  margin: 10px 15px 0px 6px;
+  padding: 6px 9px 8px 9px;
+  border-radius: 3px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+  line-height: 18px;
+  :hover {
+    color: #0058e4;
+  }
+  &:focus {
+    outline: none;
+    background: #efefef;
+    color: #0058e4;
+  }
+  @media (max-width: 320px) {
+    font-size: 12px;
+  }
+  @media (max-width: 240px) {
+    font-size: 11px;
+  }
+`;
+
+export const LinkIconGrid = styled.button`
+  color: #999;
+  text-decoration: none;
+  font-weight: 100;
+  background: #fff;
+  margin-left: 15px;
+  margin-right: 6px;
+  padding: 6px 9px 8px 9px;
+  border-radius: 3px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+  line-height: 18px;
+  :hover {
+    color: #0058e4;
+  }
+  &:focus {
+    outline: none;
+    background: #efefef;
+    color: #0058e4;
+  }
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -126,4 +185,11 @@ export const Button = styled.button`
   background: transparent;
   border: none;
   color: #ff0000;
+`;
+
+export const Separator = styled.div`
+  background: #efefef;
+  height: 60%;
+  width: 1px;
+  display: block;
 `;

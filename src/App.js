@@ -19,25 +19,28 @@ import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
-import Blog from './pages/Blog';
-import BlogPostByTags from './pages/BlogPostsByTags';
-import BlogPostByCategory from './pages/BlogPostsByCategory';
-import Post from './pages/Post';
 import About from './pages/About';
 import Profile from './pages/Profile';
-import Course from './pages/Course';
-import CoursesHome from './pages/CoursesHome';
-import CoursesRelatedProgram from './pages/CoursesRelatedProgram';
-import CoursesRelatedPrograms from './pages/CoursesRelatedPrograms';
-import CoursesCategories from './pages/CoursesCategories';
-import CoursesCategory from './pages/CoursesCategory';
-import MyCourses from './pages/MyCourses';
-import Podcast from './pages/Podcast';
+
+import Blog from './pages/blog/Blog';
+import BlogPostByTags from './pages/blog/BlogPostsByTags';
+import BlogPostByCategory from './pages/blog/BlogPostsByCategory';
+import Post from './pages/blog/Post';
+
+import Course from './pages/courses/Course';
+import CoursesHome from './pages/courses/CoursesHome';
+import CoursesRelatedProgram from './pages/courses/CoursesRelatedProgram';
+import CoursesRelatedPrograms from './pages/courses/CoursesRelatedPrograms';
+import CoursesCategories from './pages/courses/CoursesCategories';
+import CoursesCategory from './pages/courses/CoursesCategory';
+import MyCourses from './pages/courses/MyCourses';
+
+import Podcast from './pages/podcasts/Podcast';
 import EditPodcast from './pages/EditPodcast';
-import EditPost from './pages/EditPost';
-import Podcasts from './pages/Podcasts';
-import PodcastsByTags from './pages/PodcastsByTags';
-import PodcastsByCategory from './pages/PodcastsByCategory';
+import EditPost from './pages/blog/EditPost';
+import Podcasts from './pages/podcasts/Podcasts';
+import PodcastsByTags from './pages/podcasts/PodcastsByTags';
+import PodcastsByCategory from './pages/podcasts/PodcastsByCategory';
 import UploadNewPodcast from './pages/UploadNewPodcast';
 import PublishBlogPost from './pages/PublishBlogPost';
 import PageNotFound from './pages/PageNotFound';
@@ -51,8 +54,6 @@ function App() {
   return (
     <Router>
       <UserProvider>
-        {/* Station */}
-        {/* <StationNavbar /> */}
         <Route path="/" component={Navbar} />
         <Route exact path="/course/:slug" component={Course} />
         <Route exact path="/courses" component={CoursesHome} />

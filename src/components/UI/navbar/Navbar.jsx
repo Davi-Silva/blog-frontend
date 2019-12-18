@@ -287,7 +287,7 @@ const Navbar = (props) => {
                         .classList.remove('show');
                     }}
                   >
-                        Courses
+                    Station
                   </LinkA>
                 </li>
                 <li className="nav-item">

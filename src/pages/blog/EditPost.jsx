@@ -7,9 +7,9 @@ import {
   Input,
   UploadedOn,
   // Update,
-} from '../styled-components/edit-post.styled-components';
+} from '../../styled-components/edit-post.styled-components';
 
-import SubNavBar from '../components/UI/navbar/SubNavBar';
+import SubNavBar from '../../components/UI/navbar/SubNavBar';
 
 export default class EditPost extends Component {
   constructor(props) {

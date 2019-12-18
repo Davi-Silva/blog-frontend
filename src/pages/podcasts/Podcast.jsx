@@ -9,7 +9,7 @@ import {
   FaSpinner,
 } from 'react-icons/fa';
 
-import ShareButtons from '../components/UI/buttons/ShareButton';
+import ShareButtons from '../../components/UI/buttons/ShareButton';
 
 import {
   Wrapper,
@@ -34,10 +34,10 @@ import {
   RelatedPodcastLi,
   RelatedPodcastH6,
   LoadingAllContent,
-} from '../styled-components/podcast.styled-components';
+} from '../../styled-components/podcast.styled-components';
 
-import SubNavBar from '../components/UI/navbar/SubNavBar';
-import CoverImage from '../components/UI/podcast/cover.component';
+import SubNavBar from '../../components/UI/navbar/SubNavBar';
+import CoverImage from '../../components/UI/podcast/cover.component';
 
 export default class Podcast extends Component {
   constructor(props) {

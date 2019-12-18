@@ -16,9 +16,9 @@ import {
   ProgramRecordP,
   CoursesListDiv,
   CoursesListTitle,
-} from '../styled-components/courses-related-program.styled-component';
+} from '../../styled-components/courses-related-program.styled-component';
 
-import Cover from '../static/img/course-img.jpg';
+import Cover from '../../static/img/circuit.jpg';
 
 const CoursesRelatedPrograms = (props) => {
   const {

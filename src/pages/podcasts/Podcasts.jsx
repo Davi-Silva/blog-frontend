@@ -5,14 +5,14 @@ import {
   FaSpinner,
 } from 'react-icons/fa';
 
-import BitcoinDoddle from '../static/img/no-content-img.png';
+import BitcoinDoddle from '../../static/img/no-content-img.png';
 
-import PodcastsList from '../components/UI/lists/PodcastsList.component';
+import PodcastsList from '../../components/UI/lists/PodcastsList.component';
 // import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
 
-import SubNavBar from '../components/UI/navbar/SubNavBar';
-import NewsletterSide from '../components/UI/newsletter/NewsletterSide.component';
-import RecentCategories from '../components/UI/categories/RecentCategoriesPodcast';
+import SubNavBar from '../../components/UI/navbar/SubNavBar';
+import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.component';
+import RecentCategories from '../../components/UI/categories/RecentCategoriesPodcast';
 
 import {
   LoadingAllContent,
@@ -21,7 +21,7 @@ import {
   NoContentImg,
   NoContentP,
   StickyWrapper,
-} from '../styled-components/podcasts.styled-components';
+} from '../../styled-components/podcasts.styled-components';
 
 export default class Podcasts extends Component {
   constructor(props) {

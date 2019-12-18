@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -5,12 +6,12 @@ import {
   FaSpinner,
 } from 'react-icons/fa';
 
-import BlogPostList from '../components/UI/lists/BlogPostList.component';
-import SubNavBar from '../components/UI/navbar/SubNavBar';
-import NewsletterSide from '../components/UI/newsletter/NewsletterSide.component';
-import RecentCategories from '../components/UI/categories/RecentCategoriesBlogPost';
+import BitcoinDoddle from '../../static/img/no-content-img.png';
 
-import BitcoinDoddle from '../static/img/no-content-img.png';
+import BlogPostList from '../../components/UI/lists/BlogPostList.component';
+import SubNavBar from '../../components/UI/navbar/SubNavBar';
+import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.component';
+import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
 
 import {
   LoadingAllContent,
@@ -19,25 +20,31 @@ import {
   NoContentImg,
   NoContentP,
   StickyWrapper,
-} from '../styled-components/blog-posts.styled-components';
+} from '../../styled-components/blog-posts.styled-components';
 
-export default class Blog extends Component {
+
+export default class BlogPostsByTags extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      postsList: [],
+      posts: [],
+      tag: '',
       page: 1,
       hasMore: null,
       found: false,
     };
-    this.componentDidMount = this.componentDidMount.bind(this);
     this.getFirstPosts = this.getFirstPosts.bind(this);
     this.getMorePosts = this.getMorePosts.bind(this);
   }
 
   async componentDidMount() {
-    const postsList = await this.getFirstPosts();
-    console.log('postsList:', postsList);
+    const { match } = this.props;
+    const { slug } = match.params;
+
+    this.setStateAsync({
+      tag: slug,
+    });
+    const postsList = await this.getFirstPosts(slug);
     let more = true;
     if (!postsList.found) {
       this.setStateAsync({
@@ -45,25 +52,22 @@ export default class Blog extends Component {
       });
     }
     if (postsList.length > 0) {
-      console.log('postList.length:', postsList.length);
       if (postsList.length < 10) {
         more = false;
       }
-      console.log('more:', more);
       await this.setStateAsync({
-        postsList,
+        posts: postsList,
         hasMore: more,
         found: true,
       });
     }
-    this.getMorePosts();
   }
 
-  async getFirstPosts() {
-    const { page } = this.state;
-    console.log('getFirstPosts');
-    // this.response = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/short', {
-    this.response = await fetch(`http://localhost:5000/blog/short?page=${page}`, {
+  async getFirstPosts(tag) {
+    const {
+      page,
+    } = this.state;
+    this.response = await fetch(`http://localhost:5000/blog/get/tag/${tag}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -83,15 +87,13 @@ export default class Blog extends Component {
   }
 
   async getMorePosts() {
-    const { page, postsList } = this.state;
-    console.log('page:', page);
-    this.setStateAsync({
-      page: page + 1,
-    });
-    const tempPage = page + 1;
-    console.log(`http://localhost:5000/blog/short?page=${tempPage}`);
-    // this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/short?page=${page}`, {
-    this.response = await fetch(`http://localhost:5000/blog/short?page=${tempPage}`, {
+    const {
+      page,
+      tag,
+      posts,
+    } = this.state;
+    // this.response = await fetch('https://cryptic-activist-backend.herokuapp.com/podcasts', {
+    this.response = await fetch(`http://localhost:5000/blog/get/tag/${tag}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -101,10 +103,9 @@ export default class Blog extends Component {
       },
     });
     const data = await this.response.json();
-    console.log('postsList:', data);
     if (data.length < 10) {
       this.setStateAsync({
-        postsList: postsList.concat(data),
+        posts: posts.concat(data),
       });
       setTimeout(() => {
         this.setStateAsync({
@@ -113,15 +114,18 @@ export default class Blog extends Component {
       }, 10);
     } else {
       this.setStateAsync({
-        postsList: postsList.concat(data),
+        page: page + 1,
+      });
+      this.setStateAsync({
+        podcasts: posts.concat(data),
       });
     }
   }
 
-
   render() {
     const {
-      postsList,
+      tag,
+      posts,
       hasMore,
       found,
     } = this.state;
@@ -148,7 +152,7 @@ export default class Blog extends Component {
             <div className="col-lg-9 col-md-9 col-sm-12 col-12">
               <InfinitePostList>
                 <InfiniteScroll
-                  dataLength={postsList.length}
+                  dataLength={posts.length}
                   next={this.getMorePosts}
                   hasMore={hasMore}
                   loader={(
@@ -163,12 +167,12 @@ export default class Blog extends Component {
                     )}
                 >
                   <div className="row">
-                    {postsList.map((post, key) => (
+                    {posts.reverse().map((post, key) => (
                       <BlogPostList
                         key={key}
                         type="Blog"
                         slug={post.slug}
-                        imgSrc={post.cover.url}
+                        imgSrc={post.coverUrl}
                         title={post.title}
                         publishedOn={post.publishedOn}
                       />
@@ -187,9 +191,11 @@ export default class Blog extends Component {
         </>
       );
     }
+
+
     return (
       <>
-        <SubNavBar media="Blog" category="" title="" />
+        <SubNavBar media="Blog" category="Tag" title={`${tag.replace(/^\w/, (c) => c.toUpperCase())}`} />
         <div className="container" style={{ margin: '25px auto' }}>
           {allPosts}
         </div>

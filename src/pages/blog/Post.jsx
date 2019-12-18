@@ -4,10 +4,10 @@ import slugify from 'slugify';
 import {
   FaSpinner,
 } from 'react-icons/fa';
-import SubNavBar from '../components/UI/navbar/SubNavBar';
+import SubNavBar from '../../components/UI/navbar/SubNavBar';
 // import AdSense from '../components/UI/ads/AdvertisementSquare.component';
-import Newsletter from '../components/UI/newsletter/NewsletterSide.component';
-import RecentCategories from '../components/UI/categories/RecentCategoriesBlogPost';
+import Newsletter from '../../components/UI/newsletter/NewsletterSide.component';
+import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
 
 
 import {
@@ -28,7 +28,7 @@ import {
   RelatedPostLi,
   RelatedPostH6,
   StickyWrapper,
-} from '../styled-components/post.styled-components';
+} from '../../styled-components/post.styled-components';
 
 export default class Post extends Component {
   constructor(props) {
