@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import Navbar from './components/UI/navbar/Navbar';
+import StationNavbar from './components/UI/navbar/StationNavbar';
 import Footer from './components/UI/footer/Footer';
 
 import Admin from './pages/Admin';
@@ -27,6 +28,7 @@ import Profile from './pages/Profile';
 import Course from './pages/Course';
 import CoursesHome from './pages/CoursesHome';
 import CoursesRelatedProgram from './pages/CoursesRelatedProgram';
+import CoursesRelatedPrograms from './pages/CoursesRelatedPrograms';
 import CoursesCategories from './pages/CoursesCategories';
 import CoursesCategory from './pages/CoursesCategory';
 import MyCourses from './pages/MyCourses';
@@ -44,11 +46,29 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 
 import UserProvider from './contexts/UserProvider';
 
+
 function App() {
   return (
     <Router>
       <UserProvider>
-        <Navbar />
+        {/* Station */}
+        {/* <StationNavbar /> */}
+        <Route path="/" component={Navbar} />
+        <Route exact path="/course/:slug" component={Course} />
+        <Route exact path="/courses" component={CoursesHome} />
+        <Route
+          exact
+          path="/courses/program/:slug"
+          component={CoursesRelatedProgram}
+        />
+        <Route
+          exact
+          path="/courses/programs"
+          component={CoursesRelatedPrograms}
+        />
+        <Route path="/courses/categories" component={CoursesCategories} />
+        <Route path="/courses/category/:slug" component={CoursesCategory} />
+        <Route path="/my-courses" component={MyCourses} />
         <Route path="/" exact component={Homepage} />
         <Route path="/admin" component={Admin} />
         <Route path="/dashboard" component={Dashboard} />
@@ -58,16 +78,6 @@ function App() {
         <Route path="/profile" component={Profile} />
         <Route path="/terms-and-conditions" component={TermsConditions} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
-        <Route exact path="/course/:slug" component={Course} />
-        <Route exact path="/courses" component={CoursesHome} />
-        <Route
-          exact
-          path="/courses/program/:slug"
-          component={CoursesRelatedProgram}
-        />
-        <Route path="/courses/categories" component={CoursesCategories} />
-        <Route path="/courses/category/:slug" component={CoursesCategory} />
-        <Route path="/my-courses" component={MyCourses} />
         <Route exact path="/podcasts" component={Podcasts} />
         <Route
           exact

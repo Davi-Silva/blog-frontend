@@ -96,13 +96,6 @@ const SideDrawer = (props) => {
             </li>
           </ul>
         </SideDrawerLinkToAdmin>
-        <Button
-          onClick={handleClose}
-        >
-          <FaPlus
-            className="closeDrawer"
-          />
-        </Button>
         <SideDrawerUl>
           <SideDrawerLi>
             <SideDrawerLinkTo

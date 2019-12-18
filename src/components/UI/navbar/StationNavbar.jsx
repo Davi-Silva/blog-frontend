@@ -12,8 +12,6 @@ import SearchForm from './search-form/SearchForm';
 
 import UserProvider from '../../../contexts/UserProvider';
 
-import StationNavbar from './StationNavbar';
-
 import {
   NavBar,
   LinkA,
@@ -22,14 +20,9 @@ import {
   SignUp,
   // LinkAProfile,
   ButtonProfile,
-} from '../../../styled-components/navbar.styled-components';
+} from '../../../styled-components/navbar-station.styled-components';
 
-const Navbar = (props) => {
-  const {
-    location
-  } = props;
-  const { pathname } = location;
-  console.log('slug:', pathname);
+const Navbar = () => {
   const [sideDrawerState, setSideDrawerState] = useState({
     showSideDrawer: false,
   });
@@ -202,109 +195,102 @@ const Navbar = (props) => {
     }
   };
 
-  let navbar;
-  if (pathname.includes('/course') || pathname.includes('/courses') || pathname.includes('/my-courses')) {
-    navbar = (
-      <>
-        <StationNavbar />
-      </>
-    );
-  } else {
-    navbar = (
-      <>
-        <SideDrawer
-          ShowSideDrawer={sideDrawerState.showSideDrawer}
-          HandleSideDrawer={handleSideDrawer}
-          UserData={userInfo}
-          style={{
-            top: '30px',
-          }}
-        />
-        <NavBar
-          className="navbar navbar-expand-md"
-          onScroll={onScroll}
-        >
-          <div className="container">
-            <ToggleButton
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              onClick={handleSideDrawer}
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <FaBars />
-            </ToggleButton>
-            <Brand className="navbar-brand" to="/">
-              CrypticActivist
-            </Brand>
-            <ToggleButton
-              className="navbar-toggler"
-              type="button"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <FaSearch
-                onClick={handleSearchForm}
-              />
-              {SearchFormDiv}
-            </ToggleButton>
-            <div className="collapse navbar-collapse" id="navbarResponsive">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/blog"
-                    onClick={() => {
-                      document
-                        .querySelector('#navbarResponsive')
-                        .classList.remove('show');
-                    }}
-                  >
-                        Blog
-                  </LinkA>
-                </li>
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/podcasts"
-                    onClick={() => {
-                      document
-                        .querySelector('#navbarResponsive')
-                        .classList.remove('show');
-                    }}
-                  >
-                        Podcasts
-                  </LinkA>
-                </li>
-                <li className="nav-item">
-                  <LinkA
-                    className="nav-link"
-                    to="/courses"
-                    onClick={() => {
-                      document
-                        .querySelector('#navbarResponsive')
-                        .classList.remove('show');
-                    }}
-                  >
-                        Courses
-                  </LinkA>
-                </li>
-                <li className="nav-item">
-                  {UserDiv}
-                </li>
-              </ul>
-            </div>
-          </div>
-        </NavBar>
-        {UserMenuDiv}
-      </>
-    );
-  }
 
   return (
     <>
-      {navbar}
+      <SideDrawer
+        ShowSideDrawer={sideDrawerState.showSideDrawer}
+        HandleSideDrawer={handleSideDrawer}
+        UserData={userInfo}
+        style={{
+          top: '30px',
+        }}
+      />
+      <NavBar
+        className="navbar navbar-expand-md"
+        onScroll={onScroll}
+      >
+        <div className="container">
+          <ToggleButton
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            onClick={handleSideDrawer}
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <FaBars />
+          </ToggleButton>
+          <Brand className="navbar-brand" to="/">
+            <p>
+              CrypticActivist
+            </p>
+            <p>
+              <span>
+                Station
+              </span>
+            </p>
+          </Brand>
+          <ToggleButton
+            className="navbar-toggler"
+            type="button"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <FaSearch
+              onClick={handleSearchForm}
+            />
+            {SearchFormDiv}
+          </ToggleButton>
+          <div className="collapse navbar-collapse" id="navbarResponsive">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/blog"
+                  onClick={() => {
+                    document
+                      .querySelector('#navbarResponsive')
+                      .classList.remove('show');
+                  }}
+                >
+                      Blog
+                </LinkA>
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/podcasts"
+                  onClick={() => {
+                    document
+                      .querySelector('#navbarResponsive')
+                      .classList.remove('show');
+                  }}
+                >
+                      Podcasts
+                </LinkA>
+              </li>
+              <li className="nav-item">
+                <LinkA
+                  className="nav-link"
+                  to="/courses"
+                  onClick={() => {
+                    document
+                      .querySelector('#navbarResponsive')
+                      .classList.remove('show');
+                  }}
+                >
+                      Courses
+                </LinkA>
+              </li>
+              <li className="nav-item">
+                {UserDiv}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </NavBar>
+      {UserMenuDiv}
     </>
   );
 };

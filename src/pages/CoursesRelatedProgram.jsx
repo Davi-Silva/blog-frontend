@@ -174,7 +174,7 @@ const CoursesRelatedProgram = (props) => {
             <br />
             <CoursesListDiv>
               <CoursesListTitle>
-                Courses in progress:
+                Remaining Courses:
                 {' '}
                 <span
                   style={{
@@ -199,7 +199,7 @@ const CoursesRelatedProgram = (props) => {
             <br />
             <CoursesListDiv>
               <CoursesListTitle>
-                Courses in progress:
+                Completed Courses:
                 {' '}
                 <span
                   style={{

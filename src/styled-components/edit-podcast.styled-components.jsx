@@ -1,4 +1,3 @@
-/* eslint-disable no-tabs */
 import styled from 'styled-components';
 
 export const UploadedOn = styled.p`
