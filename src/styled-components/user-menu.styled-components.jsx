@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
-  z-index: 9999999999;
-  position: absolute;
-  background: #fff;
-  width: 130px;
-  color: #333;
-  right: 90px;
-  top: 60px;
-  border-radius: 2px;
-  box-shadow: 0px 2px 4px rgba(0 ,0 ,0 , 0.2);
+    z-index: 9999999999;
+    position: absolute;
+    background: #fff;
+    width: 130px;
+    color: #333;
+    top: 33px;
+    right: 10%;
+    border-radius: 2px;
+    box-shadow: 0px 2px 4px rgba(0 ,0 ,0 ,0.2);
   hr {
     margin: 0;
   }
@@ -23,11 +23,13 @@ export const WrapperArrow = styled.div`
   width: 15px;
   z-index: 99999999999;
   height: 15px;
-  top: 52px;
+  top: 25px;
   box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
-  right: 107px;
+  right: 25px;
   position: absolute;
   border-top-left-radius: 100px;
+  -webkit-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
   -webkit-transform: rotate(-135deg);
   -ms-transform: rotate(-135deg);
   transform: rotate(-135deg);

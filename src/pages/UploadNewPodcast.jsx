@@ -509,7 +509,7 @@ export default class UploadNewPodcast extends Component {
           <form onSubmit={this.onSubmit} method="POST">
             <div className="row">
               <div className="col-lg-4 col-md-4 col-sm-12 col-12">
-                <aside style={{ marginTop: '20px' }}>
+                <aside style={{ marginTop: '20px', position: 'sticky', top: '57px' }}>
                   <DivAside>
                     {coverUploader}
                   </DivAside>

@@ -15,13 +15,15 @@ export const Form = styled.form`
 export const Input = styled.input`
   background: #efefef;
   border: none;
-  padding: 9px 10px;
+  padding: 7px 10px;
   border-radius: 3px;
   margin: 5px 0;
   color: #999;
+  border: 1px solid #fff;
   transition: .2s all ease-in-out;
   &:focus {
-    outline: 1px solid #b3b3b3;
+    outline: none;
+    border: 1px solid #b3b3b3;
     background: #fff;
   }
   &::placeholder {

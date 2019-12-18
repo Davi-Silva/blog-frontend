@@ -115,7 +115,11 @@ const Navbar = (props) => {
     if (userMenuState.showUserMenu) {
       UserMenuDiv = (
         <>
-          <UserMenu displayName={name} CloseUserMenuOnClick={closeUserMenuOnClick} />
+          <div className="row">
+            <div className="col-12">
+              <UserMenu displayName={name} CloseUserMenuOnClick={closeUserMenuOnClick} />
+            </div>
+          </div>
         </>
       );
     } else {
@@ -294,10 +298,10 @@ const Navbar = (props) => {
                   {UserDiv}
                 </li>
               </ul>
+              {UserMenuDiv}
             </div>
           </div>
         </NavBar>
-        {UserMenuDiv}
       </>
     );
   }

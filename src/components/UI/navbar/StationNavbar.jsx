@@ -114,7 +114,11 @@ const Navbar = () => {
     if (userMenuState.showUserMenu) {
       UserMenuDiv = (
         <>
-          <UserMenu displayName={name} CloseUserMenuOnClick={closeUserMenuOnClick} />
+          <div className="row">
+            <div className="col-12">
+              <UserMenu displayName={name} CloseUserMenuOnClick={closeUserMenuOnClick} />
+            </div>
+          </div>
         </>
       );
     } else {
@@ -292,10 +296,10 @@ const Navbar = () => {
                 {UserDiv}
               </li>
             </ul>
+            {UserMenuDiv}
           </div>
         </div>
       </NavBar>
-      {UserMenuDiv}
     </>
   );
 };
