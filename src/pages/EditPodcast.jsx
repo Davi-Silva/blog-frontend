@@ -168,8 +168,8 @@ export default class EditPodcast extends Component {
     const { match } = this.props;
     const { slug } = match.params;
     this.response = await fetch(
-      // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${slug}`,
-      `http://localhost:5000/podcasts/get/slug/${slug}`,
+      `https://cryptic-activist-backend.herokuapp.com/podcasts/get/slug/${slug}`,
+      // `http://localhost:5000/podcasts/get/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -200,9 +200,8 @@ export default class EditPodcast extends Component {
   async updatePodcast(podcast) {
     const { id } = this.state;
     this.response = await fetch(
-      // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${}`,
-      // `https://cryptic-activist-backend.herokuapp.com/podcasts/update/${id}`,
-      `http://localhost:5000/podcasts/update/${id}`,
+      `https://cryptic-activist-backend.herokuapp.com/podcasts/update/${id}`,
+      // `http://localhost:5000/podcasts/update/${id}`,
       {
         method: 'PUT',
         mode: 'cors',

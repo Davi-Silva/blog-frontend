@@ -46,8 +46,8 @@ const Login = (props) => {
   const loginUser = async (loginInfo) => {
     // let response = await fetch("https://cryptic-activist-backend.herokuapp.com/users/login", {
     const response = await fetch(
-      // 'https://cryptic-activist-backend.herokuapp.com/users/login',
-      'http://localhost:5000/users/login',
+      'https://cryptic-activist-backend.herokuapp.com/users/login',
+      // 'http://localhost:5000/users/login',
       {
         method: 'POST',
         mode: 'cors',
@@ -139,8 +139,8 @@ const Login = (props) => {
               <LoginButton
                 icon="github"
                 backgroundColor="#333"
-                  // endpoint="https://cryptic-activist-backend.herokuapp.com/auth/github"
-                endpoint="http://localhost:5000/auth/github"
+                  endpoint="https://cryptic-activist-backend.herokuapp.com/auth/github"
+                // endpoint="http://localhost:5000/auth/github"
                 providerName="Github"
               />
             </li>

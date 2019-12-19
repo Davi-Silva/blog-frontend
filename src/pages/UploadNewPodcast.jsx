@@ -62,8 +62,8 @@ export default class UploadNewPodcast extends Component {
 
   async verifySlug(slug) {
     let response = await fetch(
-      `http://localhost:5000/podcasts/validation/slug/${slug}`,
-      // `https://cryptic-activist-backend.herokuapp.com/podcasts/validation/slug/${slug}`,
+      // `http://localhost:5000/podcasts/validation/slug/${slug}`,
+      `https://cryptic-activist-backend.herokuapp.com/podcasts/validation/slug/${slug}`,
       {
         method: "GET",
         mode: "cors",
@@ -80,8 +80,8 @@ export default class UploadNewPodcast extends Component {
 
   async uploadPodcast(podcast) {
     let response = await fetch(
-      `http://localhost:5000/podcasts/upload`,
-      // "https://cryptic-activist-backend.herokuapp.com/podcasts/upload",
+      // `http://localhost:5000/podcasts/upload`,
+      "https://cryptic-activist-backend.herokuapp.com/podcasts/upload",
       {
         method: "POST",
         mode: "cors",
@@ -225,8 +225,8 @@ export default class UploadNewPodcast extends Component {
       type: "podcasts",
       title: this.state.title
     };
-    // let response = fetch("https://cryptic-activist-backend.herokuapp.com/podcasts/set/global-variable", {
-      let response = fetch("http://localhost:5000/podcasts/set/global-variable", {
+    let response = fetch("https://cryptic-activist-backend.herokuapp.com/podcasts/set/global-variable", {
+      // let response = fetch("http://localhost:5000/podcasts/set/global-variable", {
       method: "POST",
       mode: "cors",
       cache: "no-cache",

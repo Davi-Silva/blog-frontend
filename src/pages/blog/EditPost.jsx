@@ -129,8 +129,8 @@ export default class EditPost extends Component {
     const { slug } = match.params;
 
     this.response = await fetch(
-      // `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${slug}`,
-      `http://localhost:5000/blog/get/slug/${slug}`,
+      `https://cryptic-activist-backend.herokuapp.com/blog/get/slug/${slug}`,
+      // `http://localhost:5000/blog/get/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',

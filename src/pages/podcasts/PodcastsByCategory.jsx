@@ -67,7 +67,8 @@ export default class PodcastsByCategory extends Component {
     const {
       page,
     } = this.state;
-    this.response = await fetch(`http://localhost:5000/podcasts/get/category/${category}?page=${page}`, {
+    this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/podcasts/get/category/${category}?page=${page}`, {
+    // this.response = await fetch(`http://localhost:5000/podcasts/get/category/${category}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -92,8 +93,8 @@ export default class PodcastsByCategory extends Component {
       category,
       podcasts,
     } = this.state;
-    // this.response = await fetch('https://cryptic-activist-backend.herokuapp.com/podcasts', {
-    this.response = await fetch(`http://localhost:5000/podcasts/get/category/${category}?page=${page}`, {
+    this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/podcasts/get/category/${category}?page=${page}`, {
+    // this.response = await fetch(`http://localhost:5000/podcasts/get/category/${category}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',

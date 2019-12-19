@@ -67,7 +67,8 @@ export default class BlogPostsByTags extends Component {
     const {
       page,
     } = this.state;
-    this.response = await fetch(`http://localhost:5000/blog/get/tag/${tag}?page=${page}`, {
+    this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/get/tag/${tag}?page=${page}`, {
+    // this.response = await fetch(`http://localhost:5000/blog/get/tag/${tag}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -92,8 +93,8 @@ export default class BlogPostsByTags extends Component {
       tag,
       posts,
     } = this.state;
-    // this.response = await fetch('https://cryptic-activist-backend.herokuapp.com/podcasts', {
-    this.response = await fetch(`http://localhost:5000/blog/get/tag/${tag}?page=${page}`, {
+    this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/get/tag/${tag}?page=${page}`, {
+    // this.response = await fetch(`http://localhost:5000/blog/get/tag/${tag}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
