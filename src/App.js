@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   // Switch,
   Route,
   // withRouter,
