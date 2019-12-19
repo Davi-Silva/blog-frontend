@@ -117,7 +117,7 @@ const Login = (props) => {
             </P>
           </div>
           <ul className="m-auto">
-            <li
+            {/* <li
               style={{
                 listStyle: 'none',
                 margin: '5px auto',
@@ -129,7 +129,7 @@ const Login = (props) => {
                 endpoint="https://cryptic-activist-backend.herokuapp.com/auth/google"
                 providerName="Google"
               />
-            </li>
+            </li> */}
             <li
               style={{
                 listStyle: 'none',
@@ -144,7 +144,7 @@ const Login = (props) => {
                 providerName="Github"
               />
             </li>
-            <li
+            {/* <li
               style={{
                 listStyle: 'none',
                 margin: '5px auto',
@@ -169,7 +169,7 @@ const Login = (props) => {
                 endpoint="https://cryptic-activist-backend.herokuapp.com/auth/instagram"
                 providerName="Instagram"
               />
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
