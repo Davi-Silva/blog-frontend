@@ -1,8 +1,7 @@
-
 import React, { Component } from 'react';
-// import { Link } from "react-router-dom";
-
-// import { Container } from './styles';
+import {
+  FaGithub
+} from 'react-icons/fa';
 
 export default class LoginButton extends Component {
   constructor(props) {
@@ -56,10 +55,7 @@ export default class LoginButton extends Component {
         >
           <div className="row">
             <div className="col-2 p-0">
-              <i
-                className={`fab fa-${icon}`}
-                style={{ fontSize: '20px' }}
-              />
+              <FaGithub />
             </div>
             <div className="col-10 p-0">
               <span style={{ textDecoration: 'none' }}>
