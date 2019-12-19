@@ -22,9 +22,7 @@ const Login = (props) => {
   });
 
   const userInfo = useContext(UserProvider.context);
-  console.log('user login:', userInfo);
   if (!_.isEmpty(userInfo)) {
-    console.log('IS EMPTY');
     const {
       history,
     } = props;
