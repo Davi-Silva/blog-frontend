@@ -22,12 +22,12 @@ const Statements = () => (
                   }}
                 >
                   <StatementTitle>
-                    Teste Maroto
+                    Teste 1
                   </StatementTitle>
                 </Li>
                 <Li>
                   <StatementTitle>
-                    Teste Maroto
+                    Teste 2
                   </StatementTitle>
                 </Li>
               </Ul>
@@ -41,7 +41,7 @@ const Statements = () => (
                   display: 'table',
                 }}
               >
-                  Test
+                  Test 3
               </h5>
             </StatementWrapper>
           </div>
@@ -53,7 +53,7 @@ const Statements = () => (
                   display: 'table',
                 }}
               >
-                  Test
+                  Test 4
               </h5>
             </StatementWrapper>
           </div>
