@@ -53,6 +53,11 @@ export const Cover = styled.img`
   }
 `;
 
+export const InfoDiv = styled.div`
+	position: absolute;
+	top: 0px;
+`;
+
 export const Title = styled.h4`
 	color: #333;
 	font-weight: 900;

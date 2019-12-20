@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {
   Wrapper,
   Cover,
+  InfoDiv,
   UploadedOn,
   Category,
   Title,
@@ -105,12 +106,7 @@ export default class PodcastsList extends Component {
                   display: 'inline-block',
                 }}
               >
-                <div
-                  style={{
-                    top: '18px',
-                    position: 'absolute',
-                  }}
-                >
+                <InfoDiv>
                   <UploadedOn>
                     <b style={{ color: '#333' }}>{date}</b>
                   </UploadedOn>
@@ -120,7 +116,7 @@ export default class PodcastsList extends Component {
                   <Category>
                     {category}
                   </Category>
-                </div>
+                </InfoDiv>
               </li>
             </ul>
           </Wrapper>
