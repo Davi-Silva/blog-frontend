@@ -6,6 +6,7 @@ import {
   Wrapper,
   Cover,
   InfoDiv,
+  Ul,
   UploadedOn,
   Category,
   Title,
@@ -88,11 +89,7 @@ export default class PodcastsList extends Component {
       <>
         <div className="col-lg-6 col-md-6 col-sm-12 col-12">
           <Wrapper to={`/podcast/${slug}`}>
-            <ul
-              style={{
-                height: '100px',
-              }}
-            >
+            <Ul>
               <li
                 style={{
                   display: 'inline-block',
@@ -118,7 +115,7 @@ export default class PodcastsList extends Component {
                   </Category>
                 </InfoDiv>
               </li>
-            </ul>
+            </Ul>
           </Wrapper>
         </div>
       </>

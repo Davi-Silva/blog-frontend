@@ -14,6 +14,9 @@ export const Wrapper = styled(Link)`
 		text-decoration: none;
 		/* box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25); */
 	}
+	@media (max-width: 768px) {
+		margin-bottom: 12px;
+	}
 `;
 
 export const Cover = styled.img`
@@ -56,6 +59,10 @@ export const Cover = styled.img`
 export const InfoDiv = styled.div`
 	position: absolute;
 	top: 0px;
+`;
+
+export const Ul = styled.ul`
+	height: 100%;
 `;
 
 export const Title = styled.h4`
