@@ -22,6 +22,21 @@ const UserMenu = (props) => {
     handleClick();
   };
 
+  const handleLogout = async () => {
+    console.log('Signing out...')
+    let response = await fetch('http://localhost:5000/auth/logout', {
+      method: 'GET',
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    });
+    handleCloseOnClick();
+    console.log('sign out response:', response);
+  }
+
   return (
     <>
       <WrapperArrow />
@@ -56,6 +71,14 @@ const UserMenu = (props) => {
               onClick={handleCloseOnClick}
             >
               My Courses
+            </LinkTo>
+          </MenuOpitionLi>
+          <MenuOpitionLi>
+            <LinkTo
+              to="/"
+              onClick={handleLogout}
+            >
+              Sign out
             </LinkTo>
           </MenuOpitionLi>
         </MenuOpitionUl>

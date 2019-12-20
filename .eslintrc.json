@@ -22,10 +22,5 @@
     ],
     "rules": {
         "no-underscore-dangle": "off",
-        "react/jsx-props-no-spreading": [{
-            "html": "ignore",
-            "custom": "ignore",
-            "explicitSpread": "ignore"
-        }]
     }
 }
