@@ -41,7 +41,7 @@ const SideDrawer = (props) => {
   };
 
   const handleLogout = async () => {
-    await fetch('https://hardcore-tesla-e87eac.netlify.com/auth/logout', {
+    await fetch('https://cryptic-activist-backend.herokuapp.com/auth/logout', {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',

@@ -134,7 +134,7 @@ const Login = (props) => {
               <LoginButton
                 icon="github"
                 backgroundColor="#333"
-                endpoint="https://hardcore-tesla-e87eac.netlify.com/auth/github"
+                endpoint="https://cryptic-activist-backend.herokuapp.com/auth/github"
                 providerName="Github"
               />
             </li>
