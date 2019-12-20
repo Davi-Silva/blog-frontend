@@ -152,7 +152,7 @@ const Navbar = (props) => {
               .classList.remove('show');
           }}
         >
-                      Login
+          Login
         </SignUp>
       </>
     );

@@ -4,20 +4,27 @@ import _ from 'lodash';
 
 import {
   FaPlus,
-  // FaUser,
+  FaUser,
 } from 'react-icons/fa';
 import UserProvider from '../../../../contexts/UserProvider';
 
 import {
   BackgroundDrawer,
   Drawer,
+  ProfileDrawerUl,
+  SideDrawerSubUl,
   ProfileImage,
   ProfileName,
+  ProfileRanking,
   SideDrawerUl,
   SideDrawerLi,
+  SideDrawerButtonTo,
   SideDrawerLinkTo,
   SideDrawerLinkToAdmin,
   Button,
+  Separator,
+  LogoutDiv,
+  Logout,
 } from '../../../../styled-components/side-drawer.styled-components';
 
 import ProfilePlaceholder from '../../../../static/img/profile-placeholder.png';
@@ -33,50 +40,76 @@ const SideDrawer = (props) => {
     closeDrawer();
   };
 
-  let ProfileImageDiv;
-  let profileName;
+  const handleLogout = async () => {
+    await fetch('http://localhost:5000/auth/logout', {
+      method: 'GET',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  }
+
+  let ProfileDiv;
+  let logoutVar;
 
   if (!_.isEmpty(userInfo)) {
     const {
       name: displayName,
       profileImage,
     } = userInfo[0];
-    ProfileImageDiv = (
+    ProfileDiv = (
       <>
-        <ProfileImage
-          onClick={handleClose}
-          src={profileImage}
-        />
+        <SideDrawerLinkToAdmin to="/profile">
+          <ProfileDrawerUl>
+            <li
+              style={{
+                width: '33%',
+                transform: 'translateY(-8px)',
+              }}
+            >
+              <ProfileImage
+                onClick={handleClose}
+                src={profileImage}
+              />
+            </li>
+            <li
+              style={{
+                width: '67%',
+                top: '8px'
+              }}
+            >
+              <ProfileName>
+                {displayName}
+              </ProfileName>
+              <ProfileRanking>
+                Newbie
+              </ProfileRanking>
+            </li>
+          </ProfileDrawerUl>
+        </SideDrawerLinkToAdmin>
       </>
     );
-    profileName = (
+    logoutVar = (
       <>
-        <ProfileName>
-          {displayName}
-        </ProfileName>
+        <LogoutDiv>
+          <Logout
+            onClick={handleLogout}
+          >
+            Log out
+          </Logout>
+        </LogoutDiv>
       </>
     );
   } else {
-    ProfileImageDiv = (
+    ProfileDiv = (
       <>
-        <ProfileImage
-          src={ProfilePlaceholder}
-        />
-      </>
-    );
-    profileName = (
-      <>
-        <ProfileName>
-            Signup
-        </ProfileName>
-      </>
-    );
-  }
-  return (
-    <>
-      <BackgroundDrawer onClick={handleClose} />
-      <Drawer>
-        <SideDrawerLinkToAdmin to="/profile">
+        <SideDrawerLinkToAdmin
+          to="/login"
+          onClick={handleClose}
+        >
           <ul>
             <li
               style={{
@@ -84,7 +117,9 @@ const SideDrawer = (props) => {
                 display: 'inline',
               }}
             >
-              {ProfileImageDiv}
+              <ProfileImage
+                src={ProfilePlaceholder}
+              />
             </li>
             <li
               style={{
@@ -92,39 +127,101 @@ const SideDrawer = (props) => {
                 display: 'inline',
               }}
             >
-              {profileName}
+              <ProfileName>
+                Login
+              </ProfileName>
             </li>
           </ul>
         </SideDrawerLinkToAdmin>
+      </>
+    );
+    logoutVar = (
+      <>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <BackgroundDrawer onClick={handleClose} />
+      <Drawer>
+        {ProfileDiv}
+        <Separator />
         <SideDrawerUl>
           <SideDrawerLi>
-            <SideDrawerLinkTo
-              onClick={handleClose}
-              to="/blog"
+            <SideDrawerButtonTo
+              className="navbar-toggler"
+              type="button"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              data-target="#expand-blog"
+              aria-controls="expand-blog"
+              data-toggle="collapse"
             >
-                  Blog
-            </SideDrawerLinkTo>
+              Blog
+            </SideDrawerButtonTo>
+            <SideDrawerSubUl className="collapse navbar-collapse" id="expand-blog">
+              <SideDrawerLi>
+                <SideDrawerLinkTo
+                  to="/blog"
+                  onClick={handleClose}
+                >
+                  All Posts
+                </SideDrawerLinkTo>
+              </SideDrawerLi>
+            </SideDrawerSubUl>
           </SideDrawerLi>
           <SideDrawerLi>
-            <SideDrawerLinkTo
-              onClick={handleClose}
-              to="/podcasts"
+            <SideDrawerButtonTo
+              className="navbar-toggler"
+              type="button"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              data-target="#expand-podcasts"
+              aria-controls="expand-podcasts"
+              data-toggle="collapse"
             >
-                  Podcasts
-            </SideDrawerLinkTo>
+              Podcasts
+            </SideDrawerButtonTo>
+            <SideDrawerSubUl className="collapse navbar-collapse" id="expand-podcasts">
+              <SideDrawerLi>
+                <SideDrawerLinkTo
+                  to="/podcasts"
+                  onClick={handleClose}
+                >
+                  All Podcasts
+                </SideDrawerLinkTo>
+              </SideDrawerLi>
+            </SideDrawerSubUl>
           </SideDrawerLi>
           <SideDrawerLi>
-            <SideDrawerLinkTo
-              onClick={handleClose}
-              to="/courses"
+            <SideDrawerButtonTo
+              className="navbar-toggler"
+              type="button"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              data-target="#expand-courses"
+              aria-controls="expand-courses"
+              data-toggle="collapse"
             >
-                  Courses
-            </SideDrawerLinkTo>
+              Station
+            </SideDrawerButtonTo>
+            <SideDrawerSubUl className="collapse navbar-collapse" id="expand-courses">
+              <SideDrawerLi>
+                <SideDrawerLinkTo
+                  to="/courses"
+                  onClick={handleClose}
+                >
+                  Home
+                </SideDrawerLinkTo>
+              </SideDrawerLi>
+            </SideDrawerSubUl>
           </SideDrawerLi>
         </SideDrawerUl>
+        {logoutVar}
       </Drawer>
     </>
   );
-};
+}
 
 export default SideDrawer;
