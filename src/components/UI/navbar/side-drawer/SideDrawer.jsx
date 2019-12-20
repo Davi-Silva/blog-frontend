@@ -191,6 +191,12 @@ const SideDrawer = (props) => {
                 >
                   All Podcasts
                 </SideDrawerLinkTo>
+                <SideDrawerLinkTo
+                  to="/podcasts"
+                  onClick={handleClose}
+                >
+                  All Categories
+                </SideDrawerLinkTo>
               </SideDrawerLi>
             </SideDrawerSubUl>
           </SideDrawerLi>
