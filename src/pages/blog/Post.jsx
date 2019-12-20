@@ -122,7 +122,7 @@ export default class Post extends Component {
     const { match } = this.props;
     const { slug } = match.params;
     this.response = await fetch(
-      `http://localhost:5000/blog/get/slug/${slug}`,
+      `https://cryptic-activist-backend.herokuapp.com/blog/get/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -139,7 +139,7 @@ export default class Post extends Component {
 
   async getPostByCategory(category, slug) {
     this.response = await fetch(
-      `http://localhost:5000/blog/get/category/newest/${slug}/${category}`,
+      `https://cryptic-activist-backend.herokuapp.com/blog/get/category/newest/${slug}/${category}`,
       {
         method: 'GET',
         mode: 'cors',

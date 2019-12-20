@@ -79,7 +79,7 @@ export default class List extends Component {
     let podcast = await this.getPodcastBySlug();
     podcast = podcast[0];
     // await fetch(
-    //   `http://localhost:5000/podcasts/delete/audio/${podcast.cover._id}`,
+    //   `https://cryptic-activist-backend.herokuapp.com/podcasts/delete/audio/${podcast.cover._id}`,
     //   {
     //     method: "DELETE",
     //     mode: "cors",
@@ -91,7 +91,7 @@ export default class List extends Component {
     //   }
     // );
     // await fetch(
-    //   `http://localhost:5000/podcasts/delete/cover/${podcast.audio_file._id}`,
+    //   `https://cryptic-activist-backend.herokuapp.com/podcasts/delete/cover/${podcast.audio_file._id}`,
     //   {
     //     method: "DELETE",
     //     mode: "cors",
@@ -102,7 +102,7 @@ export default class List extends Component {
     //     }
     //   }
     // );
-    await fetch(`http://localhost:5000/podcasts/delete/${podcast.id}`, {
+    await fetch(`https://cryptic-activist-backend.herokuapp.com/podcasts/delete/${podcast.id}`, {
       method: 'DELETE',
       mode: 'cors',
       cache: 'no-cache',
@@ -115,7 +115,7 @@ export default class List extends Component {
 
   async getPodcastBySlug() {
     const response = await fetch(
-      `http://localhost:5000/podcasts/get/${this.state.slug}`,
+      `https://cryptic-activist-backend.herokuapp.com/podcasts/get/${this.state.slug}`,
       {
         method: 'GET',
         mode: 'cors',
