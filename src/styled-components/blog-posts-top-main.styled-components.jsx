@@ -5,32 +5,14 @@ import { Link } from 'react-router-dom';
 
 import { rotate } from './animations';
 
-export const ColumnLeft = styled.div`
-	padding: 0 15px 0 0;
-	@media (max-width: 768px) {
-		padding: 0 7px 0 15px;
-	}
-	@media (max-width: 576px) {
-		padding: 0 15px 0 15px;
-	}
-`;
-
-export const ColumnRight = styled.div`
-	padding: 0 15px 0 0;
-	@media (max-width: 768px) {
-		padding: 0 15px 0 7px;
-	}
-	@media (max-width: 576px) {
-		padding: 0 15px 0 15px;
-	}
-`;
-
 export const BlogTopPost = styled.div`
+	height: 400px;
 	width: 100%;
+
 `;
 
 export const BlogToPostMainDiv = styled.div`
-	height: 400px;
+	height: 365px;
 	width: 100%;
 `;
 
@@ -46,46 +28,77 @@ export const CardTopMain = styled(Link)`
   text-decoration: none;
   margin-bottom: 20px;
 	width: 100%;
-	height: 400px;
+	height: 365px;
   &:hover {
     text-decoration: none;
   }
 `;
 
 export const Cover = styled.div`
+  /* border-radius: 6px; */
 	height: 170px;
 	width: 100%;
+	margin-bottom: 15px;
 	@media (max-width: 1199px) {
-		height: 130px;
+		height: 140px;
+	}
+	@media (max-width: 991px) {
+		height: 105px;
+	}
+	@media (max-width: 769px) {
+		height: 135px;
 	}
 	@media (max-width: 574px) {
 		height: 145px;
 	}
 `;
 
+export const CoverMain = styled.div`
+  /* border-radius: 6px; */
+	height: 356px;
+	width: 100%;
+	@media (max-width: 1199px) {
+		height: 294px;
+	}
+	@media (max-width: 991px) {
+		height: 226px;
+	}
+	@media (max-width: 768px) {
+		margin-bottom: 13px;
+	}
+`;
+
 export const PublishedOn = styled.b`
-  color: #333;
+  color: #fff;
   font-size: 12px;
 `;
 
+export const PostInfoDiv = styled.div`
+	top: 60px;
+	position: absolute;
+	width: 270px;
+	padding: 0 5px;
+`;
+
 export const Title = styled.h5`
-  color: #333;
-  font-size: 18px;
+  color: #fff;
+  font-size: 16px;
   font-weight: 900;
   margin: 0;
 `;
 
 export const CategoryDiv = styled.div`
-	background: #0058e4;
-	padding: 5px 8px;
-	top: 136px;
-	left: 15px;
+	padding: 0 0 0 8px;
+	top: 142px;
 	position: absolute;
-	@media (max-width: 1199px) {
-		top: 96px;
-	}
-	@media (max-width: 574px) {
-		top: 111px;
+	&::before {
+		content: '';
+		height: 15px;
+		width: 2px;
+		display: block;
+		position: absolute;
+		top: 4px;
+		background: #fff;
 	}
 `;
 
@@ -95,9 +108,7 @@ export const Category = styled.span`
 	color: #fff;
 	font-weight: 700;
 	font-size: 15px;
-	@media (max-width: 1199px) {
-		font-size: 13px;
-	}
+	padding-left: 6px;
 `;
 
 export const LoadingAllContent = styled.div`
@@ -110,27 +121,6 @@ export const LoadingAllContent = styled.div`
 		margin: 25px auto;
 	}
 `;
-
-export const PostListTitleDiv = styled.div`
-	&::before {
-		content: '';
-		height: 20px;
-		width: 3px;
-		display: block;
-		position: absolute;
-		background: #0058e4;
-		margin-right: 10px;
-	}
-`;
-
-export const PostListTitle = styled.h3`
-	color: 16px;
-	font-weight: 900;
-	letter-spacing: 1px;
-	font-size: 18px;
-	margin-left: 10px;
-`;
-
 
 export const PostList = styled.ul`
 	margin-bottom: 0px;
@@ -199,5 +189,5 @@ export const ByTagName = styled.span`
 
 export const StickyWrapper = styled.div`
 	position: sticky;
-	top: 30px;
+	top: 60px;
 `;

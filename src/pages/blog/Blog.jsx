@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
-
-import {
-  FaSpinner,
-} from 'react-icons/fa';
 
 import BlogPostList from '../../components/UI/lists/BlogPostList.component';
-import SubNavBar from '../../components/UI/navbar/SubNavBar';
+// import SubNavBar from '../../components/UI/navbar/SubNavBar';
 import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.component';
 import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
+import Ads from '../../components/UI/ads/AdvertisementSquare.component';
 
 import BitcoinDoddle from '../../static/img/no-content-img.png';
 
+import MainBlogPost from '../section/blog/MainBlogPost.component';
+
 import {
-  LoadingAllContent,
-  InfinitePostList,
+  // BlogTopPost,
+  PostListTitleDiv,
+  PostListTitle,
+  PostList,
   NoContentDiv,
   NoContentImg,
   NoContentP,
@@ -27,7 +27,6 @@ export default class Blog extends Component {
     this.state = {
       postsList: [],
       page: 1,
-      hasMore: null,
       found: false,
     };
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -119,7 +118,6 @@ export default class Blog extends Component {
   render() {
     const {
       postsList,
-      hasMore,
       found,
     } = this.state;
     let allPosts;
@@ -143,41 +141,34 @@ export default class Blog extends Component {
         <>
           <div className="row">
             <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-              <InfinitePostList>
-                <InfiniteScroll
-                  dataLength={postsList.length}
-                  next={this.getMorePosts}
-                  hasMore={hasMore}
-                  loader={(
-                    <>
-                      <LoadingAllContent>
-                        <FaSpinner />
-                      </LoadingAllContent>
-                    </>
-                    )}
-                  endMessage={(
-                    <div />
-                    )}
-                >
-                  <div className="row">
-                    {postsList.map((post, key) => (
-                      <BlogPostList
-                        key={key}
-                        type="Blog"
-                        slug={post.slug}
-                        imgSrc={post.cover.url}
-                        title={post.title}
-                        publishedOn={post.publishedOn}
-                      />
-                    ))}
+              <PostList>
+                <div className="row">
+                  <div className="col-12">
+                    <PostListTitleDiv>
+                      <PostListTitle>
+                      News
+                      </PostListTitle>
+                    </PostListTitleDiv>
                   </div>
-                </InfiniteScroll>
-              </InfinitePostList>
+                  {postsList.map((post) => (
+                    <BlogPostList
+                      key={post.id}
+                      type="Blog"
+                      slug={post.slug}
+                      imgSrc={post.cover.url}
+                      title={post.title}
+                      category={post.category}
+                      publishedOn={post.publishedOn}
+                    />
+                  ))}
+                </div>
+              </PostList>
             </div>
             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
               <StickyWrapper>
-                <RecentCategories />
-                <NewsletterSide />
+                {/* <RecentCategories />
+                <NewsletterSide /> */}
+                <Ads />
               </StickyWrapper>
             </div>
           </div>
@@ -186,7 +177,8 @@ export default class Blog extends Component {
     }
     return (
       <>
-        <SubNavBar media="Blog" category="" title="" />
+        <MainBlogPost />
+        {/* <SubNavBar media="Blog" category="" title="" /> */}
         <div className="container" style={{ margin: '25px auto' }}>
           {allPosts}
         </div>
