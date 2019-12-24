@@ -7,7 +7,7 @@ import {
 
 import BitcoinDoddle from '../../static/img/no-content-img.png';
 
-import BlogPostList from '../../components/UI/lists/BlogPostList.component';
+import BlogPostList from '../../components/UI/lists/blog-home/BlogPostList.component';
 import SubNavBar from '../../components/UI/navbar/SubNavBar';
 import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.component';
 import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
@@ -151,18 +151,18 @@ export default class BlogPostsByCategory extends Component {
             <div className="col-lg-9 col-md-9 col-sm-12 col-12">
               <PostList>
 
-                  <div className="row">
-                    {posts.reverse().map((post, key) => (
-                      <BlogPostList
-                        key={key}
-                        type="Blog"
-                        slug={post.slug}
-                        imgSrc={post.cover.url}
-                        title={post.title}
-                        publishedOn={post.publishedOn}
-                      />
-                    ))}
-                  </div>
+                <div className="row">
+                  {posts.reverse().map((post, key) => (
+                    <BlogPostList
+                      key={key}
+                      type="Blog"
+                      slug={post.slug}
+                      imgSrc={post.cover.url}
+                      title={post.title}
+                      publishedOn={post.publishedOn}
+                    />
+                  ))}
+                </div>
 
               </PostList>
             </div>

@@ -1,28 +1,8 @@
 import React, { Component } from 'react';
 
-import BlogPostList from '../../components/UI/lists/BlogPostList.component';
-// import SubNavBar from '../../components/UI/navbar/SubNavBar';
-// import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.component';
-// import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
-import Ads from '../../components/UI/ads/AdvertisementSquare.component';
-
-import BitcoinDoddle from '../../static/img/no-content-img.png';
-
 import MainBlogPost from '../section/blog/MainBlogPost.component';
 import News from '../section/blog/News.component';
 import Tutorials from '../section/blog/Tutorials.component';
-
-
-import {
-  // BlogTopPost,
-  PostListTitleDiv,
-  PostListTitle,
-  PostList,
-  NoContentDiv,
-  NoContentImg,
-  NoContentP,
-  StickyWrapper,
-} from '../../styled-components/blog-posts.styled-components';
 
 export default class Blog extends Component {
   constructor(props) {

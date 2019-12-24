@@ -7,7 +7,7 @@ import {
 
 import BitcoinDoddle from '../../static/img/no-content-img.png';
 
-import BlogPostList from '../../components/UI/lists/BlogPostList.component';
+import BlogPostList from '../../components/UI/lists/blog-home/BlogPostList.component';
 import SubNavBar from '../../components/UI/navbar/SubNavBar';
 import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.component';
 import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import NewsList from '../../../components/UI/lists/BlogPostListNews.component';
+import NewsList from '../../../components/UI/lists/blog-home/BlogPostListNews.component';
 
 import Ads from '../../../components/UI/ads/AdvertisementSquare.component';
 

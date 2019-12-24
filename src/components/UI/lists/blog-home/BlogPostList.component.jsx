@@ -8,7 +8,7 @@ import {
   Title,
   CategoryDiv,
   Category,
-} from '../../../styled-components/blog-posts.styled-components';
+} from '../../../../styled-components/blog-posts.styled-components';
 
 export default class BlogPostList extends Component {
   constructor(props) {

@@ -13,7 +13,7 @@ import {
   Title,
   CategoryDiv,
   Category,
-} from '../../../styled-components/blog-posts-news.styled-components';
+} from '../../../../styled-components/blog-posts-news.styled-components';
 
 export default class BlogPostListNews extends Component {
   constructor(props) {

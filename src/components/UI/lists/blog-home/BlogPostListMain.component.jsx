@@ -18,7 +18,7 @@ import {
   CategoryDiv,
   CategoryMain,
   Category,
-} from '../../../styled-components/blog-posts-top-main.styled-components';
+} from '../../../../styled-components/blog-posts-top-main.styled-components';
 
 export default class BlogPostListMain extends Component {
   constructor(props) {

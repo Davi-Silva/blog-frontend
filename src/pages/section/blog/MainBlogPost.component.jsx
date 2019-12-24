@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import BlogPostListMain from '../../../components/UI/lists/BlogPostListMain.component';
+import BlogPostListMain from '../../../components/UI/lists/blog-home/BlogPostListMain.component';
 
 import {
   ColumnLeft,

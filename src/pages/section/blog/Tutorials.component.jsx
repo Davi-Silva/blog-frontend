@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import TutorialsList from '../../../components/UI/lists/BlogPostListTutorials.component';
+import TutorialsList from '../../../components/UI/lists/blog-home/BlogPostListTutorials.component';
 
 
 import {

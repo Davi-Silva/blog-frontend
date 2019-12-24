@@ -13,7 +13,7 @@ import {
   Title,
   CategoryDiv,
   Category,
-} from '../../../styled-components/blog-posts-tutorials.styled-components';
+} from '../../../../styled-components/blog-posts-tutorials.styled-components';
 
 export default class BlogPostListTutorials extends Component {
   constructor(props) {
