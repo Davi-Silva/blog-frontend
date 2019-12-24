@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
-
-import {
-  FaSpinner,
-} from 'react-icons/fa';
 
 import BlogPostList from '../../components/UI/lists/BlogPostList.component';
-import SubNavBar from '../../components/UI/navbar/SubNavBar';
-import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.component';
-import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
+// import SubNavBar from '../../components/UI/navbar/SubNavBar';
+// import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.component';
+// import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
+import Ads from '../../components/UI/ads/AdvertisementSquare.component';
 
 import BitcoinDoddle from '../../static/img/no-content-img.png';
 
+import MainBlogPost from '../section/blog/MainBlogPost.component';
+import News from '../section/blog/News.component';
+import Tutorials from '../section/blog/Tutorials.component';
+
+
 import {
-  LoadingAllContent,
-  InfinitePostList,
+  // BlogTopPost,
+  PostListTitleDiv,
+  PostListTitle,
+  PostList,
   NoContentDiv,
   NoContentImg,
   NoContentP,
@@ -27,7 +30,6 @@ export default class Blog extends Component {
     this.state = {
       postsList: [],
       page: 1,
-      hasMore: null,
       found: false,
     };
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -119,77 +121,14 @@ export default class Blog extends Component {
   render() {
     const {
       postsList,
-      hasMore,
       found,
     } = this.state;
-    let allPosts;
-    if (!found) {
-      allPosts = (
-        <>
-          <div className="row">
-            <div className="col-12">
-              <NoContentDiv>
-                <NoContentImg src={BitcoinDoddle} />
-                <NoContentP>
-                  No blog posts has been found.
-                </NoContentP>
-              </NoContentDiv>
-            </div>
-          </div>
-        </>
-      );
-    } else {
-      allPosts = (
-        <>
-          <div className="row">
-            <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-              <InfinitePostList>
-                <InfiniteScroll
-                  dataLength={postsList.length}
-                  next={this.getMorePosts}
-                  hasMore={hasMore}
-                  loader={(
-                    <>
-                      <LoadingAllContent>
-                        <FaSpinner />
-                      </LoadingAllContent>
-                    </>
-                    )}
-                  endMessage={(
-                    <div />
-                    )}
-                >
-                  <div className="row">
-                    {postsList.map((post, key) => (
-                      <BlogPostList
-                        key={key}
-                        type="Blog"
-                        slug={post.slug}
-                        imgSrc={post.cover.url}
-                        title={post.title}
-                        publishedOn={post.publishedOn}
-                      />
-                    ))}
-                  </div>
-                </InfiniteScroll>
-              </InfinitePostList>
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-              <StickyWrapper>
-                <RecentCategories />
-                <NewsletterSide />
-              </StickyWrapper>
-            </div>
-          </div>
-        </>
-      );
-    }
+
     return (
       <>
-        <SubNavBar media="Blog" category="" title="" />
-        <div className="container" style={{ margin: '25px auto' }}>
-          {allPosts}
-        </div>
+        <MainBlogPost />
+        <News />
+        <Tutorials />
       </>
     );
   }

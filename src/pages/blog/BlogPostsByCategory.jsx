@@ -1,6 +1,5 @@
 
 import React, { Component } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
 
 import {
   FaSpinner,
@@ -15,7 +14,7 @@ import RecentCategories from '../../components/UI/categories/RecentCategoriesBlo
 
 import {
   LoadingAllContent,
-  InfinitePostList,
+  PostList,
   NoContentDiv,
   NoContentImg,
   NoContentP,
@@ -150,22 +149,8 @@ export default class BlogPostsByCategory extends Component {
         <>
           <div className="row">
             <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-              <InfinitePostList>
-                <InfiniteScroll
-                  dataLength={posts.length}
-                  next={this.getMorePosts}
-                  hasMore={hasMore}
-                  loader={(
-                    <>
-                      <LoadingAllContent>
-                        <FaSpinner />
-                      </LoadingAllContent>
-                    </>
-                    )}
-                  endMessage={(
-                    <div />
-                    )}
-                >
+              <PostList>
+
                   <div className="row">
                     {posts.reverse().map((post, key) => (
                       <BlogPostList
@@ -178,8 +163,8 @@ export default class BlogPostsByCategory extends Component {
                       />
                     ))}
                   </div>
-                </InfiniteScroll>
-              </InfinitePostList>
+
+              </PostList>
             </div>
             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
               <StickyWrapper>

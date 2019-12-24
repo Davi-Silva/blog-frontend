@@ -6,6 +6,8 @@ import {
   Cover,
   PublishedOn,
   Title,
+  CategoryDiv,
+  Category,
 } from '../../../styled-components/blog-posts.styled-components';
 
 export default class BlogPostList extends Component {
@@ -24,6 +26,7 @@ export default class BlogPostList extends Component {
       type,
       imgSrc,
       title,
+      category,
       publishedOn,
       slug,
     } = this.props;
@@ -63,6 +66,7 @@ export default class BlogPostList extends Component {
     await this.setStateAsync({
       type,
       title: tempTitle,
+      category,
       publishedOn: formattedDate,
       slug,
       imgSrc,
@@ -86,6 +90,7 @@ export default class BlogPostList extends Component {
   render() {
     const {
       title,
+      category,
       imgSrc,
       slug,
       publishedOn,
@@ -100,7 +105,6 @@ export default class BlogPostList extends Component {
           style={{ border: 'none' }}
         >
           <Cover
-            className="card-img-top img-fluid"
             src={imgSrc}
             alt="React.js"
             width="100%"
@@ -110,10 +114,16 @@ export default class BlogPostList extends Component {
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
             }}
-          />
-          <PublishedOn>
+          >
+            <CategoryDiv>
+              <Category>
+                {category}
+              </Category>
+            </CategoryDiv>
+          </Cover>
+          {/* <PublishedOn>
             {publishedOn}
-          </PublishedOn>
+          </PublishedOn> */}
           <Title>{title}</Title>
         </Card>
       </>

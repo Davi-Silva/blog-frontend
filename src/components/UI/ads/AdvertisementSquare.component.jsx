@@ -1,42 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AdSense from 'react-adsense';
 
-// import { AdSquare } from '../../../styled-components/advertisements.styled-components';
+import { AdSquare } from '../../../styled-components/advertisements.styled-components';
 
-export default class AdvertisementSquare extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      containerClassName: '',
-    };
+const AdvertisementSquare = () => (
+  <>
+    {/* <AdSense.Google
+      client="ca-pub-3011749340662383"
+      slot="7806394673"
+      style={{ width: '100%', height: 300, float: 'left' }}
+      format=""
+    /> */}
+    <AdSquare>
+      Ad
+    </AdSquare>
+  </>
+);
 
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.listenScrollEven = this.listenScrollEvent.bind(this);
-  }
-  
-  listenScrollEvent = e => {
-		if (window.scrollY > 56) {
-			this.setState({ containerClassName: "adSquareContainerFixed" });
-		} else {
-			this.setState({ containerClassName: "adSquareContainerRelative" });
-		}
-	};
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.listenScrollEvent);
-  }
-
-  render() {
-    // const { containerClassName } = this.state;
-    return (
-      <>
-        <AdSense.Google
-          client='ca-pub-3011749340662383'
-          slot='7806394673'
-          style={{ width: 500, height: 300, float: 'left' }}
-          format=''
-        />
-      </>
-    );
-  }
-}
+export default AdvertisementSquare;

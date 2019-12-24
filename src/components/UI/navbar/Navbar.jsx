@@ -26,7 +26,7 @@ import {
 
 const Navbar = (props) => {
   const {
-    location
+    location,
   } = props;
   const { pathname } = location;
   console.log('slug:', pathname);
@@ -58,7 +58,7 @@ const Navbar = (props) => {
   };
 
   const handleSearchForm = () => {
-    handleCloseSideDrawer()
+    handleCloseSideDrawer();
     if (searchFormState.showSearchForm) {
       setSearchFormState({
         showSearchForm: false,
