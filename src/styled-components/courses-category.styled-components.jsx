@@ -22,11 +22,6 @@ export const CategoryTitle = styled.h1`
 export const CategoryDescription = styled.p`
   color: #fff;
   font-weight: 700;
-  /* font-size: 30px;
-  font-weight: 900;
-  letter-spacing: 3px;
-  position: relative;
-  padding: 30px 15px; */
 `;
 
 
@@ -89,7 +84,6 @@ export const BreadcrumbLink = styled(Link)`
     text-decoration: none;
   }
 `;
-
 
 
 export const CoursesListUl = styled.ul`
