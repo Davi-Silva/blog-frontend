@@ -40,7 +40,7 @@ const MainBlogPost = () => {
                 return (
                   <>
                     <BlogPostListMain
-                      key={post.id}
+                      key={index}
                       type="Blog"
                       slug={post.slug}
                       imgSrc={post.cover.url}
@@ -67,7 +67,7 @@ const MainBlogPost = () => {
                       <>
                         <ColumnLeft className="col-lg-6 col-md-6 col-sm-6 col-12">
                           <BlogPostListMain
-                            key={post.id}
+                            key={index}
                             type="Blog"
                             slug={post.slug}
                             imgSrc={post.cover.url}
@@ -85,7 +85,7 @@ const MainBlogPost = () => {
                       <>
                         <ColumnRight className="col-lg-6 col-md-6 col-sm-6 col-12">
                           <BlogPostListMain
-                            key={post.id}
+                            key={index}
                             type="Blog"
                             slug={post.slug}
                             imgSrc={post.cover.url}

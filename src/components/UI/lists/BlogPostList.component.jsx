@@ -105,7 +105,6 @@ export default class BlogPostList extends Component {
           style={{ border: 'none' }}
         >
           <Cover
-            className="card-img-top img-fluid"
             src={imgSrc}
             alt="React.js"
             width="100%"
@@ -122,9 +121,9 @@ export default class BlogPostList extends Component {
               </Category>
             </CategoryDiv>
           </Cover>
-          <PublishedOn>
+          {/* <PublishedOn>
             {publishedOn}
-          </PublishedOn>
+          </PublishedOn> */}
           <Title>{title}</Title>
         </Card>
       </>

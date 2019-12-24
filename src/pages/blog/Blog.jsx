@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 
 import BlogPostList from '../../components/UI/lists/BlogPostList.component';
 // import SubNavBar from '../../components/UI/navbar/SubNavBar';
-import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.component';
-import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
+// import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.component';
+// import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
 import Ads from '../../components/UI/ads/AdvertisementSquare.component';
 
 import BitcoinDoddle from '../../static/img/no-content-img.png';
 
 import MainBlogPost from '../section/blog/MainBlogPost.component';
+import News from '../section/blog/News.component';
+import Tutorials from '../section/blog/Tutorials.component';
+
 
 import {
   // BlogTopPost,
@@ -120,68 +123,12 @@ export default class Blog extends Component {
       postsList,
       found,
     } = this.state;
-    let allPosts;
-    if (!found) {
-      allPosts = (
-        <>
-          <div className="row">
-            <div className="col-12">
-              <NoContentDiv>
-                <NoContentImg src={BitcoinDoddle} />
-                <NoContentP>
-                  No blog posts has been found.
-                </NoContentP>
-              </NoContentDiv>
-            </div>
-          </div>
-        </>
-      );
-    } else {
-      allPosts = (
-        <>
-          <div className="row">
-            <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-              <PostList>
-                <div className="row">
-                  <div className="col-12">
-                    <PostListTitleDiv>
-                      <PostListTitle>
-                      News
-                      </PostListTitle>
-                    </PostListTitleDiv>
-                  </div>
-                  {postsList.map((post) => (
-                    <BlogPostList
-                      key={post.id}
-                      type="Blog"
-                      slug={post.slug}
-                      imgSrc={post.cover.url}
-                      title={post.title}
-                      category={post.category}
-                      publishedOn={post.publishedOn}
-                    />
-                  ))}
-                </div>
-              </PostList>
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-              <StickyWrapper>
-                {/* <RecentCategories />
-                <NewsletterSide /> */}
-                <Ads />
-              </StickyWrapper>
-            </div>
-          </div>
-        </>
-      );
-    }
+
     return (
       <>
         <MainBlogPost />
-        {/* <SubNavBar media="Blog" category="" title="" /> */}
-        <div className="container" style={{ margin: '25px auto' }}>
-          {allPosts}
-        </div>
+        <News />
+        <Tutorials />
       </>
     );
   }

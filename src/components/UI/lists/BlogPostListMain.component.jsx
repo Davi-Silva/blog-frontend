@@ -5,11 +5,18 @@ import {
   CardTopMain,
   Card,
   Cover,
+  BackgroundWrapperMain,
+  BackgroundWrapper,
   CoverMain,
+  PublishedOnMain,
   PublishedOn,
+  PostInfoDivMain,
   PostInfoDiv,
+  TitleMain,
   Title,
+  CategoryDivMain,
   CategoryDiv,
+  CategoryMain,
   Category,
 } from '../../../styled-components/blog-posts-top-main.styled-components';
 
@@ -114,7 +121,6 @@ export default class BlogPostListMain extends Component {
             style={{ border: 'none' }}
           >
             <CoverMain
-              className="card-img-top img-fluid"
               src={imgSrc}
               alt="React.js"
               width="100%"
@@ -125,57 +131,55 @@ export default class BlogPostListMain extends Component {
                 backgroundPosition: 'center',
               }}
             >
-              <CategoryDiv>
-                <Category>
+              <BackgroundWrapperMain />
+              <CategoryDivMain>
+                <CategoryMain>
                   {category}
-                </Category>
-              </CategoryDiv>
+                </CategoryMain>
+              </CategoryDivMain>
             </CoverMain>
-            <PostInfoDiv>
-              <PublishedOn>
+            <PostInfoDivMain>
+              <PublishedOnMain>
                 {publishedOn}
-              </PublishedOn>
-              <Title>{title}</Title>
-            </PostInfoDiv>
+              </PublishedOnMain>
+              <TitleMain>{title}</TitleMain>
+            </PostInfoDivMain>
           </CardTopMain>
         </>
       );
     } else if (index > 0) {
       allPosts = (
         <>
-          <>
-            <Card
-              to={`/blog/${slug}`}
-              className="col-sm-6 col-12 p-0"
-              style={{ border: 'none' }}
+          <Card
+            to={`/blog/${slug}`}
+            className="col-sm-6 col-12 p-0"
+            style={{ border: 'none' }}
+          >
+            <Cover
+              src={imgSrc}
+              alt="React.js"
+              width="100%"
+              style={{
+                backgroundImage: `url(${imgSrc})`,
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+              }}
             >
-              <Cover
-                className="card-img-top img-fluid"
-                src={imgSrc}
-                alt="React.js"
-                width="100%"
-                style={{
-                  backgroundImage: `url(${imgSrc})`,
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                }}
-              >
-                <CategoryDiv>
-                  <Category>
-                    {category}
-                  </Category>
-                </CategoryDiv>
-                <PostInfoDiv>
-                  <PublishedOn>
-                    {publishedOn}
-                  </PublishedOn>
-                  <Title>{title}</Title>
-                </PostInfoDiv>
-              </Cover>
-
-            </Card>
-          </>
+              <BackgroundWrapper />
+              <CategoryDiv>
+                <Category>
+                  {category}
+                </Category>
+              </CategoryDiv>
+              <PostInfoDiv>
+                <PublishedOn>
+                  {publishedOn}
+                </PublishedOn>
+                <Title>{title}</Title>
+              </PostInfoDiv>
+            </Cover>
+          </Card>
         </>
       );
     }
@@ -192,6 +196,7 @@ BlogPostListMain.propTypes = {
   type: PropTypes.string.isRequired,
   imgSrc: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   publishedOn: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
