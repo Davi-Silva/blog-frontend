@@ -22,9 +22,12 @@ export const PostListTitle = styled.h3`
 	color: 16px;
 	font-weight: 900;
 	letter-spacing: 1px;
-	font-size: 18px;
+	font-size: 20px;
 	margin-left: 10px;
 	@media (max-width: 991px) {
+		font-size: 18px;
+	}
+	@media (max-width: 769px) {
 		font-size: 16px;
 	}
 `;

@@ -38,7 +38,7 @@ const News = () => {
       <div
         className="container"
         style={{
-          paddingTop: '10px',
+          paddingTop: '30px',
         }}
       >
         <div className="row">

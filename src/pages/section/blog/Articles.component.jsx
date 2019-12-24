@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 import {
+  PostListTitleDiv,
+  PostListTitle,
   Card,
   Cover,
   BackgroundWrapper,
@@ -9,13 +11,7 @@ import {
   Title,
   CategoryDiv,
   Category,
-} from '../../../styled-components/blog-posts-tutorials.styled-components';
-
-import {
-  PostListTitleDiv,
-  PostListTitle,
-} from '../../../styled-components/blog-posts.styled-components';
-
+} from '../../../styled-components/blog-posts-article.styled-components';
 
 const Articles = () => {
   const [tutorialsState, setTutorialsState] = useState([]);
@@ -75,13 +71,13 @@ const Articles = () => {
                         {post.category}
                       </Category>
                     </CategoryDiv>
-                    <PostInfoDiv>
+                  </Cover>
+                  <PostInfoDiv>
                       <PublishedOn>
                         {post.publishedOn}
                       </PublishedOn>
                       <Title>{post.title}</Title>
                     </PostInfoDiv>
-                  </Cover>
                 </Card>
               </div>
             </>

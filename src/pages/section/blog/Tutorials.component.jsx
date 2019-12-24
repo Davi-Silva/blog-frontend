@@ -36,7 +36,7 @@ const Tutorials = () => {
       <div
         className="container"
         style={{
-          paddingTop: '25px',
+          paddingTop: '30px',
         }}
       >
         <div className="row">

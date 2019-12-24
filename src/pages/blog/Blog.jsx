@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import MainBlogPost from '../section/blog/MainBlogPost.component';
 import News from '../section/blog/News.component';
 import Tutorials from '../section/blog/Tutorials.component';
+import Article from '../section/blog/Articles.component';
+import Articles from '../section/blog/Articles.component';
 
 export default class Blog extends Component {
   constructor(props) {
@@ -109,6 +111,7 @@ export default class Blog extends Component {
         <MainBlogPost />
         <News />
         <Tutorials />
+        <Articles />
       </>
     );
   }
