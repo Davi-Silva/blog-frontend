@@ -8,6 +8,7 @@ import {
   PostListTitleDiv,
   PostListTitle,
   StickyWrapper,
+  SeeAll,
 } from '../../../styled-components/blog-posts-news.styled-components';
 
 
@@ -42,12 +43,17 @@ const News = () => {
         }}
       >
         <div className="row">
-          <div className="col-12">
+          <div className="col-lg-9 col-md-9 col-sm-9 col-6">
             <PostListTitleDiv>
               <PostListTitle>
                 News
               </PostListTitle>
             </PostListTitleDiv>
+          </div>
+          <div className="col-lg-3 col-md-3 col-sm-3 col-6">
+            <SeeAll to="/blog/news">
+                See More
+            </SeeAll>
           </div>
           <div className="col-lg-9">
             <div className="row">

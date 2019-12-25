@@ -22,6 +22,8 @@ export const Filter = styled.div`
 export const Ul = styled.ul`
   overflow-x: scroll;
   overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
   height: 275px;
   white-space: nowrap;
   display: flex;
@@ -38,6 +40,7 @@ export const Li = styled.li`
   display: inline-block;
   margin: 0 25px 0 0;
   height: 300px;
+  scroll-snap-align: start;
 `;
 
 export const Wrapper = styled.div`

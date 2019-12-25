@@ -1,5 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 
 import {
   FaBars,
@@ -29,7 +30,6 @@ const Navbar = (props) => {
     location,
   } = props;
   const { pathname } = location;
-  console.log('slug:', pathname);
   const [sideDrawerState, setSideDrawerState] = useState({
     showSideDrawer: false,
   });
@@ -54,6 +54,36 @@ const Navbar = (props) => {
       setUserMenuState({
         showUserMenu: true,
       });
+    }
+  };
+
+  const handleCloseSideDrawer = () => {
+    const sideDrawer = window.document.body.children[1].children[1];
+    const sideBackgroundDrawer = window.document.body.children[1].children[0];
+    if (sideDrawerState.showSideDrawer) {
+      sideDrawer.classList.remove('showSideDrawer');
+      sideBackgroundDrawer.classList.remove('showBackgroundSideDrawer');
+      sideDrawer.classList.add('hideSideDrawer');
+      sideBackgroundDrawer.classList.add('hideBackgroundSideDrawer');
+      setSideDrawerState({ showSideDrawer: false });
+    }
+  };
+
+  const handleSideDrawer = () => {
+    const sideDrawer = window.document.body.children[1].children[1];
+    const sideBackgroundDrawer = window.document.body.children[1].children[0];
+    if (!sideDrawerState.showSideDrawer) {
+      sideDrawer.classList.remove('hideSideDrawer');
+      sideBackgroundDrawer.classList.remove('hideBackgroundSideDrawer');
+      sideDrawer.classList.add('showSideDrawer');
+      sideBackgroundDrawer.classList.add('showBackgroundSideDrawer');
+      setSideDrawerState({ showSideDrawer: true });
+    } else {
+      sideDrawer.classList.remove('showSideDrawer');
+      sideBackgroundDrawer.classList.remove('showBackgroundSideDrawer');
+      sideDrawer.classList.add('hideSideDrawer');
+      sideBackgroundDrawer.classList.add('hideBackgroundSideDrawer');
+      setSideDrawerState({ showSideDrawer: false });
     }
   };
 
@@ -176,36 +206,6 @@ const Navbar = (props) => {
     }
   }
 
-  const handleCloseSideDrawer = () => {
-    const sideDrawer = window.document.body.children[1].children[1];
-    const sideBackgroundDrawer = window.document.body.children[1].children[0];
-    if (sideDrawerState.showSideDrawer) {
-      sideDrawer.classList.remove('showSideDrawer');
-      sideBackgroundDrawer.classList.remove('showBackgroundSideDrawer');
-      sideDrawer.classList.add('hideSideDrawer');
-      sideBackgroundDrawer.classList.add('hideBackgroundSideDrawer');
-      setSideDrawerState({ showSideDrawer: false });
-    }
-  };
-
-  const handleSideDrawer = () => {
-    const sideDrawer = window.document.body.children[1].children[1];
-    const sideBackgroundDrawer = window.document.body.children[1].children[0];
-    if (!sideDrawerState.showSideDrawer) {
-      sideDrawer.classList.remove('hideSideDrawer');
-      sideBackgroundDrawer.classList.remove('hideBackgroundSideDrawer');
-      sideDrawer.classList.add('showSideDrawer');
-      sideBackgroundDrawer.classList.add('showBackgroundSideDrawer');
-      setSideDrawerState({ showSideDrawer: true });
-    } else {
-      sideDrawer.classList.remove('showSideDrawer');
-      sideBackgroundDrawer.classList.remove('showBackgroundSideDrawer');
-      sideDrawer.classList.add('hideSideDrawer');
-      sideBackgroundDrawer.classList.add('hideBackgroundSideDrawer');
-      setSideDrawerState({ showSideDrawer: false });
-    }
-  };
-
   let navbar;
   if (pathname.includes('/course') || pathname.includes('/courses') || pathname.includes('/my-courses')) {
     navbar = (
@@ -314,3 +314,11 @@ const Navbar = (props) => {
 };
 
 export default Navbar;
+
+Navbar.propTypes = {
+  location: PropTypes.shape,
+};
+
+Navbar.defaultProps = {
+  location: Object,
+};

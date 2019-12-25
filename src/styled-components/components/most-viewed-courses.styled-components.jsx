@@ -28,6 +28,8 @@ export const Ul = styled.ul`
   white-space: nowrap;
   margin-bottom: 0;
   display: flex;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
   ::-webkit-scrollbar {
     display: none;
   }
@@ -37,6 +39,7 @@ export const Li = styled.li`
   display: inline-block;
   margin: 0 25px 0 0;
   height: 300px;
+  scroll-snap-align: start;
 `;
 
 export const Wrapper = styled.div`

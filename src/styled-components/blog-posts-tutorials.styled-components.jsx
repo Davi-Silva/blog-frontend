@@ -17,6 +17,29 @@ export const PostListTitleDiv = styled.div`
 	}
 `;
 
+export const SeeAll = styled(Link)`
+	font-size: 16px;
+	text-transform: uppercase;
+	border-radius: 4px;
+	color: #999;
+	display: block;
+	padding: 5px 10px;
+	transform: translateY(-5px);
+	font-weight: 900;
+	float: right;
+	transition: .2s all ease-in-out;
+	&:hover {
+		background-color: #f2f3f5;
+		text-decoration: none;
+		color: #999;
+	}
+	&:active {
+		background-color: #e0e0e0;
+		color: #0058e4;
+	}
+`;
+
+
 export const PostListTitle = styled.h3`
 	color: 16px;
 	font-weight: 900;
@@ -67,10 +90,10 @@ export const Cover = styled.div`
 	width: 100%;
 	margin-bottom: 15px;
 	@media (max-width: 1199px) {
-		height: 190px;
+		height: 160px;
 	}
 	@media (max-width: 991px) {
-		height: 105px;
+		height: 135px;
 	}
 	@media (max-width: 769px) {
 		height: 135px;
@@ -86,10 +109,10 @@ export const BackgroundWrapper = styled.div`
 	height: 190px;
 	width: 100%;
 	@media (max-width: 1199px) {
-		height: 190px;
+		height: 160px;
 	}
 	@media (max-width: 991px) {
-		height: 105px;
+		height: 135px;
 	}
 	@media (max-width: 769px) {
 		height: 135px;
@@ -127,7 +150,7 @@ export const Title = styled.h5`
   font-weight: 900;
   margin: 0;
 	@media (max-width: 1199px) {
-		font-size: 15px;
+		font-size: 16px;
 	}
 	@media (max-width: 991px) {
 		font-size: 15px;
@@ -136,7 +159,7 @@ export const Title = styled.h5`
 
 export const CategoryDiv = styled.div`
 	padding: 0 0 0 8px;
-	top: 142px;
+	top: 162px;
 	position: absolute;
 	&::before {
 		content: '';
@@ -148,7 +171,7 @@ export const CategoryDiv = styled.div`
 		background: #fff;
 	}
 	@media (max-width: 1199px) {
-		top: 107px;
+		top: 130px;
 	}
 	@media (max-width: 991px) {
 		top: 110px;

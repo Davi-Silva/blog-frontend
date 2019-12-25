@@ -85,7 +85,7 @@ export default class List extends Component {
       id,
     } = post[0];
     await fetch(
-      `https://cryptic-activist-backend.herokuapp.com/blog/delete/cover/${cover._id}`,
+      `http://localhost:5000/blog/delete/cover/${cover._id}`,
       {
         method: 'DELETE',
         mode: 'cors',
@@ -97,7 +97,7 @@ export default class List extends Component {
       },
     );
 
-    await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/delete/${id}`, {
+    await fetch(`http://localhost:5000/blog/delete/${id}`, {
       method: 'DELETE',
       mode: 'cors',
       cache: 'no-cache',
@@ -111,7 +111,7 @@ export default class List extends Component {
   async getBlogPostBySlug() {
     const { slug } = this.state;
     const response = await fetch(
-      `https://cryptic-activist-backend.herokuapp.com/blog/get/slug/${slug}`,
+      `http://localhost:5000/blog/get/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',

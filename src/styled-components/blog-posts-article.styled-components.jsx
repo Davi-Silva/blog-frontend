@@ -5,6 +5,32 @@ import { Link } from 'react-router-dom';
 
 import { rotate } from './animations';
 
+export const Div = styled.div`
+	padding: 25px 0;
+`;
+
+export const SeeAll = styled(Link)`
+	font-size: 16px;
+	text-transform: uppercase;
+	border-radius: 4px;
+	color: #999;
+	display: block;
+	padding: 5px 10px;
+	transform: translateY(-5px);
+	font-weight: 900;
+	float: right;
+	transition: .2s all ease-in-out;
+	&:hover {
+		background-color: #f2f3f5;
+		text-decoration: none;
+		color: #999;
+	}
+	&:active {
+		background-color: #e0e0e0;
+		color: #0058e4;
+	}
+`;
+
 export const PostListTitleDiv = styled.div`
 	&::before {
 		content: '';
@@ -54,11 +80,10 @@ export const ColumnRight = styled.div`
 `;
 
 export const Card = styled(Link)`
-  text-decoration: none;
-  margin-bottom: 20px;
-  &:hover {
-    text-decoration: none;
-  }
+	margin-bottom: 25px;
+	&:hover {
+		text-decoration: none;
+	}
 `;
 
 export const Cover = styled.div`
@@ -100,74 +125,30 @@ export const BackgroundWrapper = styled.div`
 `;
 
 export const PublishedOn = styled.b`
-  color: #fff;
-  font-size: 12px;
-	@media (max-width: 991px) {
-		font-size: 11px;
-	}
+	color: #333;
 `;
 
 export const PostInfoDiv = styled.div`
-	top: 60px;
-	position: absolute;
-	width: 350px;
-	padding: 0 5px;
-	@media (max-width: 1199px) {
-		top: 30px;
-		width: 215px;
-	}
-	@media (max-width: 991px) {
-		top: 30px;
+	background-color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	transform: translateY(-24px);
+	border-top: none;
+	padding: 10px;
+	&:hover {
+		border-color: rgba(0, 0, 0, 0.4);
 	}
 `;
 
 export const Title = styled.h5`
-  color: #fff;
-  font-size: 18px;
-  font-weight: 900;
-  margin: 0;
-	@media (max-width: 1199px) {
-		font-size: 15px;
-	}
-	@media (max-width: 991px) {
-		font-size: 15px;
-	}
+	color: #333;
 `;
 
 export const CategoryDiv = styled.div`
-	padding: 0 0 0 8px;
-	top: 142px;
-	position: absolute;
-	&::before {
-		content: '';
-		height: 15px;
-		width: 2px;
-		display: block;
-		position: absolute;
-		top: 4px;
-		background: #fff;
-	}
-	@media (max-width: 1199px) {
-		top: 107px;
-	}
-	@media (max-width: 991px) {
-		top: 110px;
-	}
+
 `;
 
 export const Category = styled.span`
 	color: #333;
-	text-align: center;
-	color: #fff;
-	font-weight: 700;
-	font-size: 15px;
-	padding-left: 6px;
-	display: block;
-	width: 150px;
-	text-align: left;
-	@media (max-width: 991px) {
-		font-size: 14px;
-	}
 `;
 
 export const LoadingAllContent = styled.div`
