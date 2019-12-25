@@ -61,7 +61,7 @@ export default class Podcasts extends Component {
 
   async getFirstPodcasts() {
     const { page } = this.state;
-    this.response = await fetch(`http://localhost:5000/podcasts/short?page=${page}`, {
+    this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/podcasts/short?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -86,7 +86,7 @@ export default class Podcasts extends Component {
       page: page + 1,
     });
     const tempPage = page + 1;
-    this.response = await fetch(`http://localhost:5000/podcasts/short?page=${tempPage}`, {
+    this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/podcasts/short?page=${tempPage}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',

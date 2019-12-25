@@ -43,7 +43,7 @@ export default class RelatedCategory extends Component {
 
   async getPodcastByCategory(category) {
     this.response = await fetch(
-      `http://localhost:5000/podcasts/get/category/${category}`,
+      `https://cryptic-activist-backend.herokuapp.com/podcasts/get/category/${category}`,
       {
         method: 'GET',
         mode: 'cors',

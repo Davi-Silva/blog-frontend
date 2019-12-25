@@ -82,7 +82,7 @@ class Register extends Component {
   }
 
   async registerUser(registerInfo) {
-    this.response = await fetch('http://localhost:5000/users/register', {
+    this.response = await fetch('https://cryptic-activist-backend.herokuapp.com/users/register', {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
