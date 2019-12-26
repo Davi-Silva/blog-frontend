@@ -9,9 +9,11 @@ import SubNavBar from '../../components/UI/navbar/SubNavBar';
 import Newsletter from '../../components/UI/newsletter/NewsletterSide.component';
 import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
 
+import ProfilePlaceholder from '../../static/img/profile-placeholder.png';
 
 import {
   Cover,
+  Author,
   Title,
   Content,
   TagsUl,
@@ -122,7 +124,7 @@ export default class Post extends Component {
     const { match } = this.props;
     const { slug } = match.params;
     this.response = await fetch(
-      `https://cryptic-activist-backend.herokuapp.com/blog/get/slug/${slug}`,
+      `http://localhost:5000/blog/get/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -139,7 +141,7 @@ export default class Post extends Component {
 
   async getPostByCategory(category, slug) {
     this.response = await fetch(
-      `https://cryptic-activist-backend.herokuapp.com/blog/get/category/newest/${slug}/${category}`,
+      `http://localhost:5000/blog/get/category/newest/${slug}/${category}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -198,15 +200,13 @@ export default class Post extends Component {
       if (publishedOn === null) {
         postPublished = (
           <UploadedOn>
-      Updated on&nbsp;
-            <span style={{ color: '#333', fontWeight: '700' }}>{updatedOn}</span>
+            {updatedOn}
           </UploadedOn>
         );
       } else {
         postPublished = (
           <UploadedOn>
-        Published on&nbsp;
-            <span style={{ color: '#333', fontWeight: '700' }}>{publishedOn}</span>
+            {publishedOn}
           </UploadedOn>
         );
       }
@@ -262,7 +262,19 @@ export default class Post extends Component {
               src={cover}
               alt={coverAlt}
             />
-            {postPublished}
+            <Author>
+              <ul>
+                <li>
+                  <img src={ProfilePlaceholder} alt="Author" />
+                </li>
+                <li>
+                  <div>
+                    <span>Author Name</span>
+                    {postPublished}
+                  </div>
+                </li>
+              </ul>
+            </Author>
             <Title>
               {title}
             </Title>

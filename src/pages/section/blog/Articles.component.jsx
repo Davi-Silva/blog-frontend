@@ -20,7 +20,7 @@ const Articles = () => {
 
   useEffect(() => {
     const getTutorials = async () => {
-      const response = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/?page=${1}`, {
+      const response = await fetch('http://localhost:5000/blog/home/articles', {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',
@@ -30,7 +30,6 @@ const Articles = () => {
         },
       });
       const data = await response.json();
-      console.log('data tiutorials:', data);
       setTutorialsState(data);
     };
     getTutorials();

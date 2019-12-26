@@ -38,6 +38,14 @@ export const SeeAll = styled(Link)`
 		background-color: #e0e0e0;
 		color: #0058e4;
 	}
+	@media (max-width: 768px) {
+		font-size: 15px;
+		transform: translateY(-4px);
+	}
+	@media (max-width: 576px) {
+		font-size: 14px;
+		transform: translateY(-4px);
+	}
 `;
 
 

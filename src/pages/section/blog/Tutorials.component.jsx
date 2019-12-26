@@ -15,7 +15,7 @@ const Tutorials = () => {
 
   useEffect(() => {
     const getTutorials = async () => {
-      const response = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/?page=${1}`, {
+      const response = await fetch('http://localhost:5000/blog/home/tutorials', {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',
@@ -25,7 +25,6 @@ const Tutorials = () => {
         },
       });
       const data = await response.json();
-      console.log('data tiutorials:', data);
       setTutorialsState(data);
     };
     getTutorials();
@@ -44,7 +43,7 @@ const Tutorials = () => {
           <div className="col-lg-9 col-md-9 col-sm-9 col-6">
             <PostListTitleDiv>
               <PostListTitle>
-                Article
+                Tutorials
               </PostListTitle>
             </PostListTitleDiv>
           </div>

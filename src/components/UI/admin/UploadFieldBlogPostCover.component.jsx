@@ -1,14 +1,16 @@
-import React, { Component } from "react";
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/prop-types */
+import React from 'react';
 
-import Dropzone from "react-dropzone";
+import Dropzone from 'react-dropzone';
 
 import {
   DropContainerBlogPostCover,
-  UploadMessage
-} from "../../../styled-components/admin.styled-components";
+  UploadMessage,
+} from '../../../styled-components/admin.styled-components';
 
-export default class Upload extends Component {
-  renderDragMessage = (isDragActive, isDragReject) => {
+const Upload = (props) => {
+  const renderDragMessage = (isDragActive, isDragReject) => {
     if (!isDragActive) {
       return <UploadMessage>Drag the cover image here...</UploadMessage>;
     }
@@ -22,21 +24,27 @@ export default class Upload extends Component {
     );
   };
 
-  render() {
-    const { onUpload } = this.props;
-    return (
-      <Dropzone accept="image/*" onDropAccepted={onUpload}>
-        {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
-          <DropContainerBlogPostCover
-            {...getRootProps()}
-            isDragActive={isDragActive}
-            isDragReject={isDragReject}
-          >
-            <input {...getInputProps()} />
-            {this.renderDragMessage(isDragActive, isDragReject)}
-          </DropContainerBlogPostCover>
-        )}
-      </Dropzone>
-    );
-  }
-}
+
+  const { onUpload } = props;
+  return (
+    <Dropzone accept="image/*" onDropAccepted={onUpload}>
+      {({
+        getRootProps,
+        getInputProps,
+        isDragActive,
+        isDragReject,
+      }) => (
+        <DropContainerBlogPostCover
+          {...getRootProps()}
+          isDragActive={isDragActive}
+          isDragReject={isDragReject}
+        >
+          <input {...getInputProps()} />
+          {renderDragMessage(isDragActive, isDragReject)}
+        </DropContainerBlogPostCover>
+      )}
+    </Dropzone>
+  );
+};
+
+export default Upload;

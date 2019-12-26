@@ -42,7 +42,7 @@ const Login = (props) => {
 
   const loginUser = async (loginInfo) => {
     const response = await fetch(
-      'https://cryptic-activist-backend.herokuapp.com/users/login',
+      'http://localhost:5000/users/login',
       {
         method: 'POST',
         mode: 'cors',
@@ -121,7 +121,7 @@ const Login = (props) => {
               <LoginButton
                 icon="google"
                 backgroundColor="#4285f4"
-                endpoint="https://cryptic-activist-backend.herokuapp.com/auth/google"
+                endpoint="http://localhost:5000/auth/google"
                 providerName="Google"
               />
             </li> */}
@@ -134,7 +134,7 @@ const Login = (props) => {
               <LoginButton
                 icon="github"
                 backgroundColor="#333"
-                endpoint="https://cryptic-activist-backend.herokuapp.com/auth/github"
+                endpoint="http://localhost:5000/auth/github"
                 providerName="Github"
               />
             </li>
@@ -147,7 +147,7 @@ const Login = (props) => {
               <LoginButton
                 icon="facebook"
                 backgroundColor="#3a5797"
-                endpoint="https://cryptic-activist-backend.herokuapp.com/auth/facebook"
+                endpoint="http://localhost:5000/auth/facebook"
                 providerName="Facebook"
               />
             </li>
@@ -160,7 +160,7 @@ const Login = (props) => {
               <LoginButton
                 icon="instagram"
                 backgroundColor="#4285f4"
-                endpoint="https://cryptic-activist-backend.herokuapp.com/auth/instagram"
+                endpoint="http://localhost:5000/auth/instagram"
                 providerName="Instagram"
               />
             </li> */}

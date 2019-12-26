@@ -10,31 +10,15 @@ export const Wrapper = styled.div`
 
 export const Cover = styled.img`
 	width: 100%;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 1px;
+	border-bottom-right-radius: 1px;
 `;
 
 export const UploadedOn = styled.p`
 	color: #999;
-	margin: 10px 0px;
-	font-size: 16px;
-	@media (max-width: 1199px) {
-		margin: 7px 0px;
-	}
-	@media (max-width: 991px) {
-		margin: 5px 0px;
-	}
-	@media (max-width: 768px) {
-		font-size: 14px;
-	}
-	@media (max-width: 400px) {
-		font-size: 13px;
-		margin: 5px 0px;
-	}
-	@media (max-width: 300px) {
-		font-size: 12px;
-		margin: 3px 0px;
-	}
+	margin: 0 0 0 9px;
+	font-size: 12px!important;
+	font-weight: 700;
 `;
 
 export const Title = styled.h1`
@@ -43,23 +27,60 @@ export const Title = styled.h1`
 	font-weight: 700;
 	/* text-align: center; */
 	letter-spacing: 1px;
-	margin: 30px 0px;
+	margin: 15px 0px 30px 0px;
 	@media (max-width: 1199px) {
 		font-size: 25px;
 	}
 	@media (max-width: 991px) {
 		margin: 5px 0px;
+		font-size: 22px;
 	}
 	@media (max-width: 768px) {
-		font-size: 14px;
+		font-size: 21px;
 	}
 	@media (max-width: 400px) {
-		font-size: 13px;
 		margin: 5px 0px;
 	}
 	@media (max-width: 300px) {
-		font-size: 12px;
 		margin: 3px 0px;
+	}
+`;
+
+export const Author = styled.div`
+	margin: 8px 0;
+	ul {
+		width: 100%;
+		margin-bottom: 0px;
+		li {
+			list-style: none;
+			display: inline-block;
+			div {
+				transform: translateY(12px);
+				@media (max-width: 991px) {
+					transform: translateY(10px);
+				}
+			}
+			img {
+				height: 50px;
+				width: 50px;
+				border-radius: 50px;
+				@media (max-width: 991px) {
+					height: 45px;
+					width: 45px;
+				}
+			}
+			span {
+				color: #333;
+				font-weight: 700;
+				margin-left: 10px;
+				@media (max-width: 991px) {
+					font-size: 13px;
+				}
+			}
+		}
+	}
+	@media (max-width: 991px) {
+		margin: 10px 0 14px 0;
 	}
 `;
 
