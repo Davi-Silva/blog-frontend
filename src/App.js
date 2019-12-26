@@ -14,6 +14,8 @@ import StationNavbar from './components/UI/navbar/StationNavbar';
 import Footer from './components/UI/footer/Footer';
 
 import Admin from './pages/Admin';
+import RegisterAdmin from './pages/RegisterAdmin';
+
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
@@ -54,6 +56,8 @@ function App() {
     <Router>
       <UserProvider>
         <Route path="/" component={Navbar} />
+        <Route exact path="/admin/register" component={RegisterAdmin} />
+        <Route exact path="/admin" component={Admin} />
         <Route exact path="/course/:slug" component={Course} />
         <Route exact path="/courses" component={CoursesHome} />
         <Route
@@ -70,7 +74,6 @@ function App() {
         <Route path="/courses/category/:slug" component={CoursesCategory} />
         <Route path="/my-courses" component={MyCourses} />
         <Route path="/" exact component={Homepage} />
-        <Route path="/admin" component={Admin} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />

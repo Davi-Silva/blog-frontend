@@ -1,19 +1,23 @@
 /* eslint react/prop-types: 0 */
 import React, { Component } from 'react';
+
 import { createMuiTheme, makeStyles } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import AudioPlayer from 'material-ui-audio-player';
+
 import slugify from 'slugify';
 
 import {
   FaSpinner,
 } from 'react-icons/fa';
 
-import ShareButtons from '../../components/UI/buttons/ShareButton';
+import ShareButtons from '../../components/UI/buttons/ShareButtons';
+import Helmet from '../../components/UI/helmet/Helmet';
 
 import {
   Wrapper,
   Aside,
+  ShareButtonsDiv,
   Title,
   Category,
   Description,
@@ -271,6 +275,9 @@ export default class Podcast extends Component {
       documentHeight,
       relatedCategoryPodcast,
     } = this.state;
+    const {
+      location,
+    } = this.props;
 
     let allContentPodcast;
     let podcastUpdated;
@@ -338,7 +345,9 @@ export default class Podcast extends Component {
           <div className="col-lg-4 col-md-4 col-sm-12 col-12">
             <Aside>
               <CoverImage cover={cover} coverAlt={coverAlt} documentHeight={documentHeight} />
-              <ShareButtons img={cover} text={title} />
+              <ShareButtonsDiv>
+                <ShareButtons path={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+              </ShareButtonsDiv>
             </Aside>
           </div>
           <div className="col-lg-8 col-md-8 col-sm-12 col-12">
@@ -391,6 +400,7 @@ export default class Podcast extends Component {
     }
     return (
       <>
+        <Helmet title={title} media="Podcast" />
         <SubNavBar media="Podcast" category={category} title={title} />
         <div className="container">
           <div className="row">

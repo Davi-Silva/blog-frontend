@@ -315,10 +315,6 @@ const Navbar = (props) => {
 
 export default Navbar;
 
-Navbar.propTypes = {
-  location: PropTypes.shape,
-};
-
-Navbar.defaultProps = {
-  location: Object,
-};
+// Navbar.propTypes = {
+//   location: PropTypes.shape.isRequired,
+// };

@@ -2,11 +2,9 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 
-export const AdSquare = styled.div`
-	background-color: rgba(0, 0, 0, 0.05);
-	border: 1px solid rgba(0, 0, 0, 0.1);
-	border-radius: 3px;
+export const TopAdDiv = styled.div`
+	background-color: #f2f3f5;
 	width: 100%;
-	height: 300px;
+	height: 200px;
 	/* position: fixed; */
 `;

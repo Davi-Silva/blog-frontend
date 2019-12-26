@@ -20,6 +20,18 @@ export const Aside = styled.aside`
 	}
 `;
 
+export const ShareButtonsDiv = styled.div`
+	display: table;
+	margin: 0 auto;
+	ul {
+		margin: 10px auto!important;
+		display: table;
+		li {
+			margin: 0px 5px;
+		}
+	}
+`;
+
 export const Cover = styled.img`
 	width: 320px;
 	height: 320px;

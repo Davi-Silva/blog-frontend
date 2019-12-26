@@ -247,7 +247,7 @@ const Admin = (props) => {
       if (blog) {
         allBlogPost = (
           <>
-            <PublishBlogPost History={history} />
+            <PublishBlogPost History={history} userInfo={userInfo} />
           </>
         );
         allPodcast = (

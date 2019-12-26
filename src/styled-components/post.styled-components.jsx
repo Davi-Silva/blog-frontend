@@ -23,20 +23,20 @@ export const UploadedOn = styled.p`
 
 export const Title = styled.h1`
 	color: #333;
-	font-size: 26px;
+	font-size: 28px;
 	font-weight: 700;
 	/* text-align: center; */
 	letter-spacing: 1px;
 	margin: 15px 0px 30px 0px;
 	@media (max-width: 1199px) {
-		font-size: 25px;
+		font-size: 27px;
 	}
 	@media (max-width: 991px) {
 		margin: 5px 0px;
-		font-size: 22px;
+		font-size: 24px;
 	}
 	@media (max-width: 768px) {
-		font-size: 21px;
+		font-size: 23px;
 	}
 	@media (max-width: 400px) {
 		margin: 5px 0px;
@@ -73,6 +73,26 @@ export const Author = styled.div`
 				color: #333;
 				font-weight: 700;
 				margin-left: 10px;
+				button {
+					background-color: #fff;
+					border: 1px solid #00b170;
+					border-radius: 3px;
+					padding: 1px 5px;
+					color: #00b170;
+					font-size: 12px;
+					transform: translateY(-3px);
+					transition: .2s all ease-in-out;
+					&:focus {
+						outline: none;
+					}
+					&:hover {
+						color: #fff;
+						background-color: #00b170;
+					}
+					@media (max-width: 991px) {
+						font-size: 10px;
+					}
+				}
 				@media (max-width: 991px) {
 					font-size: 13px;
 				}

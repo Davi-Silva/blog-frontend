@@ -1,15 +1,21 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import slugify from 'slugify';
+
 import {
   FaSpinner,
 } from 'react-icons/fa';
+
 import SubNavBar from '../../components/UI/navbar/SubNavBar';
 // import AdSense from '../components/UI/ads/AdvertisementSquare.component';
 import Newsletter from '../../components/UI/newsletter/NewsletterSide.component';
 import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
+import ShareButtons from '../../components/UI/buttons/ShareButtons';
 
-import ProfilePlaceholder from '../../static/img/profile-placeholder.png';
+import AdvertisementsTopPage from '../../components/UI/ads/AdvertisementsTopPage';
+
+import Helmet from '../../components/UI/helmet/Helmet';
 
 import {
   Cover,
@@ -45,6 +51,7 @@ export default class Post extends Component {
       cover: '',
       coverAlt: '',
       relatedCategoryPosts: [],
+      author: null,
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.getPostBySlug = this.getPostBySlug.bind(this);
@@ -65,6 +72,7 @@ export default class Post extends Component {
         publishedOn,
         updatedOn,
         cover,
+        author,
       } = post[0];
       const relatedCategoryPosts = await this.getPostByCategory(category, slug);
       // this.covertAllTags()
@@ -95,6 +103,7 @@ export default class Post extends Component {
           cover: cover.url,
           coverAlt: cover.name,
           relatedCategoryPosts,
+          author,
         });
       }
       if (updatedOn !== null) {
@@ -178,7 +187,11 @@ export default class Post extends Component {
       relatedCategoryPosts,
       publishedOn,
       updatedOn,
+      author,
     } = this.state;
+    const {
+      location,
+    } = this.props;
 
     let allContentPost;
     let postPublished;
@@ -265,16 +278,20 @@ export default class Post extends Component {
             <Author>
               <ul>
                 <li>
-                  <img src={ProfilePlaceholder} alt="Author" />
+                  <img src={author.profileImage} alt="Author" />
                 </li>
                 <li>
                   <div>
-                    <span>Author Name</span>
+                    <span>{author.name}</span>
+                    <span>
+                      <button type="submit">Follow +</button>
+                    </span>
                     {postPublished}
                   </div>
                 </li>
               </ul>
             </Author>
+            <ShareButtons path={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
             <Title>
               {title}
             </Title>
@@ -305,7 +322,9 @@ export default class Post extends Component {
     }
     return (
       <>
+        <Helmet title={title} media="Blog" />
         <SubNavBar media="Blog" category={category} title={title} />
+        {/* <AdvertisementsTopPage /> */}
         <div className="container">
           <div className="row">
             {allContentPost}
