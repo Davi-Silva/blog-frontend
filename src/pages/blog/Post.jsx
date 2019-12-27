@@ -234,9 +234,9 @@ export default class Post extends Component {
             <br />
             <RelatedPostList>
               {
-                relatedCategoryPosts.map((post) => (
+                relatedCategoryPosts.map((post, key) => (
                   <RelatedPostLi
-                    key={post.id}
+                    key={key}
                   >
                     <RelatedPost to={post.slug}>
                       {/* <img
@@ -278,7 +278,7 @@ export default class Post extends Component {
             <Author>
               <ul>
                 <li>
-                  <img src={author.profileImage} alt="Author" />
+                  <img src={author.profileImage.url} alt="Author" />
                 </li>
                 <li>
                   <div>
@@ -298,9 +298,9 @@ export default class Post extends Component {
             <Content dangerouslySetInnerHTML={{ __html: content }} />
             <TagsUl>
               {
-                tags.map((tag) => (
+                tags.map((tag, key) => (
                   <>
-                    <TagLi key={tag.id}>
+                    <TagLi key={key}>
                       <Tag to={`/blog/tags/${slugify(tag.toLowerCase())}`}>
                         {tag}
                       </Tag>

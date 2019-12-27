@@ -80,9 +80,9 @@ export default class RelatedCategory extends Component {
           <br />
           <RelatedPodcastList>
             {
-              relatedCategoryPodcast.map((podcast) => (
+              relatedCategoryPodcast.map((podcast, key) => (
                 <RelatedPodcastLi
-                  key={podcast.id}
+                  key={key}
                 >
                   <RelatedPodcast to={podcast.slug}>
                     <img

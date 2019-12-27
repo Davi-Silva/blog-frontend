@@ -22,6 +22,7 @@ import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import Profile from './pages/Profile';
+import PublicProfile from './pages/PublicProfile';
 
 import Blog from './pages/blog/Blog';
 import BlogPostByTags from './pages/blog/BlogPostsByTags';
@@ -79,6 +80,7 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/about" component={About} />
         <Route path="/profile" component={Profile} />
+        <Route path="/user/:user" component={PublicProfile} />
         <Route path="/terms-and-conditions" component={TermsConditions} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route exact path="/podcasts" component={Podcasts} />

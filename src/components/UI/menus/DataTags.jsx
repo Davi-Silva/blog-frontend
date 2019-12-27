@@ -11,12 +11,12 @@ const DataTags = ({ options, onClick, selected }) => {
 
   return (
     <div>
-      {allOptions.map((option) => {
+      {allOptions.map((option, key) => {
         const extraClass = option === selected ? 'selected' : '';
 
         return (
           <div
-            key={option}
+            key={key}
             onClick={() => onClick(option)}
             className={`tag ${extraClass}`}
             title={option}

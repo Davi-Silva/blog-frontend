@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import {
-  FaGithub
+  FaGithub,
+  FaFacebook,
+  FaGoogle,
+  FaInstagram,
 } from 'react-icons/fa';
+
+import {
+  SocialMediaLoginLink,
+} from '../../../styled-components/third-party-login-button.styled-components';
 
 export default class LoginButton extends Component {
   constructor(props) {
@@ -31,6 +38,7 @@ export default class LoginButton extends Component {
     });
   }
 
+
   render() {
     const {
       endpoint,
@@ -38,34 +46,65 @@ export default class LoginButton extends Component {
       icon,
       providerName,
     } = this.state;
+
+    let socialIcon;
+    if (icon === 'github') {
+      socialIcon = (
+        <>
+          <FaGithub />
+        </>
+      );
+    } else if (icon === 'facebook') {
+      socialIcon = (
+        <>
+          <FaFacebook />
+        </>
+      );
+    } else if (icon === 'instagram') {
+      socialIcon = (
+        <>
+          <FaInstagram />
+        </>
+      );
+    } else if (icon === 'google') {
+      socialIcon = (
+        <>
+          <FaGoogle />
+        </>
+      );
+    }
     return (
       <>
-        <a
+        <SocialMediaLoginLink
           href={endpoint}
           style={{
-            color: '#fff',
             backgroundColor: `${backgroundColor}`,
-            padding: '12px 30px',
-            display: 'inline-block',
-            width: '100%',
-            textAlign: 'center',
-            borderRadius: '3px',
-            fontSize: '14px',
           }}
         >
-          <div className="row">
-            <div className="col-2 p-0">
-              <FaGithub />
-            </div>
-            <div className="col-10 p-0">
+
+          <ul>
+            <li
+              style={{
+                marginRight: '5px',
+              }}
+            >
+              {socialIcon}
+            </li>
+            <li
+              style={{
+                marginLeft: '5px',
+              }}
+            >
               <span style={{ textDecoration: 'none' }}>
                 Login with
                 {' '}
                 {providerName}
               </span>
-            </div>
-          </div>
-        </a>
+            </li>
+          </ul>
+
+
+        </SocialMediaLoginLink>
       </>
     );
   }

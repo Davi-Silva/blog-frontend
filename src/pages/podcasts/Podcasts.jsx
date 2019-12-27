@@ -149,9 +149,9 @@ export default class Podcasts extends Component {
                 )}
               >
                 <div className="row">
-                  {podcasts.map((podcast) => (
+                  {podcasts.map((podcast, key) => (
                     <PodcastsList
-                      key={podcast.id}
+                      key={key}
                       category={podcast.category}
                       title={podcast.title}
                       date={podcast.uploadedOn}

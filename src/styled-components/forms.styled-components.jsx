@@ -154,3 +154,12 @@ export const PodcastAudioFileUploaderPlaceholder = styled.div`
     text-align: center;
   }
 `;
+
+export const LoginButtons = styled.ul`
+  margin-bottom: 0;
+   li {
+     width: 220px;
+     display: table;
+     margin: 0 auto;
+   }
+`;

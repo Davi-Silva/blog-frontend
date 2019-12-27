@@ -316,9 +316,9 @@ export default class Podcast extends Component {
             <br />
             <RelatedPodcastList>
               {
-               relatedCategoryPodcast.map((podcast) => (
+               relatedCategoryPodcast.map((podcast, key) => (
                  <RelatedPodcastLi
-                   key={podcast.id}
+                   key={key}
                  >
                    <RelatedPodcast to={podcast.slug}>
                      <img
@@ -376,9 +376,9 @@ export default class Podcast extends Component {
               />
               <TagsUl>
                 {
-                tags.map((tag) => (
+                tags.map((tag, key) => (
                   <>
-                    <TagLi key={tag.id}>
+                    <TagLi key={key}>
                       <Tag to={`/podcasts/tags/${slugify(tag.toLowerCase())}`}>
                         {tag}
                       </Tag>

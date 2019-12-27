@@ -131,7 +131,7 @@ const Navbar = (props) => {
           onClick={handleUserMenu}
         >
           <img
-            src={profileImage}
+            src={profileImage.url}
             alt="Profile Placeholder"
             style={{
               width: '35px',

@@ -1,11 +1,11 @@
 import React, {
-  useContext
+  useContext,
   // useState,
-} from "react";
+} from 'react';
 
-import _ from "lodash";
+import _ from 'lodash';
 
-import UserProvider from "../contexts/UserProvider";
+import UserProvider from '../contexts/UserProvider';
 
 import {
   Cover,
@@ -13,20 +13,21 @@ import {
   ProfileImage,
   Label,
   DisplayName,
-  LoadingProfileImage
-} from "../styled-components/profile.styled.components";
+  LoadingProfileImage,
+} from '../styled-components/profile.styled.components';
 
-const Profile = () => {
+const Profile = (props) => {
   const userInfo = useContext(UserProvider.context);
+  console.log('userInfo:', userInfo);
   let UserImageDiv;
   let ProfileCoverImage;
-  let displayName = "";
+  let displayName = '';
   if (!_.isEmpty(userInfo)) {
     const { name, profileImage } = userInfo[0];
     displayName = name;
     UserImageDiv = (
       <>
-        <ProfileImage src={profileImage} alt="Profile Placeholder" />
+        <ProfileImage src={profileImage.url} alt="Profile Placeholder" />
       </>
     );
     ProfileCoverImage = (
@@ -34,7 +35,7 @@ const Profile = () => {
         <Cover
           alt="Profile Placeholder"
           style={{
-            backgroundImage: `url(${profileImage})`
+            backgroundImage: `url(${profileImage.url})`,
           }}
         />
       </>
@@ -44,7 +45,7 @@ const Profile = () => {
       <>
         <LoadingProfileImage
           style={{
-            backgroundColor: "#eee"
+            backgroundColor: '#eee',
           }}
         />
       </>
@@ -54,11 +55,15 @@ const Profile = () => {
         <Cover
           alt="Profile Placeholder"
           style={{
-            backgroundColor: "#eee"
+            backgroundColor: '#eee',
           }}
         />
       </>
     );
+    const {
+      history,
+    } = props;
+    history.push('/login');
   }
 
   return (

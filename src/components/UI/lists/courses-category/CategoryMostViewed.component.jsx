@@ -90,9 +90,10 @@ const MostViewed = () => {
             Most Viewed
         </MostViewedCourses>
         <Ul>
-          {courses.map((course) => (
+          {courses.map((course, key) => (
             <>
               <CoursesHomeListMostViewed
+                key={key}
                 title={course.title}
                 author={course.author}
                 publishedOn={course.publishedOn}

@@ -10,6 +10,7 @@ import {
   Button,
   P,
   A,
+  LoginButtons,
 } from '../styled-components/forms.styled-components';
 
 import LoginButton from '../components/UI/buttons/ThirdPartyLoginButton.component';
@@ -25,7 +26,7 @@ const Login = (props) => {
     const {
       history,
     } = props;
-    history.push('/profile');
+    history.push('/');
   }
 
   const onChangeEmail = (e) => {
@@ -111,37 +112,34 @@ const Login = (props) => {
               <A to="/register">Register</A>
             </P>
           </div>
-          <ul className="m-auto">
-            {/* <li
+          <LoginButtons>
+            <li
               style={{
                 listStyle: 'none',
-                margin: '5px auto',
               }}
             >
               <LoginButton
                 icon="google"
                 backgroundColor="#4285f4"
-                endpoint="http://localhost:5000/auth/google"
+                endpoint="//localhost:5000/auth/google"
                 providerName="Google"
               />
-            </li> */}
+            </li>
             <li
               style={{
                 listStyle: 'none',
-                margin: '5px auto',
               }}
             >
               <LoginButton
                 icon="github"
                 backgroundColor="#333"
-                endpoint="http://localhost:5000/auth/github"
+                endpoint="//localhost:5000/auth/github"
                 providerName="Github"
               />
             </li>
-            {/* <li
+            <li
               style={{
                 listStyle: 'none',
-                margin: '5px auto',
               }}
             >
               <LoginButton
@@ -154,7 +152,6 @@ const Login = (props) => {
             <li
               style={{
                 listStyle: 'none',
-                margin: '5px auto',
               }}
             >
               <LoginButton
@@ -163,8 +160,8 @@ const Login = (props) => {
                 endpoint="http://localhost:5000/auth/instagram"
                 providerName="Instagram"
               />
-            </li> */}
-          </ul>
+            </li>
+          </LoginButtons>
         </div>
       </div>
     </div>
