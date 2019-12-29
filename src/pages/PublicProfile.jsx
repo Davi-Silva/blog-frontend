@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 
 import UserProvider from '../contexts/UserProvider';
 
 const PublicProfile = (props) => {
-  const [publicProfile, setPublicProfile] = useState();
+  const [
+    // publicProfile,
+    setPublicProfile,
+  ] = useState();
 
   const userInfo = useContext(UserProvider.context);
   console.log('userInfo:', userInfo);
@@ -39,3 +43,11 @@ const PublicProfile = (props) => {
 };
 
 export default PublicProfile;
+
+PublicProfile.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      user: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+};

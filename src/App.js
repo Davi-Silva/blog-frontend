@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import {
@@ -10,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import Navbar from './components/UI/navbar/Navbar';
-import StationNavbar from './components/UI/navbar/StationNavbar';
 import Footer from './components/UI/footer/Footer';
 
 import Admin from './pages/Admin';
@@ -74,6 +74,7 @@ function App() {
         <Route path="/courses/categories" component={CoursesCategories} />
         <Route path="/courses/category/:slug" component={CoursesCategory} />
         <Route path="/my-courses" component={MyCourses} />
+
         <Route path="/" exact component={Homepage} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
@@ -83,12 +84,14 @@ function App() {
         <Route path="/user/:user" component={PublicProfile} />
         <Route path="/terms-and-conditions" component={TermsConditions} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
+
         <Route exact path="/podcasts" component={Podcasts} />
         <Route
           exact
           path="/podcast/:slug"
           component={Podcast}
         />
+
         <Route
           exact
           path="/blog"

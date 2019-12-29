@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import {
   Form,
   Input,
-  Background,
 } from '../../../../styled-components/navbar-courses-search-form-desktop.styled-components';
 
 const CoursesSearchForm = (props) => {
@@ -25,14 +24,14 @@ const CoursesSearchForm = (props) => {
     submitSearch();
   };
 
-  const handleCloseSearcfForm = () => {
-    const {
-      SearchFormOnClick,
-    } = props;
-    console.log('CloseSearchFormOnClick:', SearchFormOnClick);
-    const closeSearchForm = SearchFormOnClick;
-    closeSearchForm();
-  };
+  // const handleCloseSearcfForm = () => {
+  //   const {
+  //     SearchFormOnClick,
+  //   } = props;
+  //   console.log('CloseSearchFormOnClick:', SearchFormOnClick);
+  //   const closeSearchForm = SearchFormOnClick;
+  //   closeSearchForm();
+  // };
 
 
   console.log('SEARCHBAR:', props);

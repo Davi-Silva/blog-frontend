@@ -13,7 +13,7 @@ import Newsletter from '../../components/UI/newsletter/NewsletterSide.component'
 import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
 import ShareButtons from '../../components/UI/buttons/ShareButtons';
 
-import AdvertisementsTopPage from '../../components/UI/ads/AdvertisementsTopPage';
+// import AdvertisementsTopPage from '../../components/UI/ads/AdvertisementsTopPage';
 
 import Helmet from '../../components/UI/helmet/Helmet';
 

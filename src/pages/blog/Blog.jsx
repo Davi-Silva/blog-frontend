@@ -12,7 +12,7 @@ export default class Blog extends Component {
     this.state = {
       postsList: [],
       page: 1,
-      found: false,
+      // found: false,
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.getFirstPosts = this.getFirstPosts.bind(this);
@@ -101,11 +101,6 @@ export default class Blog extends Component {
 
 
   render() {
-    const {
-      postsList,
-      found,
-    } = this.state;
-
     return (
       <>
         <MainBlogPost />

@@ -1,11 +1,8 @@
-
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+
 import _ from 'lodash';
 
-import {
-  FaPlus,
-  FaUser,
-} from 'react-icons/fa';
 import UserProvider from '../../../../contexts/UserProvider';
 
 import {
@@ -21,7 +18,7 @@ import {
   SideDrawerButtonTo,
   SideDrawerLinkTo,
   SideDrawerLinkToAdmin,
-  Button,
+  // Button,
   Separator,
   LogoutDiv,
   Logout,
@@ -49,8 +46,8 @@ const SideDrawer = (props) => {
       headers: {
         'Content-Type': 'application/json',
       },
-    })
-  }
+    });
+  };
 
   let ProfileDiv;
   let logoutVar;
@@ -78,7 +75,7 @@ const SideDrawer = (props) => {
             <li
               style={{
                 width: '67%',
-                top: '8px'
+                top: '8px',
               }}
             >
               <ProfileName>
@@ -228,6 +225,10 @@ const SideDrawer = (props) => {
       </Drawer>
     </>
   );
-}
+};
 
 export default SideDrawer;
+
+SideDrawer.propTypes = {
+  HandleSideDrawer: PropTypes.func.isRequired,
+};

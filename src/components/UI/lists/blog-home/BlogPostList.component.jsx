@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {
   Card,
   Cover,
-  PublishedOn,
+  // PublishedOn,
   Title,
   CategoryDiv,
   Category,
@@ -15,7 +15,7 @@ export default class BlogPostList extends Component {
     super(props);
     this.state = {
       title: '',
-      publishedOn: null,
+      // publishedOn: null,
       slug: '',
     };
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -93,7 +93,7 @@ export default class BlogPostList extends Component {
       category,
       imgSrc,
       slug,
-      publishedOn,
+      // publishedOn,
       // content
     } = this.state;
 
@@ -135,6 +135,7 @@ BlogPostList.propTypes = {
   type: PropTypes.string.isRequired,
   imgSrc: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   publishedOn: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
 };

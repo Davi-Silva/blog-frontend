@@ -1,11 +1,10 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 
 import {
   CoursesListUl,
   StickyWrapper,
 } from '../../styled-components/courses.styled-components';
-
-import video from '../../static/video/video.mp4';
 
 import MyCourse from '../../components/UI/lists/MyCoursesList.component';
 import SubNavBar from '../../components/UI/navbar/SubNavBar';

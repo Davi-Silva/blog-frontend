@@ -1,4 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, {
+// useContext,
+// useState,
+// useEffect,
+} from 'react';
 
 import {
   FaStar,
@@ -13,7 +17,7 @@ import {
   RelatedTopics,
   RelatedTopicsLink,
   AddToFavorites,
-  CoursesListUl,
+  // CoursesListUl,
 } from '../../styled-components/courses-category.styled-components';
 
 import CategoryMostViewed from '../../components/UI/lists/courses-category/CategoryMostViewed.component';

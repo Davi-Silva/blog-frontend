@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
 
 import ProfilePlaceholder from '../../../static/img/profile-placeholder.png';
 
@@ -12,11 +13,14 @@ import {
 } from '../../../styled-components/blog-posts-top-authors.styled-components';
 
 const TopAuthors = () => {
-  const [authorState, setAuthorState] = useState([]);
+  const [
+    authorState,
+    setAuthorState,
+  ] = useState([]);
 
   useEffect(() => {
     const getAuthors = async () => {
-      const response = await fetch(`http://localhost:5000/blog/?page=${1}`, {
+      const response = await fetch('http://localhost:5000/blog/get/top-authors', {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',
@@ -26,12 +30,28 @@ const TopAuthors = () => {
         },
       });
       const data = await response.json();
-      console.log('data tutorials:', data);
       setAuthorState(data);
     };
     getAuthors();
   }, []);
 
+  console.log('author:', authorState);
+
+  let authors;
+
+  if (!_.isEmpty(authorState)) {
+    authors = (
+      <>
+        {authorState[0].name}
+      </>
+    );
+  } else {
+    authors = (
+      <>
+
+      </>
+    );
+  }
 
   return (
     <>
@@ -50,7 +70,7 @@ const TopAuthors = () => {
                   alt="Author"
                 />
                 <AuthorName>
-                  Author Name
+                  {authors}
                 </AuthorName>
                 <AuthorNumberOfPosts>
                   {`${12} Posts`}

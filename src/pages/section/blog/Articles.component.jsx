@@ -16,7 +16,7 @@ import {
 } from '../../../styled-components/blog-posts-article.styled-components';
 
 const Articles = () => {
-  const [tutorialsState, setTutorialsState] = useState([]);
+  const [articlesState, setArticlesState] = useState([]);
 
   useEffect(() => {
     const getTutorials = async () => {
@@ -30,7 +30,7 @@ const Articles = () => {
         },
       });
       const data = await response.json();
-      setTutorialsState(data);
+      setArticlesState(data);
     };
     getTutorials();
   }, []);
@@ -53,7 +53,7 @@ const Articles = () => {
                 See More
               </SeeAll>
             </div>
-            {tutorialsState.map((post) => (
+            {articlesState.map((post, key) => (
               <>
                 <div className="col-lg-4 col-md-4 col-sm-6 col-12">
                   <Card
