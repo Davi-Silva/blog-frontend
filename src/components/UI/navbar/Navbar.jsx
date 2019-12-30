@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -11,7 +12,8 @@ import SideDrawer from './side-drawer/SideDrawer';
 import UserMenu from './user-menu/UserMenu';
 import SearchForm from './search-form/SearchForm';
 
-import UserProvider from '../../../contexts/UserProvider';
+import * as UserActions from '../../../store/actions/user';
+import * as NavbarActions from '../../../store/actions/navbar';
 
 import StationNavbar from './StationNavbar';
 
@@ -21,7 +23,6 @@ import {
   Brand,
   ToggleButton,
   SignUp,
-  // LinkAProfile,
   ButtonProfile,
 } from '../../../styled-components/navbar.styled-components';
 
@@ -40,10 +41,30 @@ const Navbar = (props) => {
     showSearchForm: false,
   });
 
+  let userInfo = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  userInfo = userInfo.userInfo;
+
+  const handleLoginUser = async () => {
+    fetch('http://localhost:5000/auth/user')
+      .then((res) => res.json())
+      .then((res) => {
+        dispatch(UserActions.loginUser(res));
+      })
+      .catch((err) => {
+        console.log('err:', err);
+      });
+  };
+
+  useEffect(() => {
+    handleLoginUser();
+    dispatch(NavbarActions.closeSideDrawer());
+    dispatch(NavbarActions.openSideDrawer());
+  }, []);
+
   let UserDiv;
   let UserMenuDiv;
   let SearchFormDiv;
-  const userInfo = useContext(UserProvider.context);
 
   const handleUserMenu = () => {
     if (userMenuState.showUserMenu) {

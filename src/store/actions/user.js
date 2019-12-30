@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
-export function loginUser(user) {
+export function loginUser(userInfo) {
   return {
     type: 'LOGIN_USER',
-    user,
+    userInfo,
   };
 }

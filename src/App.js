@@ -3,13 +3,12 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  // Switch,
   Route,
-  // withRouter,
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+import { Provider } from 'react-redux';
 import Navbar from './components/UI/navbar/Navbar';
 import Footer from './components/UI/footer/Footer';
 
@@ -49,13 +48,12 @@ import PageNotFound from './pages/PageNotFound';
 import TermsConditions from './pages/TermsConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 
-import UserProvider from './contexts/UserProvider';
-
+import store from './store';
 
 function App() {
   return (
     <Router>
-      <UserProvider>
+      <Provider store={store}>
         <Route path="/" component={Navbar} />
         <Route exact path="/admin/register" component={RegisterAdmin} />
         <Route exact path="/admin" component={Admin} />
@@ -136,7 +134,7 @@ function App() {
         <Route path="/upload/podcast" component={UploadNewPodcast} />
         <Route path="/publish/blog" component={PublishBlogPost} />
         <Footer />
-      </UserProvider>
+      </Provider>
     </Router>
   );
 }

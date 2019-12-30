@@ -1,4 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
 
 import {
@@ -13,7 +14,7 @@ import UserMenu from './user-menu/UserMenu';
 import CoursesSearchForm from './search-form/CoursesSearchForm';
 import CoursesSearchFormDesktop from './search-form/CoursesSearchFormDesktop';
 
-import UserProvider from '../../../contexts/UserProvider';
+import * as UserActions from '../../../store/actions/user';
 
 import {
   NavBar,
@@ -24,7 +25,6 @@ import {
   ToggleButton,
   SignUp,
   Separator,
-  // LinkAProfile,
   ButtonProfile,
 } from '../../../styled-components/navbar-station.styled-components';
 
@@ -39,11 +39,29 @@ const Navbar = () => {
     showSearchForm: false,
   });
 
+  let userInfo = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  userInfo = userInfo.userInfo;
+
+  const handleLoginUser = async () => {
+    fetch('http://localhost:5000/auth/user')
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('res:', res);
+        dispatch(UserActions.loginUser(res));
+      })
+      .catch((err) => {
+        console.log('err:', err);
+      });
+  };
+
+  useEffect(() => {
+    handleLoginUser();
+  }, []);
+
   let UserDiv;
   let UserMenuDiv;
   let SearchFormDiv;
-  const userInfo = useContext(UserProvider.context);
-
   const handleUserMenu = () => {
     if (userMenuState.showUserMenu) {
       setUserMenuState({
@@ -57,7 +75,7 @@ const Navbar = () => {
   };
 
   const handleSearchForm = () => {
-    handleCloseSideDrawer()
+    handleCloseSideDrawer();
     if (searchFormState.showSearchForm) {
       setSearchFormState({
         showSearchForm: false,
@@ -89,18 +107,22 @@ const Navbar = () => {
     }
   };
 
+
   if (!_.isEmpty(userInfo)) {
     const {
       profileImage,
       name,
     } = userInfo[0];
+
+    console.log('profiile STATION:', profileImage);
+
     UserDiv = (
       <>
         <ButtonProfile
           onClick={handleUserMenu}
         >
           <img
-            src={profileImage}
+            src={profileImage.url}
             alt="Profile Placeholder"
             style={{
               width: '35px',
@@ -270,7 +292,9 @@ const Navbar = () => {
                       .classList.remove('show');
                   }}
                 >
-                      <p>Go to</p> <p>CrypticActivist</p>
+                  <p>Go to</p>
+                  {' '}
+                  <p>CrypticActivist</p>
                 </LinkA>
               </li>
               <li
