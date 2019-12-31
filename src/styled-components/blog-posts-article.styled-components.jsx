@@ -132,13 +132,54 @@ export const BackgroundWrapper = styled.div`
 	}
 `;
 
+export const Author = styled.div`
+	margin: 8px 0;
+	ul {
+		width: 100%;
+		margin-bottom: 0px;
+		li {
+			list-style: none;
+			display: inline-block;
+			div {
+				transform: translateY(1px);
+				/* @media (max-width: 991px) {
+					transform: translateY(10px);
+				} */
+			}
+			img {
+				height: 35px;
+				width: 35px;
+				border-radius: 50px;
+				@media (max-width: 991px) {
+					height: 30px;
+					width: 30px;
+				}
+			}
+			span {
+				color: #333;
+				font-weight: 700;
+				margin-left: 10px;
+				font-size: 16px;
+				@media (max-width: 991px) {
+					font-size: 13px;
+				}
+			}
+		}
+	}
+	@media (max-width: 991px) {
+		margin: 10px 0 14px 0;
+	}
+`;
+
 export const PublishedOn = styled.b`
 	color: #333;
+	font-size: 13px;
 `;
 
 export const PostInfoDiv = styled.div`
 	background-color: #fff;
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	/* border: 1px solid rgba(0, 0, 0, 0.2); */
+	border: none;
 	transform: translateY(-24px);
 	border-top: none;
 	padding: 10px;

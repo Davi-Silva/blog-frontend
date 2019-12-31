@@ -3,7 +3,7 @@ import React from 'react';
 import {
   FaTwitter,
   FaFacebook,
-  FaLinkedin,
+  FaYoutube,
   FaInstagram,
 } from 'react-icons/fa';
 
@@ -47,42 +47,42 @@ function Footer() {
               <div className="row">
                 <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                   <Header>
-                Blog
+                    Blog
                   </Header>
                   <Ul>
                     <Li>
                       <LinkTo
                         to="/blog/"
                       >
-                    Home
+                        Home
                       </LinkTo>
                     </Li>
                   </Ul>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                   <Header>
-                Podcasts
+                    Podcasts
                   </Header>
                   <Ul>
                     <Li>
                       <LinkTo
                         to="/podcasts/"
                       >
-                    Home
+                        Home
                       </LinkTo>
                     </Li>
                   </Ul>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                   <Header>
-                Courses
+                    Station
                   </Header>
                   <Ul>
                     <Li>
                       <LinkTo
                         to="/courses/"
                       >
-                    Coming Soon
+                        Coming Soon
                       </LinkTo>
                     </Li>
                   </Ul>
@@ -103,7 +103,7 @@ function Footer() {
                       {' '}
                       &
                       {' '}
-Conditions
+                      Conditions
                     </p>
                   </LinkToPolicies>
                 </div>
@@ -120,7 +120,7 @@ Conditions
                     {' '}
                     {new Date().getFullYear()}
                     {' '}
-Cryptic Activist
+                    Cryptic Activist
                   </CopyRight>
                 </div>
                 <div className="col-lg-3 col-md-3 col-sm-12 col-12" />
@@ -140,7 +140,7 @@ Cryptic Activist
                 </SocialMediaTitle>
                 <SocialMediaUl>
                   <SocialMediaLi>
-                    <SocialMediaLink to="//www.twitter.com/" target="_blank">
+                    <SocialMediaLink to="//www.twitter.com/CrypticActivist" target="_blank">
                       <FaTwitter />
                     </SocialMediaLink>
                   </SocialMediaLi>
@@ -150,13 +150,13 @@ Cryptic Activist
                     </SocialMediaLink>
                   </SocialMediaLi>
                   <SocialMediaLi>
-                    <SocialMediaLink to="//www.instagram.com/" target="_blank">
+                    <SocialMediaLink to="//www.instagram.com/activist.cryptic/" target="_blank">
                       <FaInstagram />
                     </SocialMediaLink>
                   </SocialMediaLi>
                   <SocialMediaLi>
-                    <SocialMediaLink to="//www.linkedin.com/" target="_blank">
-                      <FaLinkedin />
+                    <SocialMediaLink to="//www.youtube.com/channel/UCjHY9DL7c-f03jjO3nWPATg" target="_blank">
+                      <FaYoutube />
                     </SocialMediaLink>
                   </SocialMediaLi>
                 </SocialMediaUl>

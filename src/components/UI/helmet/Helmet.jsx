@@ -13,7 +13,7 @@ const HelmetWrapper = (props) => {
   return (
     <>
       <Helmet>
-        <title>{`${title} | ${media} | Cryptic Activist`}</title>
+        <title>{`${title} - ${media} | Cryptic Activist`}</title>
         <meta
           name="description"
           content={metaDescription}

@@ -150,17 +150,19 @@ export const PostInfoDiv = styled.div`
 		width: 215px;
 	}
 	@media (max-width: 991px) {
-		top: 30px;
+		top: 20px;
 	}
 `;
 
 export const Title = styled.h5`
-  color: #fff;
-  font-size: 18px;
-  font-weight: 900;
-  margin: 0;
+	color: #fff;
+	font-size: 17px;
+	font-weight: 900;
+	width: 256px;
+	margin: 0;
 	@media (max-width: 1199px) {
-		font-size: 15px;
+		font-size: 14px;
+		width: 215px;
 	}
 	@media (max-width: 991px) {
 		font-size: 15px;
@@ -281,5 +283,5 @@ export const ByTagName = styled.span`
 
 export const StickyWrapper = styled.div`
 	position: sticky;
-	top: 30px;
+	top: 15px;
 `;

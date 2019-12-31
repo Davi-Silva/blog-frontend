@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 
+import Helmet from '../../components/UI/helmet/Helmet';
+import MostRecentVideos from '../section/blog/MostRecentVideos.component';
 import MainBlogPost from '../section/blog/MainBlogPost.component';
 import News from '../section/blog/News.component';
 import Tutorials from '../section/blog/Tutorials.component';
 import Article from '../section/blog/Articles.component';
 import TopAuthor from '../section/blog/TopAuthors.component';
+import Newsletter from '../section/blog/Newsletter.component';
 
 export default class Blog extends Component {
   constructor(props) {
@@ -103,11 +106,14 @@ export default class Blog extends Component {
   render() {
     return (
       <>
+        <Helmet title="Home" media="Blog" />
         <MainBlogPost />
+        <MostRecentVideos />
         <News />
         <Tutorials />
         <TopAuthor />
         <Article />
+        <Newsletter />
       </>
     );
   }

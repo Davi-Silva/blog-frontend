@@ -55,7 +55,7 @@ export default class PublishBlogPost extends Component {
     const { title } = this.state;
     const { userInfo } = this.props;
     const responseCover = await api.get(`/blog/cover/${title}`);
-    console.log('USER INFORMAION FOR ADMIN PANEL:', userInfo);
+    console.log('USER INFORMAION FOR ADMIN PANEL nigga:', userInfo);
 
     this.setState({
       uploadedCovers: responseCover.data.map((file) => ({
@@ -212,6 +212,7 @@ export default class PublishBlogPost extends Component {
       History,
       userInfo,
     } = this.props;
+    console.log('userInfo[0]:', userInfo)
     if (allFieldsFilled) {
       const postInfo = {
         isSlugValid: isSlugValid,

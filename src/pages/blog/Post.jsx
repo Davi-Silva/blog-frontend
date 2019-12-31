@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -32,7 +33,13 @@ import {
   LoadingRelatedPostLabel,
   // AllContent,
   LoadingAllContent,
+  Fluid,
+  ColumnLeft,
+  ColumnCenterLeft,
+  ColumnCenterRight,
+  ColumnRight,
   RelatedPostList,
+  RelatedPostBackgroundWrapper,
   RelatedPostLi,
   RelatedPostH6,
   StickyWrapper,
@@ -171,6 +178,114 @@ export default class Post extends Component {
     });
   }
 
+  getColumn(post, index) {
+    let column;
+    if (index === 0) {
+      console.log('index:', index);
+      column = (
+        <>
+          <ColumnLeft className="col-lg-3 col-md-3 col-sm-6 col-12">
+
+            <RelatedPost to={post.slug}>
+              <div
+                style={{
+                  backgroundImage: `url(${post.cover.url})`,
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  height: '170px',
+                  width: '100%',
+                }}
+              >
+                <RelatedPostBackgroundWrapper />
+                <RelatedPostH6>
+                  {post.title}
+                </RelatedPostH6>
+              </div>
+            </RelatedPost>
+          </ColumnLeft>
+        </>
+      );
+    } else if (index === 1) {
+      column = (
+        <>
+          <ColumnCenterLeft className="col-lg-3 col-md-3 col-sm-6 col-12">
+
+            <RelatedPost to={post.slug}>
+              <div
+                style={{
+                  backgroundImage: `url(${post.cover.url})`,
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  height: '170px',
+                  width: '100%',
+                }}
+              >
+                <RelatedPostBackgroundWrapper />
+                <RelatedPostH6>
+                  {post.title}
+                </RelatedPostH6>
+              </div>
+            </RelatedPost>
+          </ColumnCenterLeft>
+        </>
+      );
+    } else if (index === 2) {
+      column = (
+        <>
+          <ColumnCenterRight className="col-lg-3 col-md-3 col-sm-6 col-12">
+
+            <RelatedPost to={post.slug}>
+              <div
+                style={{
+                  backgroundImage: `url(${post.cover.url})`,
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  height: '170px',
+                  width: '100%',
+                }}
+              >
+                <RelatedPostBackgroundWrapper />
+                <RelatedPostH6>
+                  {post.title}
+                </RelatedPostH6>
+              </div>
+            </RelatedPost>
+          </ColumnCenterRight>
+        </>
+      );
+    } else if (index === 3) {
+      column = (
+        <>
+          <ColumnRight className="col-lg-3 col-md-3 col-sm-6 col-12">
+
+            <RelatedPost to={post.slug}>
+              <div
+                style={{
+                  backgroundImage: `url(${post.cover.url})`,
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  height: '170px',
+                  width: '100%',
+                }}
+              >
+                <RelatedPostBackgroundWrapper />
+                <RelatedPostH6>
+                  {post.title}
+                </RelatedPostH6>
+              </div>
+            </RelatedPost>
+          </ColumnRight>
+        </>
+      );
+    }
+
+    return column;
+  }
+
   parseDate(input) {
     this.parts = input.match(/(\d+)/g);
     return new Date(this.parts[0], this.parts[1] - 1, this.parts[2]);
@@ -193,9 +308,25 @@ export default class Post extends Component {
       location,
     } = this.props;
 
+    let helmet;
     let allContentPost;
     let postPublished;
     let postRelatedPost;
+
+    if (title === '') {
+      helmet = (
+        <>
+          <Helmet title="Loading" media="Blog" />
+        </>
+      );
+    } else {
+      helmet = (
+        <>
+          <Helmet title={title} media="Blog" />
+        </>
+      );
+    }
+
 
     if (title === ''
     || cover === ''
@@ -232,49 +363,20 @@ export default class Post extends Component {
           <RelatedPostLabel>
             Related Blog Posts
             <br />
-            <RelatedPostList>
-              {
-                relatedCategoryPosts.map((post, key) => (
-                  <RelatedPostLi
-                    key={key}
-                  >
-                    <RelatedPost to={post.slug}>
-                      {/* <img
-                        src={post.cover.url}
-                        style={{
-                          borderRadius: '5px',
-                        }}
-                        alt={post.cover.name}
-                      /> */}
-                      <div
-                        style={{
-                          backgroundImage: `url(${post.cover.url})`,
-                          backgroundSize: 'cover',
-                          backgroundRepeat: 'no-repeat',
-                          backgroundPosition: 'center',
-                          height: '100px',
-                          width: '100%',
-                          borderRadius: '5px',
-                        }}
-                      />
-                      <RelatedPostH6>
-                        {post.title}
-                      </RelatedPostH6>
-                    </RelatedPost>
-                  </RelatedPostLi>
-                ))
-              }
-            </RelatedPostList>
+            <div className="container">
+              <div className="row">
+                {
+                relatedCategoryPosts.map((post, key) => this.getColumn(post, key))
+                }
+              </div>
+            </div>
+            <RelatedPostList />
           </RelatedPostLabel>
         );
       }
       allContentPost = (
         <>
           <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-            <Cover
-              src={cover}
-              alt={coverAlt}
-            />
             <Author>
               <ul>
                 <li>
@@ -309,7 +411,6 @@ export default class Post extends Component {
                 ))
               }
             </TagsUl>
-            {postRelatedPost}
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-12">
             <StickyWrapper>
@@ -317,14 +418,31 @@ export default class Post extends Component {
               <Newsletter />
             </StickyWrapper>
           </div>
+          <Fluid className="container-fluid">
+            <div className="row">
+              <div className="col-12">
+                {postRelatedPost}
+              </div>
+            </div>
+          </Fluid>
         </>
       );
     }
     return (
       <>
-        <Helmet title={title} media="Blog" />
+        {helmet}
         <SubNavBar media="Blog" category={category} title={title} />
         {/* <AdvertisementsTopPage /> */}
+        <div className="container-fluid p-0">
+          <div className="row">
+            <div className="col-12">
+              <Cover
+                src={cover}
+                alt={coverAlt}
+              />
+            </div>
+          </div>
+        </div>
         <div className="container">
           <div className="row">
             {allContentPost}

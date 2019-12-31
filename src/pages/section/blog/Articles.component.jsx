@@ -10,6 +10,7 @@ import {
   BackgroundWrapper,
   PublishedOn,
   PostInfoDiv,
+  Author,
   Title,
   CategoryDiv,
   Category,
@@ -17,6 +18,11 @@ import {
 
 const Articles = () => {
   const [articlesState, setArticlesState] = useState([]);
+
+  const parseDate = (input) => {
+    const parts = input.match(/(\d+)/g);
+    return new Date(parts[0], parts[1] - 1, parts[2]);
+  };
 
   useEffect(() => {
     const getTutorials = async () => {
@@ -34,6 +40,81 @@ const Articles = () => {
     };
     getTutorials();
   }, []);
+
+  const formatDate = (publishedOn) => {
+    const dateFormatted = parseDate(publishedOn);
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'may',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    const formattedDate = `${months[dateFormatted.getMonth()]} ${dateFormatted.getDate()} ${dateFormatted.getFullYear()}`;
+    return formattedDate;
+  };
+
+  console.log('Article author:', articlesState);
+
+  const articles = (
+    <>
+      {articlesState.map((post, key) => (
+        <>
+          <div className="col-lg-4 col-md-4 col-sm-6 col-12">
+            <Card
+              to={`/blog/${post.slug}`}
+              className="col-sm-6 col-12 p-0"
+              style={{ border: 'none' }}
+            >
+              <Cover
+                src={post.cover.url}
+                alt="React.js"
+                width="100%"
+                style={{
+                  backgroundImage: `url(${post.cover.url})`,
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                }}
+              >
+                <BackgroundWrapper />
+              </Cover>
+              <PostInfoDiv>
+                <Author>
+                  <ul>
+                    <li>
+                      <img src={post.author.profileImage.url} alt="Author" />
+                    </li>
+                    <li>
+                      <div>
+                        <span>{post.author.name}</span>
+                      </div>
+                    </li>
+                  </ul>
+                </Author>
+                <PublishedOn>
+                  {formatDate(post.publishedOn)}
+                </PublishedOn>
+                <Title>{post.title}</Title>
+                <CategoryDiv>
+                  <Category>
+                    {post.category}
+                  </Category>
+                </CategoryDiv>
+              </PostInfoDiv>
+            </Card>
+          </div>
+        </>
+      ))}
+    </>
+  );
 
 
   return (
@@ -53,42 +134,7 @@ const Articles = () => {
                 See More
               </SeeAll>
             </div>
-            {articlesState.map((post, key) => (
-              <>
-                <div className="col-lg-4 col-md-4 col-sm-6 col-12">
-                  <Card
-                    to={`/blog/${post.slug}`}
-                    className="col-sm-6 col-12 p-0"
-                    style={{ border: 'none' }}
-                  >
-                    <Cover
-                      src={post.cover.url}
-                      alt="React.js"
-                      width="100%"
-                      style={{
-                        backgroundImage: `url(${post.cover.url})`,
-                        backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center',
-                      }}
-                    >
-                      <BackgroundWrapper />
-                    </Cover>
-                    <PostInfoDiv>
-                      <PublishedOn>
-                        {post.publishedOn}
-                      </PublishedOn>
-                      <Title>{post.title}</Title>
-                      <CategoryDiv>
-                        <Category>
-                          {post.category}
-                        </Category>
-                      </CategoryDiv>
-                    </PostInfoDiv>
-                  </Card>
-                </div>
-              </>
-            ))}
+            {articles}
           </div>
         </div>
       </Div>

@@ -31,9 +31,6 @@ const Navbar = (props) => {
     location,
   } = props;
   const { pathname } = location;
-  const [sideDrawerState, setSideDrawerState] = useState({
-    showSideDrawer: false,
-  });
   const [userMenuState, setUserMenuState] = useState({
     showUserMenu: false,
   });
@@ -42,8 +39,11 @@ const Navbar = (props) => {
   });
 
   let userInfo = useSelector((state) => state.user);
+  const { showSideDrawer } = useSelector((state) => state.navbar);
   const dispatch = useDispatch();
   userInfo = userInfo.userInfo;
+
+  console.log('showSideDrawer:', showSideDrawer);
 
   const handleLoginUser = async () => {
     fetch('http://localhost:5000/auth/user')
@@ -58,8 +58,6 @@ const Navbar = (props) => {
 
   useEffect(() => {
     handleLoginUser();
-    dispatch(NavbarActions.closeSideDrawer());
-    dispatch(NavbarActions.openSideDrawer());
   }, []);
 
   let UserDiv;
@@ -81,30 +79,30 @@ const Navbar = (props) => {
   const handleCloseSideDrawer = () => {
     const sideDrawer = window.document.body.children[1].children[1];
     const sideBackgroundDrawer = window.document.body.children[1].children[0];
-    if (sideDrawerState.showSideDrawer) {
+    if (showSideDrawer) {
       sideDrawer.classList.remove('showSideDrawer');
       sideBackgroundDrawer.classList.remove('showBackgroundSideDrawer');
       sideDrawer.classList.add('hideSideDrawer');
       sideBackgroundDrawer.classList.add('hideBackgroundSideDrawer');
-      setSideDrawerState({ showSideDrawer: false });
+      dispatch(NavbarActions.closeSideDrawer());
     }
   };
 
   const handleSideDrawer = () => {
     const sideDrawer = window.document.body.children[1].children[1];
     const sideBackgroundDrawer = window.document.body.children[1].children[0];
-    if (!sideDrawerState.showSideDrawer) {
+    if (!showSideDrawer) {
       sideDrawer.classList.remove('hideSideDrawer');
       sideBackgroundDrawer.classList.remove('hideBackgroundSideDrawer');
       sideDrawer.classList.add('showSideDrawer');
       sideBackgroundDrawer.classList.add('showBackgroundSideDrawer');
-      setSideDrawerState({ showSideDrawer: true });
+      dispatch(NavbarActions.openSideDrawer());
     } else {
       sideDrawer.classList.remove('showSideDrawer');
       sideBackgroundDrawer.classList.remove('showBackgroundSideDrawer');
       sideDrawer.classList.add('hideSideDrawer');
       sideBackgroundDrawer.classList.add('hideBackgroundSideDrawer');
-      setSideDrawerState({ showSideDrawer: false });
+      dispatch(NavbarActions.closeSideDrawer());
     }
   };
 
@@ -238,7 +236,7 @@ const Navbar = (props) => {
     navbar = (
       <>
         <SideDrawer
-          ShowSideDrawer={sideDrawerState.showSideDrawer}
+          ShowSideDrawer={showSideDrawer}
           HandleSideDrawer={handleSideDrawer}
           UserData={userInfo}
           style={{

@@ -12,6 +12,7 @@ export const SubNavigatorBar = styled.nav`
   border-bottom: 1px solid #0058e4;
   border-top: 1px solid #fff;
   z-index: 999999999;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
 `;
 
 export const Ul = styled.ul`

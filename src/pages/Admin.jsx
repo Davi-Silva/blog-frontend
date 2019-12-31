@@ -1,5 +1,6 @@
 
 import React, { useContext, useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import _ from 'lodash';
 
 import {
@@ -34,7 +35,7 @@ import {
 } from '../styled-components/admin.styled-components';
 
 const Admin = (props) => {
-  const userInfo = useContext(UserProvider.context);
+  const userInfo = useSelector((state) => state.user.userInfo);
   const [coursesState, setCoursesState] = useState({
     courses: false,
   });
@@ -54,6 +55,7 @@ const Admin = (props) => {
       search: false,
     },
   });
+  console.log('user in admin:', userInfo);
 
   if (!_.isEmpty(userInfo)) {
     console.log('userInfo:', userInfo);
@@ -82,7 +84,6 @@ const Admin = (props) => {
   };
 
   const onChangeBlog = () => {
-    console.log('Click me motherfucker');
     setCoursesState({
       courses: false,
     });

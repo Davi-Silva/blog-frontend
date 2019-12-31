@@ -279,9 +279,25 @@ export default class Podcast extends Component {
       location,
     } = this.props;
 
+    let helmet;
     let allContentPodcast;
     let podcastUpdated;
     let podcastRelatedPodcast;
+
+    if (title === '') {
+      helmet = (
+        <>
+          <Helmet title="Loading" media="Podcasts" />
+        </>
+      );
+    } else {
+      helmet = (
+        <>
+          <Helmet title={title} media="Podcasts" />
+        </>
+      );
+    }
+
     if (title === ''
     || cover === ''
     || coverAlt === ''
@@ -400,7 +416,7 @@ export default class Podcast extends Component {
     }
     return (
       <>
-        <Helmet title={title} media="Podcast" />
+        {helmet}
         <SubNavBar media="Podcast" category={category} title={title} />
         <div className="container">
           <div className="row">

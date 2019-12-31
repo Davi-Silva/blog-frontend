@@ -220,6 +220,9 @@ export const CategoryDiv = styled.div`
 		top: 107px;
 	}
 	@media (max-width: 991px) {
+		top: 80px;
+	}
+	@media (max-width: 768px) {
 		top: 110px;
 	}
 	@media (max-width: 576px) {

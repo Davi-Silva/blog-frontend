@@ -14,6 +14,9 @@ export const PostListTitleDiv = styled.div`
 		position: absolute;
 		background: #0058e4;
 		margin-right: 10px;
+		@media (max-width: 433px) {
+			height: 39px;
+		}
 	}
 `;
 
@@ -47,6 +50,45 @@ export const SeeAll = styled(Link)`
 	}
 `;
 
+export const ColumnLeft = styled.div`
+	padding: 0 2px 0 15px;
+	@media (max-width: 768px) {
+		padding: 0 2px 0 15px;
+	}
+	@media (max-width: 576px) {
+		padding: 0 15px;
+	}
+`;
+
+export const ColumnCenterLeft = styled.div`
+	padding: 0 2px;
+	@media (max-width: 768px) {
+		padding: 0 15px 0 2px;
+	}
+	@media (max-width: 576px) {
+		padding: 0 15px;
+	}
+`;
+
+export const ColumnCenterRight = styled.div`
+	padding: 0 2px;
+	@media (max-width: 768px) {
+		padding: 0 2px 0 15px;
+	}
+	@media (max-width: 576px) {
+		padding: 0 15px;
+	}
+`;
+
+export const ColumnRight = styled.div`
+	padding: 0 15px 0 2px;
+	@media (max-width: 768px) {
+		padding: 0 15px 0 2px;
+	}
+	@media (max-width: 576px) {
+		padding: 0 15px;
+	}
+`;
 
 export const PostListTitle = styled.h3`
 	color: 16px;
@@ -62,28 +104,6 @@ export const PostListTitle = styled.h3`
 	}
 `;
 
-export const ColumnLeft = styled.div`
-	padding: 0 8px 0 15px;
-	@media (max-width: 768px) {
-		padding: 0 15px;
-	}
-`;
-
-export const ColumnCenter = styled.div`
-	padding: 0 8px 0 8px;
-	@media (max-width: 768px) {
-		padding: 0 15px;
-	}
-`;
-
-
-export const ColumnRight = styled.div`
-	padding: 0 15px 0 8px;
-	@media (max-width: 768px) {
-		padding: 0 15px;
-	}
-`;
-
 export const Card = styled(Link)`
   text-decoration: none;
   margin-bottom: 20px;
@@ -94,18 +114,18 @@ export const Card = styled(Link)`
 
 export const Cover = styled.div`
   /* border-radius: 6px; */
-	height: 190px;
+	height: 300px;
 	width: 100%;
 	margin-bottom: 15px;
 	@media (max-width: 1199px) {
-		height: 160px;
+		height: 280px;
 	}
 	@media (max-width: 991px) {
-		height: 135px;
+		height: 240px;
 	}
 	@media (max-width: 769px) {
-		height: 135px;
-		margin-bottom: 24px;
+		height: 220px;
+		margin-bottom: 4px;
 	}
 	@media (max-width: 574px) {
 		height: 150px;
@@ -114,16 +134,16 @@ export const Cover = styled.div`
 
 export const BackgroundWrapper = styled.div`
 	background: linear-gradient(0deg, rgba(0,0,0,0.8491771708683473) 0%, rgba(0,212,255,0) 100%);
-	height: 190px;
+	height: 300px;
 	width: 100%;
 	@media (max-width: 1199px) {
-		height: 160px;
+		height: 280px;
 	}
 	@media (max-width: 991px) {
-		height: 135px;
+		height: 240px;
 	}
 	@media (max-width: 769px) {
-		height: 135px;
+		height: 220px;
 	}
 	@media (max-width: 574px) {
 		height: 150px;
@@ -139,37 +159,52 @@ export const PublishedOn = styled.b`
 `;
 
 export const PostInfoDiv = styled.div`
-	top: 60px;
+	top: 130px;
 	position: absolute;
-	width: 350px;
+	width: 280px;
 	padding: 0 5px;
 	@media (max-width: 1199px) {
-		top: 30px;
-		width: 215px;
+		top: 125px;
+		width: 235px;
 	}
 	@media (max-width: 991px) {
-		top: 20px;
+		top: 110px;
+		width: 163px;
+	}
+	@media (max-width: 768px) {
+		top: 80px;
+    width: 250px;
+	}
+	@media (max-width: 576px) {
+		top: 40px;
 	}
 `;
 
 export const Title = styled.h5`
 	color: #fff;
-	font-size: 17px;
+	font-size: 22px;
 	font-weight: 900;
-	width: 256px;
+	width: 280px;
 	margin: 0;
 	@media (max-width: 1199px) {
-		font-size: 14px;
-		width: 215px;
+		font-size: 19px;
+		width: 235px;
 	}
 	@media (max-width: 991px) {
-		font-size: 15px;
+		font-size: 17px;
+		width: 163px;
+	}
+	@media (max-width: 768px) {
+    width: 250px;
+	}
+	@media (max-width: 576px) {
+		font-size: 16px;
 	}
 `;
 
 export const CategoryDiv = styled.div`
 	padding: 0 0 0 8px;
-	top: 162px;
+	top: 270px;
 	position: absolute;
 	&::before {
 		content: '';
@@ -181,10 +216,16 @@ export const CategoryDiv = styled.div`
 		background: #fff;
 	}
 	@media (max-width: 1199px) {
-		top: 130px;
+		top: 250px;
 	}
 	@media (max-width: 991px) {
-		top: 110px;
+		top: 215px;
+	}
+	@media (max-width: 768px) {
+		top: 190px;
+	}
+	@media (max-width: 576px) {
+		top: 123px;
 	}
 `;
 
@@ -193,7 +234,7 @@ export const Category = styled.span`
 	text-align: center;
 	color: #fff;
 	font-weight: 700;
-	font-size: 15px;
+	font-size: 17px;
 	padding-left: 6px;
 	display: block;
 	width: 150px;

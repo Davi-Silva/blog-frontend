@@ -242,10 +242,24 @@ export const LoadingAudio = styled.p`
 
 export const TagsUl = styled.ul`
 	font-size: 14px;
+	height: 50px;
+	padding-top: 5px;
+  white-space: nowrap;
+  display: flex;
+	width: 100%;
+	overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+	margin-bottom: 0;
+	::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const TagLi = styled.li`
-	display: inline;
+	display: inline-block;
+	scroll-snap-align: start;
 `;
 
 export const Tag = styled(Link)`
@@ -253,11 +267,11 @@ export const Tag = styled(Link)`
 	background: #fff;
 	color: #333;
 	border-radius: 1px;
-	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 	display: inline;
 	padding: 5px 10px;
 	font-weight: 500;
-	margin: 0px 5px;
+	margin-right: 10px;
 	&:hover {
 		text-decoration: none;
 		color: #333;
@@ -297,21 +311,68 @@ export const LoadingRelatedPostLabel = styled.b`
 	animation: ${opacity} 2s ease-in-out infinite;
 `;
 
+export const Fluid = styled.div`
+	padding: 0;
+	@media (max-width: 768px) {
+		padding: 0 15px;
+	}
+`;
+
+export const ColumnLeft = styled.div`
+	padding: 0 2px 0 0;
+	@media (max-width: 768px) {
+		padding: 0 2px 0 0;
+	}
+	@media (max-width: 576px) {
+		padding: 0;
+	}
+`;
+
+export const ColumnCenterLeft = styled.div`
+	padding: 0 2px;
+	@media (max-width: 768px) {
+		padding: 0 0 0 2px;
+	}
+	@media (max-width: 576px) {
+		padding: 0;
+	}
+`;
+
+export const ColumnCenterRight = styled.div`
+	padding: 0 2px;
+	@media (max-width: 768px) {
+		padding: 0 2px 0 0;
+	}
+	@media (max-width: 576px) {
+		padding: 0;
+	}
+`;
+
+export const ColumnRight = styled.div`
+	padding: 0 0 0 2px;
+	@media (max-width: 768px) {
+		padding: 0 0 0 2px;
+	}
+	@media (max-width: 576px) {
+		padding: 0;
+	}
+`;
+
 export const RelatedPost = styled(Link)`
 	text-decoration: none;
 	 &:hover {
 		 text-decoration: none;
 	 }
-	 img {
+	 div {
 		width: unset;
-		height: 125px;
-		@media (max-width: 480px) {
-			width: unset;
-			height: 100px;
+		height: 125px!important;
+		@media (max-width: 768px) {
+			margin-bottom: 4px;
 		}
-	 }
-	 h6 {
-		 font-size: 14px;
+		@media (max-width: 574px) {
+			height: 145px!important;
+			margin-bottom: 10px;
+		}
 	 }
 `;
 
@@ -358,15 +419,39 @@ export const RelatedPostLi = styled.li`
 `;
 
 export const RelatedPostH6 = styled.h6`
-	color: #333;
-	font-size: 20px;
+	color: #fff;
+	font-size: 17px;
 	font-weight: 900;
 	margin: 5px 0;
-	white-space: nowrap;
+	position: absolute;
+	top: 50px;
+	width: 260px;
+	left: 5px;
 	overflow: hidden;
-	text-overflow: ellipsis;
-	@media (max-width: 480px) {
+	@media (max-width: 574px) {
+		font-size: 16px;
+	}
+	/* @media (max-width: 480px) {
 		font-size: 13px;
+	} */
+`;
+
+
+export const RelatedPostBackgroundWrapper = styled.div`
+	background: linear-gradient(0deg, rgba(0,0,0,0.8491771708683473) 0%, rgba(0,212,255,0) 100%);
+	height: 170px;
+	width: 100%;
+	@media (max-width: 1199px) {
+		height: 140px;
+	}
+	@media (max-width: 991px) {
+		height: 105px;
+	}
+	@media (max-width: 769px) {
+		height: 135px;
+	}
+	@media (max-width: 574px) {
+		height: 145px;
 	}
 `;
 
