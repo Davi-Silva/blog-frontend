@@ -403,9 +403,7 @@ export default class Podcast extends Component {
                 ))
               }
               </TagsUl>
-              <hr />
               <MoreEpisodes to="/podcasts">More Episodes</MoreEpisodes>
-              <hr />
               {podcastRelatedPodcast}
 
             </Wrapper>
