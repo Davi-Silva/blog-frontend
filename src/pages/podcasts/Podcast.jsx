@@ -213,7 +213,7 @@ export default class Podcast extends Component {
     const { match } = this.props;
     const { slug } = match.params;
     this.response = await fetch(
-      `http://localhost:5000/podcasts/get/slug/${slug}`,
+      `https://cryptic-activist-backend.herokuapp.com/podcasts/get/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -230,7 +230,7 @@ export default class Podcast extends Component {
 
   async getPodcastByCategory(category, slug) {
     this.response = await fetch(
-      `http://localhost:5000/podcasts/get/category/newest/${slug}/${category}`,
+      `https://cryptic-activist-backend.herokuapp.com/podcasts/get/category/newest/${slug}/${category}`,
       {
         method: 'GET',
         mode: 'cors',

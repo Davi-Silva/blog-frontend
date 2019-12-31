@@ -43,7 +43,7 @@ export default class SearchForm extends Component {
       media,
     } = this.props;
     this.response = await fetch(
-      `http://localhost:5000/${media}/`,
+      `https://cryptic-activist-backend.herokuapp.com/${media}/`,
       {
         method: 'GET',
         mode: 'cors',
