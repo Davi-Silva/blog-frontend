@@ -123,7 +123,7 @@ export const LoadingCategory = styled.p`
 
 export const Description = styled.div`
 	color: #333;
-	font-size: 14px;
+	font-size: 16px;
 	margin: 10px 0px;
 	img {
 		width: 100%;
