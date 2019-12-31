@@ -133,7 +133,7 @@ const Login = (props) => {
               <LoginButton
                 icon="github"
                 backgroundColor="#333"
-                endpoint="//localhost:5000/auth/github"
+                endpoint="https://cryptic-activist-backend.herokuapp.com/auth/github"
                 providerName="Github"
               />
             </li>
