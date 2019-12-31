@@ -219,6 +219,8 @@ export const Update = styled(Link)`
 
 export const MoreEpisodes = styled(Link)`
 	color: #0058e4;
+	margin: 25px 0;
+	display: block;
 `;
 
 
@@ -230,10 +232,24 @@ export const LoadingAudio = styled.p`
 
 export const TagsUl = styled.ul`
 	font-size: 14px;
+	height: 50px;
+	padding-top: 5px;
+  white-space: nowrap;
+  display: flex;
+	width: 100%;
+	overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+	margin-bottom: 0;
+	::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const TagLi = styled.li`
-	display: inline;
+	display: inline-block;
+	scroll-snap-align: start;
 `;
 
 export const Tag = styled(Link)`
@@ -241,16 +257,17 @@ export const Tag = styled(Link)`
 	background: #fff;
 	color: #333;
 	border-radius: 1px;
-	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 	display: inline;
 	padding: 5px 10px;
 	font-weight: 500;
-	margin: 0px 5px;
+	margin-right: 10px;
 	&:hover {
 		text-decoration: none;
 		color: #333;
 	}
 `;
+
 
 export const LoadingTags = styled.p`
 	font-size: 14px;
