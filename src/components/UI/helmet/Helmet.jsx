@@ -86,6 +86,7 @@ const HelmetWrapper = (props) => {
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={cover} />
         <meta name="twitter:creator" content={author} />
+        {metas}
       </Helmet>
     </>
   );
