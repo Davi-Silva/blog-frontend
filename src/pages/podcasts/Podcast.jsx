@@ -293,7 +293,16 @@ export default class Podcast extends Component {
     } else {
       helmet = (
         <>
-          <Helmet title={title} media="Podcasts" />
+          <Helmet
+            title={title}
+            metaDescription={`Listen to the newest CrypticActivist show. This time we are going to talk about ${title}`}
+            media="Podcasts"
+            cover={cover}
+            coverAlt={coverAlt}
+            audioUrl={audioFileUrl}
+            tagsArray={tags}
+            contentUrl={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`}
+          />
         </>
       );
     }
