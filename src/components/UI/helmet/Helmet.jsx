@@ -42,6 +42,7 @@ const HelmetWrapper = (props) => {
       </>
     );
   } else if (media === 'Blog') {
+    console.log('blig helmet');
     metas = (
       <>
         <meta property="og:type" content="article" />
@@ -90,7 +91,7 @@ const HelmetWrapper = (props) => {
         <meta name="twitter:creator" content={author} />
         {metas}
       </Helmet>
-      {metas}
+
     </>
   );
 };
@@ -100,10 +101,10 @@ export default HelmetWrapper;
 HelmetWrapper.propTypes = {
   title: PropTypes.string,
   metaDescription: PropTypes.string,
-  media: PropTypes.string.isRequired,
+  media: PropTypes.string,
   cover: PropTypes.string,
   coverAlt: PropTypes.string,
-  contentUrl: PropTypes.string.isRequired,
+  contentUrl: PropTypes.string,
   audioUrl: PropTypes.string,
   podcastAudioDuration: PropTypes.string,
   blogPostPublishedOn: PropTypes.string,
@@ -115,6 +116,8 @@ HelmetWrapper.propTypes = {
 HelmetWrapper.defaultProps = {
   title: 'CrypticActivist',
   metaDescription: 'A place where the technology meets freedom.',
+  media: '',
+  contentUrl: '',
   cover: '',
   coverAlt: '',
   audioUrl: '',

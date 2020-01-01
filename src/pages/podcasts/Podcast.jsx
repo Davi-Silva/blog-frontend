@@ -1,6 +1,9 @@
 /* eslint react/prop-types: 0 */
 import React, { Component } from 'react';
 
+
+import { Helmet } from 'react-helmet';
+
 import { createMuiTheme, makeStyles } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import AudioPlayer from 'material-ui-audio-player';
@@ -12,7 +15,6 @@ import {
 } from 'react-icons/fa';
 
 import ShareButtons from '../../components/UI/buttons/ShareButtons';
-import Helmet from '../../components/UI/helmet/Helmet';
 
 import {
   Wrapper,
@@ -287,22 +289,52 @@ export default class Podcast extends Component {
     if (title === '') {
       helmet = (
         <>
-          <Helmet title="Loading" media="Podcasts" />
+          <Helmet title="Loading..." media="Podcasts" />
         </>
       );
     } else {
       helmet = (
         <>
-          <Helmet
-            title={title}
-            metaDescription={`Listen to the newest CrypticActivist show. This time we are going to talk about ${title}`}
-            media="Podcasts"
-            cover={cover}
-            coverAlt={coverAlt}
-            audioUrl={audioFileUrl}
-            tagsArray={tags}
-            contentUrl={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`}
-          />
+          <Helmet>
+            <title>{`${title} - Podcast | Cryptic Activist`}</title>
+            <meta
+              name="description"
+              content="Meta Description"
+            />
+            <meta property="og:locale" content="en_US" />
+            <meta property="og:locale:alternate" content="en_CA" />
+            <meta property="og:locale:alternate" content="es_GB" />
+            <meta property="og:site_name" content="CrypticActivist" />
+            <meta property="og:description" content="Meta Description" />
+            <meta property="og:title" content={title} />
+            <meta property="og:image" content={`${cover}`} />
+            <meta property="og:image:type" content="image/jpeg" />
+            <meta property="og:image:type" content="image/jpg" />
+            <meta property="og:image:type" content="image/png" />
+            <meta property="og:image:width" content="800" />
+            <meta property="og:image:height" content="600" />
+            <meta property="og:url" content={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+
+            <meta name="twitter:site" content="CrypticActivist" />
+            <meta name="twitter:title" content={title} />
+            <meta name="twitter:description" content="Meta Description" />
+            <meta name="twitter:image" content={cover} />
+
+            <meta property="og:music:duration" content="" />
+            <meta property="og:type" content="music.song" />
+            <meta property="og:image:alt" content={coverAlt} />
+            <meta property="og:audio:type" content="audio/mpeg" />
+            <meta property="og:audio:type" content="audio/mp3" />
+            <meta property="og:audio" content={audioFileUrl} />
+            <meta property="og:audio:secure_url" content={audioFileUrl} />
+
+            <meta name="twitter:card" content="music.song" />
+            <meta name="twitter:image:alt" content="Podcast cover" />
+            <meta name="twitter:player" content={audioFileUrl} />
+            <meta name="twitter:width" content="100" />
+            <meta name="twitter:height" content="200" />
+            <meta name="twitter:player:stream" content={audioFileUrl} />
+          </Helmet>
         </>
       );
     }

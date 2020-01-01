@@ -14,8 +14,6 @@ import {
   FaListUl,
 } from 'react-icons/fa';
 
-import UserProvider from '../contexts/UserProvider';
-
 import PublishBlogPost from './PublishBlogPost';
 import UploadNewPodcast from './UploadNewPodcast';
 // import EditPost from './EditPost';

@@ -319,7 +319,7 @@ export const Fluid = styled.div`
 `;
 
 export const ColumnLeft = styled.div`
-	padding: 0 2px 0 0;
+	padding: 0 2px 0 15px;
 	@media (max-width: 768px) {
 		padding: 0 2px 0 0;
 	}
@@ -349,7 +349,7 @@ export const ColumnCenterRight = styled.div`
 `;
 
 export const ColumnRight = styled.div`
-	padding: 0 0 0 2px;
+	padding: 0 15px 0 2px;
 	@media (max-width: 768px) {
 		padding: 0 0 0 2px;
 	}

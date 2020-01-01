@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import slugify from 'slugify';
 
+import { Helmet } from 'react-helmet';
+
 import {
   FaSpinner,
 } from 'react-icons/fa';
@@ -16,7 +18,7 @@ import ShareButtons from '../../components/UI/buttons/ShareButtons';
 
 // import AdvertisementsTopPage from '../../components/UI/ads/AdvertisementsTopPage';
 
-import Helmet from '../../components/UI/helmet/Helmet';
+// import Helmet from '../../components/UI/helmet/Helmet';
 
 import {
   Cover,
@@ -316,23 +318,45 @@ export default class Post extends Component {
     if (title === '') {
       helmet = (
         <>
-          <Helmet title="Loading" media="Blog" />
+          <Helmet title="Loading..." media="Blog" />
         </>
       );
     } else {
       helmet = (
         <>
-          <Helmet
-            title={title}
-            metaDescription="Read the newest CrypticActivist post."
-            media="Blog"
-            cover={cover}
-            coverAlt={coverAlt}
-            blogPostPublishedOn={publishedOn}
-            blogPostAuthor={author.name}
-            tagsArray={tags}
-            contentUrl={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`}
-          />
+          <Helmet>
+            <title>{`${title} - ${'Blog'} | Cryptic Activist`}</title>
+            <meta
+              name="description"
+              content="Blog Posts"
+            />
+            <meta property="og:locale" content="en_US" />
+            <meta property="og:locale:alternate" content="en_CA" />
+            <meta property="og:locale:alternate" content="es_GB" />
+            <meta property="og:site_name" content="CrypticActivist" />
+            <meta property="og:description" content="Meta description" />
+            <meta property="og:title" content={`${title} - ${'Blog'} | Cryptic Activist`} />
+            <meta property="og:image" content={`${cover}`} />
+            <meta property="og:image:type" content="image/jpeg" />
+            <meta property="og:image:type" content="image/jpg" />
+            <meta property="og:image:type" content="image/png" />
+            <meta property="og:image:width" content="800" />
+            <meta property="og:image:height" content="600" />
+            <meta property="og:image:alt" content={coverAlt} />
+            <meta property="og:url" content={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+            <meta property="og:type" content="article" />
+            <meta property="og:type:article:published_time" content={publishedOn} />
+            <meta property="og:type:article:author" content={author} />
+            <meta property="og:type:article:tags" content={tags} />
+
+            <meta name="twitter:site" content="CrypticActivist" />
+            <meta name="twitter:title" content={`${title} - ${'Blog'} | Cryptic Activist`} />
+            <meta name="twitter:description" content="metaDescription" />
+            <meta name="twitter:image" content={cover} />
+            <meta name="twitter:creator" content={author} />
+            <meta name="twitter:card" content="article" />
+            <meta name="twitter:image:alt" content={`${title}'s cover`} />
+          </Helmet>
         </>
       );
     }
