@@ -78,6 +78,8 @@ const HelmetWrapper = (props) => {
         <meta property="og:title" content={title} />
         <meta property="og:image" content={`${cover}`} />
         <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="600" />
         <meta property="og:url" content={`${contentUrl}`} />
@@ -86,6 +88,7 @@ const HelmetWrapper = (props) => {
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={cover} />
         <meta name="twitter:creator" content={author} />
+        {metas}
       </Helmet>
       {metas}
     </>
