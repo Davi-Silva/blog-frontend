@@ -219,7 +219,7 @@ export const Update = styled(Link)`
 
 export const MoreEpisodes = styled(Link)`
 	color: #0058e4;
-	margin: 25px 0;
+	margin: 15px 0;
 	display: block;
 `;
 

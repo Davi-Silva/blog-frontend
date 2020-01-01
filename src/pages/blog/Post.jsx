@@ -322,7 +322,17 @@ export default class Post extends Component {
     } else {
       helmet = (
         <>
-          <Helmet title={title} media="Blog" />
+          <Helmet
+            title={title}
+            metaDescription="Read the newest CrypticActivist post."
+            media="Blog"
+            cover={cover}
+            coverAlt={coverAlt}
+            blogPostPublishedOn={publishedOn}
+            blogPostAuthor={author.name}
+            tagsArray={tags}
+            contentUrl={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`}
+          />
         </>
       );
     }
