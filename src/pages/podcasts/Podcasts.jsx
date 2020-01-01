@@ -1,9 +1,12 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import {
   FaSpinner,
 } from 'react-icons/fa';
+
+import { Helmet } from 'react-helmet';
 
 import BitcoinDoddle from '../../static/img/no-content-img.png';
 
@@ -119,7 +122,48 @@ export default class Podcasts extends Component {
       hasMore,
       found,
     } = this.state;
+    const {
+      location,
+    } = this.props;
+
     let allPodcasts;
+    let helmet;
+
+    if (podcasts.length === 0) {
+      helmet = (
+        <>
+          <Helmet title="Loading..." media="Podcasts" />
+        </>
+      );
+    } else {
+      helmet = (
+        <>
+          <Helmet>
+            <title>Home - Podcast | Cryptic Activist</title>
+            <meta
+              name="description"
+              content="Meta Description"
+            />
+            <meta property="og:locale" content="en_US" />
+            <meta property="og:locale:alternate" content="en_CA" />
+            <meta property="og:locale:alternate" content="es_GB" />
+            <meta property="og:site_name" content="CrypticActivist" />
+            <meta property="og:description" content="Meta Description" />
+            <meta property="og:title" content="Home - Podcast | Cryptic Activist" />
+            <meta property="og:url" content={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+
+            <meta name="twitter:site" content="CrypticActivist" />
+            <meta name="twitter:title" content="Home - Podcast | Cryptic Activist" />
+            <meta name="twitter:description" content="Meta Description" />
+
+            <meta property="og:type" content="article" />
+            <meta name="twitter:card" content="music.song" />
+          </Helmet>
+        </>
+      );
+    }
+
+
     if (!found) {
       allPodcasts = (
         <>
@@ -178,6 +222,7 @@ export default class Podcasts extends Component {
     }
     return (
       <>
+        {helmet}
         <SubNavBar media="Podcasts" category="" title="" />
         <div className="container" style={{ marginTop: '25px' }}>
           <div className="row">

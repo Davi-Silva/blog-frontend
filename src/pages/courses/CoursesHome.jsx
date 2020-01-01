@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 
+import { Helmet } from 'react-helmet';
 import UserProvider from '../../contexts/UserProvider';
+
 
 import TopCover from '../section/courses-home/TopCover.component';
 import UnderTopCoverStrap from '../section/courses-home/UnderTopCoverStrap.component';
@@ -13,11 +15,72 @@ import NewsletterSection from '../section/courses-home/NewsletterSection.compone
 
 import Blockchain from '../../static/img/blockchain.png';
 
-const CoursesHome = () => {
+const CoursesHome = (props) => {
   const userInfo = useContext(UserProvider.context);
+
+  let helmet;
+  const {
+    location,
+  } = props;
+
+  if (false) {
+    helmet = (
+      <>
+        <Helmet title="Loading..." media="Podcasts" />
+      </>
+    );
+  } else {
+    helmet = (
+      <>
+        <Helmet>
+          <title>Home - Podcast | Cryptic Activist</title>
+          <meta
+            name="description"
+            content="Meta Description"
+          />
+          <meta property="og:locale" content="en_US" />
+          <meta property="og:locale:alternate" content="en_CA" />
+          <meta property="og:locale:alternate" content="es_GB" />
+          <meta property="og:site_name" content="CrypticActivist" />
+          <meta property="og:description" content="Meta Description" />
+          <meta property="og:title" content="Home - Podcast | Cryptic Activist" />
+          <meta property="og:url" content={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+
+          <meta name="twitter:site" content="CrypticActivist" />
+          <meta name="twitter:title" content="Home - Podcast | Cryptic Activist" />
+          <meta name="twitter:description" content="Meta Description" />
+
+          <meta property="og:type" content="article" />
+          <meta name="twitter:card" content="music.song" />
+        </Helmet>
+      </>
+    );
+  }
 
   return (
     <>
+      {/* {helmet} */}
+      <Helmet>
+        <title>Home - Station | Cryptic Activist</title>
+        <meta
+          name="description"
+          content="Meta Description"
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:locale:alternate" content="en_CA" />
+        <meta property="og:locale:alternate" content="es_GB" />
+        <meta property="og:site_name" content="CrypticActivist" />
+        <meta property="og:description" content="Meta Description" />
+        <meta property="og:title" content="Home - Podcast | Cryptic Activist" />
+        <meta property="og:url" content={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+
+        <meta name="twitter:site" content="CrypticActivist" />
+        <meta name="twitter:title" content="Home - Station | Cryptic Activist" />
+        <meta name="twitter:description" content="Meta Description" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="article" />
+      </Helmet>
       <TopCover />
       <UnderTopCoverStrap />
       <RecentlyPublishedCourses />

@@ -1,8 +1,34 @@
 import React from 'react';
 
-function Homepage() {
+import { Helmet } from 'react-helmet';
+
+function Homepage(props) {
+  const {
+    location,
+  } = props;
   return (
     <>
+      <Helmet>
+        <title>Home | Cryptic Activist</title>
+        <meta
+          name="description"
+          content="Meta Description"
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:locale:alternate" content="en_CA" />
+        <meta property="og:locale:alternate" content="es_GB" />
+        <meta property="og:site_name" content="CrypticActivist" />
+        <meta property="og:description" content="Meta Description" />
+        <meta property="og:title" content="Home | Cryptic Activist" />
+        <meta property="og:url" content={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+
+        <meta name="twitter:site" content="CrypticActivist" />
+        <meta name="twitter:title" content="Home | Cryptic Activist" />
+        <meta name="twitter:description" content="Meta Description" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="article" />
+      </Helmet>
       <div className="container">
         <div className="row">
           <div className="col-12">

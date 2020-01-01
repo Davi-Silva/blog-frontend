@@ -1,7 +1,8 @@
 import React, {
-  useContext,
-  // useState,
+// useState,
 } from 'react';
+
+import { useSelector } from 'react-redux';
 
 import _ from 'lodash';
 
@@ -17,7 +18,7 @@ import {
 } from '../styled-components/profile.styled.components';
 
 const Profile = (props) => {
-  const userInfo = useContext(UserProvider.context);
+  const userInfo = useSelector((state) => state.user.userInfo);
   console.log('userInfo:', userInfo);
   let UserImageDiv;
   let ProfileCoverImage;

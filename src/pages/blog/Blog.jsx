@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import Helmet from '../../components/UI/helmet/Helmet';
+import { Helmet } from 'react-helmet';
+
+// import Helmet from '../../components/UI/helmet/Helmet';
 import MostRecentVideos from '../section/blog/MostRecentVideos.component';
 import MainBlogPost from '../section/blog/MainBlogPost.component';
 import News from '../section/blog/News.component';
@@ -102,11 +104,50 @@ export default class Blog extends Component {
     }
   }
 
-
   render() {
+    const {
+      postsList,
+    } = this.state;
+    const {
+      location,
+    } = this.props;
+    let helmet;
+
+    if (postsList.length === 0) {
+      helmet = (
+        <>
+          <Helmet title="Loading..." media="Blog" />
+        </>
+      );
+    } else {
+      helmet = (
+        <>
+          <Helmet>
+            <title>Home - Blog | Cryptic Activist</title>
+            <meta
+              name="description"
+              content="Blog Posts"
+            />
+            <meta property="og:locale" content="en_US" />
+            <meta property="og:locale:alternate" content="en_CA" />
+            <meta property="og:locale:alternate" content="es_GB" />
+            <meta property="og:site_name" content="CrypticActivist" />
+            <meta property="og:description" content="Meta description" />
+            <meta property="og:title" content="Home - Blog | Cryptic Activist" />
+            <meta property="og:url" content={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+            <meta property="og:type" content="article" />
+            <meta name="twitter:site" content="CrypticActivist" />
+            <meta name="twitter:title" content="Home - Blog | Cryptic Activist" />
+            <meta name="twitter:description" content="metaDescription" />
+            <meta name="twitter:card" content="article" />
+          </Helmet>
+        </>
+      );
+    }
+
     return (
       <>
-        <Helmet title="Home" media="Blog" />
+        {helmet}
         <MainBlogPost />
         <MostRecentVideos />
         <News />
