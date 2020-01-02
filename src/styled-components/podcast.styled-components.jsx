@@ -93,6 +93,40 @@ export const UploadedOn = styled.p`
 	margin: 10px 0px;
 `;
 
+export const ExternalEpisodeLabel = styled.b`
+	color: #333;
+	font-size: 16px;
+	margin-bottom: 5px;
+`;
+
+export const ExternalEpisodeUl = styled.ul`
+	margin-top: 5px;
+	margin-bottom: 20px;
+	li {
+		list-style: none;
+		margin-right: 10px;
+		display: inline-block;
+		@media (max-width: 537px) {
+			display: block;
+			margin: 0 0 10px 0;
+		}
+		a {
+			&:hover {
+				text-decoration: none;
+			}
+			img {
+				height:	45px;
+				@media (max-width: 991px) {
+					height: 34px;
+				}
+				@media (max-width: 768px) {
+					height: 39px;
+				}
+			}
+		}
+	}
+`;
+
 export const Title = styled.h1`
 	color: #333;
 	font-size: 26px;
