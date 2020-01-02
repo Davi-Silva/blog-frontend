@@ -1,13 +1,9 @@
 /* eslint react/prop-types: 0 */
 import React, { Component } from 'react';
-
-
 import { Helmet } from 'react-helmet';
-
 import { createMuiTheme, makeStyles } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import AudioPlayer from 'material-ui-audio-player';
-
 import slugify from 'slugify';
 
 import {
@@ -15,6 +11,10 @@ import {
 } from 'react-icons/fa';
 
 import ShareButtons from '../../components/UI/buttons/ShareButtons';
+
+import ListenOnGooglePodcast from '../../static/img/listen-on-google-podcasts.svg';
+import ListenOnSpotifyPodcast from '../../static/img/listen-on-spotify.svg';
+import ListenOnITunesPodcast from '../../static/img/listen-on-apple.svg';
 
 import {
   Wrapper,
@@ -35,6 +35,8 @@ import {
   // LoadingTags,
   RelatedPodcast,
   RelatedPodcastLabel,
+  ExternalEpisodeLabel,
+  ExternalEpisodeUl,
   // LoadingRelatedPodcastLabel,
   RelatedPodcastList,
   RelatedPodcastLi,
@@ -52,6 +54,9 @@ export default class Podcast extends Component {
       category: '',
       title: '',
       description: '',
+      googleEpisodeUrl: '',
+      spotifyEpisodeUrl: '',
+      itunesEpisodeUrl: '',
       tags: [],
       uploadedOn: null,
       updatedOn: null,
@@ -151,6 +156,9 @@ export default class Podcast extends Component {
         title,
         tags,
         description,
+        googleEpisodeUrl,
+        spotifyEpisodeUrl,
+        itunesEpisodeUrl,
         uploadedOn,
         updatedOn,
         audioFile,
@@ -180,6 +188,9 @@ export default class Podcast extends Component {
           category,
           title,
           description,
+          googleEpisodeUrl,
+          spotifyEpisodeUrl,
+          itunesEpisodeUrl,
           tags,
           uploadedOn: formattedDate,
           audioFileUrl: audioFile.url,
@@ -196,6 +207,9 @@ export default class Podcast extends Component {
           category,
           title,
           description,
+          googleEpisodeUrl,
+          spotifyEpisodeUrl,
+          itunesEpisodeUrl,
           tags,
           uploadedOn: formattedDate,
           updatedOn: formattedDateUpdated,
@@ -258,11 +272,6 @@ export default class Podcast extends Component {
     return new Date(this.parts[0], this.parts[1] - 1, this.parts[2]);
   }
 
-  // covertAllTags() {
-  //   const { tags } = this.state;
-  //   const tagsArray = tags.splice(tags);
-  // }
-
   render() {
     const {
       cover,
@@ -273,6 +282,9 @@ export default class Podcast extends Component {
       title,
       audioFileUrl,
       description,
+      googleEpisodeUrl,
+      spotifyEpisodeUrl,
+      itunesEpisodeUrl,
       tags,
       documentHeight,
       relatedCategoryPodcast,
@@ -284,6 +296,10 @@ export default class Podcast extends Component {
     let helmet;
     let allContentPodcast;
     let podcastUpdated;
+    let externalEpisodeUrlLabel;
+    let externalGoogleEpisodeUrl;
+    let externalSpotifyEpisodeUrl;
+    let externalItunesEpisodeUrl;
     let podcastRelatedPodcast;
 
     if (title === '') {
@@ -366,10 +382,72 @@ export default class Podcast extends Component {
           </UploadedOn>
         );
       }
+
+      if (googleEpisodeUrl !== '' || spotifyEpisodeUrl !== '' || itunesEpisodeUrl !== '') {
+        externalEpisodeUrlLabel = (
+          <>
+            <ExternalEpisodeLabel>
+              Also available on
+            </ExternalEpisodeLabel>
+          </>
+        );
+      }
+
+      if (googleEpisodeUrl === '') {
+        externalGoogleEpisodeUrl = (
+          <>
+          </>
+        );
+      } else {
+        externalGoogleEpisodeUrl = (
+          <>
+            <li>
+              <a href={googleEpisodeUrl} target="_blank" rel="noopener noreferrer">
+                <img src={ListenOnGooglePodcast} alt="Listen on Google Podcasts" />
+              </a>
+            </li>
+          </>
+        );
+      }
+
+      if (spotifyEpisodeUrl === '') {
+        externalSpotifyEpisodeUrl = (
+          <>
+          </>
+        );
+      } else {
+        externalSpotifyEpisodeUrl = (
+          <>
+            <li>
+              <a href={spotifyEpisodeUrl} target="_blank" rel="noopener noreferrer">
+                <img src={ListenOnSpotifyPodcast} alt="Listen on Google Podcasts" />
+              </a>
+            </li>
+          </>
+        );
+      }
+
+      if (itunesEpisodeUrl === '') {
+        externalItunesEpisodeUrl = (
+          <>
+          </>
+        );
+      } else {
+        externalItunesEpisodeUrl = (
+          <>
+            <li>
+              <a href={itunesEpisodeUrl} target="_blank" rel="noopener noreferrer">
+                <img src={ListenOnITunesPodcast} alt="Listen on Google Podcasts" />
+              </a>
+            </li>
+          </>
+        );
+      }
+
       if (relatedCategoryPodcast.length !== 0) {
         podcastRelatedPodcast = (
           <RelatedPodcastLabel>
-           Related Blog Posts
+            Related Blog Posts
             <br />
             <RelatedPodcastList>
               {
@@ -431,6 +509,13 @@ export default class Podcast extends Component {
               <Description
                 dangerouslySetInnerHTML={{ __html: description }}
               />
+              {externalEpisodeUrlLabel}
+              <br />
+              <ExternalEpisodeUl>
+                {externalGoogleEpisodeUrl}
+                {externalSpotifyEpisodeUrl}
+                {externalItunesEpisodeUrl}
+              </ExternalEpisodeUl>
               <TagsUl>
                 {
                 tags.map((tag, key) => (
@@ -452,6 +537,8 @@ export default class Podcast extends Component {
         </>
       );
     }
+
+
     return (
       <>
         {helmet}

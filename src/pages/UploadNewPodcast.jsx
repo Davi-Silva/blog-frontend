@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import {
+  FaGoogle,
+  FaSpotify,
+  FaItunes,
+} from 'react-icons/fa';
 
 import { uniqueId } from "lodash";
 import filesize from "filesize";
@@ -22,6 +27,7 @@ import {
   PodcastCoverUploaderPlaceholder,
   PodcastAudioFileUploaderPlaceholder,
   DivAside,
+  ExternalEpisodesUrl,
 } from "../styled-components/forms.styled-components";
 
 import {
@@ -37,6 +43,9 @@ export default class UploadNewPodcast extends Component {
       category: "",
       title: "",
       description: "",
+      googleEpisodeUrl: "",
+      spotifyEpisodeUrl: "",
+      itunesEpisodeUrl: "",
       tags: "",
       tagsArray: [],
       isSlugValid: true,
@@ -58,6 +67,9 @@ export default class UploadNewPodcast extends Component {
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.tagsToArray = this.tagsToArray.bind(this);
     this.enableCoverUploader = this.enableCoverUploader.bind(this);
+    this.onChangeGoogleEpisodeUrl = this.onChangeGoogleEpisodeUrl.bind(this);
+    this.onChangeSpotifyEpisodeUrl = this.onChangeSpotifyEpisodeUrl.bind(this);
+    this.onChangeItunesEpisodeUrl = this.onChangeItunesEpisodeUrl.bind(this);
   }
 
   async verifySlug(slug) {
@@ -156,6 +168,33 @@ export default class UploadNewPodcast extends Component {
     }, 0);
   }
 
+  async onChangeGoogleEpisodeUrl(e) {
+    this.setStateAsync({
+      googleEpisodeUrl: e.target.value
+    });
+    setTimeout(() => {
+      this.disabledSubmitButton();
+    }, 0);
+  }
+
+  async onChangeSpotifyEpisodeUrl(e) {
+    this.setStateAsync({
+      spotifyEpisodeUrl: e.target.value
+    });
+    setTimeout(() => {
+      this.disabledSubmitButton();
+    }, 0);
+  }
+
+  async onChangeItunesEpisodeUrl(e) {
+    this.setStateAsync({
+    itunesEpisodeUrl: e.target.value
+    });
+    setTimeout(() => {
+      this.disabledSubmitButton();
+    }, 0);
+  }
+
   async onChangeDescription(e) {
     this.setStateAsync({
       description: e.target.value
@@ -193,16 +232,22 @@ export default class UploadNewPodcast extends Component {
       category,
       title,
       description,
+      googleEpisodeUrl,
+      spotifyEpisodeUrl,
+      itunesEpisodeUrl,
       tagsArray,
       uploadedCovers,
       uploadedFiles
     } = this.state;
     const podcastInfo = {
-      isSlugValid: isSlugValid,
+      isSlugValid,
       slug,
-      category: category,
-      title: title,
-      description: description,
+      category,
+      title,
+      description,
+      googleEpisodeUrl,
+      spotifyEpisodeUrl,
+      itunesEpisodeUrl,
       tags: tagsArray,
       cover: uploadedCovers[uploadedCovers.length - 1].id,
       audioFile: uploadedFiles[uploadedFiles.length - 1].id
@@ -452,6 +497,9 @@ export default class UploadNewPodcast extends Component {
       uploadedCovers,
       title,
       category,
+      googleEpisodeUrl,
+      spotifyEpisodeUrl,
+      itunesEpisodeUrl,
       tags, 
       allFieldsFilled,
       enableCoverUploader,
@@ -571,6 +619,85 @@ export default class UploadNewPodcast extends Component {
                       onChange={this.handleEditorChange}
                     />
                   </div>
+                  <ExternalEpisodesUrl>
+                    <ul>
+                      <li>
+                        <ul>
+                          <li>
+                            <FaGoogle />
+                          </li>
+                          <li>
+                            <Input
+                              type="text"
+                              id="external-episode-url-google-podcasts"
+                              name="external-episode-url-google-podcasts"
+                              placeholder="Spotify episode url..."
+                              value={googleEpisodeUrl}
+                              autoComplete="off"
+                              style={{  
+                                color: "#333",
+                                fontSize: "16px",
+                                fontWeight: "100",
+                                margin: "10px 0",
+                                width: "100%"
+                              }}
+                              onChange={this.onChangeGoogleEpisodeUrl}
+                            />
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li>
+                            <FaSpotify />
+                          </li>
+                          <li>
+                            <Input
+                              type="text"
+                              id="external-episode-url-spotify-podcasts"
+                              name="external-episode-url-spotify-podcasts"
+                              placeholder="Google Podcasts episode url..."
+                              value={spotifyEpisodeUrl}
+                              autoComplete="off"
+                              style={{  
+                                color: "#333",
+                                fontSize: "16px",
+                                fontWeight: "100",
+                                margin: "10px 0",
+                                width: "100%"
+                              }}
+                              onChange={this.onChangeSpotifyEpisodeUrl}
+                            />
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li>
+                            <FaItunes />
+                          </li>
+                          <li>
+                            <Input
+                              type="text"
+                              id="external-episode-url-apple-podcasts"
+                              name="external-episode-url-apple-podcasts"
+                              placeholder="iTunes episode url..."
+                              value={itunesEpisodeUrl}
+                              autoComplete="off"
+                              style={{  
+                                color: "#333",
+                                fontSize: "16px",
+                                fontWeight: "100",
+                                margin: "10px 0",
+                                width: "100%"
+                              }}
+                              onChange={this.onChangeItunesEpisodeUrl}
+                            />
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </ExternalEpisodesUrl>
                   <ul
                   style={{display: "inline"}}>
                     <li style={{display: "inline"}}>

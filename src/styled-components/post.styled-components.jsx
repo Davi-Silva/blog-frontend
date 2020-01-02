@@ -284,7 +284,7 @@ export const LoadingTags = styled.p`
 `;
 
 export const RelatedPostLabel = styled.b`
-	margin: 10px 0;
+	margin: 10px 0 0 15px;
 	ul {
 		::-webkit-scrollbar {
 			height: 5px;

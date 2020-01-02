@@ -5,6 +5,23 @@ export const Header = styled.h5`
   color: #0058e4;
 `;
 
+export const ExternalEpisodesUrl = styled.div`
+  ul {
+    li {
+      list-style: none;
+      ul {
+        li {
+          display: inline-block;
+          svg {
+            margin-right: 10px;
+            font-size: 21px;
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const Input = styled.input`
   border: none;
   transition: all 0.25s ease-in-out;
