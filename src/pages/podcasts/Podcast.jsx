@@ -1,9 +1,6 @@
 /* eslint react/prop-types: 0 */
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import { createMuiTheme, makeStyles } from '@material-ui/core';
-import { ThemeProvider } from '@material-ui/styles';
-import AudioPlayer from 'material-ui-audio-player';
 import slugify from 'slugify';
 
 import {
@@ -11,6 +8,7 @@ import {
 } from 'react-icons/fa';
 
 import ShareButtons from '../../components/UI/buttons/ShareButtons';
+import AudioPlayer from '../../components/UI/player/AudioPlayer';
 
 import ListenOnGooglePodcast from '../../static/img/listen-on-google-podcasts.svg';
 import ListenOnSpotifyPodcast from '../../static/img/listen-on-spotify.svg';
@@ -28,16 +26,10 @@ import {
   Tag,
   UploadedOn,
   MoreEpisodes,
-  // LoadingTitle,
-  // LoadingCategory,
-  // LoadingAudio,
-  // LoadingDescription,
-  // LoadingTags,
   RelatedPodcast,
   RelatedPodcastLabel,
   ExternalEpisodeLabel,
   ExternalEpisodeUl,
-  // LoadingRelatedPodcastLabel,
   RelatedPodcastList,
   RelatedPodcastLi,
   RelatedPodcastH6,
@@ -66,79 +58,6 @@ export default class Podcast extends Component {
       documentHeight: null,
       relatedCategoryPodcast: [],
     };
-
-    this.muiTheme = createMuiTheme({});
-    this.useStyles = makeStyles(() => ({
-      playIcon: {
-        color: '#0058e4',
-        height: '25px',
-        width: '25px',
-        transition: 'all .2s ease-in-out',
-        '&:hover': {
-          color: '#333',
-        },
-        '&:active': {
-          color: '#333',
-        },
-        '&:focus': {
-          color: '#333',
-        },
-      },
-      pauseIcon: {
-        color: '#0058e4',
-        height: '25px',
-        width: '25px',
-        transition: 'all .2s ease-in-out',
-        '&:hover': {
-          color: '#333',
-        },
-        '&:active': {
-          color: '#333',
-        },
-        '&:focus': {
-          color: '#333',
-        },
-      },
-      volumeIcon: {
-        color: '#0058e4',
-        height: '25px',
-        width: '25px',
-        '&:hover': {
-          color: '#333',
-        },
-        '&:active': {
-          color: '#333',
-        },
-        '&:focus': {
-          color: '#333',
-        },
-      },
-      volumeSlider: {
-        color: '#0058e4',
-        height: '25px',
-        width: '25px',
-      },
-      progressTime: {
-        color: '#0058e4',
-        lineHeight: '50px',
-      },
-      mainSlider: {
-        color: '#0058e4',
-        '& .MuiSlider-rail': {
-          color: '#999',
-          marginTop: '13px',
-        },
-        '& .MuiSlider-track': {
-          color: '#0058e4',
-          marginTop: '13px',
-        },
-        '& .MuiSlider-thumb': {
-          color: '#0058e4',
-          top: '10px',
-          marginTop: '10px',
-        },
-      },
-    }));
 
     this.getPodcastBySlug = this.getPodcastBySlug.bind(this);
     this.setStateAsync = this.setStateAsync.bind(this);
@@ -492,20 +411,9 @@ export default class Podcast extends Component {
               <Category>
                 {category}
               </Category>
-              <ThemeProvider theme={this.muiTheme}>
-                <AudioPlayer
-                  elevation={0}
-                  width="100%"
-                  variation="default"
-                  spacing={1}
-                  height="55px"
-                  order="standart"
-                  preload="auto"
-                  useStyles={this.useStyles}
-                  src={audioFileUrl}
-                  debug
-                />
-              </ThemeProvider>
+              <AudioPlayer
+                audioFileUrl={audioFileUrl}
+              />
               <Description
                 dangerouslySetInnerHTML={{ __html: description }}
               />

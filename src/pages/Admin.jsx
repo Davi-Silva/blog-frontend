@@ -34,6 +34,7 @@ import {
 
 const Admin = (props) => {
   const userInfo = useSelector((state) => state.user.userInfo);
+  console.log('userInfo admin:', userInfo);
   const [coursesState, setCoursesState] = useState({
     courses: false,
   });
@@ -53,7 +54,10 @@ const Admin = (props) => {
       search: false,
     },
   });
-  console.log('user in admin:', userInfo);
+
+  if (userInfo[0].isAdmin) {
+    
+  }
 
   if (!_.isEmpty(userInfo)) {
     console.log('userInfo:', userInfo);
