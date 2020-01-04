@@ -129,26 +129,6 @@ export const Cover = styled.img`
 			width: 90px;
 			height: 90px;
 	}
-	@media (max-width: 464px) {
-			width: 80px;
-			height: 80px;
-	}
-	@media (max-width: 420px) {
-			width: 75px;
-			height: 75px;
-	}
-	@media (max-width: 398px) {
-			width: 70px;
-			height: 70px;
-	}
-	@media (max-width: 378px) {
-			width: 65px;
-			height: 65px;
-	}
-	@media (max-width: 352px) {
-			width: 55px;
-			height: 55px;
-  }
 `;
 
 export const InfoDiv = styled.div`
@@ -187,10 +167,6 @@ export const Title = styled.h4`
 	@media (max-width: 420px) {
 		font-size: 14px;
 		line-height: 15px;
-	}
-	@media (max-width: 398px) {
-		font-size: 13px;
-		line-height: 13px;
 	}
 `;
 
