@@ -1,6 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import InfiniteScroll from 'react-infinite-scroll-component';
+
 
 import {
   FaSpinner,
@@ -9,6 +12,11 @@ import {
 import { Helmet } from 'react-helmet';
 
 import BitcoinDoddle from '../../static/img/no-content-img.png';
+import GooglePodcast from '../../static/img/google-podcasts.svg';
+import SpotifyPodcast from '../../static/img/spotify.svg';
+import ITunesPodcast from '../../static/img/itunes.svg';
+import HostPicture from '../../static/img/davi-silva.png';
+
 
 import PodcastsList from '../../components/UI/lists/PodcastsList.component';
 // import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
@@ -18,6 +26,9 @@ import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.compon
 import RecentCategories from '../../components/UI/categories/RecentCategoriesPodcast';
 
 import {
+  Logo,
+  Host,
+  AvailableOn,
   LoadingAllContent,
   InfinitePodcastList,
   NoContentDiv,
@@ -223,7 +234,57 @@ export default class Podcasts extends Component {
     return (
       <>
         {helmet}
-        <SubNavBar media="Podcasts" category="" title="" />
+        <div
+          className="container"
+          style={{
+            marginTop: '15px',
+            marginBottom: '50px',
+          }}
+        >
+          <div className="row">
+            <div className="col-lg-6 col-md-6 col-sm-6 col-12">
+              <Logo className="podcast-logo" src={BitcoinDoddle} alt="" />
+            </div>
+            <div className="col-lg-6 col-md-6 col-sm-6 col-12">
+              <Host>
+                <Link to="//twitter.com/" target="_blank">
+                  <ul>
+                    <li>
+                      <img src={HostPicture} alt="" />
+                    </li>
+                    <li className="hostInfo">
+                      <p>Davi Silva</p>
+                      <p className="twitter">@thecrypticdavid</p>
+                      <p className="desc">Host of CrypticActivist</p>
+                    </li>
+                  </ul>
+                </Link>
+              </Host>
+            </div>
+            <AvailableOn className="col-12">
+              <h6>Also Available on</h6>
+              <ul>
+                <li>
+                  <Link to="//www.google.ca/" target="_blank">
+                    <img src={GooglePodcast} alt="" />
+                  </Link>
+                </li>
+                <li>
+                  <Link to="//podcasters.spotify.com/" target="_blank">
+                    <img src={SpotifyPodcast} alt="" />
+                  </Link>
+                </li>
+                <li>
+                  <Link to="//www.apple.com/ca/itunes/podcasts/discover/" target="_blank">
+                    <img src={ITunesPodcast} alt="" />
+                  </Link>
+                </li>
+              </ul>
+            </AvailableOn>
+
+          </div>
+        </div>
+        {/* <SubNavBar media="Podcasts" category="" title="" /> */}
         <div className="container" style={{ marginTop: '25px' }}>
           <div className="row">
             {allPodcasts}

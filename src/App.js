@@ -14,6 +14,7 @@ import Footer from './components/UI/footer/Footer';
 
 import Admin from './pages/Admin';
 import RegisterAdmin from './pages/RegisterAdmin';
+import LoginAdmin from './pages/LoginAdmin';
 
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';

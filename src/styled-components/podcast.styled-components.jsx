@@ -133,6 +133,7 @@ export const Title = styled.h1`
 	font-weight: 700;
 	letter-spacing: 1px;
 	margin: 10px 0px;
+	overflow-wrap: break-word;
 `;
 
 export const LoadingTitle = styled.h1`
@@ -337,7 +338,7 @@ font-size: 14px;
 	animation: ${opacity} 2s ease-in-out infinite;
 `;
 
-export const RelatedPodcast = styled(Link)`
+export const RelatedPodcast = styled.div`
 	text-decoration: none;
 	 &:hover {
 		 text-decoration: none;

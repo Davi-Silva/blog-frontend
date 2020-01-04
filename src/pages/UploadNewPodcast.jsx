@@ -142,9 +142,16 @@ export default class UploadNewPodcast extends Component {
     const {
       title
     } = this.state;
-    this.setStateAsync({
-      title: e.target.value
-    });
+    if (title.length <= 65) {
+      this.setStateAsync({
+        title: e.target.value
+      });
+    } else {
+      this.setStateAsync({
+        title: title.substring(0, title.length - 1),
+      });
+    }
+
     setTimeout(() => {
       this.changeSlugFromTitle(title);
       this.enableCoverUploader(title);
@@ -160,12 +167,23 @@ export default class UploadNewPodcast extends Component {
   }
 
   async onChangeCategory(e) {
-    this.setStateAsync({
-      category: e.target.value
-    });
+    const {
+      category
+    } = this.state;
+    if (category.length <= 25) {
+      this.setStateAsync({
+        category: e.target.value
+      });
+    } else {
+      this.setStateAsync({
+        category: category.substring(0, category.length - 1),
+      });
+    }
+
     setTimeout(() => {
       this.disabledSubmitButton();
     }, 0);
+  
   }
 
   async onChangeGoogleEpisodeUrl(e) {
