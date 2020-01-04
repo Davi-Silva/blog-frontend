@@ -125,9 +125,9 @@ export const Cover = styled.img`
 			height: 100px;
 			border-radius: 9px;
 	}
-	@media (max-width: 525px) {
-			width: 90px;
-			height: 90px;
+	@media (max-width: 424px) {
+			width: 100px;
+			height: 100px;
 	}
 `;
 

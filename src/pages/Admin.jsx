@@ -55,9 +55,6 @@ const Admin = (props) => {
     },
   });
 
-  if (userInfo[0].isAdmin) {
-    
-  }
 
   if (!_.isEmpty(userInfo)) {
     console.log('userInfo:', userInfo);
