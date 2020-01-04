@@ -163,10 +163,7 @@ export const Title = styled.h4`
 	}
 	@media (max-width: 464px) {
 		font-size: 15px;
-	}
-	@media (max-width: 420px) {
-		font-size: 14px;
-		line-height: 15px;
+		line-height: 17px;
 	}
 `;
 
