@@ -200,11 +200,11 @@ textarea::-webkit-scrollbar-thumb:hover {
 @keyframes showSideDrawer {
   0% {
 		transform: translateX(-250px);
-		box-shadow: 1px 6px 4px 3px rgba(0,0,0,0);
+		box-shadow: 1px 6px 6px 1px rgba(0,0,0,0);
   }
   100% {
 		transform: translateX(0px);
-		box-shadow: 1px 6px 4px 3px rgba(0,0,0,0.2);
+		box-shadow: 1px 6px 6px 1px rgba(0,0,0,0.2);
   }
 }
 
@@ -220,11 +220,11 @@ textarea::-webkit-scrollbar-thumb:hover {
 @keyframes hideSideDrawer {
   0% {
 		transform: translateX(0px);
-		box-shadow: 1px 6px 4px 3px rgba(0,0,0,0.2);
+		box-shadow: 1px 6px 6px 1px rgba(0,0,0,0.2);
   }
   100% {
 		transform: translateX(-250px);
-		box-shadow: 1px 6px 4px 3px rgba(0,0,0,0);
+		box-shadow: 1px 6px 6px 1px rgba(0,0,0,0);
   }
 }
 
@@ -242,7 +242,6 @@ textarea::-webkit-scrollbar-thumb:hover {
 .showSideDrawer {
 	animation: showSideDrawer 0.25s ease-in-out;
 	animation-fill-mode: forwards;  
-	box-shadow: 1px 6px 4px 3px rgba(0,0,0,0.2);
 }
 
 .showBackgroundSideDrawer {
