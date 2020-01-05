@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 
 // import Helmet from '../../components/UI/helmet/Helmet';
+import CurrentTimeDate from '../section/blog/CurrentTimeDate.component';
 import MostRecentVideos from '../section/blog/MostRecentVideos.component';
 import MainBlogPost from '../section/blog/MainBlogPost.component';
 import News from '../section/blog/News.component';
@@ -148,12 +149,13 @@ export default class Blog extends Component {
     return (
       <>
         {helmet}
+        <CurrentTimeDate />
         <MainBlogPost />
         <MostRecentVideos />
         <News />
-        <Tutorials />
-        <TopAuthor />
         <Article />
+        <TopAuthor />
+        <Tutorials />
         <Newsletter />
       </>
     );

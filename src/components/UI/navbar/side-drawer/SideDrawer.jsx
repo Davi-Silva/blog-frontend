@@ -41,7 +41,7 @@ const SideDrawer = (props) => {
   };
 
   const handleLogout = async () => {
-    await fetch('http://localhost:5000/auth/logout', {
+    const response = await fetch('http://localhost:5000/auth/logout', {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -50,6 +50,7 @@ const SideDrawer = (props) => {
         'Content-Type': 'application/json',
       },
     });
+    console.log('response fron logout', response);
   };
 
   let ProfileDiv;
