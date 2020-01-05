@@ -88,7 +88,7 @@ export const DisplayName = styled.span`
   letter-spacing: 1px;
   @media (max-width: 768px) {
     display: table;
-    margin: 30px auto 0 auto;
+    margin: 34px auto 0 auto;
   }
 `;
 
@@ -112,9 +112,6 @@ export const FollowButton = styled.span`
     }
     &:active {
       background-color: #00945e;
-    }
-    @media (max-width: 991px) {
-      font-size: 10px;
     }
   }
   @media (max-width: 768px) {
