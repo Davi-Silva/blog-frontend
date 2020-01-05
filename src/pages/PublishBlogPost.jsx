@@ -82,15 +82,27 @@ export default class PublishBlogPost extends Component {
   }
 
   async onChangeTitle(e) {
-    const { title } = this.state;
-    this.setStateAsync({
-      title: e.target.value,
-    });
-    setTimeout(() => {
-      this.changeSlugFromTitle(title);
-      this.enableCoverUploader(title);
-      this.disabledSubmitButton();
-    }, 0);
+    const {
+      title,
+      uploadedCovers,
+    } = this.state;
+    if (uploadedCovers.length === 0) {
+      if (title.length <= 100) {
+        this.setStateAsync({
+          title: e.target.value
+        });
+      } else {
+        this.setStateAsync({
+          title: title.substring(0, title.length - 1),
+        });
+      }
+  
+      setTimeout(() => {
+        this.changeSlugFromTitle(title);
+        this.enableCoverUploader(title);
+        this.disabledSubmitButton();
+      }, 0);
+    }
   }
 
   async enableCoverUploader(title) {

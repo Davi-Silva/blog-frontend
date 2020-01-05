@@ -140,23 +140,27 @@ export default class UploadNewPodcast extends Component {
 
   async onChangeTitle(e) {
     const {
-      title
+      title,
+      uploadedFiles,
+      uploadedCovers,
     } = this.state;
-    if (title.length <= 65) {
-      this.setStateAsync({
-        title: e.target.value
-      });
-    } else {
-      this.setStateAsync({
-        title: title.substring(0, title.length - 1),
-      });
+    if (uploadedCovers.length === 0 && uploadedFiles.length === 0) {
+      if (title.length <= 65) {
+        this.setStateAsync({
+          title: e.target.value
+        });
+      } else {
+        this.setStateAsync({
+          title: title.substring(0, title.length - 1),
+        });
+      }
+  
+      setTimeout(() => {
+        this.changeSlugFromTitle(title);
+        this.enableCoverUploader(title);
+        this.disabledSubmitButton();
+      }, 0);
     }
-
-    setTimeout(() => {
-      this.changeSlugFromTitle(title);
-      this.enableCoverUploader(title);
-      this.disabledSubmitButton();
-    }, 0);
   }
 
   async changeSlugFromTitle() {
@@ -502,6 +506,7 @@ export default class UploadNewPodcast extends Component {
     }
   }
 
+
   componentWillUnmount() {
     this.state.uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
     this.state.uploadedCovers.forEach(file =>
@@ -585,21 +590,21 @@ export default class UploadNewPodcast extends Component {
                     <span style={{ color: '#333', fontWeight: '700' }}>Date</span>
                   </UploadedOn>
                   <Input
-                      type="text"
-                      id="title"
-                      name="title"
-                      placeholder="Title..."
-                      value={title}
-                      autoComplete="off"
-                      style={{  
-                        color: "#333",
-                        fontSize: "23px",
-                        fontWeight: "900",
-                        width: "100%"
-                      }}
-                      onChange={this.onChangeTitle}
-                      required
-                    />
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Title..."
+                    value={title}
+                    autoComplete="off"
+                    style={{  
+                      color: "#333",
+                      fontSize: "23px",
+                      fontWeight: "900",
+                      width: "100%"
+                    }}
+                    onChange={this.onChangeTitle}
+                    required
+                  />
                   <Input
                       type="text"
                       id="category"
@@ -674,7 +679,7 @@ export default class UploadNewPodcast extends Component {
                               type="text"
                               id="external-episode-url-spotify-podcasts"
                               name="external-episode-url-spotify-podcasts"
-                              placeholder="Google Podcasts episode url..."
+                              placeholder="Spotify Podcasts episode url..."
                               value={spotifyEpisodeUrl}
                               autoComplete="off"
                               style={{  

@@ -15,6 +15,7 @@ import SubNavBar from '../../components/UI/navbar/SubNavBar';
 import Newsletter from '../../components/UI/newsletter/NewsletterSide.component';
 import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
 import ShareButtons from '../../components/UI/buttons/ShareButtons';
+import PostAuthor from '../../components/UI/author/blog/Author';
 
 // import AdvertisementsTopPage from '../../components/UI/ads/AdvertisementsTopPage';
 
@@ -411,22 +412,10 @@ export default class Post extends Component {
       allContentPost = (
         <>
           <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-            <Author>
-              <ul>
-                <li>
-                  <img src={author.profileImage.url} alt="Author" />
-                </li>
-                <li>
-                  <div>
-                    <span>{author.name}</span>
-                    <span>
-                      <button type="submit">Follow +</button>
-                    </span>
-                    {postPublished}
-                  </div>
-                </li>
-              </ul>
-            </Author>
+            <PostAuthor
+              author={author}
+              postPublished={postPublished}
+            />
             <ShareButtons path={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
             <Title>
               {title}

@@ -18,6 +18,9 @@ import ITunesPodcast from '../../static/img/itunes.svg';
 import HostPicture from '../../static/img/davi-silva.png';
 
 
+import Ads from '../../components/UI/ads/AdvertisementSquare.component';
+
+
 import PodcastsList from '../../components/UI/lists/PodcastsList.component';
 // import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
 
@@ -221,12 +224,9 @@ export default class Podcasts extends Component {
             </InfinitePodcastList>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-            <aside>
-              <StickyWrapper>
-                <RecentCategories />
-                <NewsletterSide />
-              </StickyWrapper>
-            </aside>
+            <StickyWrapper>
+              <Ads />
+            </StickyWrapper>
           </div>
         </>
       );
