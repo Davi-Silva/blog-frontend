@@ -16,10 +16,9 @@ import Newsletter from '../../components/UI/newsletter/NewsletterSide.component'
 import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
 import ShareButtons from '../../components/UI/buttons/ShareButtons';
 import PostAuthor from '../../components/UI/author/blog/Author';
+import MostRecentPost from '../../components/UI/most-recent/blog/aside/MostRecentPost';
+import Ads from '../../components/UI/ads/AdvertisementSquare.component';
 
-// import AdvertisementsTopPage from '../../components/UI/ads/AdvertisementsTopPage';
-
-// import Helmet from '../../components/UI/helmet/Helmet';
 
 import {
   Cover,
@@ -29,6 +28,7 @@ import {
   TagsUl,
   TagLi,
   Tag,
+  AsideDiv,
   // LoadingTags,
   RelatedPost,
   UploadedOn,
@@ -436,10 +436,22 @@ export default class Post extends Component {
             </TagsUl>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-            <StickyWrapper>
-              <RecentCategories />
-              <Newsletter />
-            </StickyWrapper>
+            <AsideDiv>
+              <StickyWrapper>
+                <MostRecentPost />
+                <Ads />
+              </StickyWrapper>
+            </AsideDiv>
+            <AsideDiv>
+              <StickyWrapper>
+                <Ads />
+              </StickyWrapper>
+            </AsideDiv>
+            <AsideDiv>
+              <StickyWrapper>
+                <Ads />
+              </StickyWrapper>
+            </AsideDiv>
           </div>
           <Fluid className="container-fluid">
             <div className="row">

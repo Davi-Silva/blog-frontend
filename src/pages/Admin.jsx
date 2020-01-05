@@ -58,6 +58,11 @@ const Admin = (props) => {
 
   if (!_.isEmpty(userInfo)) {
     console.log('userInfo:', userInfo);
+  } else {
+    const {
+      history,
+    } = props;
+    history.push('/');
   }
 
   const onChangeCourse = () => {

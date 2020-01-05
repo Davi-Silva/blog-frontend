@@ -9,4 +9,8 @@ export const AdSquare = styled.div`
 	width: 100%;
 	height: 300px;
 	/* position: fixed; */
+	@media (max-width: 768px) {
+		min-height: 200px;
+		max-height: 400px;
+	}
 `;

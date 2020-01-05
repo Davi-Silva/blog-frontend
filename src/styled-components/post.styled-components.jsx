@@ -378,10 +378,6 @@ export const RelatedPost = styled(Link)`
 	 }
 `;
 
-export const AllContent = styled.div`
-
-`;
-
 export const LoadingAllContent = styled.div`
 	width: 100%;
 	svg {
@@ -460,5 +456,13 @@ export const RelatedPostBackgroundWrapper = styled.div`
 export const StickyWrapper = styled.div`
 	margin-top: 33px;
 	position: sticky;
-	top: 63px;
+	top: 55px;
+`;
+
+export const AsideDiv = styled.div`
+	width: 100%;
+	height: 33%;
+	@media (max-width: 768px) {
+		height: 480px;
+	}
 `;
