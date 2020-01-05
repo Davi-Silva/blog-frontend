@@ -169,6 +169,30 @@ const SideDrawer = (props) => {
                   All Posts
                 </SideDrawerLinkTo>
               </SideDrawerLi>
+              <SideDrawerLi>
+                <SideDrawerLinkTo
+                  to="/blog"
+                  onClick={handleClose}
+                >
+                  All Posts
+                </SideDrawerLinkTo>
+              </SideDrawerLi>
+              <SideDrawerLi>
+                <SideDrawerLinkTo
+                  to="/blog"
+                  onClick={handleClose}
+                >
+                  All Posts
+                </SideDrawerLinkTo>
+              </SideDrawerLi>
+              <SideDrawerLi>
+                <SideDrawerLinkTo
+                  to="/blog"
+                  onClick={handleClose}
+                >
+                  All Posts
+                </SideDrawerLinkTo>
+              </SideDrawerLi>
             </SideDrawerSubUl>
           </SideDrawerLi>
           <SideDrawerLi>
@@ -197,6 +221,12 @@ const SideDrawer = (props) => {
                 >
                   All Categories
                 </SideDrawerLinkTo>
+                <SideDrawerLinkTo
+                  to="/podcasts"
+                  onClick={handleClose}
+                >
+                  All Categories
+                </SideDrawerLinkTo>
               </SideDrawerLi>
             </SideDrawerSubUl>
           </SideDrawerLi>
@@ -214,6 +244,24 @@ const SideDrawer = (props) => {
             </SideDrawerButtonTo>
             <SideDrawerSubUl className="collapse navbar-collapse" id="expand-courses">
               <SideDrawerLi>
+                <SideDrawerLinkTo
+                  to="/courses"
+                  onClick={handleClose}
+                >
+                  Home
+                </SideDrawerLinkTo>
+                <SideDrawerLinkTo
+                  to="/courses"
+                  onClick={handleClose}
+                >
+                  Home
+                </SideDrawerLinkTo>
+                <SideDrawerLinkTo
+                  to="/courses"
+                  onClick={handleClose}
+                >
+                  Home
+                </SideDrawerLinkTo>
                 <SideDrawerLinkTo
                   to="/courses"
                   onClick={handleClose}
