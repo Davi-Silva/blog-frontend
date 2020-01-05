@@ -5,11 +5,9 @@ import _ from 'lodash';
 import UserProvider from '../contexts/UserProvider';
 
 import {
-  Cover,
   Wrapper,
   UserInfoDiv,
   ProfileImage,
-  Label,
   DisplayName,
   FollowButton,
   MemberSince,
