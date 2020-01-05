@@ -110,7 +110,7 @@ export const Cover = styled.div`
 		margin-bottom: 24px;
 	}
 	@media (max-width: 574px) {
-		height: 150px;
+		height: 170px;
 	}
 `;
 
@@ -128,7 +128,7 @@ export const BackgroundWrapper = styled.div`
 		height: 140px;
 	}
 	@media (max-width: 574px) {
-		height: 150px;
+		height: 170px;
 	}
 `;
 
@@ -152,6 +152,13 @@ export const PostInfoDiv = styled.div`
 	@media (max-width: 991px) {
 		top: 20px;
 	}
+	@media (max-width: 768px) {
+		top: 30px;
+    width: 250px;
+	}
+	@media (max-width: 576px) {
+		top: 40px;
+	}
 `;
 
 export const Title = styled.h5`
@@ -166,6 +173,9 @@ export const Title = styled.h5`
 	}
 	@media (max-width: 991px) {
 		font-size: 15px;
+	}
+	@media (max-width: 576px) {
+		font-size: 16px;
 	}
 `;
 
@@ -188,6 +198,9 @@ export const CategoryDiv = styled.div`
 	}
 	@media (max-width: 991px) {
 		top: 110px;
+	}
+	@media (max-width: 576px) {
+		top: 142px;
 	}
 `;
 
