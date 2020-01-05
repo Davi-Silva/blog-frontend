@@ -27,7 +27,10 @@ import {
 import ProfilePlaceholder from '../../../../static/img/profile-placeholder.png';
 
 const SideDrawer = (props) => {
-  const userInfo = useContext(UserProvider.context);
+  const {
+    UserData,
+  } = props;
+  const userInfo = UserData;
 
   const handleClose = () => {
     const {
@@ -69,7 +72,7 @@ const SideDrawer = (props) => {
             >
               <ProfileImage
                 onClick={handleClose}
-                src={profileImage}
+                src={profileImage.url}
               />
             </li>
             <li
@@ -231,4 +234,5 @@ export default SideDrawer;
 
 SideDrawer.propTypes = {
   HandleSideDrawer: PropTypes.func.isRequired,
+  UserData: PropTypes.shape.isRequired,
 };
