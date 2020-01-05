@@ -46,10 +46,10 @@ export const Cover = styled.div`
 		height: 105px;
 	}
 	@media (max-width: 769px) {
-		height: 135px;
+		height: 140px;
 	}
 	@media (max-width: 574px) {
-		height: 145px;
+		height: 170px;
 	}
 `;
 
@@ -64,10 +64,10 @@ export const BackgroundWrapper = styled.div`
 		height: 105px;
 	}
 	@media (max-width: 769px) {
-		height: 135px;
+		height: 140px;
 	}
 	@media (max-width: 574px) {
-		height: 145px;
+		height: 170px;
 	}
 `;
 
@@ -226,7 +226,7 @@ export const CategoryDiv = styled.div`
 		top: 110px;
 	}
 	@media (max-width: 576px) {
-		top: 118px;
+		top: 142px;
 	}
 `;
 

@@ -128,7 +128,7 @@ export const Cover = styled.div`
 		margin-bottom: 4px;
 	}
 	@media (max-width: 574px) {
-		height: 150px;
+		height: 170px;
 	}
 `;
 
@@ -146,7 +146,7 @@ export const BackgroundWrapper = styled.div`
 		height: 220px;
 	}
 	@media (max-width: 574px) {
-		height: 150px;
+		height: 170px;
 	}
 `;
 
@@ -225,7 +225,7 @@ export const CategoryDiv = styled.div`
 		top: 190px;
 	}
 	@media (max-width: 576px) {
-		top: 123px;
+		top: 142px;
 	}
 `;
 
