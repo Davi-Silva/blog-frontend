@@ -57,8 +57,8 @@ export default class PodcastsList extends Component {
       dateFormatted.getFullYear()}`;
 
     let tempTitle = title;
-    if (title.length > 60) {
-      tempTitle = `${title.substring(0, 60).trim()}...`;
+    if (title.length > 65) {
+      tempTitle = `${title.substring(0, 65).trim()}...`;
     }
 
     await this.setStateAsync({

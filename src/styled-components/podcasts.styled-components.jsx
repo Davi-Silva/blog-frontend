@@ -261,5 +261,5 @@ export const InfinitePodcastList = styled.ul`
 
 export const StickyWrapper = styled.div`
 	position: sticky;
-	top: 33px;
+	top: 15px;
 `;
