@@ -50,7 +50,6 @@ const SideDrawer = (props) => {
         'Content-Type': 'application/json',
       },
     });
-    console.log('response fron logout', response);
   };
 
   let ProfileDiv;
