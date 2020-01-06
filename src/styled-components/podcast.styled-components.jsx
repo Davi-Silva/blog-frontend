@@ -288,15 +288,14 @@ export const TagLi = styled.li`
 `;
 
 export const Tag = styled(Link)`
-	border: 1px solid #0058e4;
-	background: #fff;
+	padding: 5px 13px;
+	background: #eaeaea;
+	border-radius: 16px;
 	color: #333;
-	border-radius: 1px;
-	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 	display: inline;
-	padding: 5px 10px;
 	font-weight: 500;
 	margin-right: 10px;
+	font-size: 14px;
 	&:hover {
 		text-decoration: none;
 		color: #333;
