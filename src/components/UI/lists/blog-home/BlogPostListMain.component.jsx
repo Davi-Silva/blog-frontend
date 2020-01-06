@@ -109,6 +109,7 @@ export default class BlogPostListMain extends Component {
 
     const {
       index,
+      categoryColor,
     } = this.props;
 
     let allPosts;
@@ -152,7 +153,7 @@ export default class BlogPostListMain extends Component {
         <>
           <Card
             to={`/blog/${slug}`}
-            className="col-sm-6 col-12 p-0"
+            className="col-sm-6 col-12 p-0 "
             style={{ border: 'none' }}
           >
             <Cover
@@ -167,7 +168,9 @@ export default class BlogPostListMain extends Component {
               }}
             >
               <BackgroundWrapper />
-              <CategoryDiv>
+              <CategoryDiv
+                className={`${categoryColor}`}
+              >
                 <Category>
                   {category}
                 </Category>

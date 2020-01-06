@@ -19,6 +19,28 @@ export const BlogToPostMainDiv = styled.div`
 export const Card = styled(Link)`
   text-decoration: none;
   margin-bottom: 20px;
+	.grey {
+		&::before {
+			content: '';
+			height: 15px;
+			width: 2px;
+			display: block;
+			position: absolute;
+			top: 4px;
+			background: #999;
+		}
+	}
+	.blue {
+		&::before {
+			content: '';
+			height: 15px;
+			width: 2px;
+			display: block;
+			position: absolute;
+			top: 4px;
+			background: #0058e4;
+		}
+	}
   &:hover {
     text-decoration: none;
   }
