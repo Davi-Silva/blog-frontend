@@ -49,7 +49,9 @@ export const Cover = styled.div`
 		height: 140px;
 	}
 	@media (max-width: 574px) {
-		height: 170px;
+		background-image: url('')!important;
+		height: 106px;
+		border-bottom: 1px solid #999;
 	}
 `;
 
@@ -67,7 +69,7 @@ export const BackgroundWrapper = styled.div`
 		height: 140px;
 	}
 	@media (max-width: 574px) {
-		height: 170px;
+		display: none;
 	}
 `;
 
@@ -107,6 +109,9 @@ export const PublishedOn = styled.b`
 	@media (max-width: 991px) {
 		font-size: 11px;
 	}
+	@media (max-width: 576px) {
+		color: #333;
+	}
 `;
 
 export const PublishedOnMain = styled.b`
@@ -136,6 +141,7 @@ export const PostInfoDiv = styled.div`
 	}
 	@media (max-width: 576px) {
 		width: 300px;
+		top: 0px;
 	}
 `;
 
@@ -176,17 +182,8 @@ export const Title = styled.h5`
 	@media (max-width: 576px) {
 		width: unset;
 		font-size: 16px;																																																																																																																				
-		overflow-y: unset;																																																																																																																				
-	}
-	@media (max-width: 340px) {
-		width: 235px;
-		font-size: 15px;																																																																																																																				
-		overflow-y: unset;																																																																																																																				
-	}
-	@media (max-width: 260px) {
-		width: 195px;
-		font-size: 14px;																																																																																																																				
-		overflow-y: unset;																																																																																																																				
+		overflow-y: unset;	
+		color: #333;																																																																																																																			
 	}
 `;
 
@@ -226,7 +223,10 @@ export const CategoryDiv = styled.div`
 		top: 110px;
 	}
 	@media (max-width: 576px) {
-		top: 142px;
+		top: 65px;
+		&::before {
+			background: #333;
+		}
 	}
 `;
 
@@ -269,6 +269,7 @@ export const Category = styled.span`
 	}
 	@media (max-width: 576px) {
 		font-size: 13px;
+		color: #333;
 	}
 `;
 
