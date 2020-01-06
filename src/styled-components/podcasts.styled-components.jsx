@@ -71,10 +71,17 @@ export const Host = styled.div`
 			li {
 				list-style: none;
 				display: inline-block;
+				@media (max-width: 578px) {
+					display: block;
+				}
 				img {
 					height: 70px;
 					width: 70px;
 					border-radius: 50px;
+					@media (max-width: 578px) {
+						margin: 0 auto;
+						display: table;
+					}
 				}
 				p {
 					margin-bottom: 0;
@@ -89,6 +96,10 @@ export const Host = styled.div`
 			.hostInfo {
 				transform: translateY(17px);
 				margin-left: 10px;
+				@media (max-width: 578px) {
+					text-align: center;
+					margin: -10px 0 43px 0;
+				}
 			}
 		}
 		.desc {
