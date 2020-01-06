@@ -460,7 +460,9 @@ export default class Post extends Component {
             <ShareButtons path={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
             <TimeToReadCategoryUl>
               <li>
-                <Category>
+                <Category
+                  to={`/blog/category/${slugify(category.toLowerCase())}`}
+                >
                   {category}
                 </Category>
               </li>
@@ -498,10 +500,6 @@ export default class Post extends Component {
             <AsideDiv>
               <StickyWrapper>
                 <Ads />
-              </StickyWrapper>
-            </AsideDiv>
-            <AsideDiv>
-              <StickyWrapper>
                 <Ads />
               </StickyWrapper>
             </AsideDiv>

@@ -66,13 +66,17 @@ export const TimeToRead = styled.span`
 	}
 `;
 
-export const Category = styled.span`
+export const Category = styled(Link)`
 	padding: 5px 13px;
 	background: #0058e4;
 	border-radius: 16px;
 	color: #fff;
 	display: table;
 	font-size: 14px;
+	&:hover {
+		color: #fff;
+		text-decoration: none;
+	}
 	@media (max-width: 578px) {
 		font-size: 13px;
 	}
@@ -489,7 +493,7 @@ export const StickyWrapper = styled.div`
 
 export const AsideDiv = styled.div`
 	width: 100%;
-	height: 33%;
+	height: 50%;
 	@media (max-width: 768px) {
 		height: 480px;
 	}
