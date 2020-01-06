@@ -46,6 +46,39 @@ export const Title = styled.h1`
 	}
 `;
 
+export const TimeToReadCategoryUl = styled.ul`
+	li {
+		list-style: none;
+		display: inline-block;
+		margin-right: 5px;
+	}
+`;
+
+export const TimeToRead = styled.span`
+	padding: 5px 13px;
+	background: #f1f1f1;
+	border-radius: 16px;
+	color: #333;
+	display: table;
+	font-size: 14px;
+	@media (max-width: 578px) {
+		font-size: 13px;
+	}
+`;
+
+export const Category = styled.span`
+	padding: 5px 13px;
+	background: #0058e4;
+	border-radius: 16px;
+	color: #fff;
+	display: table;
+	font-size: 14px;
+	@media (max-width: 578px) {
+		font-size: 13px;
+	}
+`;
+
+
 export const Author = styled.div`
 	margin: 8px 0;
 	ul {
@@ -113,11 +146,6 @@ export const LoadingTitle = styled.h1`
 	letter-spacing: 1px;
 	margin: 10px 0px;
 	animation: ${opacity} 2s ease-in-out infinite;
-`;
-
-export const Category = styled.p`
-	color: #999;
-	margin: 10px 0px;
 `;
 
 export const LoadingCategory = styled.p`
