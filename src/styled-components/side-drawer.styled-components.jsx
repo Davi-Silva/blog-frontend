@@ -148,6 +148,27 @@ export const SideDrawerLinkTo = styled(Link)`
   }
 `;
 
+export const AdminLink = styled(Link)`
+  color: #333;
+  font-size: 16px;
+  width: 100%;
+  display: block;
+  padding: 8px 15px;
+  transition: all .3s ease-in-out;
+  text-align:left;
+  border: none;
+  background: transparent;
+  &:hover {
+    color: #333;
+    text-decoration: none;
+    background: #efefef;
+    border-radius: 3px;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
 export const SideDrawerLinkToAdmin = styled(Link)`
   transition: all .3s ease-in-out;
   ul {
