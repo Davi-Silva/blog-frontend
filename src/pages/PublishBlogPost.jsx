@@ -49,6 +49,7 @@ export default class PublishBlogPost extends Component {
     this.changeSlugFromTitle = this.changeSlugFromTitle.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.tagsToArray = this.tagsToArray.bind(this);
+    this.appendPostToAuthor = this.appendPostToAuthor.bind(this);
   }
 
   async componentDidMount() {
@@ -207,6 +208,23 @@ export default class PublishBlogPost extends Component {
     return data;
   }
 
+  async appendPostToAuthor(userId, postsArray) {
+    const response = fetch('http://localhost:5000/admin/user/post/to/author', {
+      method: 'PUT',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId,
+        postsArray
+      }),
+    });
+    return response;
+  }
+
   async onSubmit(e) {
     e.preventDefault();
     const {
@@ -239,6 +257,12 @@ export default class PublishBlogPost extends Component {
       let isSlugValidRes = await this.verifySlug(this.state.slug);
       if (isSlugValidRes.valid) {
         let res = await this.publishPost(postInfo);
+        let userPostsArray = [];
+        userPostsArray = userInfo[0].posts;
+        console.log('userPostsArray React:', userPostsArray);
+        userPostsArray.push(res)
+        console.log('userPostsArray React After:', userPostsArray);
+        this.appendPostToAuthor(userInfo[0]._id, userPostsArray);
         this.setStateAsync({
           uploaded: res.uploaded
         });

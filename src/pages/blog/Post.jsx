@@ -24,6 +24,9 @@ import {
   Cover,
   Author,
   Title,
+  TimeToReadCategoryUl,
+  TimeToRead,
+  Category,
   Content,
   TagsUl,
   TagLi,
@@ -68,6 +71,7 @@ export default class Post extends Component {
     this.getPostByCategory = this.getPostByCategory.bind(this);
     this.parseDate = this.parseDate.bind(this);
     // this.covertAllTags = this.covertAllTags.bind(this);
+    this.updateHowManyRead = this.updateHowManyRead.bind(this);
   }
 
   async componentDidMount() {
@@ -83,9 +87,22 @@ export default class Post extends Component {
         updatedOn,
         cover,
         author,
+        howManyRead,
       } = post[0];
+      const postObj = {
+        slug,
+        howManyReadNumber: howManyRead,
+      };
+      const updatedNumberOfRead = await this.updateHowManyRead(postObj);
       const relatedCategoryPosts = await this.getPostByCategory(category, slug);
-      // this.covertAllTags()
+      // Estimate the time read the content
+      const wordsPerMinutes = 200;
+      let timeToRead;
+      const textLength = content.split(' ').length;
+      if (textLength > 0) {
+        const value = Math.ceil(textLength / wordsPerMinutes);
+        timeToRead = `${value} min read`;
+      }
       const dateFormatted = this.parseDate(publishedOn);
       const months = [
         'January',
@@ -114,6 +131,8 @@ export default class Post extends Component {
           coverAlt: cover.name,
           relatedCategoryPosts,
           author,
+          howManyRead: updatedNumberOfRead.howManyReadNumber,
+          timeToRead,
         });
       }
       if (updatedOn !== null) {
@@ -131,6 +150,8 @@ export default class Post extends Component {
           cover: cover.url,
           coverAlt: cover.name,
           relatedCategoryPosts,
+          howManyRead: updatedNumberOfRead.howManyReadNumber,
+          timeToRead,
         });
       }
     } else {
@@ -174,6 +195,7 @@ export default class Post extends Component {
     const data = await this.response.json();
     return data;
   }
+
 
   setStateAsync(state) {
     return new Promise((resolve) => {
@@ -289,6 +311,24 @@ export default class Post extends Component {
     return column;
   }
 
+  async updateHowManyRead(post) {
+    this.response = await fetch(
+      'http://localhost:5000/blog/update/post/how-many-read',
+      {
+        method: 'PUT',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(post),
+      },
+    );
+    const data = await this.response.json();
+    return data;
+  }
+
   parseDate(input) {
     this.parts = input.match(/(\d+)/g);
     return new Date(this.parts[0], this.parts[1] - 1, this.parts[2]);
@@ -306,6 +346,7 @@ export default class Post extends Component {
       publishedOn,
       updatedOn,
       author,
+      timeToRead,
     } = this.state;
     const {
       location,
@@ -417,6 +458,18 @@ export default class Post extends Component {
               postPublished={postPublished}
             />
             <ShareButtons path={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+            <TimeToReadCategoryUl>
+              <li>
+                <Category>
+                  {category}
+                </Category>
+              </li>
+              <li>
+                <TimeToRead>
+                  {timeToRead}
+                </TimeToRead>
+              </li>
+            </TimeToReadCategoryUl>
             <Title>
               {title}
             </Title>
