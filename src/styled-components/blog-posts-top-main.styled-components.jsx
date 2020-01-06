@@ -27,7 +27,7 @@ export const Card = styled(Link)`
 			display: block;
 			position: absolute;
 			top: 4px;
-			background: #999;
+			background: #b1b1b1;
 		}
 	}
 	.blue {
