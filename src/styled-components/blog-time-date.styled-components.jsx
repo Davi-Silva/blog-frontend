@@ -23,4 +23,8 @@ export const DayMonthYear = styled.span`
 		font-size: 16px;
 		margin: 8px 0;
 	}
+	@media (max-width: 576px) {
+		font-size: 15px;
+		margin: 8px 0;
+	}
 `;
