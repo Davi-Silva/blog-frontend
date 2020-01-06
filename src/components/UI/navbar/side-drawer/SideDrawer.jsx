@@ -11,6 +11,7 @@ import {
   ProfileDrawerUl,
   SideDrawerSubUl,
   ProfileImage,
+  AdminLink,
   ProfileName,
   ProfileRanking,
   SideDrawerUl,
@@ -272,6 +273,9 @@ const SideDrawer = (props) => {
             </SideDrawerSubUl>
           </SideDrawerLi>
         </SideDrawerUl>
+        <AdminLink to="/admin">
+          Admin
+        </AdminLink>
         {logoutVar}
       </Drawer>
     </>
