@@ -162,7 +162,35 @@ export const PostInfoDiv = styled.div`
 		width: 247px;
 	}
 	@media (max-width: 576px) {
+		width: 470px;
+		top: 0px;
+	}
+	@media (max-width: 500px) {
+		width: 430px;
+		top: 0px;
+	}
+	@media (max-width: 460px) {
+		width: 400px;
+		top: 0px;
+	}
+	@media (max-width: 415px) {
+		width: 370px;
+		top: 0px;
+	}
+	@media (max-width: 385px) {
+		width: 325px;
+		top: 0px;
+	}
+	@media (max-width: 358px) {
 		width: 300px;
+		top: 0px;
+	}
+	@media (max-width: 335px) {
+		width: 270px;
+		top: 0px;
+	}
+	@media (max-width: 300px) {
+		width: 250px;
 		top: 0px;
 	}
 `;
