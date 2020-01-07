@@ -67,7 +67,7 @@ export const TimeToRead = styled.span`
 `;
 
 export const Category = styled(Link)`
-	padding: 5px 13px;
+	padding: 6px 13px;
 	background: #0058e4;
 	border-radius: 16px;
 	color: #fff;
@@ -297,7 +297,7 @@ export const TagLi = styled.li`
 `;
 
 export const Tag = styled(Link)`
-	padding: 5px 13px;
+	padding: 6px 13px;
 	background: #eaeaea;
 	border-radius: 16px;
 	color: #333;

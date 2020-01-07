@@ -146,8 +146,19 @@ export const LoadingTitle = styled.h1`
 `;
 
 export const Category = styled.p`
-	color: #999;
-	margin: 10px 0px;
+	padding: 6px 13px;
+	background: #0058e4;
+	border-radius: 16px;
+	color: #fff;
+	display: table;
+	font-size: 14px;
+	&:hover {
+		color: #fff;
+		text-decoration: none;
+	}
+	@media (max-width: 578px) {
+		font-size: 13px;
+	}
 `;
 
 export const LoadingCategory = styled.p`
@@ -288,7 +299,7 @@ export const TagLi = styled.li`
 `;
 
 export const Tag = styled(Link)`
-	padding: 5px 13px;
+	padding: 6px 13px;
 	background: #eaeaea;
 	border-radius: 16px;
 	color: #333;
