@@ -277,7 +277,7 @@ export const LoadingAudio = styled.p`
 `;
 
 export const TagsUl = styled.ul`
-	font-size: 14px;
+	font-size: 16px;
 	height: 50px;
 	padding-top: 5px;
   white-space: nowrap;
@@ -300,6 +300,7 @@ export const TagLi = styled.li`
 
 export const Tag = styled(Link)`
 	padding: 6px 13px;
+	font-size: 16px;
 	background: #eaeaea;
 	border-radius: 16px;
 	color: #333;
