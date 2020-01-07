@@ -11,13 +11,12 @@ import {
 } from 'react-icons/fa';
 
 import SubNavBar from '../../components/UI/navbar/SubNavBar';
-// import AdSense from '../components/UI/ads/AdvertisementSquare.component';
-import Newsletter from '../../components/UI/newsletter/NewsletterSide.component';
-import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
 import ShareButtons from '../../components/UI/buttons/ShareButtons';
 import PostAuthor from '../../components/UI/author/blog/Author';
 import MostRecentPost from '../../components/UI/most-recent/blog/aside/MostRecentPost';
 import Ads from '../../components/UI/ads/AdvertisementSquare.component';
+import Tags from '../../components/UI/post/Tags';
+import WrittenBy from '../../components/UI/author/blog/WrittenBy';
 
 
 import {
@@ -28,9 +27,6 @@ import {
   TimeToRead,
   Category,
   Content,
-  TagsUl,
-  TagLi,
-  Tag,
   AsideDiv,
   // LoadingTags,
   RelatedPost,
@@ -436,75 +432,77 @@ export default class Post extends Component {
         );
       } else {
         postRelatedPost = (
-          <RelatedPostLabel>
-            Related Blog Posts
+          <>
+            <RelatedPostLabel>
+              Related Blog Posts
+            </RelatedPostLabel>
             <br />
-            <div className="container">
-              <div className="row">
-                {
+            <RelatedPostList>
+              <div className="container">
+                <div className="row">
+                  {
                 relatedCategoryPosts.map((post, key) => this.getColumn(post, key))
                 }
+                </div>
               </div>
-            </div>
-            <RelatedPostList />
-          </RelatedPostLabel>
+            </RelatedPostList>
+          </>
         );
       }
       allContentPost = (
         <>
-          <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-            <PostAuthor
-              author={author}
-              postPublished={postPublished}
-            />
-            <ShareButtons path={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
-            <TimeToReadCategoryUl>
-              <li>
-                <Category
-                  to={`/blog/category/${slugify(category.toLowerCase())}`}
-                >
-                  {category}
-                </Category>
-              </li>
-              <li>
-                <TimeToRead>
-                  {timeToRead}
-                </TimeToRead>
-              </li>
-            </TimeToReadCategoryUl>
-            <Title>
-              {title}
-            </Title>
-            <Content dangerouslySetInnerHTML={{ __html: content }} />
-            <TagsUl>
-              {
-                tags.map((tag, key) => (
-                  <>
-                    <TagLi key={key}>
-                      <Tag to={`/blog/tags/${slugify(tag.toLowerCase())}`}>
-                        {tag}
-                      </Tag>
-                    </TagLi>
-                  </>
-                ))
-              }
-            </TagsUl>
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-9 col-md-9 col-sm-12 col-12">
+                <PostAuthor
+                  author={author}
+                  postPublished={postPublished}
+                />
+                <ShareButtons path={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+                <TimeToReadCategoryUl>
+                  <li>
+                    <Category
+                      to={`/blog/category/${slugify(category.toLowerCase())}`}
+                    >
+                      {category}
+                    </Category>
+                  </li>
+                  <li>
+                    <TimeToRead>
+                      {timeToRead}
+                    </TimeToRead>
+                  </li>
+                </TimeToReadCategoryUl>
+                <Title>
+                  {title}
+                </Title>
+                <Content dangerouslySetInnerHTML={{ __html: content }} />
+                <Tags
+                  tagsArray={tags}
+                />
+                <WrittenBy
+                  author={author}
+                />
+              </div>
+              <div className="col-lg-3 col-md-3 col-sm-12 col-12">
+                <AsideDiv>
+                  <StickyWrapper>
+                    <MostRecentPost />
+                    <Ads />
+                  </StickyWrapper>
+                </AsideDiv>
+                <AsideDiv>
+                  <StickyWrapper>
+                    <Ads />
+                    <Ads
+                      IsLast="last"
+                    />
+                  </StickyWrapper>
+                </AsideDiv>
+              </div>
+            </div>
           </div>
-          <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-            <AsideDiv>
-              <StickyWrapper>
-                <MostRecentPost />
-                <Ads />
-              </StickyWrapper>
-            </AsideDiv>
-            <AsideDiv>
-              <StickyWrapper>
-                <Ads />
-                <Ads />
-              </StickyWrapper>
-            </AsideDiv>
-          </div>
-          <Fluid className="container-fluid">
+          <Fluid className="container">
             <div className="row">
               <div className="col-12">
                 {postRelatedPost}
@@ -529,11 +527,7 @@ export default class Post extends Component {
             </div>
           </div>
         </div>
-        <div className="container">
-          <div className="row">
-            {allContentPost}
-          </div>
-        </div>
+        {allContentPost}
       </>
     );
   }

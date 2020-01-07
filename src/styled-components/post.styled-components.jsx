@@ -274,42 +274,6 @@ export const LoadingAudio = styled.p`
 	animation: ${opacity} 2s ease-in-out infinite;
 `;
 
-export const TagsUl = styled.ul`
-	font-size: 14px;
-	height: 50px;
-	padding-top: 5px;
-  white-space: nowrap;
-  display: flex;
-	width: 100%;
-	overflow-x: scroll;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-	margin-bottom: 0;
-	::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-export const TagLi = styled.li`
-	display: inline-block;
-	scroll-snap-align: start;
-`;
-
-export const Tag = styled(Link)`
-	padding: 6px 13px;
-	background: #eaeaea;
-	border-radius: 16px;
-	color: #333;
-	display: inline;
-	padding: 5px 10px;
-	font-weight: 500;
-	margin-right: 10px;
-	&:hover {
-		text-decoration: none;
-		color: #333;
-	}
-`;
 
 export const LoadingTags = styled.p`
 	font-size: 14px;
@@ -422,15 +386,9 @@ export const LoadingAllContent = styled.div`
 
 export const RelatedPostList = styled.ul`
 	margin-top: 10px;
-	height: 140px;
+	/* height: 140px; */
 	width: 100%;
-	transform: translate(-5px);
-	overflow-y: scroll;
-	overflow-y: hidden;
-	white-space: nowrap;
-	@media (max-width: 480px) {
-		height: 135px;
-	}
+
 `;
 
 export const RelatedPostLi = styled.li`
@@ -495,5 +453,10 @@ export const AsideDiv = styled.div`
 	height: 50%;
 	@media (max-width: 768px) {
 		height: 480px;
+	}
+	div {
+		.last {
+			margin-bottom: 60px;
+		}
 	}
 `;
