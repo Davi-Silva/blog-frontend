@@ -91,8 +91,11 @@ export const WrittenByAuthorInfoUl = styled.ul`
       line-height: 20px;
       @media (max-width: 991px) {
         font-size: 12px;
-        width: 415px;
+        width: 320px;
         line-height: 17px;
+      }
+      @media (max-width: 768px) {
+        width: 315px;
       }
       @media (max-width: 575px) {
         width: 80%;
@@ -105,4 +108,35 @@ export const WrittenByAuthorInfoUl = styled.ul`
       }    
     }
   }
+`;
+
+export const FollowButton = styled.button`
+	background-color: #fff;
+	border: 1px solid #00b170;
+	border-radius: 3px;
+	padding: 3px 7px;
+	color: #00b170;
+	font-size: 16px;
+	transition: .2s all ease-in-out;
+	&:focus {
+		outline: none;
+	}
+	&:hover {
+		color: #fff;
+		background-color: #00b170;
+	}
+  @media (max-width: 1199px) {
+		font-size: 15px;
+	}
+	@media (max-width: 991px) {
+		font-size: 13px;
+    margin-left: 10px;
+	}
+  @media (max-width: 768px) {
+    margin-left: 15px;
+  }
+  @media (max-width: 575px) {
+    margin: 15px auto 0 auto;
+    display: table;
+  }  
 `;
