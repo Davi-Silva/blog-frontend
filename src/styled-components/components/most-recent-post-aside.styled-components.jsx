@@ -17,7 +17,7 @@ export const LinkTo = styled(Link)`
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 160px;
+  height: 170px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

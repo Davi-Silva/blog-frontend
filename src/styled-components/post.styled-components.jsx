@@ -19,6 +19,7 @@ export const UploadedOn = styled.p`
 	margin: 0 0 0 9px;
 	font-size: 12px!important;
 	font-weight: 700;
+	line-height: 10px;
 `;
 
 export const Title = styled.h1`
@@ -280,98 +281,14 @@ export const LoadingTags = styled.p`
 	animation: ${opacity} 2s ease-in-out infinite;
 `;
 
-export const RelatedPostLabel = styled.b`
-	margin: 10px 0 0 15px;
-	ul {
-		::-webkit-scrollbar {
-			height: 5px;
-			width: 10px;
-		}
-
-		::-webkit-scrollbar-track {
-			background: transparent;
-		}
-
-		::-webkit-scrollbar-thumb {
-			background: #fff;
-			border: 1px solid #0058e4;
-		}
-
-		::-webkit-scrollbar-thumb:hover {
-			background: #0058e4;
-		}
-	}
-`;
-
-export const LoadingRelatedPostLabel = styled.b`
-	font-size: 14px;
-	animation: ${opacity} 2s ease-in-out infinite;
-`;
-
 export const Fluid = styled.div`
 	padding: 0;
+	margin-top: 60px;
 	@media (max-width: 768px) {
 		padding: 0 15px;
 	}
 `;
 
-export const ColumnLeft = styled.div`
-	padding: 0 2px 0 15px;
-	@media (max-width: 768px) {
-		padding: 0 2px 0 0;
-	}
-	@media (max-width: 576px) {
-		padding: 0;
-	}
-`;
-
-export const ColumnCenterLeft = styled.div`
-	padding: 0 2px;
-	@media (max-width: 768px) {
-		padding: 0 0 0 2px;
-	}
-	@media (max-width: 576px) {
-		padding: 0;
-	}
-`;
-
-export const ColumnCenterRight = styled.div`
-	padding: 0 2px;
-	@media (max-width: 768px) {
-		padding: 0 2px 0 0;
-	}
-	@media (max-width: 576px) {
-		padding: 0;
-	}
-`;
-
-export const ColumnRight = styled.div`
-	padding: 0 15px 0 2px;
-	@media (max-width: 768px) {
-		padding: 0 0 0 2px;
-	}
-	@media (max-width: 576px) {
-		padding: 0;
-	}
-`;
-
-export const RelatedPost = styled(Link)`
-	text-decoration: none;
-	 &:hover {
-		 text-decoration: none;
-	 }
-	 div {
-		width: unset;
-		height: 125px!important;
-		@media (max-width: 768px) {
-			margin-bottom: 4px;
-		}
-		@media (max-width: 574px) {
-			height: 145px!important;
-			margin-bottom: 10px;
-		}
-	 }
-`;
 
 export const LoadingAllContent = styled.div`
 	width: 100%;
@@ -384,69 +301,13 @@ export const LoadingAllContent = styled.div`
 	}
 `;
 
-export const RelatedPostList = styled.ul`
-	margin-top: 10px;
-	/* height: 140px; */
-	width: 100%;
-
-`;
-
-export const RelatedPostLi = styled.li`
-	list-style: none;
-	display: inline-block;
-	width: 180px!important;
-	margin: 0 5px;
-	width: unset;
-	height: 140px;
-	@media (max-width: 480px) {
-		margin: 0 3px!important;
-		height: 120px;
-		width: 150px!important;
-	}
-`;
-
-export const RelatedPostH6 = styled.h6`
-	color: #fff;
-	font-size: 17px;
-	font-weight: 900;
-	margin: 5px 0;
-	position: absolute;
-	top: 50px;
-	width: 260px;
-	left: 5px;
-	overflow: hidden;
-	@media (max-width: 574px) {
-		font-size: 16px;
-	}
-	/* @media (max-width: 480px) {
-		font-size: 13px;
-	} */
-`;
-
-
-export const RelatedPostBackgroundWrapper = styled.div`
-	background: linear-gradient(0deg, rgba(0,0,0,0.8491771708683473) 0%, rgba(0,212,255,0) 100%);
-	height: 170px;
-	width: 100%;
-	@media (max-width: 1199px) {
-		height: 140px;
-	}
-	@media (max-width: 991px) {
-		height: 105px;
-	}
-	@media (max-width: 769px) {
-		height: 135px;
-	}
-	@media (max-width: 574px) {
-		height: 145px;
-	}
-`;
 
 export const StickyWrapper = styled.div`
 	margin-top: 33px;
 	position: sticky;
 	top: 55px;
 `;
+
 
 export const AsideDiv = styled.div`
 	width: 100%;

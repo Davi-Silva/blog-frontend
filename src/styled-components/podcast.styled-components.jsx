@@ -145,13 +145,16 @@ export const LoadingTitle = styled.h1`
 	animation: ${opacity} 2s ease-in-out infinite;
 `;
 
-export const Category = styled.p`
+export const Category = styled(Link)`
 	padding: 6px 13px;
 	background: #0058e4;
 	border-radius: 16px;
 	color: #fff;
 	display: table;
+	transform: translateY(0px);
 	font-size: 14px;
+	margin-top: 5px;
+	margin-bottom: 10px;
 	&:hover {
 		color: #fff;
 		text-decoration: none;

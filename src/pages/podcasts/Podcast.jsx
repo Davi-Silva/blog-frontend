@@ -408,7 +408,9 @@ export default class Podcast extends Component {
             <Wrapper>
               {podcastUpdated}
               <Title>{title}</Title>
-              <Category>
+              <Category
+                to={`/podcasts/category/${slugify(category.toLowerCase())}`}
+              >
                 {category}
               </Category>
               <AudioPlayer

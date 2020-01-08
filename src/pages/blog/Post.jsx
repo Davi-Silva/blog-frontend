@@ -16,12 +16,12 @@ import PostAuthor from '../../components/UI/author/blog/Author';
 import MostRecentPost from '../../components/UI/most-recent/blog/aside/MostRecentPost';
 import Ads from '../../components/UI/ads/AdvertisementSquare.component';
 import Tags from '../../components/UI/post/Tags';
+import RelatedPosts from '../../components/UI/post/RelatedPosts';
 import WrittenBy from '../../components/UI/author/blog/WrittenBy';
 
 
 import {
   Cover,
-  Author,
   Title,
   TimeToReadCategoryUl,
   TimeToRead,
@@ -29,21 +29,10 @@ import {
   Content,
   AsideDiv,
   // LoadingTags,
-  RelatedPost,
   UploadedOn,
-  RelatedPostLabel,
-  LoadingRelatedPostLabel,
   // AllContent,
   LoadingAllContent,
   Fluid,
-  ColumnLeft,
-  ColumnCenterLeft,
-  ColumnCenterRight,
-  ColumnRight,
-  RelatedPostList,
-  RelatedPostBackgroundWrapper,
-  RelatedPostLi,
-  RelatedPostH6,
   StickyWrapper,
 } from '../../styled-components/post.styled-components';
 
@@ -59,7 +48,6 @@ export default class Post extends Component {
       updatedOn: null,
       cover: '',
       coverAlt: '',
-      relatedCategoryPosts: [],
       author: null,
     };
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -199,114 +187,6 @@ export default class Post extends Component {
     });
   }
 
-  getColumn(post, index) {
-    let column;
-    if (index === 0) {
-      console.log('index:', index);
-      column = (
-        <>
-          <ColumnLeft className="col-lg-3 col-md-3 col-sm-6 col-12">
-
-            <RelatedPost to={post.slug}>
-              <div
-                style={{
-                  backgroundImage: `url(${post.cover.url})`,
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                  height: '170px',
-                  width: '100%',
-                }}
-              >
-                <RelatedPostBackgroundWrapper />
-                <RelatedPostH6>
-                  {post.title}
-                </RelatedPostH6>
-              </div>
-            </RelatedPost>
-          </ColumnLeft>
-        </>
-      );
-    } else if (index === 1) {
-      column = (
-        <>
-          <ColumnCenterLeft className="col-lg-3 col-md-3 col-sm-6 col-12">
-
-            <RelatedPost to={post.slug}>
-              <div
-                style={{
-                  backgroundImage: `url(${post.cover.url})`,
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                  height: '170px',
-                  width: '100%',
-                }}
-              >
-                <RelatedPostBackgroundWrapper />
-                <RelatedPostH6>
-                  {post.title}
-                </RelatedPostH6>
-              </div>
-            </RelatedPost>
-          </ColumnCenterLeft>
-        </>
-      );
-    } else if (index === 2) {
-      column = (
-        <>
-          <ColumnCenterRight className="col-lg-3 col-md-3 col-sm-6 col-12">
-
-            <RelatedPost to={post.slug}>
-              <div
-                style={{
-                  backgroundImage: `url(${post.cover.url})`,
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                  height: '170px',
-                  width: '100%',
-                }}
-              >
-                <RelatedPostBackgroundWrapper />
-                <RelatedPostH6>
-                  {post.title}
-                </RelatedPostH6>
-              </div>
-            </RelatedPost>
-          </ColumnCenterRight>
-        </>
-      );
-    } else if (index === 3) {
-      column = (
-        <>
-          <ColumnRight className="col-lg-3 col-md-3 col-sm-6 col-12">
-
-            <RelatedPost to={post.slug}>
-              <div
-                style={{
-                  backgroundImage: `url(${post.cover.url})`,
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                  height: '170px',
-                  width: '100%',
-                }}
-              >
-                <RelatedPostBackgroundWrapper />
-                <RelatedPostH6>
-                  {post.title}
-                </RelatedPostH6>
-              </div>
-            </RelatedPost>
-          </ColumnRight>
-        </>
-      );
-    }
-
-    return column;
-  }
-
   async updateHowManyRead(post) {
     this.response = await fetch(
       'http://localhost:5000/blog/update/post/how-many-read',
@@ -333,6 +213,7 @@ export default class Post extends Component {
   render() {
     const {
       title,
+      slug,
       category,
       cover,
       coverAlt,
@@ -351,7 +232,6 @@ export default class Post extends Component {
     let helmet;
     let allContentPost;
     let postPublished;
-    let postRelatedPost;
 
     if (title === '') {
       helmet = (
@@ -426,29 +306,7 @@ export default class Post extends Component {
           </UploadedOn>
         );
       }
-      if (relatedCategoryPosts.found === false) {
-        postRelatedPost = (
-          <LoadingRelatedPostLabel />
-        );
-      } else {
-        postRelatedPost = (
-          <>
-            <RelatedPostLabel>
-              Related Blog Posts
-            </RelatedPostLabel>
-            <br />
-            <RelatedPostList>
-              <div className="container">
-                <div className="row">
-                  {
-                relatedCategoryPosts.map((post, key) => this.getColumn(post, key))
-                }
-                </div>
-              </div>
-            </RelatedPostList>
-          </>
-        );
-      }
+
       allContentPost = (
         <>
           <div className="container">
@@ -505,7 +363,10 @@ export default class Post extends Component {
           <Fluid className="container">
             <div className="row">
               <div className="col-12">
-                {postRelatedPost}
+                <RelatedPosts
+                  slug={slug}
+                  category={category}
+                />
               </div>
             </div>
           </Fluid>
