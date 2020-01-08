@@ -11,6 +11,7 @@ export const LoadingRelatedPostLabel = styled.b`
 
 export const RelatedPostList = styled.ul`
 	margin-top: 10px;
+	margin-bottom: 120px;
 	width: 100%;
 
 `;
