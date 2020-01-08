@@ -44,7 +44,7 @@ const RelatedPosts = (category, slug) => {
 
   const getPostByCategory = async () => {
     const response = await fetch(
-      `https://cryptic-activist-backend.herokuapp.com/blog/get/category/newest/${slug}/${category}`,
+      `http://localhost:5000/blog/get/category/newest/${slug}/${category}`,
       {
         method: 'GET',
         mode: 'cors',

@@ -177,7 +177,7 @@ export default class PublishBlogPost extends Component {
       type: 'blog',
       title,
     };
-    const response = fetch('https://cryptic-activist-backend.herokuapp.com/admin/blog/set/global-variable', {
+    const response = fetch('http://localhost:5000/admin/blog/set/global-variable', {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
@@ -193,7 +193,7 @@ export default class PublishBlogPost extends Component {
 
   async verifySlug(slug) {
     this.response = await fetch(
-      `https://cryptic-activist-backend.herokuapp.com/admin/blog/validation/slug/${slug}`,
+      `http://localhost:5000/admin/blog/validation/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -278,7 +278,7 @@ export default class PublishBlogPost extends Component {
 
   async publishPost(podcast) {
     this.response = await fetch(
-      'https://cryptic-activist-backend.herokuapp.com/admin/blog/publish',
+      'http://localhost:5000/admin/blog/publish',
       {
         method: 'POST',
         mode: 'cors',

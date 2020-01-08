@@ -25,7 +25,7 @@ const PublicProfile = (props) => {
       user,
     } = props.match.params;
     const getPublicUser = async (userData) => {
-      const response = await fetch(`https://cryptic-activist-backend.herokuapp.com/users/public-profile/${userData}`, {
+      const response = await fetch(`http://localhost:5000/users/public-profile/${userData}`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',
