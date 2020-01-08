@@ -66,7 +66,7 @@ export default class BlogPostsByCategory extends Component {
     const {
       page,
     } = this.state;
-    this.response = await fetch(`http://localhost:5000/blog/get/category/${category}?page=${page}`, {
+    this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/get/category/${category}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -91,7 +91,7 @@ export default class BlogPostsByCategory extends Component {
       category,
       posts,
     } = this.state;
-    this.response = await fetch(`http://localhost:5000/blog/get/category/${category}?page=${page}`, {
+    this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/get/category/${category}?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',

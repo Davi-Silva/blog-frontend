@@ -15,7 +15,7 @@ const MostRecentVideos = () => {
 
   useEffect(() => {
     const getTutorials = async () => {
-      const response = await fetch('http://localhost:5000/blog/home/most-recent-videos', {
+      const response = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/home/most-recent-videos', {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',
