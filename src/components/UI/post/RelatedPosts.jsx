@@ -6,6 +6,7 @@ import {
   RelatedPostLabel,
   RelatedPostList,
   AuthorInfoDiv,
+  Wrapper,
   Author,
   RelatedPost,
   RelatedPostH6,
@@ -78,6 +79,7 @@ const RelatedPosts = (category, slug) => {
               <ul>
                 <li>
                   <div
+                    className="cover"
                     style={{
                       backgroundImage: `url(${post.cover.url})`,
                       backgroundSize: 'cover',
@@ -126,6 +128,7 @@ const RelatedPosts = (category, slug) => {
               <ul>
                 <li>
                   <div
+                    className="cover"
                     style={{
                       backgroundImage: `url(${post.cover.url})`,
                       backgroundSize: 'cover',
@@ -174,6 +177,7 @@ const RelatedPosts = (category, slug) => {
               <ul>
                 <li>
                   <div
+                    className="cover"
                     style={{
                       backgroundImage: `url(${post.cover.url})`,
                       backgroundSize: 'cover',
@@ -248,7 +252,9 @@ const RelatedPosts = (category, slug) => {
 
   return (
     <>
-      {postRelatedPost}
+      <Wrapper>
+        {postRelatedPost}
+      </Wrapper>
     </>
   );
 };
