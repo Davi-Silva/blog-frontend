@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 const AudioPlayer = ({ audioFileUrl }) => {
   const muiTheme = createMuiTheme({});
   const useStyles = makeStyles(() => ({
+    marginTop: '15px',
     loopIcon: {
       color: '#0058e4',
       '&.selected': {
