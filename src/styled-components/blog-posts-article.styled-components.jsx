@@ -133,7 +133,7 @@ export const BackgroundWrapper = styled.div`
 `;
 
 export const Author = styled.div`
-	margin: 8px 0;
+	margin: 6px 0;
 	ul {
 		width: 100%;
 		margin-bottom: 0px;
@@ -167,7 +167,10 @@ export const Author = styled.div`
 		}
 	}
 	@media (max-width: 991px) {
-		margin: 10px 0 14px 0;
+		margin: 1px 0 3px 0;
+	}
+	@media (max-width: 575px) {
+		margin: 0px 0 2px 0;
 	}
 `;
 
