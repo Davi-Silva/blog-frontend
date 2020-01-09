@@ -33,37 +33,34 @@ export const RelatedPost = styled(Link)`
 		height: 160px;
 		margin-bottom: 16px;
 		@media (max-width: 489px) {
-			margin-bottom: 20px;
+			margin-bottom: 24px;
 			height: 150px;
 		}
 		@media (max-width: 439px) {
-			margin-bottom: 20px;
+			margin-bottom: 24px;
 			height: 140px;
 		}
 		@media (max-width: 431px) {
-			margin-bottom: 20px;
+			margin-bottom: 24px;
 			height: 130px;
 		}
 		@media (max-width: 402px) {
-			margin-bottom: 20px;
+			margin-bottom: 24px;
 			height: 120px;
 		}
 		@media (max-width: 375px) {
-			margin-bottom: 20px;
+			margin-bottom: 24px;
 			height: 110px;
 		}
 		@media (max-width: 347px) {
-			margin-bottom: 20px;
+			margin-bottom: 24px;
 			height: 100px;
 		}
 		@media (max-width: 315px) {
-			margin-bottom: 20px;
+			margin-bottom: 24px;
 			height: 90px;
 		}
-		@media (max-width: 315px) {
-			margin-bottom: 7px;
-			height: 90px;
-		}
+
 		.info-div {
 			@media (max-width: 991px) {
 				width: 77%;
@@ -440,6 +437,9 @@ export const ColumnRight = styled.div`
 
 export const RelatedPostLabel = styled.b`
 	margin: 10px 0 0 15px;
+	@media (max-width: 768px) {
+		margin: 10px 0 0 0;
+	}
 	ul {
 		::-webkit-scrollbar {
 			height: 5px;
