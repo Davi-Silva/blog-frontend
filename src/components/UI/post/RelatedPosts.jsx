@@ -52,11 +52,7 @@ const RelatedPosts = (props) => {
     console.log('slug in related posts:', slug);
     const dates = slug.split('/');
     const response = await fetch(
-<<<<<<< HEAD
-      `https://cryptic-activist-backend.herokuapp.com/blog/get/category/newest/${slug}/${category}`,
-=======
-      `http://localhost:5000/blog/get/category/newest/${category}/${dates[0]}/${dates[1]}/${dates[2]}/${dates[3]}`,
->>>>>>> feature
+      `https://cryptic-activist-backend.herokuapp.com/blog/get/category/newest/${category}/${dates[0]}/${dates[1]}/${dates[2]}/${dates[3]}`,
       {
         method: 'GET',
         mode: 'cors',

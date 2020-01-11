@@ -165,11 +165,7 @@ export default class Podcast extends Component {
 
   async getPodcastByCategory(category, slug) {
     this.response = await fetch(
-<<<<<<< HEAD
-      `https://cryptic-activist-backend.herokuapp.com/podcasts/get/category/newest/${slug}/${category}`,
-=======
       `http://localhost:5000/podcasts/get/category/newest/${category}/${slug}`,
->>>>>>> feature
       {
         method: 'GET',
         mode: 'cors',

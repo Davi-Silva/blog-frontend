@@ -160,27 +160,6 @@ export default class Post extends Component {
     return data;
   }
 
-<<<<<<< HEAD
-  async getPostByCategory(category, slug) {
-    this.response = await fetch(
-      `https://cryptic-activist-backend.herokuapp.com/blog/get/category/newest/${slug}/${category}`,
-      {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
-    );
-    const data = await this.response.json();
-    return data;
-  }
-
-
-=======
->>>>>>> feature
   setStateAsync(state) {
     return new Promise((resolve) => {
       this.setState(state, resolve);
