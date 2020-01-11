@@ -1,24 +1,21 @@
-
 import React, { Component } from 'react';
-
-import {
-  FaSpinner,
-} from 'react-icons/fa';
+import PropTypes from 'prop-types';
 
 import BitcoinDoddle from '../../static/img/no-content-img.png';
 
 import BlogPostList from '../../components/UI/lists/blog-home/BlogPostList.component';
 import SubNavBar from '../../components/UI/navbar/SubNavBar';
-import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.component';
-import RecentCategories from '../../components/UI/categories/RecentCategoriesBlogPost';
+import MostRecentPost from '../../components/UI/most-recent/blog/aside/MostRecentPost';
+import Ads from '../../components/UI/ads/AdvertisementSquare.component';
 
 import {
-  LoadingAllContent,
   PostList,
   NoContentDiv,
   NoContentImg,
   NoContentP,
   StickyWrapper,
+  WrapperAd,
+  AsideDiv,
 } from '../../styled-components/blog-posts.styled-components';
 
 
@@ -29,7 +26,6 @@ export default class BlogPostsByTags extends Component {
       posts: [],
       tag: '',
       page: 1,
-      hasMore: null,
       found: false,
     };
     this.getFirstPosts = this.getFirstPosts.bind(this);
@@ -37,8 +33,11 @@ export default class BlogPostsByTags extends Component {
   }
 
   async componentDidMount() {
-    const { match } = this.props;
-    const { slug } = match.params;
+    const {
+      match,
+    } = this.props;
+    const { params } = this.match;
+    const { slug } = params;
 
     this.setStateAsync({
       tag: slug,
@@ -124,7 +123,6 @@ export default class BlogPostsByTags extends Component {
     const {
       tag,
       posts,
-      hasMore,
       found,
     } = this.state;
     let allPosts;
@@ -164,10 +162,22 @@ export default class BlogPostsByTags extends Component {
               </PostList>
             </div>
             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-              <StickyWrapper>
-                <RecentCategories />
-                <NewsletterSide />
-              </StickyWrapper>
+              <AsideDiv>
+                <StickyWrapper>
+                  <WrapperAd>
+                    <MostRecentPost />
+                  </WrapperAd>
+                  <Ads />
+                </StickyWrapper>
+              </AsideDiv>
+              <AsideDiv>
+                <StickyWrapper>
+                  <Ads />
+                  <Ads
+                    IsLast="last"
+                  />
+                </StickyWrapper>
+              </AsideDiv>
             </div>
           </div>
         </>
@@ -185,3 +195,11 @@ export default class BlogPostsByTags extends Component {
     );
   }
 }
+
+BlogPostsByTags.propTyps = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};

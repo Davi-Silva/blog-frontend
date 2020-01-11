@@ -6,8 +6,6 @@ import { useSelector } from 'react-redux';
 
 import _ from 'lodash';
 
-import UserProvider from '../contexts/UserProvider';
-
 import {
   Cover,
   Wrapper,

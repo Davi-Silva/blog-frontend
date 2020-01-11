@@ -15,9 +15,14 @@ import {
   ColumnLeft,
 } from '../../../styled-components/components/post-related-posts.styled-components';
 
-const RelatedPosts = (category, slug) => {
+const RelatedPosts = (props) => {
+  const {
+    category,
+    slug,
+  } = props;
   const [relatedCategoryPosts, setRelatedCategoryPosts] = useState([]);
 
+  console.log('testing slug in related posts:', slug);
   const parseDate = (input) => {
     const parts = input.match(/(\d+)/g);
     return new Date(parts[0], parts[1] - 1, parts[2]);
@@ -44,8 +49,10 @@ const RelatedPosts = (category, slug) => {
   };
 
   const getPostByCategory = async () => {
+    console.log('slug in related posts:', slug);
+    const dates = slug.split('/');
     const response = await fetch(
-      `http://localhost:5000/blog/get/category/newest/${slug}/${category}`,
+      `http://localhost:5000/blog/get/category/newest/${category}/${dates[0]}/${dates[1]}/${dates[2]}/${dates[3]}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -71,11 +78,10 @@ const RelatedPosts = (category, slug) => {
   const getColumn = (post, index) => {
     let column;
     if (index === 0) {
-      console.log('index:', index);
       column = (
         <>
           <ColumnLeft className="col-lg-4 col-md-12 col-sm-12 col-12">
-            <RelatedPost to={post.slug}>
+            <RelatedPost to={`/blog/${post.slug}`}>
               <ul>
                 <li>
                   <div
@@ -124,7 +130,7 @@ const RelatedPosts = (category, slug) => {
       column = (
         <>
           <ColumnCenter className="col-lg-4 col-md-12 col-sm-12 col-12">
-            <RelatedPost to={post.slug}>
+            <RelatedPost to={`/blog/${post.slug}`}>
               <ul>
                 <li>
                   <div
@@ -173,7 +179,7 @@ const RelatedPosts = (category, slug) => {
       column = (
         <>
           <ColumnRight className="col-lg-4 col-md-12 col-sm-12 col-12">
-            <RelatedPost to={post.slug}>
+            <RelatedPost to={`/blog/${post.slug}`}>
               <ul>
                 <li>
                   <div

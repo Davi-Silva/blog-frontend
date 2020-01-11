@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import _ from 'lodash';
-
-import UserProvider from '../../../../contexts/UserProvider';
 
 import {
   BackgroundDrawer,
@@ -19,7 +17,6 @@ import {
   SideDrawerButtonTo,
   SideDrawerLinkTo,
   SideDrawerLinkToAdmin,
-  // Button,
   Separator,
   LogoutDiv,
   Logout,
@@ -42,7 +39,7 @@ const SideDrawer = (props) => {
   };
 
   const handleLogout = async () => {
-    const response = await fetch('http://localhost:5000/auth/logout', {
+    await fetch('http://localhost:5000/auth/logout', {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -286,5 +283,9 @@ export default SideDrawer;
 
 SideDrawer.propTypes = {
   HandleSideDrawer: PropTypes.func.isRequired,
-  UserData: PropTypes.shape.isRequired,
+  UserData: PropTypes.objectOf(PropTypes.any),
+};
+
+SideDrawer.defaultProps = {
+  UserData: {},
 };

@@ -19,7 +19,7 @@ const RegisterAdmin = () => {
   const [adminUser, setAdminUser] = useState('');
   const [adminPassword, setAdminPassword] = useState('');
   const [adminPassword2, setAdminPassword2] = useState('');
-  const [isRegister, setIsRegister] = useState(null);
+  // const [isRegister, setIsRegister] = useState(null);
   const [isAdminUserValid, setIsAdminUserValid] = useState(true);
   const [isPasswordsMatching, setIsPasswordsMatching] = useState(true);
 

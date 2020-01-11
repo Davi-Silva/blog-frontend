@@ -34,6 +34,7 @@ import {
   LoadingAllContent,
   Fluid,
   StickyWrapper,
+  WrapperAd,
 } from '../../styled-components/post.styled-components';
 
 export default class Post extends Component {
@@ -52,14 +53,15 @@ export default class Post extends Component {
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.getPostBySlug = this.getPostBySlug.bind(this);
-    this.getPostByCategory = this.getPostByCategory.bind(this);
     this.parseDate = this.parseDate.bind(this);
     // this.covertAllTags = this.covertAllTags.bind(this);
     this.updateHowManyRead = this.updateHowManyRead.bind(this);
   }
 
   async componentDidMount() {
-    const post = await this.getPostBySlug();
+    const { match } = this.props;
+    const fullSlug = match.url.slice(6, match.url.length);
+    const post = await this.getPostBySlug(fullSlug);
     if (post.length > 0) {
       const {
         slug,
@@ -78,7 +80,6 @@ export default class Post extends Component {
         howManyReadNumber: howManyRead,
       };
       const updatedNumberOfRead = await this.updateHowManyRead(postObj);
-      const relatedCategoryPosts = await this.getPostByCategory(category, slug);
       // Estimate the time read the content
       const wordsPerMinutes = 200;
       let timeToRead;
@@ -113,7 +114,6 @@ export default class Post extends Component {
           publishedOn: formattedDate,
           cover: cover.url,
           coverAlt: cover.name,
-          relatedCategoryPosts,
           author,
           howManyRead: updatedNumberOfRead.howManyReadNumber,
           timeToRead,
@@ -133,7 +133,6 @@ export default class Post extends Component {
           updatedOn: formattedDateUpdated,
           cover: cover.url,
           coverAlt: cover.name,
-          relatedCategoryPosts,
           howManyRead: updatedNumberOfRead.howManyReadNumber,
           timeToRead,
         });
@@ -144,9 +143,7 @@ export default class Post extends Component {
     }
   }
 
-  async getPostBySlug() {
-    const { match } = this.props;
-    const { slug } = match.params;
+  async getPostBySlug(slug) {
     this.response = await fetch(
       `http://localhost:5000/blog/get/slug/${slug}`,
       {
@@ -162,24 +159,6 @@ export default class Post extends Component {
     const data = await this.response.json();
     return data;
   }
-
-  async getPostByCategory(category, slug) {
-    this.response = await fetch(
-      `http://localhost:5000/blog/get/category/newest/${slug}/${category}`,
-      {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
-    );
-    const data = await this.response.json();
-    return data;
-  }
-
 
   setStateAsync(state) {
     return new Promise((resolve) => {
@@ -219,7 +198,6 @@ export default class Post extends Component {
       coverAlt,
       content,
       tags,
-      relatedCategoryPosts,
       publishedOn,
       updatedOn,
       author,
@@ -232,6 +210,24 @@ export default class Post extends Component {
     let helmet;
     let allContentPost;
     let postPublished;
+
+    let related;
+
+    if (slug === '') {
+      related = (
+        <>
+        </>
+      );
+    } else {
+      related = (
+        <>
+          <RelatedPosts
+            slug={slug}
+            category={category}
+          />
+        </>
+      );
+    }
 
     if (title === '') {
       helmet = (
@@ -285,7 +281,6 @@ export default class Post extends Component {
     || coverAlt === ''
     || content === ''
     || tags === ''
-    || relatedCategoryPosts.length === 0
     || publishedOn === '') {
       allContentPost = (
         <LoadingAllContent>
@@ -345,7 +340,9 @@ export default class Post extends Component {
               <div className="col-lg-3 col-md-3 col-sm-12 col-12">
                 <AsideDiv>
                   <StickyWrapper>
-                    <MostRecentPost />
+                    <WrapperAd>
+                      <MostRecentPost />
+                    </WrapperAd>
                     <Ads />
                   </StickyWrapper>
                 </AsideDiv>
@@ -363,10 +360,7 @@ export default class Post extends Component {
           <Fluid className="container">
             <div className="row">
               <div className="col-12">
-                <RelatedPosts
-                  slug={slug}
-                  category={category}
-                />
+                {related}
               </div>
             </div>
           </Fluid>
@@ -377,7 +371,6 @@ export default class Post extends Component {
       <>
         {helmet}
         <SubNavBar media="Blog" category={category} title={title} />
-        {/* <AdvertisementsTopPage /> */}
         <div className="container-fluid p-0">
           <div className="row">
             <div className="col-12">

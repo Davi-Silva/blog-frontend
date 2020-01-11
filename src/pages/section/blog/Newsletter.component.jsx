@@ -11,32 +11,29 @@ import {
   Form,
 } from '../../../styled-components/blog-post-newsletter.styled-components';
 
-const Newsletter = () => {
-  const test = 'test';
-  return (
-    <>
-      <Wrapper>
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <Title>Newsletter</Title>
-              <Statement>
+const Newsletter = () => (
+  <>
+    <Wrapper>
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <Title>Newsletter</Title>
+            <Statement>
                 Get weekly updated about our upcoming news, articles and tutorials.
-              </Statement>
-              <Form>
-                <input type="email" placeholder="Email" />
-                <button
-                  type="submit"
-                >
-                  <FaEnvelope />
-                </button>
-              </Form>
-            </div>
+            </Statement>
+            <Form>
+              <input type="email" placeholder="Email" />
+              <button
+                type="submit"
+              >
+                <FaEnvelope />
+              </button>
+            </Form>
           </div>
         </div>
-      </Wrapper>
-    </>
-  );
-};
+      </div>
+    </Wrapper>
+  </>
+);
 
 export default Newsletter;

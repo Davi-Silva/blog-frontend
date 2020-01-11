@@ -55,7 +55,7 @@ const MostRecentVideos = () => {
           {mostRecentVideosState.map((post, index) => (
             <>
               <MostRecentVideosList
-                key={index}
+                key={post.id}
                 type="Blog"
                 slug={post.slug}
                 imgSrc={post.cover.url}

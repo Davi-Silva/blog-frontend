@@ -29,7 +29,7 @@ export const Wrapper = styled.div`
 
 export const BackgroundWrapper = styled.div`
   background: linear-gradient(0deg, rgba(0,0,0,0.8491771708683473) 0%, rgba(0,212,255,0) 100%);
-  height: 160px;
+  height: 170px;
   width: 100%;
 `;
 

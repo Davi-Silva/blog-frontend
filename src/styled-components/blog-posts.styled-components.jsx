@@ -177,6 +177,27 @@ export const ByTagName = styled.span`
 `;
 
 export const StickyWrapper = styled.div`
+	margin-top: 0px;
 	position: sticky;
-	top: 30px;
+	top: 55px;
+`;
+
+export const WrapperAd = styled.div`
+	@media (max-width: 768px) {
+		margin-bottom: 20px;
+	}
+`;
+
+
+export const AsideDiv = styled.div`
+	width: 100%;
+	height: 50%;
+	@media (max-width: 768px) {
+		height: 480px;
+	}
+	div {
+		.last {
+			margin-bottom: 60px;
+		}
+	}
 `;

@@ -1,8 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Helmet } from 'react-helmet';
-import UserProvider from '../../contexts/UserProvider';
-
 
 import TopCover from '../section/courses-home/TopCover.component';
 import UnderTopCoverStrap from '../section/courses-home/UnderTopCoverStrap.component';
@@ -13,11 +12,9 @@ import Statements from '../section/courses-home/Statements.component';
 import NewsletterSection from '../section/courses-home/NewsletterSection.component';
 
 
-import Blockchain from '../../static/img/blockchain.png';
+// import Blockchain from '../../static/img/blockchain.png';
 
 const CoursesHome = (props) => {
-  const userInfo = useContext(UserProvider.context);
-
   let helmet;
   const {
     location,
@@ -33,7 +30,7 @@ const CoursesHome = (props) => {
     helmet = (
       <>
         <Helmet>
-          <title>Home - Podcast | Cryptic Activist</title>
+          <title>Home - Station | Cryptic Activist</title>
           <meta
             name="description"
             content="Meta Description"
@@ -47,11 +44,11 @@ const CoursesHome = (props) => {
           <meta property="og:url" content={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
 
           <meta name="twitter:site" content="CrypticActivist" />
-          <meta name="twitter:title" content="Home - Podcast | Cryptic Activist" />
+          <meta name="twitter:title" content="Home - Station | Cryptic Activist" />
           <meta name="twitter:description" content="Meta Description" />
 
           <meta property="og:type" content="article" />
-          <meta name="twitter:card" content="music.song" />
+          <meta name="twitter:card" content="article" />
         </Helmet>
       </>
     );
@@ -59,28 +56,7 @@ const CoursesHome = (props) => {
 
   return (
     <>
-      {/* {helmet} */}
-      <Helmet>
-        <title>Home - Station | Cryptic Activist</title>
-        <meta
-          name="description"
-          content="Meta Description"
-        />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:locale:alternate" content="en_CA" />
-        <meta property="og:locale:alternate" content="es_GB" />
-        <meta property="og:site_name" content="CrypticActivist" />
-        <meta property="og:description" content="Meta Description" />
-        <meta property="og:title" content="Home - Podcast | Cryptic Activist" />
-        <meta property="og:url" content={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
-
-        <meta name="twitter:site" content="CrypticActivist" />
-        <meta name="twitter:title" content="Home - Station | Cryptic Activist" />
-        <meta name="twitter:description" content="Meta Description" />
-
-        <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="article" />
-      </Helmet>
+      {helmet}
       <TopCover />
       <UnderTopCoverStrap />
       <RecentlyPublishedCourses />
@@ -93,3 +69,15 @@ const CoursesHome = (props) => {
 };
 
 export default CoursesHome;
+
+CoursesHome.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }),
+};
+
+CoursesHome.defaultProps = {
+  location: {
+    pathname: '/',
+  },
+};

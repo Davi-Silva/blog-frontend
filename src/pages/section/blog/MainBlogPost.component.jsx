@@ -40,7 +40,7 @@ const MainBlogPost = () => {
                 return (
                   <>
                     <BlogPostListMain
-                      key={index}
+                      key={post.id}
                       type="Blog"
                       slug={post.slug}
                       imgSrc={post.cover.url}

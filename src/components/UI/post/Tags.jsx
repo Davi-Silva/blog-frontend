@@ -34,3 +34,7 @@ const Tags = ({ tagsArray }) => {
 };
 
 export default Tags;
+
+Tags.propTypes = {
+  tagsArray: PropTypes.shape.isRequired,
+};

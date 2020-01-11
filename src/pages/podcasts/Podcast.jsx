@@ -67,7 +67,9 @@ export default class Podcast extends Component {
   }
 
   async componentDidMount() {
-    const podcast = await this.getPodcastBySlug();
+    const { match } = this.props;
+    const fullSlug = match.url.slice(9, match.url.length);
+    const podcast = await this.getPodcastBySlug(fullSlug);
     if (podcast.length > 0) {
       const {
         slug,
@@ -144,9 +146,7 @@ export default class Podcast extends Component {
     }
   }
 
-  async getPodcastBySlug() {
-    const { match } = this.props;
-    const { slug } = match.params;
+  async getPodcastBySlug(slug) {
     this.response = await fetch(
       `http://localhost:5000/podcasts/get/slug/${slug}`,
       {
@@ -165,7 +165,7 @@ export default class Podcast extends Component {
 
   async getPodcastByCategory(category, slug) {
     this.response = await fetch(
-      `http://localhost:5000/podcasts/get/category/newest/${slug}/${category}`,
+      `http://localhost:5000/podcasts/get/category/newest/${category}/${slug}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -374,7 +374,7 @@ export default class Podcast extends Component {
                  <RelatedPodcastLi
                    key={key}
                  >
-                   <RelatedPodcast to={podcast.slug}>
+                   <RelatedPodcast to={`/podcast/${podcast.slug}`}>
                      <img
                        src={podcast.cover.url}
                        alt={podcast.cover.name}

@@ -37,7 +37,7 @@ const MostRecentPost = () => {
         <MostRecentPostH6>
           Most Recent Post
         </MostRecentPostH6>
-        <LinkTo to={post[0].slug}>
+        <LinkTo to={`/blog/${post[0].slug}`}>
           <Wrapper
             style={{
               backgroundImage: `url(${post[0].cover.url})`,

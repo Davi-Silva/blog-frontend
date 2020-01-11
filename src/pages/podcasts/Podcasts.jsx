@@ -17,16 +17,9 @@ import SpotifyPodcast from '../../static/img/spotify.svg';
 import ITunesPodcast from '../../static/img/itunes.svg';
 import HostPicture from '../../static/img/davi-silva.png';
 
-
 import Ads from '../../components/UI/ads/AdvertisementSquare.component';
 
-
 import PodcastsList from '../../components/UI/lists/PodcastsList.component';
-// import AdvertisementSquare from '../components/UI/ads/AdvertisementSquare.component';
-
-import SubNavBar from '../../components/UI/navbar/SubNavBar';
-import NewsletterSide from '../../components/UI/newsletter/NewsletterSide.component';
-import RecentCategories from '../../components/UI/categories/RecentCategoriesPodcast';
 
 import {
   Logo,
@@ -210,7 +203,7 @@ export default class Podcasts extends Component {
                 <div className="row">
                   {podcasts.map((podcast, key) => (
                     <PodcastsList
-                      key={key}
+                      key={podcast.slug}
                       category={podcast.category}
                       title={podcast.title}
                       date={podcast.uploadedOn}

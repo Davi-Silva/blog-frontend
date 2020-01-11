@@ -192,6 +192,7 @@ export default class PublishBlogPost extends Component {
   }
 
   async verifySlug(slug) {
+    console.log('verifying slug react:', slug)
     this.response = await fetch(
       `http://localhost:5000/admin/blog/validation/slug/${slug}`,
       {

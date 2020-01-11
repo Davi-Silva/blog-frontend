@@ -33,6 +33,8 @@ const News = () => {
     getTutorials();
   }, []);
 
+  // const getRandomNumber = (max) => Math.floor(Math.random() * Math.floor(max));
+
 
   return (
     <>
@@ -57,20 +59,23 @@ const News = () => {
           </div>
           <div className="col-lg-9">
             <div className="row">
-              {tutorialsState.map((post, index) => (
-                <>
-                  <NewsList
-                    key={index}
-                    type="Blog"
-                    slug={post.slug}
-                    imgSrc={post.cover.url}
-                    title={post.title}
-                    category={post.category}
-                    publishedOn={post.publishedOn}
-                    index={index}
-                  />
-                </>
-              ))}
+              {tutorialsState.map((post, index) => {
+                console.log('post.id:', post.id);
+                return (
+                  <>
+                    <NewsList
+                      key={post.slug}
+                      type="Blog"
+                      slug={post.slug}
+                      imgSrc={post.cover.url}
+                      title={post.title}
+                      category={post.category}
+                      publishedOn={post.publishedOn}
+                      index={index}
+                    />
+                  </>
+                );
+              })}
             </div>
           </div>
           <div className="col-lg-3">
