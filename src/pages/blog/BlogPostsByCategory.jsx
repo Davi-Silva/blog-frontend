@@ -34,11 +34,8 @@ export default class BlogPostsByCategory extends Component {
   }
 
   async componentDidMount() {
-    const {
-      match,
-    } = this.props;
-    const { params } = this.match;
-    const { slug } = params;
+    const { match } = this.props;
+    const { slug } = match.params;
 
     this.setStateAsync({
       category: slug,
