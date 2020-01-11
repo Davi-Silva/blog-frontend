@@ -1,6 +1,5 @@
-
-/* eslint-disable react/destructuring-assignment */
-import React, { useContext, useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   ProgramCover,
@@ -24,8 +23,9 @@ import Cover from '../../static/img/course-img.jpg';
 
 const CoursesRelatedProgram = (props) => {
   const {
-    params,
-  } = props.match;
+    match,
+  } = props;
+  const { params } = match;
 
   const remainingCourses = [
     {
@@ -248,3 +248,11 @@ const CoursesRelatedProgram = (props) => {
 };
 
 export default CoursesRelatedProgram;
+
+CoursesRelatedProgram.propTyps = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};

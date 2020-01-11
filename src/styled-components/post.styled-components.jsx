@@ -308,6 +308,12 @@ export const StickyWrapper = styled.div`
 	top: 55px;
 `;
 
+export const WrapperAd = styled.div`
+	@media (max-width: 768px) {
+		margin-bottom: 20px;
+	}
+`;
+
 
 export const AsideDiv = styled.div`
 	width: 100%;

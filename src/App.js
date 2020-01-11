@@ -14,7 +14,7 @@ import Footer from './components/UI/footer/Footer';
 
 import Admin from './pages/Admin';
 import RegisterAdmin from './pages/RegisterAdmin';
-import LoginAdmin from './pages/LoginAdmin';
+// import LoginAdmin from './pages/LoginAdmin';
 
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
@@ -87,7 +87,7 @@ function App() {
         <Route exact path="/podcasts" component={Podcasts} />
         <Route
           exact
-          path="/podcast/:slug"
+          path="/podcast/:year/:month/:day/:slug"
           component={Podcast}
         />
 
@@ -98,7 +98,7 @@ function App() {
         />
         <Route
           exact
-          path="/blog/:slug"
+          path="/blog/:year/:month/:day/:slug"
           component={Post}
         />
         <Route

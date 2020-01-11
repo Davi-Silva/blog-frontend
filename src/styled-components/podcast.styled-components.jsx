@@ -352,7 +352,7 @@ font-size: 14px;
 	animation: ${opacity} 2s ease-in-out infinite;
 `;
 
-export const RelatedPodcast = styled.div`
+export const RelatedPodcast = styled(Link)`
 	text-decoration: none;
 	 &:hover {
 		 text-decoration: none;

@@ -28,9 +28,8 @@ import {
 
 const Navbar = (props) => {
   const {
-    location,
-  } = props;
-  const { pathname } = location;
+    pathname,
+  } = props.location;
   const [userMenuState, setUserMenuState] = useState({
     showUserMenu: false,
   });
@@ -45,18 +44,18 @@ const Navbar = (props) => {
 
   console.log('showSideDrawer:', showSideDrawer);
 
-  const handleLoginUser = async () => {
-    fetch('https://cryptic-activist-backend.herokuapp.com/auth/user')
-      .then((res) => res.json())
-      .then((res) => {
-        dispatch(UserActions.loginUser(res));
-      })
-      .catch((err) => {
-        console.log('err:', err);
-      });
-  };
 
   useEffect(() => {
+    const handleLoginUser = async () => {
+      fetch('http://localhost:5000/auth/user')
+        .then((res) => res.json())
+        .then((res) => {
+          dispatch(UserActions.loginUser(res));
+        })
+        .catch((err) => {
+          console.log('err:', err);
+        });
+    };
     handleLoginUser();
   }, []);
 
@@ -335,5 +334,13 @@ const Navbar = (props) => {
 export default Navbar;
 
 Navbar.propTypes = {
-  location: PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }),
+};
+
+Navbar.defaultProps = {
+  location: {
+    pathname: '/',
+  },
 };

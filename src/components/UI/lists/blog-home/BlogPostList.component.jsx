@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import {
   Card,
   Cover,
-  // PublishedOn,
   Title,
-  CategoryDiv,
-  Category,
 } from '../../../../styled-components/blog-posts.styled-components';
 
 export default class BlogPostList extends Component {
@@ -90,11 +87,8 @@ export default class BlogPostList extends Component {
   render() {
     const {
       title,
-      category,
       imgSrc,
       slug,
-      // publishedOn,
-      // content
     } = this.state;
 
     return (
@@ -114,16 +108,7 @@ export default class BlogPostList extends Component {
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
             }}
-          >
-            <CategoryDiv>
-              <Category>
-                {category}
-              </Category>
-            </CategoryDiv>
-          </Cover>
-          {/* <PublishedOn>
-            {publishedOn}
-          </PublishedOn> */}
+          />
           <Title>{title}</Title>
         </Card>
       </>

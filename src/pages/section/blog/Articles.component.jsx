@@ -67,7 +67,11 @@ const Articles = () => {
     <>
       {articlesState.map((post, key) => (
         <>
-          <div className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <div 
+          key={post.id}
+          className="col-lg-4 col-md-4 col-sm-6 col-12"
+
+          >
             <Card
               to={`/blog/${post.slug}`}
               className="col-sm-6 col-12 p-0"

@@ -2,9 +2,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { opacity, rotate } from './animations';
-
-
 export const Author = styled.div`
 	margin: 12px 0;
 	ul {

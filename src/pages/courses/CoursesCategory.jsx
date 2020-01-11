@@ -3,6 +3,8 @@ import React, {
 // useState,
 // useEffect,
 } from 'react';
+import PropTypes from 'prop-types';
+
 
 import {
   FaStar,
@@ -26,97 +28,9 @@ import Cover from '../../static/img/circuit.jpg';
 
 const CoursesRelatedProgram = (props) => {
   const {
-    params,
-  } = props.match;
-
-  const remainingCourses = [
-    {
-      id: '1',
-      title: 'Course 1',
-      description: 'Cras ornare magna sit amet ultricies condimentum. Morbi aliquet, mauris bibendum placerat volutpat, neque justo cursus purus, ac faucibus ex purus eu ipsum. Maecenas risus sem, porta quis tempor vel, condimentum eget est. Nulla sagittis volutpat est non blandit. Integer nec arcu ut velit egestas auctor. Fusce molestie tincidunt vehicula. Nullam interdum feugiat lacus, quis pharetra augue dictum nec. Nulla maximus dui ut diam posuere tempus. Ut in arcu eu nibh lacinia ultricies. Proin congue, tellus quis viverra elementum, nibh libero aliquet purus, ut imperdiet lorem lectus at est.',
-      publishedOn: 'December 17th 2019',
-      author: 'Davi Silva',
-      relatedProgram: 'Integrated Digital Media MicroMasters',
-    },
-    {
-      id: '1',
-      title: 'Course 2',
-      description: 'Cras ornare magna sit amet ultricies condimentum. Morbi aliquet, mauris bibendum placerat volutpat, neque justo cursus purus, ac faucibus ex purus eu ipsum. Maecenas risus sem, porta quis tempor vel, condimentum eget est. Nulla sagittis volutpat est non blandit. Integer nec arcu ut velit egestas auctor. Fusce molestie tincidunt vehicula. Nullam interdum feugiat lacus, quis pharetra augue dictum nec. Nulla maximus dui ut diam posuere tempus. Ut in arcu eu nibh lacinia ultricies. Proin congue, tellus quis viverra elementum, nibh libero aliquet purus, ut imperdiet lorem lectus at est.',
-      publishedOn: 'December 17th 2019',
-      author: 'Davi Silva',
-      relatedProgram: 'Integrated Digital Media MicroMasters',
-    },
-    {
-      id: '1',
-      title: 'Course 3',
-      description: 'Cras ornare magna sit amet ultricies condimentum. Morbi aliquet, mauris bibendum placerat volutpat, neque justo cursus purus, ac faucibus ex purus eu ipsum. Maecenas risus sem, porta quis tempor vel, condimentum eget est. Nulla sagittis volutpat est non blandit. Integer nec arcu ut velit egestas auctor. Fusce molestie tincidunt vehicula. Nullam interdum feugiat lacus, quis pharetra augue dictum nec. Nulla maximus dui ut diam posuere tempus. Ut in arcu eu nibh lacinia ultricies. Proin congue, tellus quis viverra elementum, nibh libero aliquet purus, ut imperdiet lorem lectus at est.',
-      publishedOn: 'December 17th 2019',
-      author: 'Davi Silva',
-      relatedProgram: 'Integrated Digital Media MicroMasters',
-    },
-    {
-      id: '1',
-      title: 'Course 4',
-      description: 'Cras ornare magna sit amet ultricies condimentum. Morbi aliquet, mauris bibendum placerat volutpat, neque justo cursus purus, ac faucibus ex purus eu ipsum. Maecenas risus sem, porta quis tempor vel, condimentum eget est. Nulla sagittis volutpat est non blandit. Integer nec arcu ut velit egestas auctor. Fusce molestie tincidunt vehicula. Nullam interdum feugiat lacus, quis pharetra augue dictum nec. Nulla maximus dui ut diam posuere tempus. Ut in arcu eu nibh lacinia ultricies. Proin congue, tellus quis viverra elementum, nibh libero aliquet purus, ut imperdiet lorem lectus at est.',
-      publishedOn: 'December 17th 2019',
-      author: 'Davi Silva',
-      relatedProgram: 'Integrated Digital Media MicroMasters',
-    },
-    {
-      id: '1',
-      title: 'Course 5',
-      description: 'Cras ornare magna sit amet ultricies condimentum. Morbi aliquet, mauris bibendum placerat volutpat, neque justo cursus purus, ac faucibus ex purus eu ipsum. Maecenas risus sem, porta quis tempor vel, condimentum eget est. Nulla sagittis volutpat est non blandit. Integer nec arcu ut velit egestas auctor. Fusce molestie tincidunt vehicula. Nullam interdum feugiat lacus, quis pharetra augue dictum nec. Nulla maximus dui ut diam posuere tempus. Ut in arcu eu nibh lacinia ultricies. Proin congue, tellus quis viverra elementum, nibh libero aliquet purus, ut imperdiet lorem lectus at est.',
-      publishedOn: 'December 17th 2019',
-      author: 'Davi Silva',
-      relatedProgram: 'Integrated Digital Media MicroMasters',
-    },
-    {
-      id: '1',
-      title: 'Course 6',
-      description: 'Cras ornare magna sit amet ultricies condimentum. Morbi aliquet, mauris bibendum placerat volutpat, neque justo cursus purus, ac faucibus ex purus eu ipsum. Maecenas risus sem, porta quis tempor vel, condimentum eget est. Nulla sagittis volutpat est non blandit. Integer nec arcu ut velit egestas auctor. Fusce molestie tincidunt vehicula. Nullam interdum feugiat lacus, quis pharetra augue dictum nec. Nulla maximus dui ut diam posuere tempus. Ut in arcu eu nibh lacinia ultricies. Proin congue, tellus quis viverra elementum, nibh libero aliquet purus, ut imperdiet lorem lectus at est.',
-      publishedOn: 'December 17th 2019',
-      author: 'Davi Silva',
-      relatedProgram: 'Integrated Digital Media MicroMasters',
-    },
-  ];
-
-  const coursesInProgress = [
-    {
-      id: '1',
-      title: 'Course 1',
-      description: 'Cras ornare magna sit amet ultricies condimentum. Morbi aliquet, mauris bibendum placerat volutpat, neque justo cursus purus, ac faucibus ex purus eu ipsum. Maecenas risus sem, porta quis tempor vel, condimentum eget est. Nulla sagittis volutpat est non blandit. Integer nec arcu ut velit egestas auctor. Fusce molestie tincidunt vehicula. Nullam interdum feugiat lacus, quis pharetra augue dictum nec. Nulla maximus dui ut diam posuere tempus. Ut in arcu eu nibh lacinia ultricies. Proin congue, tellus quis viverra elementum, nibh libero aliquet purus, ut imperdiet lorem lectus at est.',
-      publishedOn: 'December 17th 2019',
-      author: 'Davi Silva',
-      relatedProgram: 'Integrated Digital Media MicroMasters',
-    },
-    {
-      id: '1',
-      title: 'Course 2',
-      description: 'Cras ornare magna sit amet ultricies condimentum. Morbi aliquet, mauris bibendum placerat volutpat, neque justo cursus purus, ac faucibus ex purus eu ipsum. Maecenas risus sem, porta quis tempor vel, condimentum eget est. Nulla sagittis volutpat est non blandit. Integer nec arcu ut velit egestas auctor. Fusce molestie tincidunt vehicula. Nullam interdum feugiat lacus, quis pharetra augue dictum nec. Nulla maximus dui ut diam posuere tempus. Ut in arcu eu nibh lacinia ultricies. Proin congue, tellus quis viverra elementum, nibh libero aliquet purus, ut imperdiet lorem lectus at est.',
-      publishedOn: 'December 17th 2019',
-      author: 'Davi Silva',
-      relatedProgram: 'Integrated Digital Media MicroMasters',
-    },
-  ];
-
-  const completedCourses = [
-    {
-      id: '1',
-      title: 'Course 1',
-      description: 'Cras ornare magna sit amet ultricies condimentum. Morbi aliquet, mauris bibendum placerat volutpat, neque justo cursus purus, ac faucibus ex purus eu ipsum. Maecenas risus sem, porta quis tempor vel, condimentum eget est. Nulla sagittis volutpat est non blandit. Integer nec arcu ut velit egestas auctor. Fusce molestie tincidunt vehicula. Nullam interdum feugiat lacus, quis pharetra augue dictum nec. Nulla maximus dui ut diam posuere tempus. Ut in arcu eu nibh lacinia ultricies. Proin congue, tellus quis viverra elementum, nibh libero aliquet purus, ut imperdiet lorem lectus at est.',
-      publishedOn: 'December 17th 2019',
-      author: 'Davi Silva',
-      relatedProgram: 'Integrated Digital Media MicroMasters',
-    },
-    {
-      id: '1',
-      title: 'Course 2',
-      description: 'Cras ornare magna sit amet ultricies condimentum. Morbi aliquet, mauris bibendum placerat volutpat, neque justo cursus purus, ac faucibus ex purus eu ipsum. Maecenas risus sem, porta quis tempor vel, condimentum eget est. Nulla sagittis volutpat est non blandit. Integer nec arcu ut velit egestas auctor. Fusce molestie tincidunt vehicula. Nullam interdum feugiat lacus, quis pharetra augue dictum nec. Nulla maximus dui ut diam posuere tempus. Ut in arcu eu nibh lacinia ultricies. Proin congue, tellus quis viverra elementum, nibh libero aliquet purus, ut imperdiet lorem lectus at est.',
-      publishedOn: 'December 17th 2019',
-      author: 'Davi Silva',
-      relatedProgram: 'Integrated Digital Media MicroMasters',
-    },
-  ];
+    match,
+  } = props;
+  const { params } = match;
 
   const relatedTopics = [
     'Programming',
@@ -169,7 +83,7 @@ const CoursesRelatedProgram = (props) => {
                   </BreadcrumbLink>
                 </li>
                 <li>
-                  <span>></span>
+                  <span>{'>'}</span>
                 </li>
                 <li>
                   <p>
@@ -223,3 +137,11 @@ const CoursesRelatedProgram = (props) => {
 };
 
 export default CoursesRelatedProgram;
+
+CoursesRelatedProgram.propTyps = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
