@@ -52,7 +52,7 @@ export default class Blog extends Component {
   async getFirstPosts() {
     const { page } = this.state;
     console.log('getFirstPosts');
-    this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/short?page=${page}`, {
+    this.response = await fetch(`http://localhost:5000/blog/short?page=${page}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -78,7 +78,7 @@ export default class Blog extends Component {
       page: page + 1,
     });
     const tempPage = page + 1;
-    this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/short?page=${tempPage}`, {
+    this.response = await fetch(`http://localhost:5000/blog/short?page=${tempPage}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',

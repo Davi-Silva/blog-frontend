@@ -7,7 +7,7 @@ export default function user(state = initialState, action) {
     case 'LOGIN_USER':
       return {
         ...state,
-        userInfo: action.userInfo,
+        userInfo: action.payload.userInfo,
       };
     default:
       return state;

@@ -1,9 +1,9 @@
 /* eslint-disable import/prefer-default-export */
-export function loginUser(userInfo) {
+export function getPodcast(slug) {
   return {
-    type: 'LOGIN_USER',
+    type: 'REQUEST_PODCAST_BY_SLUG',
     payload: {
-      userInfo,
+      slug,
     },
   };
 }
