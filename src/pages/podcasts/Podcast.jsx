@@ -18,6 +18,7 @@ import ListenOnSpotifyPodcast from '../../static/img/listen-on-spotify.svg';
 import ListenOnITunesPodcast from '../../static/img/listen-on-apple.svg';
 
 import * as PodcastActions from '../../store/actions/podcast';
+import * as RelatedPodcasts from '../../store/actions/relatedPodcast';
 
 import {
   Wrapper,
@@ -44,13 +45,12 @@ import {
 import SubNavBar from '../../components/UI/navbar/SubNavBar';
 import CoverImage from '../../components/UI/podcast/cover.component';
 
+let count = 0;
+
 const Podcast = (props) => {
   const podcast = useSelector((state) => state.podcast);
+  const relatedPodcast = useSelector((state) => state.relatedPodcast);
   const dispatch = useDispatch();
-  console.log('podcast redux:', podcast);
-
-  const [formattedDate, setFormattedDate] = useState('');
-
 
   const parseDate = (input) => {
     const parts = input.match(/(\d+)/g);
@@ -81,34 +81,6 @@ const Podcast = (props) => {
     const { match } = props;
     const fullSlug = match.url.slice(9, match.url.length);
     dispatch(PodcastActions.getPodcast(fullSlug));
-    // if (podcast.data.length > 0) {
-    //   // const relatedCategoryPodcast = getPodcastByCategory(category, slug);
-    //   const dateFormatted = parseDate(uploadedOn);
-    //   const months = [
-    //     'January',
-    //     'February',
-    //     'March',
-    //     'April',
-    //     'may',
-    //     'June',
-    //     'July',
-    //     'August',
-    //     'September',
-    //     'October',
-    //     'November',
-    //     'December',
-    //   ];
-
-    //   const formattedDate = `${months[dateFormatted.getMonth()]} ${dateFormatted.getDate()} ${dateFormatted.getFullYear()}`;
-
-    //   if (updatedOn !== null) {
-    //     const dateFormattedUpdated = parseDate(updatedOn);
-    //     const formattedDateUpdated = `${months[dateFormattedUpdated.getMonth()]} ${dateFormattedUpdated.getDate()} ${dateFormattedUpdated.getFullYear()}`;
-    //   }
-    // } else {
-    //   const { history } = props;
-    //   history.push('/404');
-    // }
   }, []);
 
 
@@ -122,37 +94,37 @@ const Podcast = (props) => {
   let podcastRelatedPodcast;
 
 
-  // if (relatedCategoryPodcast.length !== 0) {
-  //   podcastRelatedPodcast = (
-  //     <RelatedPodcastLabel>
-  //     Related Blog Posts
-  //       <br />
-  //       <RelatedPodcastList>
-  //         {
-  //        relatedCategoryPodcast.map((podcast, key) => (
-  //          <RelatedPodcastLi
-  //            key={key}
-  //          >
-  //            <RelatedPodcast to={`/podcast/${podcast.slug}`}>
-  //              <img
-  //                src={podcast.cover.url}
-  //                alt={podcast.cover.name}
-  //                style={{
-  //                  borderRadius: '5px',
-  //                }}
-  //              />
-  //              <br />
-  //              <RelatedPodcastH6>
-  //                {podcast.title}
-  //              </RelatedPodcastH6>
-  //            </RelatedPodcast>
-  //          </RelatedPodcastLi>
-  //        ))
-  //      }
-  //       </RelatedPodcastList>
-  //     </RelatedPodcastLabel>
-  //   );
-  // }
+  if (!_.isEmpty(relatedPodcast.data)) {
+    podcastRelatedPodcast = (
+      <RelatedPodcastLabel>
+      Related Blog Posts
+        <br />
+        <RelatedPodcastList>
+          {
+         relatedPodcast.data.map((podcast, key) => (
+           <RelatedPodcastLi
+             key={key}
+           >
+             <RelatedPodcast to={`/podcast/${podcast.slug}`}>
+               <img
+                 src={podcast.cover.url}
+                 alt={podcast.cover.name}
+                 style={{
+                   borderRadius: '5px',
+                 }}
+               />
+               <br />
+               <RelatedPodcastH6>
+                 {podcast.title}
+               </RelatedPodcastH6>
+             </RelatedPodcast>
+           </RelatedPodcastLi>
+         ))
+       }
+        </RelatedPodcastList>
+      </RelatedPodcastLabel>
+    );
+  }
 
   let content;
   let subMenu;
@@ -174,7 +146,14 @@ const Podcast = (props) => {
         <Helmet title="Loading..." media="Podcasts" />
       </>
     );
-  } else if (!podcast.loading && podcast.data.length) {
+  } else if (podcast.fetched) {
+    if (!_.isEmpty(podcast.data) && !relatedPodcast.fetch) {
+      if (count === 0) {
+        dispatch(RelatedPodcasts.getGetRelatedPodcasts(podcast.data[0].category, podcast.data[0].slug));
+        count += 1;
+      }
+    }
+
     if (podcast.data[0].updatedOn === null) {
       podcastUpdated = (
         <UploadedOn>
