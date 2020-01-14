@@ -4,7 +4,7 @@ import {
 } from 'redux-saga/effects';
 
 async function getPodcastsApi() {
-  const res = await fetch('http://localhost:5000/podcasts/', {
+  const res = await fetch('https://cryptic-activist-backend.herokuapp.com/podcasts/', {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',

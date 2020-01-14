@@ -24,7 +24,7 @@ const UserMenu = (props) => {
 
   const handleLogout = async () => {
     console.log('Signing out...')
-    let response = await fetch('http://localhost:5000/auth/logout', {
+    let response = await fetch('https://cryptic-activist-backend.herokuapp.com/auth/logout', {
       method: 'GET',
       mode: "cors",
       cache: "no-cache",

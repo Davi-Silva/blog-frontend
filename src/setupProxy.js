@@ -5,6 +5,6 @@ module.exports = function (app) {
   app.use(proxy('/auth', { target: 'https://cryptic-activist-backend.herokuapp.com/' }));
 =======
 module.exports = function(app) {
-  app.use(proxy("/auth", { target: "http://localhost:5000/" }));
+  app.use(proxy("/auth", { target: "https://cryptic-activist-backend.herokuapp.com/" }));
 >>>>>>> feature
 };
