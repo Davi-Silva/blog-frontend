@@ -43,7 +43,7 @@ const Login = (props) => {
 
   const loginUser = async (loginInfo) => {
     const response = await fetch(
-      'https://cryptic-activist-backend.herokuapp.com/users/login',
+      'http://localhost:5000/users/login',
       {
         method: 'POST',
         mode: 'cors',
@@ -86,82 +86,45 @@ const Login = (props) => {
               {' '}
                 Login
             </Header>
-            <form onSubmit={onSubmit}>
-              <Input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email"
-                value={email}
-                onChange={onChangeEmail}
-              />
-
-              <Input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Password"
-                value={password}
-                onChange={onChangePassword}
-              />
-              <Button type="submit">Login</Button>
-            </form>
-            <P className="mt-1">
-                No Account?
-              {' '}
-              <A to="/register">Register</A>
-            </P>
+            <LoginButtons>
+              <li
+                style={{
+                  listStyle: 'none',
+                }}
+              >
+                <LoginButton
+                  icon="google"
+                  backgroundColor="#4285f4"
+                  endpoint="//localhost:5000/auth/google"
+                  providerName="Google"
+                />
+              </li>
+              <li
+                style={{
+                  listStyle: 'none',
+                }}
+              >
+                <LoginButton
+                  icon="github"
+                  backgroundColor="#333"
+                  endpoint="http://localhost:5000/auth/github"
+                  providerName="Github"
+                />
+              </li>
+              <li
+                style={{
+                  listStyle: 'none',
+                }}
+              >
+                <LoginButton
+                  icon="facebook"
+                  backgroundColor="#3a5797"
+                  endpoint="http://localhost:5000/auth/facebook"
+                  providerName="Facebook"
+                />
+              </li>
+            </LoginButtons>
           </div>
-          <LoginButtons>
-            <li
-              style={{
-                listStyle: 'none',
-              }}
-            >
-              <LoginButton
-                icon="google"
-                backgroundColor="#4285f4"
-                endpoint="//localhost:5000/auth/google"
-                providerName="Google"
-              />
-            </li>
-            <li
-              style={{
-                listStyle: 'none',
-              }}
-            >
-              <LoginButton
-                icon="github"
-                backgroundColor="#333"
-                endpoint="https://cryptic-activist-backend.herokuapp.com/auth/github"
-                providerName="Github"
-              />
-            </li>
-            <li
-              style={{
-                listStyle: 'none',
-              }}
-            >
-              <LoginButton
-                icon="facebook"
-                backgroundColor="#3a5797"
-                endpoint="https://cryptic-activist-backend.herokuapp.com/auth/facebook"
-                providerName="Facebook"
-              />
-            </li>
-            <li
-              style={{
-                listStyle: 'none',
-              }}
-            >
-              <LoginButton
-                icon="instagram"
-                backgroundColor="#4285f4"
-                endpoint="https://cryptic-activist-backend.herokuapp.com/auth/instagram"
-                providerName="Instagram"
-              />
-            </li>
-          </LoginButtons>
         </div>
       </div>
     </div>

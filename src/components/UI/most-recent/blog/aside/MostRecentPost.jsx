@@ -14,7 +14,7 @@ const MostRecentPost = () => {
 
   useEffect(() => {
     const getMostRecentPost = async () => {
-      const response = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/most/recent/post', {
+      const response = await fetch('http://localhost:5000/blog/most/recent/post', {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',

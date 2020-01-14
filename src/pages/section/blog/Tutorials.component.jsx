@@ -15,7 +15,7 @@ const Tutorials = () => {
 
   useEffect(() => {
     const getTutorials = async () => {
-      const response = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/home/tutorials', {
+      const response = await fetch('http://localhost:5000/blog/home/tutorials', {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',

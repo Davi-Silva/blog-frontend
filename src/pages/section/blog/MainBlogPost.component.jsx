@@ -12,7 +12,7 @@ const MainBlogPost = () => {
   const [postsList, setPostsList] = useState([]);
 
   const getPosts = async () => {
-    const response = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/home/main-post', {
+    const response = await fetch('http://localhost:5000/blog/home/main-post', {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',

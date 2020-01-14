@@ -39,7 +39,8 @@ const SideDrawer = (props) => {
   };
 
   const handleLogout = async () => {
-    await fetch('https://cryptic-activist-backend.herokuapp.com/auth/logout', {
+    handleClose();
+    await fetch('http://localhost:5000/auth/logout', {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -60,7 +61,10 @@ const SideDrawer = (props) => {
     } = userInfo[0];
     ProfileDiv = (
       <>
-        <SideDrawerLinkToAdmin to="/profile">
+        <SideDrawerLinkToAdmin
+          to="/profile"
+          onClick={handleClose}
+        >
           <ProfileDrawerUl>
             <li
               style={{
@@ -123,6 +127,7 @@ const SideDrawer = (props) => {
               style={{
                 listStyle: 'none',
                 display: 'inline',
+                marginLeft: '10px',
               }}
             >
               <ProfileName>
@@ -168,12 +173,43 @@ const SideDrawer = (props) => {
                 </SideDrawerLinkTo>
               </SideDrawerLi>
               <SideDrawerLi>
-                <SideDrawerLinkTo
-                  to="/blog"
-                  onClick={handleClose}
+                <SideDrawerButtonTo
+                  className="navbar-toggler"
+                  type="button"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                  data-target="#expand-blog-categories"
+                  aria-controls="expand-blog-categories"
+                  data-toggle="collapse"
                 >
-                  All Posts
-                </SideDrawerLinkTo>
+                  Categories
+                </SideDrawerButtonTo>
+                <SideDrawerSubUl className="collapse navbar-collapse" id="expand-blog-categories">
+                  <SideDrawerLi>
+                    <SideDrawerLinkTo
+                      to="/blog"
+                      onClick={handleClose}
+                    >
+                      Test 1
+                    </SideDrawerLinkTo>
+                  </SideDrawerLi>
+                  <SideDrawerLi>
+                    <SideDrawerLinkTo
+                      to="/blog"
+                      onClick={handleClose}
+                    >
+                      Test 2
+                    </SideDrawerLinkTo>
+                  </SideDrawerLi>
+                  <SideDrawerLi>
+                    <SideDrawerLinkTo
+                      to="/blog"
+                      onClick={handleClose}
+                    >
+                  All Categories
+                    </SideDrawerLinkTo>
+                  </SideDrawerLi>
+                </SideDrawerSubUl>
               </SideDrawerLi>
               <SideDrawerLi>
                 <SideDrawerLinkTo
@@ -213,17 +249,58 @@ const SideDrawer = (props) => {
                 >
                   All Podcasts
                 </SideDrawerLinkTo>
+              </SideDrawerLi>
+              <SideDrawerLi>
                 <SideDrawerLinkTo
                   to="/podcasts"
                   onClick={handleClose}
                 >
-                  All Categories
+                  All Podcasts
                 </SideDrawerLinkTo>
+              </SideDrawerLi>
+              <SideDrawerButtonTo
+                className="navbar-toggler"
+                type="button"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                data-target="#expand-podcasts-categories"
+                aria-controls="expand-podcasts-categories"
+                data-toggle="collapse"
+              >
+                  Categories
+              </SideDrawerButtonTo>
+              <SideDrawerSubUl className="collapse navbar-collapse" id="expand-podcasts-categories">
+                <SideDrawerLi>
+                  <SideDrawerLinkTo
+                    to="/podcasts"
+                    onClick={handleClose}
+                  >
+                      Test 1
+                  </SideDrawerLinkTo>
+                </SideDrawerLi>
+                <SideDrawerLi>
+                  <SideDrawerLinkTo
+                    to="/podcasts"
+                    onClick={handleClose}
+                  >
+                      Test 2
+                  </SideDrawerLinkTo>
+                </SideDrawerLi>
+                <SideDrawerLi>
+                  <SideDrawerLinkTo
+                    to="/podcasts"
+                    onClick={handleClose}
+                  >
+                  All Categories
+                  </SideDrawerLinkTo>
+                </SideDrawerLi>
+              </SideDrawerSubUl>
+              <SideDrawerLi>
                 <SideDrawerLinkTo
                   to="/podcasts"
                   onClick={handleClose}
                 >
-                  All Categories
+                  All Podcasts
                 </SideDrawerLinkTo>
               </SideDrawerLi>
             </SideDrawerSubUl>
@@ -246,31 +323,69 @@ const SideDrawer = (props) => {
                   to="/courses"
                   onClick={handleClose}
                 >
-                  Home
+                  All Courses
                 </SideDrawerLinkTo>
+              </SideDrawerLi>
+              <SideDrawerLi>
                 <SideDrawerLinkTo
                   to="/courses"
                   onClick={handleClose}
                 >
-                  Home
+                  All Courses
                 </SideDrawerLinkTo>
+              </SideDrawerLi>
+              <SideDrawerButtonTo
+                className="navbar-toggler"
+                type="button"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                data-target="#expand-courses-categories"
+                aria-controls="expand-courses-categories"
+                data-toggle="collapse"
+              >
+                  Categories
+              </SideDrawerButtonTo>
+              <SideDrawerSubUl className="collapse navbar-collapse" id="expand-courses-categories">
+                <SideDrawerLi>
+                  <SideDrawerLinkTo
+                    to="/courses"
+                    onClick={handleClose}
+                  >
+                      Test 1
+                  </SideDrawerLinkTo>
+                </SideDrawerLi>
+                <SideDrawerLi>
+                  <SideDrawerLinkTo
+                    to="/courses"
+                    onClick={handleClose}
+                  >
+                      Test 2
+                  </SideDrawerLinkTo>
+                </SideDrawerLi>
+                <SideDrawerLi>
+                  <SideDrawerLinkTo
+                    to="/courses"
+                    onClick={handleClose}
+                  >
+                  All Categories
+                  </SideDrawerLinkTo>
+                </SideDrawerLi>
+              </SideDrawerSubUl>
+              <SideDrawerLi>
                 <SideDrawerLinkTo
                   to="/courses"
                   onClick={handleClose}
                 >
-                  Home
-                </SideDrawerLinkTo>
-                <SideDrawerLinkTo
-                  to="/courses"
-                  onClick={handleClose}
-                >
-                  Home
+                  All Courses
                 </SideDrawerLinkTo>
               </SideDrawerLi>
             </SideDrawerSubUl>
           </SideDrawerLi>
         </SideDrawerUl>
-        <AdminLink to="/admin">
+        <AdminLink
+          to="/admin"
+          onClick={handleClose}
+        >
           Admin
         </AdminLink>
         {logoutVar}
