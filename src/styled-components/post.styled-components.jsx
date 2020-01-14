@@ -69,13 +69,13 @@ export const TimeToRead = styled.span`
 
 export const Category = styled(Link)`
 	padding: 6px 13px;
-	background: #0058e4;
+	background: #ffcd2b;
 	border-radius: 16px;
-	color: #fff;
+	color: #000;
 	display: table;
 	font-size: 14px;
 	&:hover {
-		color: #fff;
+		color: #000;
 		text-decoration: none;
 	}
 	@media (max-width: 578px) {

@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 export const NavBar = styled.nav`
   /* border: 1px solid rgba(0, 0, 0, 0.1); */
-  background: transparent;
+  background: #ffcd2b;
   border: none;
   padding: .05rem 1rem;
 `;
 
 export const LinkA = styled(Link)`
-  color: #999;
+  color: #000;
   text-decoration: none;
   font-weight: 100;
   font-size: 13px;
@@ -17,7 +17,7 @@ export const LinkA = styled(Link)`
   line-height: 35px;
   margin-left: 5px;
   :hover {
-    color: #0058e4;
+    color: #000;
   }
   p {
     line-height: 14px;
@@ -38,10 +38,10 @@ export const LinkA = styled(Link)`
 `;
 
 export const LinkIcon = styled.button`
-  color: #999;
+  color: #000;
   text-decoration: none;
   font-weight: 100;
-  background: #fff;
+  background: transparent;
   margin: 10px 15px 0px 6px;
   padding: 6px 9px 8px 9px;
   border-radius: 3px;
@@ -49,12 +49,12 @@ export const LinkIcon = styled.button`
   transition: all 0.2s ease-in-out;
   line-height: 18px;
   :hover {
-    color: #0058e4;
+    color: #000;
   }
   &:focus {
     outline: none;
-    background: #efefef;
-    color: #0058e4;
+    background: #e0b528;
+    color: #000;
   }
   @media (max-width: 320px) {
     font-size: 12px;
@@ -65,10 +65,10 @@ export const LinkIcon = styled.button`
 `;
 
 export const LinkIconGrid = styled.button`
-  color: #999;
+  color: #000;
   text-decoration: none;
   font-weight: 100;
-  background: #fff;
+  background: transparent;
   margin-left: 15px;
   margin-right: 6px;
   padding: 6px 9px 8px 9px;
@@ -77,12 +77,12 @@ export const LinkIconGrid = styled.button`
   transition: all 0.2s ease-in-out;
   line-height: 18px;
   :hover {
-    color: #0058e4;
+    color: #000;
   }
   &:focus {
     outline: none;
-    background: #efefef;
-    color: #0058e4;
+    background: #e0b528;
+    color: #000;
   }
   @media (max-width: 768px) {
     display: none;
@@ -108,7 +108,7 @@ export const ButtonProfile = styled.button`
 `;
 
 export const Brand = styled(Link)`
-  color: #0058e4;
+  color: #000;
   font-weight: 900;
   letter-spacing: 1px;
   font-size: 14px;
@@ -146,9 +146,9 @@ export const Brand = styled(Link)`
 `;
 
 export const ToggleButton = styled.button`
-  color: #0058e4;
+  color: #000;
   padding: 0;
-  background: #fff;
+  background: transparent;
   border: none;
   :focus {
     outline: none;
@@ -162,23 +162,23 @@ export const ToggleButton = styled.button`
 `;
 
 export const SignUp = styled(Link)`
-  background-color: #fff;
+  background-color: #000;
   border: none;
-  color: #0058e4;
+  margin-top: 13px;
+  color: #ffcd2b;
+  border: 1px solid #000;
   border-radius: 4px;
   padding: 3px 7px;
-  margin-top: 13px;
   font-weight: 700;
   font-size: 13px;
   transition: .2s all ease-in-out;
   transition-delay: .1s;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
   &:hover {
-    background: #edf5ff;
+    color: #000;
+    background-color: #ffcd2b;
+    border: 1px solid #000;
   }
-  &:active {
-    background: #edf5ff;
-  }
-
 `;
 
 export const Button = styled.button`
@@ -188,7 +188,7 @@ export const Button = styled.button`
 `;
 
 export const Separator = styled.div`
-  background: #efefef;
+  background: #000;
   height: 60%;
   width: 1px;
   display: block;

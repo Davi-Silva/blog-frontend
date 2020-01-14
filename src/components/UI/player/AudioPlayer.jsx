@@ -9,9 +9,11 @@ const AudioPlayer = ({ audioFileUrl }) => {
   const useStyles = makeStyles(() => ({
     marginTop: '15px',
     loopIcon: {
-      color: '#0058e4',
+      height: '25px',
+      width: '25px',
+      color: '#000',
       '&.selected': {
-        color: '#0058e4',
+        color: '#000',
       },
       '&:hover': {
         color: '#333',
@@ -24,7 +26,7 @@ const AudioPlayer = ({ audioFileUrl }) => {
       },
     },
     playIcon: {
-      color: '#0058e4',
+      color: '#000',
       height: '25px',
       width: '25px',
       transition: 'all .2s ease-in-out',
@@ -39,7 +41,7 @@ const AudioPlayer = ({ audioFileUrl }) => {
       },
     },
     pauseIcon: {
-      color: '#0058e4',
+      color: '#000',
       height: '25px',
       width: '25px',
       transition: 'all .2s ease-in-out',
@@ -54,7 +56,7 @@ const AudioPlayer = ({ audioFileUrl }) => {
       },
     },
     volumeIcon: {
-      color: '#0058e4',
+      color: '#000',
       height: '25px',
       width: '25px',
       '&:hover': {
@@ -68,26 +70,26 @@ const AudioPlayer = ({ audioFileUrl }) => {
       },
     },
     volumeSlider: {
-      color: '#0058e4',
+      color: '#000',
       height: '25px',
       width: '25px',
     },
     progressTime: {
-      color: '#0058e4',
+      color: '#000',
       lineHeight: '50px',
     },
     mainSlider: {
-      color: '#0058e4',
+      color: '#ffcd2b',
       '& .MuiSlider-rail': {
         color: '#999',
         marginTop: '13px',
       },
       '& .MuiSlider-track': {
-        color: '#0058e4',
+        color: '#000',
         marginTop: '13px',
       },
       '& .MuiSlider-thumb': {
-        color: '#0058e4',
+        color: '#ffcd2b',
         top: '10px',
         marginTop: '10px',
       },

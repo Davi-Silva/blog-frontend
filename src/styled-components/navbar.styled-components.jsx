@@ -2,21 +2,20 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const NavBar = styled.nav`
-  /* border: 1px solid rgba(0, 0, 0, 0.1); */
-  background: transparent;
+  background: #ffcd2b;
   border: none;
   padding: .05rem 1rem;
 `;
 
 export const LinkA = styled(Link)`
-  color: #999;
+  color: #000;
   text-decoration: none;
   font-weight: 100;
   font-size: 13px;
   transition: all 0.2s ease-in-out;
   line-height: 35px;
   :hover {
-    color: #0058e4;
+    color: #000;
   }
   @media (max-width: 991px) {
     display: table;
@@ -46,12 +45,18 @@ export const ButtonProfile = styled.button`
   &:focus {
     outline: none;
   }
+  img {
+    /* border: 1px solid #000; */
+  }
 `;
 
 export const Brand = styled(Link)`
-  color: #0058e4;
+  color: #000;
   font-weight: 900;
   letter-spacing: 1px;
+  &:hover {
+    color: #000;
+  } 
   @media (max-width: 991px) {
     margin-right: 0px;
   }
@@ -61,9 +66,9 @@ export const Brand = styled(Link)`
 `;
 
 export const ToggleButton = styled.button`
-  color: #0058e4;
+  color: #000;
   padding: 0;
-  background: #fff;
+  background: transparent;
   border: none;
   
   :focus {
@@ -78,23 +83,23 @@ export const ToggleButton = styled.button`
 `;
 
 export const SignUp = styled(Link)`
-  background-color: #fff;
+  background-color: #000;
   border: none;
-  color: #0058e4;
+  margin: 13px 0 0 10px;
+  color: #ffcd2b;
+  border: 1px solid #000;
   border-radius: 4px;
   padding: 3px 7px;
-  margin-top: 13px;
   font-weight: 700;
   font-size: 13px;
   transition: .2s all ease-in-out;
   transition-delay: .1s;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
   &:hover {
-    background: #edf5ff;
+    color: #000;
+    background-color: #ffcd2b;
+    border: 1px solid #000;
   }
-  &:active {
-    background: #edf5ff;
-  }
-
 `;
 
 export const Button = styled.button`

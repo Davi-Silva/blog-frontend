@@ -8,25 +8,25 @@ export const Form = styled.form`
   left: 0px;
   width: 100%;
   svg {
-    color: #999;
+    color: #000;
     transform: rotate(-45deg) translate(-19px,-22px);
     transform-origin: 50% 50%;
   }
 `;
 
 export const Input = styled.input`
-  background: #fff;
+  background: #e0b528;
   border: none;
   padding: 9px 10px;
   border: none;
-  border-bottom: 1px solid #b3b3b3;
+  border-bottom: 1px solid #000;
   width: 100%;
-  color: #999;
+  color: #000;
   &:focus {
     outline: none;
   }
   &::placeholder {
-    color: #999;
+    color: #000;
   }
 `;
 

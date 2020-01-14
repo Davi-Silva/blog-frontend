@@ -46,7 +46,7 @@ export const PostListTitleDiv = styled.div`
 		width: 3px;
 		display: block;
 		position: absolute;
-		background: #0058e4;
+		background: #ffcd2b;
 		margin-right: 10px;
 	}
 `;

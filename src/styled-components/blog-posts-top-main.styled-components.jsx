@@ -19,7 +19,7 @@ export const BlogToPostMainDiv = styled.div`
 export const Card = styled(Link)`
   text-decoration: none;
   margin-bottom: 20px;
-	.grey {
+	.yellow {
 		&::before {
 			content: '';
 			height: 15px;
@@ -27,10 +27,10 @@ export const Card = styled(Link)`
 			display: block;
 			position: absolute;
 			top: 4px;
-			background: #b1b1b1;
+			background: #ffcd2b;
 		}
 	}
-	.blue {
+	.black {
 		&::before {
 			content: '';
 			height: 15px;
@@ -38,7 +38,7 @@ export const Card = styled(Link)`
 			display: block;
 			position: absolute;
 			top: 4px;
-			background: #0058e4;
+			background: #000;
 		}
 	}
   &:hover {

@@ -21,6 +21,17 @@ body::-webkit-scrollbar-track {
 	background: transparent;
 }
 
+.side-drawer::-webkit-scrollbar {
+	display: none;
+}
+.side-drawer::-webkit-scrollbar-track {
+	display: none;
+}
+
+.side-drawer::-webkit-scrollbar-thumb {
+	display: none;
+}
+
 body::-webkit-scrollbar-thumb {
 	background: #fff;
 	border: 1px solid #0058e4;

@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 export const Wrapper = styled.div`
     z-index: 9999999999;
     position: absolute;
-    background: #fff;
+    background: #ffcd2b;
     width: 130px;
-    color: #333;
+    color: #000;
     top: 33px;
     right: 10%;
     border-radius: 2px;
@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
 
 export const WrapperArrow = styled.div`
   display: table;
-  background: #fff;
+  background: #ffcd2b;
   width: 15px;
   z-index: 99999999999;
   height: 15px;
@@ -36,25 +36,24 @@ export const WrapperArrow = styled.div`
 `;
 
 export const ProfileDiv = styled.div`
-  color: #333;
+  color: #000;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   font-size: 13px;
   transition: .2s all ease-in-out;
   &:hover {
-    background: rgba(0, 0, 0, 0.025);
+    background: #e0b528;
   }
 `;
 
 export const Profile = styled(Link)`
-  /* width: 100%; */
   margin: 0px auto;
   display: table;
   padding: 5px 0;
-  color: #333;
+  color: #000;
   &:hover {
     text-decoration: none;
-    color: #333;
+    color: #000;
   }
   p {
     margin: 0;
@@ -70,21 +69,28 @@ export const MenuOpitionUl = styled.ul`
 export const MenuOpitionLi = styled.li`
   display: table;
   width: 100%;
-  color: #333;
+  color: #000;
   font-size: 13px;
   transition: .2s all ease-in-out;
   &:hover {
-    background: rgba(0, 0, 0, 0.025);
+    background: #000;
+    a {
+      color: #ffcd2b;
+    }
+  }
+  .last {
+    border-bottom-left-radius: 2px;
+    border-bottom-left-radius: 2px;
   }
 `;
 
 export const LinkTo = styled(Link)`
-  color: #333;
+  color: #000;
   text-align: center;
   padding: 5px 0;
   display: block;
   &:hover {
-    color: #333;
     text-decoration: none;
   }
+
 `;

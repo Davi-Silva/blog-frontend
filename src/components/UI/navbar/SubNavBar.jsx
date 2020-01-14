@@ -58,7 +58,7 @@ export default class SubNavBar extends Component {
             {' '}
             <Separator>{'>'}</Separator>
             {' '}
-            <Li style={{ color: '#0058e4', fontWeight: '900' }}>{title}</Li>
+            <Li style={{ color: '#000', fontWeight: '900' }}>{title}</Li>
           </Ul>
         </>
       );

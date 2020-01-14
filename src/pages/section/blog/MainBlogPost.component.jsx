@@ -68,7 +68,7 @@ const MainBlogPost = () => {
                       <>
                         <ColumnLeft className="col-lg-6 col-md-6 col-sm-6 col-12">
                           <BlogPostListMain
-                            categoryColor="grey"
+                            categoryColor="yellow"
                             key={index}
                             type="Blog"
                             slug={post.slug}
@@ -87,7 +87,7 @@ const MainBlogPost = () => {
                       <>
                         <ColumnRight className="col-lg-6 col-md-6 col-sm-6 col-12">
                           <BlogPostListMain
-                            categoryColor="blue"
+                            categoryColor="black"
                             key={index}
                             type="Blog"
                             slug={post.slug}

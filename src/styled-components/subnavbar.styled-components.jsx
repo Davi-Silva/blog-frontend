@@ -4,13 +4,13 @@ import styled from 'styled-components';
 
 export const SubNavigatorBar = styled.nav`
   position: sticky;
-  top: 0;
+  top: -1px;
   padding: 0 0 3px 0;
   background: #fff;
   margin-top: -1px;
+  background-color: #ffcd2b;
   letter-spacing: 1px;
-  border-bottom: 1px solid #0058e4;
-  border-top: 1px solid #fff;
+  border-bottom: 1px solid #000;
   z-index: 999999999;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
 `;
@@ -41,7 +41,7 @@ export const Ul = styled.ul`
 
 export const Li = styled.li`
   display: inline-block;
-  color: #0058e4;
+  color: #000;
   font-size: 14px;
   @media (max-width: 768px) {
     font-size: 13px;
@@ -59,7 +59,7 @@ export const Li = styled.li`
 
 export const Separator = styled.span`
   font-size: 11px;
-  color: #0058e4;
+  color: #000;
   @media (max-width: 768px) {
     font-size: 11px;
   }

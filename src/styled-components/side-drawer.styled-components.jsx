@@ -15,23 +15,27 @@ export const BackgroundDrawer = styled.div`
 export const Drawer = styled.nav`
   height: 95%;
   width: 250px;
-  background: #fff;
+  background: #ffcd2b;
   position: fixed;
   top: 41px;
   z-index: 99999999999;
   padding: 0;
   overflow-y: scroll;
   transform: translateX(-250px);
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
   .closeDrawer {
     position: absolute;
     top: 15px;
     right: 15px;
     transform: rotate(45deg);
-    color: #999;
+    color: #000;
     transition: all .2s ease-in-out;
     &:hover {
       transform: scale(1.1, 1.1) rotate(45deg);
-      color: #0058e4;
+      color: #000;
     }
     &:active {
       transform: scale(0.95, 0.95) rotate(45deg);
@@ -68,10 +72,10 @@ export const ProfileName = styled.span`
 `;
 
 export const ProfileRanking = styled.p`
-  color: #0058e4;
+  color: #000;
   font-size: 15px;
   &:hover {
-    color: #0058e4;
+    color: #000;
     text-decoration: none;
   }
 `;
@@ -95,7 +99,7 @@ export const SideDrawerUl = styled.ul`
 
 export const SideDrawerSubUl = styled.ul`
   width: 100%;
-  background: #efefef;
+  background: #e0b528;
   box-shadow: inset 0px 0px 8px -3px rgba(0, 0, 0, 0.15);
 `;
 
@@ -105,7 +109,7 @@ export const SideDrawerLi = styled.li`
 `;
 
 export const SideDrawerButtonTo = styled.button`
-  color: #333;
+  color: #000;
   font-size: 17px;
   width: 100%;
   display: block;
@@ -114,11 +118,10 @@ export const SideDrawerButtonTo = styled.button`
   text-align:left;
   border: none;
   line-height: unset;
-  background: #fff;
+  background: #ffcd2b;
   &:hover {
-    color: #333;
+    color: #000;
     text-decoration: none;
-    /* background: #efefef; */
     border-radius: 3px;
   }
   &:focus {
@@ -128,7 +131,7 @@ export const SideDrawerButtonTo = styled.button`
 `;
 
 export const SideDrawerLinkTo = styled(Link)`
-  color: #999;
+  color: #000;
   font-size: 16px;
   width: 100%;
   display: block;
@@ -138,9 +141,9 @@ export const SideDrawerLinkTo = styled(Link)`
   border: none;
   background: transparent;
   &:hover {
-    color: #333;
+    color: #ffcd2b;
     text-decoration: none;
-    background: #efefef;
+    background: #000;
     border-radius: 3px;
   }
   &:focus {
@@ -149,7 +152,7 @@ export const SideDrawerLinkTo = styled(Link)`
 `;
 
 export const AdminLink = styled(Link)`
-  color: #333;
+  color: #000;
   font-size: 16px;
   width: 100%;
   display: block;
@@ -159,9 +162,9 @@ export const AdminLink = styled(Link)`
   border: none;
   background: transparent;
   &:hover {
-    color: #333;
+    color: #ffcd2b;
     text-decoration: none;
-    background: #efefef;
+    background: #000;
     border-radius: 3px;
   }
   &:focus {
@@ -186,10 +189,10 @@ export const Button = styled.button`
 `;
 
 export const Login = styled(Link)`
-  color: #0058e4;
+  color: #000;
   font-size: 16px;
   &:hover {
-    color: #0058e4;
+    color: #000;
     text-decoration: none;
   }
 `;
@@ -197,7 +200,7 @@ export const Login = styled(Link)`
 export const Separator = styled.div`
   height: 1px;
   width: 50%;
-  background: #ddd;
+  background: #000;
   display: block;
   margin: 0 auto;
   display: table;
@@ -210,25 +213,63 @@ export const LogoutDiv = styled.div`
   width: 88%;
   margin-left: 10px;
   margin-top: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 40px;
 `;
 
 export const Logout = styled.button`
-  color: #333;
+  color: #ffcd2b;
   padding: 5px 7px;
-  background: #fff;
+  background: #000;
+  font-weight: 900;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
   border: none;
   border-radius: 3px;
+  border: 1px solid #000;
   transition: all .3s ease-in-out;
   &:hover {
-    color: #333;
-    text-decoration: none;
-    background: #efefef;
+    color: #000;
+    background-color: #ffcd2b;
+    border: 1px solid #000;
   }
   &:focus {
     outline: none;
   }
   &:active {
-    background: #d8d8d8;
+    color: #000;
+    background-color: #ffcd2b;
+    border: 1px solid #000;
+  }
+`;
+
+export const LoginLinkDiv = styled.div`
+  padding: 40px 15px;
+  display: block;
+`;
+
+
+export const LoginLink = styled(Link)`
+  color: #ffcd2b;
+  padding: 5px 7px;
+  background: #000;
+  margin: 40px 0;
+  font-weight: 900;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 3px;
+  border: 1px solid #000;
+  transition: all .3s ease-in-out;
+  &:hover {
+    color: #000;
+    background-color: #ffcd2b;
+    border: 1px solid #000;
+    text-decoration: none;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    color: #000;
+    background-color: #ffcd2b;
+    border: 1px solid #000;
   }
 `;
