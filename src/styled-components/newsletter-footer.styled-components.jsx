@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 export const Title = styled.h6`
-  color: #999;
+  color: #000;
   font-size: 10px;
   text-transform: uppercase;
   margin-bottom: 0px;
@@ -17,8 +17,8 @@ export const Title = styled.h6`
 `;
 
 export const Email = styled.input`
-  background: #fff;
-  color: #aaa;
+  background: #e0b528;
+  color: #000;
   font-size: 13px;
   padding: 10px 15px 10px 33px;
   border: none;
@@ -30,14 +30,14 @@ export const Email = styled.input`
   &::placeholder {
     font-weight: 400;
     letter-spacing: 1px;
-    color: #aaa;
+    color: #000;
   }
   &:focus {
     outline: none;
-    background: #f5f5f5;
+    background: #e0b528;
   }
   &:hover {
-    background: #f5f5f5;
+    background: #e0b528;
   }
   @media (max-width: 991px) {
     padding: 6px 20px 6px 25px;
@@ -57,7 +57,7 @@ export const Icon = styled.div`
   top: 21px;
   font-size: 13px;
   svg {
-    color: #aaa;
+    color: #000;
     @media (max-width: 991px) {
       font-size: 10px;
     }

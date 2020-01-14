@@ -3,18 +3,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const FooterDiv = styled.footer`
-    background: #fff;
-    padding-top: 25px;
-    margin-top: 10px;
-	&::before {
-		content: '';
-		width: 15%;
-		height: 1px;
-		background: #ddd;
-		display: table;
-		margin: 20px auto 57px auto;
-		position: relative;
-	}
+    background: #ffcd2b;
+    padding-top: 30px;
+    margin-top: 40px;
+		border-top: 1px solid #000;
 	@media (max-width: 768px) {
 		&::before {
 			margin-bottom: 45px;
@@ -23,7 +15,7 @@ export const FooterDiv = styled.footer`
 `;
 
 export const P = styled.p`
-	color: #a9a7ad;
+	color: #000;
 	margin: 15px 0px 3px 0px;
 	font-size: 12px;
 	text-align: center;
@@ -40,13 +32,13 @@ export const P = styled.p`
 `;
 
 export const Github = styled(Link)`
-	color: #999;
+	color: #000;
 	font-weight: 900;
 	font-size: 13px;
 	transition: all .25s ease-in-out;
 	:hover {
 		text-decoration: none;
-		color: #0058e4;
+		color: #000;
 	}
 	@media (max-width: 440px) {
 		font-size: 12px;
@@ -60,7 +52,7 @@ export const Github = styled(Link)`
 `;
 
 export const Header = styled.h6`
-	color: #0058e4;
+	color: #000;
 	font-size: 11px;
 	font-weight: 700;
 	letter-spacing: 1px;
@@ -84,16 +76,17 @@ export const Li = styled.li`
 `;
 
 export const LinkTo = styled(Link)`
-	color: #999;
+	color: #000;
 	transition: all .3s ease-in-out;
 	font-size: 12px;
 	&:hover {
 		text-decoration: none;
+		color: #000;
 	}
 `;
 
 export const LinkToPolicies = styled(Link)`
-	color: #999;
+	color: #000;
 	font-size: 11px;
 	font-weight: 700;
 	letter-spacing: 1px;
@@ -119,7 +112,7 @@ export const LinkToPolicies = styled(Link)`
 `;
 
 export const CopyRight = styled.p`
-	color: #999;
+	color: #000;
 	font-size: 11px;
 	font-weight: 300;
 	letter-spacing: 1px;
@@ -135,7 +128,7 @@ export const CopyRight = styled.p`
 `;
 
 export const SocialMediaTitle = styled.h6`
-	color: #999;
+	color: #000;
 	font-size: 10px;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -157,22 +150,35 @@ export const SocialMediaUl = styled.ul`
 
 export const SocialMediaLi = styled.li`
 	display: inline;
-	margin: 0px 7px;
-`;
-
-export const SocialMediaLink = styled(Link)`
-	svg {
-		color: #999;
-		font-size: 20px;
-		transition: all .25s ease-in-out;
-		&:hover {
-			color: #0058e4;
+	margin: 0 7px 0 0;
+	background-color: #000;
+	padding: 4px;
+	border-radius: 3px;
+	border: 1px solid #000;
+	transition: .2s all ease-in-out;
+	@media (max-width: 768px) {
+		margin: 0 3px;
+	}
+	&:hover {
+		background-color: #ffcd2b;
+		a {
+			svg {
+				color: #000;
+			}
 		}
 	}
 `;
 
+export const SocialMediaLink = styled(Link)`
+	svg {
+		color: #ffcd2b;
+		font-size: 17px;
+		transition: all .25s ease-in-out;
+	}
+`;
+
 export const Donate = styled.div`
-	color: #999;
+	color: #000;
 	font-size: 12px;
 	font-weight: 700;
 	letter-spacing: 1px;

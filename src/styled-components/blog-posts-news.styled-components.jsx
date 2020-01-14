@@ -12,7 +12,7 @@ export const PostListTitleDiv = styled.div`
 		width: 3px;
 		display: block;
 		position: absolute;
-		background: #0058e4;
+		background: #000;
 		margin-right: 10px;
 		
 	}

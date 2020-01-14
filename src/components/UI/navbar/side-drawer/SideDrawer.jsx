@@ -20,6 +20,8 @@ import {
   Separator,
   LogoutDiv,
   Logout,
+  LoginLinkDiv,
+  LoginLink,
 } from '../../../../styled-components/side-drawer.styled-components';
 
 import ProfilePlaceholder from '../../../../static/img/profile-placeholder.png';
@@ -92,6 +94,7 @@ const SideDrawer = (props) => {
             </li>
           </ProfileDrawerUl>
         </SideDrawerLinkToAdmin>
+        <Separator />
       </>
     );
     logoutVar = (
@@ -108,34 +111,14 @@ const SideDrawer = (props) => {
   } else {
     ProfileDiv = (
       <>
-        <SideDrawerLinkToAdmin
-          to="/login"
-          onClick={handleClose}
-        >
-          <ul>
-            <li
-              style={{
-                listStyle: 'none',
-                display: 'inline',
-              }}
-            >
-              <ProfileImage
-                src={ProfilePlaceholder}
-              />
-            </li>
-            <li
-              style={{
-                listStyle: 'none',
-                display: 'inline',
-                marginLeft: '10px',
-              }}
-            >
-              <ProfileName>
-                Login
-              </ProfileName>
-            </li>
-          </ul>
-        </SideDrawerLinkToAdmin>
+        <LoginLinkDiv>
+          <LoginLink
+            to="/login"
+            onClick={handleClose}
+          >
+          Login
+          </LoginLink>
+        </LoginLinkDiv>
       </>
     );
     logoutVar = (
@@ -147,9 +130,8 @@ const SideDrawer = (props) => {
   return (
     <>
       <BackgroundDrawer onClick={handleClose} />
-      <Drawer>
+      <Drawer className="side-drawer">
         {ProfileDiv}
-        <Separator />
         <SideDrawerUl>
           <SideDrawerLi>
             <SideDrawerButtonTo

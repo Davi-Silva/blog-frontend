@@ -23,19 +23,19 @@ const UserMenu = (props) => {
   };
 
   const handleLogout = async () => {
-    console.log('Signing out...')
-    let response = await fetch('https://cryptic-activist-backend.herokuapp.com/auth/logout', {
+    console.log('Signing out...');
+    const response = await fetch('http://localhost:5000/auth/logout', {
       method: 'GET',
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
       },
     });
     handleCloseOnClick();
     console.log('sign out response:', response);
-  }
+  };
 
   return (
     <>
@@ -77,6 +77,7 @@ const UserMenu = (props) => {
             <LinkTo
               to="/"
               onClick={handleLogout}
+              className="last"
             >
               Sign out
             </LinkTo>

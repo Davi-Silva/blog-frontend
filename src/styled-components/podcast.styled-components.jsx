@@ -147,16 +147,16 @@ export const LoadingTitle = styled.h1`
 
 export const Category = styled(Link)`
 	padding: 6px 13px;
-	background: #0058e4;
+	background: #ffcd2b;
 	border-radius: 16px;
-	color: #fff;
+	color: #000;
 	display: table;
 	transform: translateY(0px);
 	font-size: 14px;
 	margin-top: 5px;
 	margin-bottom: 10px;
 	&:hover {
-		color: #fff;
+		color: #000;
 		text-decoration: none;
 	}
 	@media (max-width: 578px) {
@@ -165,7 +165,7 @@ export const Category = styled(Link)`
 `;
 
 export const LoadingCategory = styled.p`
-	color: #999;
+	color: #000;
 	margin: 10px 0px;
 	animation: ${opacity} 2s ease-in-out infinite;
 `;
@@ -267,9 +267,13 @@ export const Update = styled(Link)`
 `;
 
 export const MoreEpisodes = styled(Link)`
-	color: #0058e4;
+	color: #000;
 	margin: 15px 0;
 	display: block;
+	&:hover {
+		text-decoration: none;
+		color: #000;
+	}
 `;
 
 
