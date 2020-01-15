@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import BitcoinDoddle from '../../static/img/no-content-img.png';
 
+import SubNavBarCategories from '../../components/UI/navbar/SubNavBarCategory';
 import BlogPostList from '../../components/UI/lists/blog-home/BlogPostList.component';
 import SubNavBar from '../../components/UI/navbar/SubNavBar';
 import MostRecentPost from '../../components/UI/most-recent/blog/aside/MostRecentPost';
@@ -188,6 +189,7 @@ export default class BlogPostsByCategory extends Component {
 
     return (
       <>
+        <SubNavBarCategories />
         <SubNavBar media="Blog" category="Category" title={`${category.replace(/^\w/, (c) => c.toUpperCase())}`} />
         <div className="container" style={{ margin: '25px auto' }}>
           {allPosts}

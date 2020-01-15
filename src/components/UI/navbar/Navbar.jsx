@@ -24,6 +24,7 @@ import {
   ToggleButton,
   SignUp,
   ButtonProfile,
+  Ul,
 } from '../../../styled-components/navbar.styled-components';
 
 const Navbar = (props) => {
@@ -41,9 +42,6 @@ const Navbar = (props) => {
   const { showSideDrawer } = useSelector((state) => state.navbar);
   const dispatch = useDispatch();
   userInfo = userInfo.userInfo;
-
-  console.log('showSideDrawer:', showSideDrawer);
-
 
   useEffect(() => {
     const handleLoginUser = async () => {
@@ -192,7 +190,7 @@ const Navbar = (props) => {
     UserDiv = (
       <>
         <SignUp
-          className="nav-link"
+          // className="nav-link"
           to="/login"
           onClick={() => {
             document
@@ -272,7 +270,7 @@ const Navbar = (props) => {
               {SearchFormDiv}
             </ToggleButton>
             <div className="collapse navbar-collapse" id="navbarResponsive">
-              <ul className="navbar-nav ml-auto">
+              <Ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <LinkA
                     className="nav-link"
@@ -312,10 +310,10 @@ const Navbar = (props) => {
                     Station
                   </LinkA>
                 </li>
-                <li className="nav-item">
+                <li className="profile-li">
                   {UserDiv}
                 </li>
-              </ul>
+              </Ul>
               {UserMenuDiv}
             </div>
           </div>

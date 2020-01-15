@@ -2,11 +2,38 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const NavBar = styled.nav`
-  /* border: 1px solid rgba(0, 0, 0, 0.1); */
   background: #ffcd2b;
   border: none;
   padding: .05rem 1rem;
+  height: 50px;
+  border-bottom: 1px solid #000;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
 `;
+
+export const Ul = styled.ul`
+  .go-home {
+    transform: translateY(-3px);
+  }
+  .nav-item {
+    transform: translateY(-4px);
+  }
+  li {
+    margin: 0 3px;
+    height: 26px;
+  }
+  .profile-li {
+    height: 35px;
+    transform: translateX(3px);
+  }
+  /* .nav-link {
+    padding: 4px;
+  } */
+  .nav-cart {
+    padding: 6px 7px!important;
+    transform: translateY(-2px);
+  }
+`;
+
 
 export const LinkA = styled(Link)`
   color: #000;
@@ -48,6 +75,9 @@ export const LinkIcon = styled.button`
   border: none;
   transition: all 0.2s ease-in-out;
   line-height: 18px;
+  .nav-cart {
+    padding: 6px;
+  }
   :hover {
     color: #000;
   }
@@ -99,8 +129,6 @@ export const LinkAProfile = styled(Link)`
 export const ButtonProfile = styled.button`
   border: none;
   background: transparent;
-  margin-top: 7px;
-  margin-left: 5px;
   border-radius: 50px;
   &:focus {
     outline: none;
@@ -192,4 +220,5 @@ export const Separator = styled.div`
   height: 60%;
   width: 1px;
   display: block;
+  transform: translateY(-1px);
 `;

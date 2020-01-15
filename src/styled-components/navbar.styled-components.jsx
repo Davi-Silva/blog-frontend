@@ -5,17 +5,24 @@ export const NavBar = styled.nav`
   background: #ffcd2b;
   border: none;
   padding: .05rem 1rem;
+  height: 50px;
+  border-bottom: 1px solid #000;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
 `;
+
 
 export const LinkA = styled(Link)`
   color: #000;
   text-decoration: none;
   font-weight: 100;
   font-size: 13px;
+  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  line-height: 35px;
+  border-radius: 4px;
   :hover {
-    color: #000;
+    color: #e0b528;
+    background: #000;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
   }
   @media (max-width: 991px) {
     display: table;
@@ -36,10 +43,27 @@ export const LinkAProfile = styled(Link)`
   }
 `;
 
+export const Ul = styled.ul`
+  .nav-item {
+    transform: translateY(3px);
+  }
+  li {
+    margin: 0 3px;
+    height: 26px;
+  }
+  .profile-li {
+    height: 35px;
+    transform: translateX(3px);
+  }
+  .nav-link {
+    padding: 4px;
+  }
+`;
+
 export const ButtonProfile = styled.button`
   border: none;
   background: transparent;
-  margin-top: 7px;
+  /* margin-top: 7px; */
   margin-left: 5px;
   border-radius: 50px;
   &:focus {

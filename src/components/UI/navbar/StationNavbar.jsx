@@ -18,6 +18,7 @@ import * as UserActions from '../../../store/actions/user';
 
 import {
   NavBar,
+  Ul,
   LinkA,
   LinkIcon,
   LinkIconGrid,
@@ -278,13 +279,13 @@ const Navbar = () => {
             {SearchFormDiv}
           </ToggleButton>
           <div className="collapse navbar-collapse" id="navbarResponsive">
-            <ul className="navbar-nav ml-auto">
+            <Ul className="navbar-nav ml-auto">
               <li className="nav-item">
                 <CoursesSearchFormDesktop />
               </li>
               <li className="nav-item">
                 <LinkA
-                  className="nav-link"
+                  className="nav-link go-home"
                   to="/"
                   onClick={() => {
                     document
@@ -299,14 +300,14 @@ const Navbar = () => {
               </li>
               <li
                 style={{
-                  margin: '16px 5px 0px 7px',
+                  margin: '13px 5px 0px 7px',
                 }}
               >
                 <Separator />
               </li>
               <li className="nav-item">
                 <LinkIcon
-                  className="nav-link"
+                  className="nav-cart"
                   // onClick={() => {
                   //   document
                   //     .querySelector('#navbarResponsive')
@@ -316,10 +317,8 @@ const Navbar = () => {
                   <FaShoppingCart />
                 </LinkIcon>
               </li>
-              <li className="nav-item">
-                {UserDiv}
-              </li>
-            </ul>
+              {UserDiv}
+            </Ul>
             {UserMenuDiv}
           </div>
         </div>

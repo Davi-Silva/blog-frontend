@@ -27,7 +27,18 @@ export const Card = styled(Link)`
 			display: block;
 			position: absolute;
 			top: 4px;
-			background: #ffcd2b;
+			background: #fff;
+		}
+		@media (max-width: 575px) {
+			&::before {
+				content: '';
+				height: 15px;
+				width: 2px;
+				display: block;
+				position: absolute;
+				top: 4px;
+				background: #ffcd2b;
+			}
 		}
 	}
 	.black {
@@ -38,7 +49,18 @@ export const Card = styled(Link)`
 			display: block;
 			position: absolute;
 			top: 4px;
-			background: #000;
+			background: #fff;
+		}
+		@media (max-width: 575px) {
+			&::before {
+				content: '';
+				height: 15px;
+				width: 2px;
+				display: block;
+				position: absolute;
+				top: 4px;
+				background: #000;
+			}
 		}
 	}
   &:hover {
