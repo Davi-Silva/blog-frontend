@@ -6,16 +6,62 @@ import { Link } from 'react-router-dom';
 import { rotate } from './animations';
 
 export const PostListTitleDiv = styled.div`
-	&::before {
+	margin-bottom: 30px;
+	&::after {
 		content: '';
-		height: 20px;
-		width: 3px;
+		height: 2px;
+		width: 97%;
 		display: block;
 		position: absolute;
-		background: #ffcd2b;
+		background: #000;
 		margin-right: 10px;
-		@media (max-width: 433px) {
-			height: 39px;
+		@media (max-width: 991px) {
+			width: 95.8%;
+		}
+		@media (max-width: 768px) {
+			width: 94%;
+		}
+		@media (max-width: 495px) {
+			width: 93.5%;
+		}
+		@media (max-width: 469px) {
+			width: 93%;
+		}
+		@media (max-width: 464px) {
+			width: 92.5%;
+		}
+		@media (max-width: 416px) {
+			width: 92%;
+		}
+		@media (max-width: 377px) {
+			width: 91.5%;
+		}
+		@media (max-width: 354px) {
+			width: 91%;
+		}
+		@media (max-width: 347px) {
+			width: 90.5%;
+		}
+		@media (max-width: 321px) {
+			width: 90%;
+		}
+		@media (max-width: 305px) {
+			width: 89.5%;
+		}
+		@media (max-width: 297px) {
+			width: 89%;
+		}
+		@media (max-width: 279px) {
+			width: 88.5%;
+		}
+		@media (max-width: 269px) {
+			width: 88%;
+		}
+		@media (max-width: 259px) {
+			width: 87.5%;
+		}
+		@media (max-width: 241px) {
+			width: 87%;
 		}
 	}
 `;
@@ -95,7 +141,6 @@ export const PostListTitle = styled.h3`
 	font-weight: 900;
 	letter-spacing: 1px;
 	font-size: 20px;
-	margin-left: 10px;
 	@media (max-width: 991px) {
 		font-size: 18px;
 	}
