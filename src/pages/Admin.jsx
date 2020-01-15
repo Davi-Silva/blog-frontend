@@ -242,7 +242,7 @@ const Admin = (props) => {
           <AdminSubButton
             onClick={onChangeAdd}
             style={{
-              color: '#0058e4',
+              color: '#e0b528',
             }}
           >
             <FaPlus />
@@ -289,7 +289,7 @@ const Admin = (props) => {
           <AdminSubButton
             onClick={onChangeEdit}
             style={{
-              color: '#0058e4',
+              color: '#e0b528',
             }}
           >
             <FaListUl />
@@ -337,7 +337,7 @@ const Admin = (props) => {
           <AdminSubButton
             onClick={onChangeSearch}
             style={{
-              color: '#0058e4',
+              color: '#e0b528',
             }}
           >
             <FaSearch />
@@ -376,7 +376,7 @@ const Admin = (props) => {
         <AdminButton
           onClick={onChangeCourse}
           style={{
-            color: '#0058e4',
+            color: '#e0b528',
           }}
         >
           <FaLaptopCode />
@@ -408,7 +408,7 @@ const Admin = (props) => {
         <AdminButton
           onClick={onChangeBlog}
           style={{
-            color: '#0058e4',
+            color: '#e0b528',
           }}
         >
           <FaBlog />
@@ -439,7 +439,7 @@ const Admin = (props) => {
         <AdminButton
           onClick={onChangePodcasts}
           style={{
-            color: '#0058e4',
+            color: '#e0b528',
           }}
         >
           <FaPodcast />
@@ -470,7 +470,7 @@ const Admin = (props) => {
         <AdminButton
           onClick={onChangeSettings}
           style={{
-            color: '#0058e4',
+            color: '#e0b528',
           }}
         >
           <FaCog />

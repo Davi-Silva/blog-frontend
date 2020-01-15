@@ -61,7 +61,6 @@ const MainBlogPost = () => {
           <div className="col-lg-6 col-md-6 col-sm-12 col-12">
             <div className="row">
               {postsList.map((post, index) => {
-                // console.log('postMapMainTop:', post);
                 if (index > 0) {
                   if (index === 1 || index === 3) {
                     return (

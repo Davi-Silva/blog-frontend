@@ -572,7 +572,7 @@ export default class UploadNewPodcast extends Component {
 
     return (
       <>
-        <SubNavBar media="Podcast" category="Upload" title={title} />
+        {/* <SubNavBar media="Podcast" category="Upload" title={title} /> */}
         <div className="container">
           <form onSubmit={this.onSubmit} method="POST">
             <div className="row">

@@ -41,7 +41,7 @@ export const AdminLi = styled.li`
   height: 100px;
   transition: all .2s ease-in-out;
   &:hover {
-    color: #0058e4;
+    color: #e0b528;
   }
   @media (max-width: 767px) {
     display: inline-block;
@@ -57,7 +57,7 @@ export const AdminLi2 = styled.li`
   transform: translateY(49px);
   transition: all .2s ease-in-out;
   &:hover {
-    color: #0058e4;
+    color: #e0b528;
   }
   @media (max-width: 767px) {
     display: inline-block;
@@ -68,7 +68,7 @@ export const AdminLi2 = styled.li`
 `;
 
 export const AdminButton = styled.button`
-  color: #888;
+  color: #000;
   width: 100%;
   height: 100%;
   display: block;
@@ -81,7 +81,7 @@ export const AdminButton = styled.button`
   }
   &:hover {
     text-decoration: none;
-    color: #0058e4;
+    color: #e0b528;
   }
   &:focus {
     outline: none;
@@ -136,7 +136,7 @@ export const AdminSubButton = styled.button`
   }
   &:hover {
     text-decoration: none;
-    color: #0058e4;
+    color: #e0b528;
   }
   &:focus {
     outline: none;
@@ -273,13 +273,13 @@ export const Main = styled.main`
 
   &::-webkit-scrollbar-thumb {
     background: #fff;
-    border: 1px solid #0058e4;
+    border: 1px solid #e0b528;
     border-radius: 50px;
     transition: "all .2s ease-in-out";
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: #0058e4;
+    background: #e0b528;
   }
 `;
 
@@ -287,7 +287,7 @@ export const Expand = styled(Link)`
   padding: 20px;
   float: right;
   margin-right: 10px;
-  color: #0058e4;
+  color: #e0b528;
   &:hover {
     text-decoration: none;
   }
@@ -321,7 +321,7 @@ export const Form = styled.form`
   }
   button {
     background-color: transparent;
-    color: #0058e4;
+    color: #e0b528;
     border: none;
     font-size: 18px;
   }
@@ -331,7 +331,7 @@ export const Add = styled(Link)`
   background-color: transparent;
   font-size: 19px;
   float: right;
-  color: #0058e4;
+  color: #e0b528;
   padding: 0px 5px;
   &:hover {
     text-decoration: none;
@@ -355,14 +355,14 @@ export const Edit = styled(Link)`
   font-weight: 700;
   background-color: #fff;
   border-radius: 4px;
-  color: #0058e4;
+  color: #e0b528;
   transition: all .3s ease-in-out;
   transition-delay: .1s;
   &:focus {
     outline: none;
   }
   &:hover {
-    color: #0058e4;
+    color: #e0b528;
     text-decoration: none;
     background-color: #e2ecfd;
   }
@@ -543,7 +543,7 @@ export const DropContainer = styled.div.attrs({
   className: 'dropzone',
 })`
   margin: -3px auto 6px auto;
-  border: 1px dashed #0058e4;
+  border: 1px dashed #e0b528;
   border-radius: 4px;
   width: 250px;
 	height: 250px;
@@ -563,7 +563,7 @@ export const DropAudioContainer = styled.div.attrs({
   className: 'dropzone',
 })`
   margin: -3px auto 6px auto;
-  border: 1px dashed #0058e4;
+  border: 1px dashed #e0b528;
   border-radius: 4px;
   width: 100%;
 	height: 20px;
@@ -584,7 +584,7 @@ export const DropContainerBlogPostCover = styled.div.attrs({
 })`
   margin-top: 5px;
   margin-left: 6px;
-  border: 1px dashed #0058e4;
+  border: 1px dashed #e0b528;
   border-radius: 4px;
   width: 99%;
 	height: 300px;

@@ -453,7 +453,7 @@ export default class PublishBlogPost extends Component {
     
     return (
       <>
-        <SubNavBar media="Blog" category="Publish" title={title} />
+        {/* <SubNavBar media="Blog" category="Publish" title={title} /> */}
         <div className="container">
           <div className="row">
             <div className="col-12">
