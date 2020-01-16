@@ -8,7 +8,7 @@ export const BackgroundDrawer = styled.div`
   z-index: 9999999999;
   height: 100%;
   width: 100%;
-  top: 41px;
+  top: 50px;
   display: none;
 `;
 
@@ -17,7 +17,7 @@ export const Drawer = styled.nav`
   width: 250px;
   background: #ffcd2b;
   position: fixed;
-  top: 41px;
+  top: 50px;
   z-index: 99999999999;
   padding: 0;
   overflow-y: scroll;

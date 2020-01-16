@@ -17,7 +17,7 @@ export const Form = styled.form`
 export const Input = styled.input`
   background: #e0b528;
   border: none;
-  padding: 9px 10px;
+  padding: 12px 10px;
   border: none;
   border-bottom: 1px solid #000;
   width: 100%;
