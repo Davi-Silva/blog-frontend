@@ -4,7 +4,7 @@ import {
 } from 'redux-saga/effects';
 
 async function getRecentCategoriesApi(number) {
-  const res = await fetch(`http://localhost:5000/blog/get/categories/newest/${number}`, {
+  const res = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/get/categories/newest/${number}`, {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',

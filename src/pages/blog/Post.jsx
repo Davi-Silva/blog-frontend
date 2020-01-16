@@ -145,7 +145,7 @@ export default class Post extends Component {
 
   async getPostBySlug(slug) {
     this.response = await fetch(
-      `http://localhost:5000/blog/get/slug/${slug}`,
+      `https://cryptic-activist-backend.herokuapp.com/blog/get/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -168,7 +168,7 @@ export default class Post extends Component {
 
   async updateHowManyRead(post) {
     this.response = await fetch(
-      'http://localhost:5000/blog/update/post/how-many-read',
+      'https://cryptic-activist-backend.herokuapp.com/blog/update/post/how-many-read',
       {
         method: 'PUT',
         mode: 'cors',

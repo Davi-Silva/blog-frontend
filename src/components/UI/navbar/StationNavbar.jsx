@@ -45,7 +45,7 @@ const Navbar = () => {
   userInfo = userInfo.userInfo;
 
   const handleLoginUser = async () => {
-    fetch('http://localhost:5000/auth/user')
+    fetch('https://cryptic-activist-backend.herokuapp.com/auth/user')
       .then((res) => res.json())
       .then((res) => {
         console.log('res:', res);
