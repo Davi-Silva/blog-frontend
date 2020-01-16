@@ -42,7 +42,7 @@ const SideDrawer = (props) => {
 
   const handleLogout = async () => {
     handleClose();
-    await fetch('https://cryptic-activist-backend.herokuapp.com/auth/logout', {
+    await fetch('http://localhost:5000/auth/logout', {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',

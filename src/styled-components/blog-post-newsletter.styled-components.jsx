@@ -57,7 +57,7 @@ export const Form = styled.form`
       outline: none;
     }
     svg {
-      color: #0058e4;
+      color: #000;
     }
   }
 `;

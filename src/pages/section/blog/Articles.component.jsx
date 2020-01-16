@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   Div,
@@ -16,8 +17,11 @@ import {
   Category,
 } from '../../../styled-components/blog-posts-article.styled-components';
 
+import * as ArticlesAction from '../../../store/actions/blog/articles';
+
 const Articles = () => {
-  const [articlesState, setArticlesState] = useState([]);
+  const articlesList = useSelector((state) => state.articles);
+  const dispatch = useDispatch();
 
   const parseDate = (input) => {
     const parts = input.match(/(\d+)/g);
@@ -25,20 +29,7 @@ const Articles = () => {
   };
 
   useEffect(() => {
-    const getTutorials = async () => {
-      const response = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/home/articles', {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await response.json();
-      setArticlesState(data);
-    };
-    getTutorials();
+    dispatch(ArticlesAction.getArticles());
   }, []);
 
   const formatDate = (publishedOn) => {
@@ -61,15 +52,13 @@ const Articles = () => {
     return formattedDate;
   };
 
-  console.log('Article author:', articlesState);
-
   const articles = (
     <>
-      {articlesState.map((post, key) => (
+      {articlesList.data.map((post, key) => (
         <>
-          <div 
-          key={post.id}
-          className="col-lg-4 col-md-4 col-sm-6 col-12"
+          <div
+            key={post.id}
+            className="col-lg-4 col-md-4 col-sm-6 col-12"
 
           >
             <Card
@@ -120,6 +109,24 @@ const Articles = () => {
     </>
   );
 
+  let articlesVar;
+
+  if (articlesList.loading) {
+    articlesVar = (
+      <>
+        <p>
+          Loading
+        </p>
+      </>
+    );
+  } else if (articlesList.fetched) {
+    articlesVar = (
+      <>
+        {articles}
+      </>
+    );
+  }
+
 
   return (
     <>
@@ -138,7 +145,7 @@ const Articles = () => {
                 See More
               </SeeAll>
             </div>
-            {articles}
+            {articlesVar}
           </div>
         </div>
       </Div>

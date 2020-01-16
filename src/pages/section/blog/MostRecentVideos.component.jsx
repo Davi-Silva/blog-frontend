@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import MostRecentVideosList from '../../../components/UI/lists/blog-home/BlogPostListMostRecentVideos.component';
 
+import * as MostRecentVideosAction from '../../../store/actions/blog/mostRecentVideos';
 
 import {
   PostListTitleDiv,
@@ -11,24 +13,43 @@ import {
 
 
 const MostRecentVideos = () => {
-  const [mostRecentVideosState, setMostRecentVideosState] = useState([]);
+  const mostRecentVideos = useSelector((state) => state.mainBlogPosts);
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
-    const getTutorials = async () => {
-      const response = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/home/most-recent-videos', {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await response.json();
-      setMostRecentVideosState(data);
-    };
-    getTutorials();
+    dispatch(MostRecentVideosAction.getMostRecentVideos());
   }, []);
+
+  let posts;
+  if (mostRecentVideos.loading) {
+    posts = (
+      <>
+        <p>
+          Loading
+        </p>
+      </>
+    );
+  } else if (mostRecentVideos.fetched) {
+    posts = (
+      <>
+        {mostRecentVideos.data.map((post, index) => (
+          <>
+            <MostRecentVideosList
+              key={post.id}
+              type="Blog"
+              slug={post.slug}
+              imgSrc={post.cover.url}
+              title={post.title}
+              category={post.category}
+              publishedOn={post.publishedOn}
+              index={index}
+            />
+          </>
+        ))}
+      </>
+    );
+  }
 
 
   return (
@@ -47,25 +68,7 @@ const MostRecentVideos = () => {
               </PostListTitle>
             </PostListTitleDiv>
           </div>
-          {/* <div className="col-lg-3 col-md-3 col-sm-3 col-6">
-            <SeeAll to="/blog/tutorials">
-                See More
-            </SeeAll>
-          </div> */}
-          {mostRecentVideosState.map((post, index) => (
-            <>
-              <MostRecentVideosList
-                key={post.id}
-                type="Blog"
-                slug={post.slug}
-                imgSrc={post.cover.url}
-                title={post.title}
-                category={post.category}
-                publishedOn={post.publishedOn}
-                index={index}
-              />
-            </>
-          ))}
+          {posts}
         </div>
       </div>
     </>

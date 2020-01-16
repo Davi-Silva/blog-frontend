@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import TutorialsList from '../../../components/UI/lists/blog-home/BlogPostListTutorials.component';
 
@@ -9,27 +10,46 @@ import {
   SeeAll,
 } from '../../../styled-components/blog-posts-tutorials.styled-components';
 
+import * as TutorialsAction from '../../../store/actions/blog/tutorials';
 
 const Tutorials = () => {
-  const [tutorialsState, setTutorialsState] = useState([]);
+  const tutorialsList = useSelector((state) => state.tutorials);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getTutorials = async () => {
-      const response = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/home/tutorials', {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await response.json();
-      setTutorialsState(data);
-    };
-    getTutorials();
+    dispatch(TutorialsAction.getTutorials());
   }, []);
 
+  let tutorials;
+
+  if (tutorialsList.loading) {
+    tutorials = (
+      <>
+        <p>
+          Loading
+        </p>
+      </>
+    );
+  } else if (tutorialsList.fetched) {
+    tutorials = (
+      <>
+        {tutorialsList.data.map((post, index) => (
+          <>
+            <TutorialsList
+              key={index}
+              type="Blog"
+              slug={post.slug}
+              imgSrc={post.cover.url}
+              title={post.title}
+              category={post.category}
+              publishedOn={post.publishedOn}
+              index={index}
+            />
+          </>
+        ))}
+      </>
+    );
+  }
 
   return (
     <>
@@ -52,20 +72,7 @@ const Tutorials = () => {
                 See More
             </SeeAll>
           </div>
-          {tutorialsState.map((post, index) => (
-            <>
-              <TutorialsList
-                key={index}
-                type="Blog"
-                slug={post.slug}
-                imgSrc={post.cover.url}
-                title={post.title}
-                category={post.category}
-                publishedOn={post.publishedOn}
-                index={index}
-              />
-            </>
-          ))}
+          {tutorials}
         </div>
       </div>
     </>

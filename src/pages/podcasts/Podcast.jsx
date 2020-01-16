@@ -129,6 +129,10 @@ const Podcast = (props) => {
   let content;
   let subMenu;
   let audio;
+  let googleExternalPodcast;
+  let spotifyExternalPodcast;
+  let itunesExternalPodcast;
+
 
   if (podcast.loading) {
     subMenu = (
@@ -185,6 +189,56 @@ const Podcast = (props) => {
       );
     }
 
+    if (podcast.data[0].googleEpisodeUrl !== '') {
+      googleExternalPodcast = (
+        <>
+          <li>
+            <a href={podcast.data[0].googleEpisodeUrl} target="_blank" rel="noopener noreferrer">
+              <img src={ListenOnGooglePodcast} alt="Listen on Google Podcasts" />
+            </a>
+          </li>
+        </>
+      );
+    } else {
+      googleExternalPodcast = (
+        <>
+        </>
+      );
+    }
+    if (podcast.data[0].spotifyEpisodeUrl !== '') {
+      spotifyExternalPodcast = (
+        <>
+          <li>
+            <a href={podcast.data[0].spotifyEpisodeUrl} target="_blank" rel="noopener noreferrer">
+              <img src={ListenOnSpotifyPodcast} alt="Listen on Spotify Podcasts" />
+            </a>
+          </li>
+        </>
+      );
+    } else {
+      spotifyExternalPodcast = (
+        <>
+        </>
+      );
+    }
+    if (podcast.data[0].itunesEpisodeUrl !== '') {
+      itunesExternalPodcast = (
+        <>
+          <li>
+            <a href={podcast.data[0].itunesEpisodeUrl} target="_blank" rel="noopener noreferrer">
+              <img src={ListenOnITunesPodcast} alt="Listen on iTunes Podcasts" />
+            </a>
+          </li>
+        </>
+      );
+    } else {
+      itunesExternalPodcast = (
+        <>
+        </>
+      );
+    }
+
+
     helmet = (
       <>
         <Helmet>
@@ -232,6 +286,8 @@ const Podcast = (props) => {
     subMenu = (
       <SubNavBar media="Podcast" category={podcast.data[0].category} title={podcast.data[0].title} />
     );
+
+
     content = (
       <>
         <div className="col-lg-4 col-md-4 col-sm-12 col-12">
@@ -260,21 +316,9 @@ const Podcast = (props) => {
             </ExternalEpisodeLabel>
             <br />
             <ExternalEpisodeUl>
-              <li>
-                <a href={podcast.data[0].googleEpisodeUrl} target="_blank" rel="noopener noreferrer">
-                  <img src={ListenOnGooglePodcast} alt="Listen on Google Podcasts" />
-                </a>
-              </li>
-              <li>
-                <a href={podcast.data[0].spotifyEpisodeUrl} target="_blank" rel="noopener noreferrer">
-                  <img src={ListenOnSpotifyPodcast} alt="Listen on Google Podcasts" />
-                </a>
-              </li>
-              <li>
-                <a href={podcast.data[0].itunesEpisodeUrl} target="_blank" rel="noopener noreferrer">
-                  <img src={ListenOnITunesPodcast} alt="Listen on Google Podcasts" />
-                </a>
-              </li>
+              {googleExternalPodcast}
+              {spotifyExternalPodcast}
+              {itunesExternalPodcast}
             </ExternalEpisodeUl>
             <TagsUl>
               {

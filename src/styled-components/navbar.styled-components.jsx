@@ -115,6 +115,8 @@ export const SignUp = styled(Link)`
   border-radius: 4px;
   padding: 3px 7px;
   font-weight: 700;
+  transform: translateY(-10px);
+  display: block;
   font-size: 13px;
   transition: .2s all ease-in-out;
   transition-delay: .1s;
@@ -123,6 +125,7 @@ export const SignUp = styled(Link)`
     color: #000;
     background-color: #ffcd2b;
     border: 1px solid #000;
+    text-decoration: none;
   }
 `;
 

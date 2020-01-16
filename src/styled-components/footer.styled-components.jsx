@@ -7,6 +7,7 @@ export const FooterDiv = styled.footer`
     padding-top: 30px;
     margin-top: 40px;
 		border-top: 1px solid #000;
+		box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.2);
 	@media (max-width: 768px) {
 		&::before {
 			margin-bottom: 45px;

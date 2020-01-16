@@ -7,7 +7,7 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    fetch('https://cryptic-activist-backend.herokuapp.com/auth/user')
+    fetch('http://localhost:5000/auth/user')
       .then((res) => res.json())
       .then((res) => {
         setUser(res);

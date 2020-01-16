@@ -25,9 +25,6 @@ export const Ul = styled.ul`
     height: 35px;
     transform: translateX(3px);
   }
-  /* .nav-link {
-    padding: 4px;
-  } */
   .nav-cart {
     padding: 6px 7px!important;
     transform: translateY(-2px);
@@ -192,12 +189,14 @@ export const ToggleButton = styled.button`
 export const SignUp = styled(Link)`
   background-color: #000;
   border: none;
-  margin-top: 13px;
+  margin: 13px 0 0 10px;
   color: #ffcd2b;
   border: 1px solid #000;
   border-radius: 4px;
   padding: 3px 7px;
   font-weight: 700;
+  transform: translateY(-7px);
+  display: block;
   font-size: 13px;
   transition: .2s all ease-in-out;
   transition-delay: .1s;
@@ -206,6 +205,7 @@ export const SignUp = styled(Link)`
     color: #000;
     background-color: #ffcd2b;
     border: 1px solid #000;
+    text-decoration: none;
   }
 `;
 

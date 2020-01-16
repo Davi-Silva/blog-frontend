@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import NewsList from '../../../components/UI/lists/blog-home/BlogPostListNews.component';
-
 import Ads from '../../../components/UI/ads/AdvertisementSquare.component';
+
+import * as NewsAction from '../../../store/actions/blog/news';
 
 import {
   PostListTitleDiv,
@@ -11,29 +13,48 @@ import {
   SeeAll,
 } from '../../../styled-components/blog-posts-news.styled-components';
 
+let count = 1;
 
 const News = () => {
-  const [tutorialsState, setTutorialsState] = useState([]);
+  const news = useSelector((state) => state.news);
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
-    const getTutorials = async () => {
-      const response = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/home/news', {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await response.json();
-      console.log('data tiutorials:', data);
-      setTutorialsState(data);
-    };
-    getTutorials();
+    dispatch(NewsAction.getNews());
   }, []);
 
-  // const getRandomNumber = (max) => Math.floor(Math.random() * Math.floor(max));
+  let newsVar;
+  if (news.loading) {
+    newsVar = (
+      <>
+        <p>
+          Loading
+        </p>
+      </>
+    );
+  } else if (news.fetched) {
+    newsVar = (
+      <>
+        {news.data.map((post, index) => (
+          <>
+            <NewsList
+              key={post.slug}
+              type="Blog"
+              slug={post.slug}
+              imgSrc={post.cover.url}
+              title={post.title}
+              category={post.category}
+              publishedOn={post.publishedOn}
+              index={index}
+            />
+          </>
+        ))}
+      </>
+    );
+    console.log('news count:', count);
+    count += 1;
+  }
 
 
   return (
@@ -59,23 +80,7 @@ const News = () => {
           </div>
           <div className="col-lg-9">
             <div className="row">
-              {tutorialsState.map((post, index) => {
-                console.log('post.id:', post.id);
-                return (
-                  <>
-                    <NewsList
-                      key={post.slug}
-                      type="Blog"
-                      slug={post.slug}
-                      imgSrc={post.cover.url}
-                      title={post.title}
-                      category={post.category}
-                      publishedOn={post.publishedOn}
-                      index={index}
-                    />
-                  </>
-                );
-              })}
+              {newsVar}
             </div>
           </div>
           <div className="col-lg-3">
