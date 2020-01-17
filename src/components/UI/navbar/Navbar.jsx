@@ -51,7 +51,7 @@ const Navbar = (props) => {
           dispatch(UserActions.loginUser(res));
         })
         .catch((err) => {
-          console.log('err:', err);
+
         });
     };
     handleLoginUser();

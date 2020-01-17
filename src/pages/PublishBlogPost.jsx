@@ -56,7 +56,6 @@ export default class PublishBlogPost extends Component {
     const { title } = this.state;
     const { userInfo } = this.props;
     const responseCover = await api.get(`/blog/cover/${title}`);
-    console.log('USER INFORMAION FOR ADMIN PANEL nigga:', userInfo);
 
     this.setState({
       uploadedCovers: responseCover.data.map((file) => ({
@@ -76,7 +75,6 @@ export default class PublishBlogPost extends Component {
       // uploadedCovers
     } = this.state;
     const res = await this.setGlobalVariable();
-    console.log('res:', res);
     if (uploaded) {
       this.props.history.push('/admin');
     }
@@ -192,7 +190,6 @@ export default class PublishBlogPost extends Component {
   }
 
   async verifySlug(slug) {
-    console.log('verifying slug react:', slug)
     this.response = await fetch(
       `http://localhost:5000/admin/blog/validation/slug/${slug}`,
       {
@@ -243,7 +240,6 @@ export default class PublishBlogPost extends Component {
       History,
       userInfo,
     } = this.props;
-    console.log('userInfo[0]:', userInfo)
     if (allFieldsFilled) {
       const postInfo = {
         isSlugValid: isSlugValid,
@@ -260,9 +256,7 @@ export default class PublishBlogPost extends Component {
         let res = await this.publishPost(postInfo);
         let userPostsArray = [];
         userPostsArray = userInfo[0].posts;
-        console.log('userPostsArray React:', userPostsArray);
         userPostsArray.push(res)
-        console.log('userPostsArray React After:', userPostsArray);
         this.appendPostToAuthor(userInfo[0]._id, userPostsArray);
         this.setStateAsync({
           uploaded: res.uploaded

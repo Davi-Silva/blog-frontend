@@ -10,7 +10,7 @@ import {
 
 const WrittenBy = ({ author }) => {
   const handleFollowAuthor = async () => {
-    console.log('Followed');
+
   };
 
   return (

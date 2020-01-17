@@ -12,6 +12,8 @@ import asyncGetMostRecentVideosApi from './blog/getMostRecentVideos';
 import asyncGetNewsApi from './blog/getNews';
 import asyncGetArticlesApi from './blog/getArticles';
 import asyncGetTutorialsApi from './blog/getTutorials';
+import asyncGetPostApi from './blog/getPost';
+import asyncUpdateHowManyReadApi from './blog/updateHowManyRead';
 
 export default function* root() {
   yield all([
@@ -24,5 +26,7 @@ export default function* root() {
     takeLatest('REQUEST_NEWS', asyncGetNewsApi),
     takeLatest('REQUEST_ARTICLES', asyncGetArticlesApi),
     takeLatest('REQUEST_TUTORIALS', asyncGetTutorialsApi),
+    takeLatest('REQUEST_POST', asyncGetPostApi),
+    takeLatest('REQUEST_UPDATE_HOW_MANY_READ', asyncUpdateHowManyReadApi),
   ]);
 }

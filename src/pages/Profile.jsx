@@ -17,7 +17,6 @@ import {
 
 const Profile = (props) => {
   const userInfo = useSelector((state) => state.user.userInfo);
-  console.log('userInfo:', userInfo);
   let UserImageDiv;
   let ProfileCoverImage;
   let displayName = '';

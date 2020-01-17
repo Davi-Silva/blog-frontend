@@ -16,7 +16,6 @@ const SearchForm = (props) => {
     const {
       query,
     } = searchState;
-    console.log('query:', query);
   };
 
   const handleSearch = async (e) => {
@@ -30,13 +29,9 @@ const SearchForm = (props) => {
     const {
       SearchFormOnClick,
     } = props;
-    console.log('CloseSearchFormOnClick:', SearchFormOnClick);
     const closeSearchForm = SearchFormOnClick;
     closeSearchForm();
   };
-
-
-  console.log('SEARCHBAR:', props);
 
   return (
     <>

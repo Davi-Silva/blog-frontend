@@ -14,12 +14,10 @@ import {
 
 const PostAuthor = ({ author, postPublished }) => {
   const userInfo = useSelector((state) => state.user.userInfo);
-  console.log('userInfo in PostAuthor component:', userInfo);
 
   let followButton;
   if (!_.isEmpty(userInfo)) {
     if (author._id === userInfo[0]._id) {
-      console.log('user is the same as the author');
       followButton = (
         <>
         </>

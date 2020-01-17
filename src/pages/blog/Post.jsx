@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable react/prop-types */
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import slugify from 'slugify';
 
@@ -37,183 +38,137 @@ import {
   WrapperAd,
 } from '../../styled-components/post.styled-components';
 
-export default class Post extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      category: '',
-      title: '',
-      content: '',
-      tags: [],
-      publishedOn: null,
-      updatedOn: null,
-      cover: '',
-      coverAlt: '',
-      author: null,
-    };
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.getPostBySlug = this.getPostBySlug.bind(this);
-    this.parseDate = this.parseDate.bind(this);
-    // this.covertAllTags = this.covertAllTags.bind(this);
-    this.updateHowManyRead = this.updateHowManyRead.bind(this);
-  }
+import * as PostAction from '../../store/actions/blog/post';
 
-  async componentDidMount() {
-    const { match } = this.props;
+let count = 0;
+const Post = (props) => {
+  const post = useSelector((state) => state.post);
+  const dispatch = useDispatch();
+  const {
+    location,
+  } = props;
+
+
+  const parseDate = (input) => {
+    const parts = input.match(/(\d+)/g);
+    return new Date(parts[0], parts[1] - 1, parts[2]);
+  };
+
+  const formatDate = (uploadedOn) => {
+    const dateFormatted = parseDate(uploadedOn);
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'may',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    return `${months[dateFormatted.getMonth()]} ${dateFormatted.getDate()} ${dateFormatted.getFullYear()}`;
+  };
+
+  const getReadTime = (content) => {
+    // Estimate the time read the content
+    const wordsPerMinutes = 200;
+    let timeToRead;
+    const textLength = content.split(' ').length;
+    if (textLength > 0) {
+      const value = Math.ceil(textLength / wordsPerMinutes);
+      timeToRead = `${value} min read`;
+    }
+    return timeToRead;
+  };
+
+  useEffect(() => {
+    const { match } = props;
     const fullSlug = match.url.slice(6, match.url.length);
-    const post = await this.getPostBySlug(fullSlug);
-    if (post.length > 0) {
-      const {
-        slug,
-        category,
-        title,
-        tags,
-        content,
-        publishedOn,
-        updatedOn,
-        cover,
-        author,
-        howManyRead,
-      } = post[0];
-      const postObj = {
-        slug,
-        howManyReadNumber: howManyRead,
-      };
-      const updatedNumberOfRead = await this.updateHowManyRead(postObj);
-      // Estimate the time read the content
-      const wordsPerMinutes = 200;
-      let timeToRead;
-      const textLength = content.split(' ').length;
-      if (textLength > 0) {
-        const value = Math.ceil(textLength / wordsPerMinutes);
-        timeToRead = `${value} min read`;
-      }
-      const dateFormatted = this.parseDate(publishedOn);
-      const months = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'may',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-      ];
-      const formattedDate = `${months[dateFormatted.getMonth()]} ${dateFormatted.getDate()} ${dateFormatted.getFullYear()}`;
-      if (updatedOn === null) {
-        await this.setStateAsync({
-          slug,
-          category,
-          title,
-          content,
-          tags,
-          publishedOn: formattedDate,
-          cover: cover.url,
-          coverAlt: cover.name,
-          author,
-          howManyRead: updatedNumberOfRead.howManyReadNumber,
-          timeToRead,
-        });
-      }
-      if (updatedOn !== null) {
-        const dateFormattedUpdated = this.parseDate(updatedOn);
-        const formattedDateUpdated = `${months[dateFormattedUpdated.getMonth()]} ${dateFormattedUpdated.getDate()} ${dateFormattedUpdated.getFullYear()}`;
+    dispatch(PostAction.getPost(fullSlug));
 
-        await this.setStateAsync({
-          slug,
-          category,
-          title,
-          content,
-          tags,
-          publishedOn: formattedDate,
-          updatedOn: formattedDateUpdated,
-          cover: cover.url,
-          coverAlt: cover.name,
-          howManyRead: updatedNumberOfRead.howManyReadNumber,
-          timeToRead,
-        });
-      }
-    } else {
-      const { history } = this.props;
+    if (post.length === 0) {
+      const { history } = props;
       history.push('/404');
     }
-  }
+  }, []);
 
-  async getPostBySlug(slug) {
-    this.response = await fetch(
-      `http://localhost:5000/blog/get/slug/${slug}`,
-      {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
+
+  // const updateHowManyRead = (post) => {
+  //   const response = fetch(
+  //     'http://localhost:5000/blog/update/post/how-many-read',
+  //     {
+  //       method: 'PUT',
+  //       mode: 'cors',
+  //       cache: 'no-cache',
+  //       credentials: 'same-origin',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(post),
+  //     },
+  //   );
+  //   const data = response.json();
+  //   return data;
+  // };
+
+  let helmet;
+  let subMenu;
+  let coverVar;
+  let content;
+  let allContentPost;
+  let postPublished;
+
+  let related;
+
+
+  if (post.loading) {
+    subMenu = (
+      <SubNavBar media="Podcast" category="" title="" />
     );
-    const data = await this.response.json();
-    return data;
-  }
-
-  setStateAsync(state) {
-    return new Promise((resolve) => {
-      this.setState(state, resolve);
-    });
-  }
-
-  async updateHowManyRead(post) {
-    this.response = await fetch(
-      'http://localhost:5000/blog/update/post/how-many-read',
-      {
-        method: 'PUT',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(post),
-      },
+    content = (
+      <>
+        <LoadingAllContent>
+          <FaSpinner />
+        </LoadingAllContent>
+      </>
     );
-    const data = await this.response.json();
-    return data;
-  }
-
-  parseDate(input) {
-    this.parts = input.match(/(\d+)/g);
-    return new Date(this.parts[0], this.parts[1] - 1, this.parts[2]);
-  }
-
-  render() {
-    const {
-      title,
-      slug,
-      category,
-      cover,
-      coverAlt,
-      content,
-      tags,
-      publishedOn,
-      updatedOn,
-      author,
-      timeToRead,
-    } = this.state;
-    const {
-      location,
-    } = this.props;
-
-    let helmet;
-    let allContentPost;
-    let postPublished;
-
-    let related;
-
-    if (slug === '') {
+    helmet = (
+      <>
+        <Helmet title="Loading..." media="Podcasts" />
+      </>
+    );
+  } else if (post.fetched) {
+    if (count === 0) {
+      const postObj = {
+        slug: post.data[0].slug,
+        howManyReadNumber: post.data[0].howManyRead,
+      };
+      dispatch(PostAction.updateHowManyRead(postObj));
+      count += 1;
+    }
+    content = (
+      <>
+      </>
+    );
+    subMenu = (
+      <>
+        <SubNavBar media="Blog" category={post.data[0].category} title={post.data[0].title} />
+      </>
+    );
+    coverVar = (
+      <>
+        <Cover
+          src={post.data[0].cover.url}
+          alt={post.data[0].coverAlt}
+        />
+      </>
+    );
+    if (post.data[0].slug === '') {
       related = (
         <>
         </>
@@ -222,14 +177,14 @@ export default class Post extends Component {
       related = (
         <>
           <RelatedPosts
-            slug={slug}
-            category={category}
+            slug={post.data[0].slug}
+            category={post.data[0].category}
           />
         </>
       );
     }
 
-    if (title === '') {
+    if (post.data[0].title === '') {
       helmet = (
         <>
           <Helmet title="Loading..." media="Blog" />
@@ -239,7 +194,7 @@ export default class Post extends Component {
       helmet = (
         <>
           <Helmet>
-            <title>{`${title} - ${'Blog'} | Cryptic Activist`}</title>
+            <title>{`${post.data[0].title} - ${'Blog'} | Cryptic Activist`}</title>
             <meta
               name="description"
               content="Blog Posts"
@@ -249,55 +204,55 @@ export default class Post extends Component {
             <meta property="og:locale:alternate" content="es_GB" />
             <meta property="og:site_name" content="CrypticActivist" />
             <meta property="og:description" content="Meta description" />
-            <meta property="og:title" content={`${title} - ${'Blog'} | Cryptic Activist`} />
-            <meta property="og:image" content={`${cover}`} />
+            <meta property="og:title" content={`${post.data[0].title} - ${'Blog'} | Cryptic Activist`} />
+            <meta property="og:image" content={`${post.data[0].cover}`} />
             <meta property="og:image:type" content="image/jpeg" />
             <meta property="og:image:type" content="image/jpg" />
             <meta property="og:image:type" content="image/png" />
             <meta property="og:image:width" content="800" />
             <meta property="og:image:height" content="600" />
-            <meta property="og:image:alt" content={coverAlt} />
+            <meta property="og:image:alt" content={post.data[0].coverAlt} />
             <meta property="og:url" content={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
             <meta property="og:type" content="article" />
-            <meta property="og:type:article:published_time" content={publishedOn} />
-            <meta property="og:type:article:author" content={author} />
-            <meta property="og:type:article:tags" content={tags} />
+            <meta property="og:type:article:published_time" content={post.data[0].publishedOn} />
+            <meta property="og:type:article:author" content={post.data[0].author} />
+            <meta property="og:type:article:tags" content={post.data[0].tags} />
 
             <meta name="twitter:site" content="CrypticActivist" />
-            <meta name="twitter:title" content={`${title} - ${'Blog'} | Cryptic Activist`} />
+            <meta name="twitter:title" content={`${post.data[0].title} - ${'Blog'} | Cryptic Activist`} />
             <meta name="twitter:description" content="metaDescription" />
-            <meta name="twitter:image" content={cover} />
-            <meta name="twitter:creator" content={author} />
+            <meta name="twitter:image" content={post.data[0].cover} />
+            <meta name="twitter:creator" content={post.data[0].author} />
             <meta name="twitter:card" content="article" />
-            <meta name="twitter:image:alt" content={`${title}'s cover`} />
+            <meta name="twitter:image:alt" content={`${post.data[0].title}'s cover`} />
           </Helmet>
         </>
       );
     }
 
 
-    if (title === ''
-    || cover === ''
-    || coverAlt === ''
-    || content === ''
-    || tags === ''
-    || publishedOn === '') {
+    if (post.data[0].title === ''
+    || post.data[0].cover === ''
+    || post.data[0].coverAlt === ''
+    || post.data[0].content === ''
+    || post.data[0].tags === ''
+    || post.data[0].publishedOn === '') {
       allContentPost = (
         <LoadingAllContent>
           <FaSpinner />
         </LoadingAllContent>
       );
     } else {
-      if (publishedOn === null) {
+      if (post.data[0].publishedOn === null) {
         postPublished = (
           <UploadedOn>
-            {updatedOn}
+            {post.data[0].publishedOn}
           </UploadedOn>
         );
       } else {
         postPublished = (
           <UploadedOn>
-            {publishedOn}
+            {post.data[0].publishedOn}
           </UploadedOn>
         );
       }
@@ -308,33 +263,33 @@ export default class Post extends Component {
             <div className="row">
               <div className="col-lg-9 col-md-9 col-sm-12 col-12">
                 <PostAuthor
-                  author={author}
+                  author={post.data[0].author}
                   postPublished={postPublished}
                 />
                 <ShareButtons path={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
                 <TimeToReadCategoryUl>
                   <li>
                     <Category
-                      to={`/blog/category/${slugify(category.toLowerCase())}`}
+                      to={`/blog/category/${slugify(post.data[0].category.toLowerCase())}`}
                     >
-                      {category}
+                      {post.data[0].category}
                     </Category>
                   </li>
                   <li>
                     <TimeToRead>
-                      {timeToRead}
+                      {getReadTime(post.data[0].content)}
                     </TimeToRead>
                   </li>
                 </TimeToReadCategoryUl>
                 <Title>
-                  {title}
+                  {post.data[0].title}
                 </Title>
-                <Content dangerouslySetInnerHTML={{ __html: content }} />
+                <Content dangerouslySetInnerHTML={{ __html: post.data[0].content }} />
                 <Tags
-                  tagsArray={tags}
+                  tagsArray={post.data[0].tags}
                 />
                 <WrittenBy
-                  author={author}
+                  author={post.data[0].author}
                 />
               </div>
               <div className="col-lg-3 col-md-3 col-sm-12 col-12">
@@ -367,25 +322,24 @@ export default class Post extends Component {
         </>
       );
     }
-    return (
-      <>
-        {helmet}
-        <SubNavBar media="Blog" category={category} title={title} />
-        <div className="container-fluid p-0">
-          <div className="row">
-            <div className="col-12">
-              <Cover
-                src={cover}
-                alt={coverAlt}
-              />
-            </div>
+  }
+
+  return (
+    <>
+      {helmet}
+      {subMenu}
+      <div className="container-fluid p-0">
+        <div className="row">
+          <div className="col-12">
+            {coverVar}
           </div>
         </div>
-        {allContentPost}
-      </>
-    );
-  }
-}
+      </div>
+      {allContentPost}
+      {content}
+    </>
+  );
+};
 
 Post.propTypes = {
   history: PropTypes.shape,
@@ -396,3 +350,5 @@ Post.defaultProps = {
   history: Object,
   match: Object,
 };
+
+export default Post;

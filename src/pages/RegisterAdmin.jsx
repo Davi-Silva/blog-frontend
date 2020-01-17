@@ -24,7 +24,6 @@ const RegisterAdmin = () => {
   const [isPasswordsMatching, setIsPasswordsMatching] = useState(true);
 
   const RegisterAdminUser = async (adminRegisterInfo) => {
-    console.log('userInfo:', adminRegisterInfo);
     const response = await fetch('http://localhost:5000/admin/user/register/admin',
       {
         method: 'POST',
@@ -120,7 +119,6 @@ const RegisterAdmin = () => {
           password: adminPassword,
         };
         const resRegistration = await RegisterAdminUser(adminRegisterInfo);
-        console.log('admin registration completed:', resRegistration);
       }
     } else {
       setIsPasswordsMatching(false);

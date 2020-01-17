@@ -70,7 +70,6 @@ export default class PodcastContent extends Component {
     } = this.state;
     // podcasts.forEach((p) => {
     //   if (p.id === podcast[0].id) {
-    //     console.log('id found');
     //     p.inde
     //   }
     // });

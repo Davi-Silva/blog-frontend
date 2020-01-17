@@ -306,7 +306,6 @@ export default class UploadNewPodcast extends Component {
 
   async componentDidUpdate() {
     let res = await this.setGlobalVariable();
-    console.log('res:', res);
     if (this.state.uploaded) {
       const {
         History

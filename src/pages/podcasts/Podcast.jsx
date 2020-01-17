@@ -101,21 +101,21 @@ const Podcast = (props) => {
         <br />
         <RelatedPodcastList>
           {
-         relatedPodcast.data.map((podcast, key) => (
+         relatedPodcast.data.map((related) => (
            <RelatedPodcastLi
-             key={key}
+             key={related.id}
            >
              <RelatedPodcast to={`/podcast/${podcast.slug}`}>
                <img
-                 src={podcast.cover.url}
-                 alt={podcast.cover.name}
+                 src={related.cover.url}
+                 alt={related.cover.name}
                  style={{
                    borderRadius: '5px',
                  }}
                />
                <br />
                <RelatedPodcastH6>
-                 {podcast.title}
+                 {related.title}
                </RelatedPodcastH6>
              </RelatedPodcast>
            </RelatedPodcastLi>
@@ -322,14 +322,16 @@ const Podcast = (props) => {
             </ExternalEpisodeUl>
             <TagsUl>
               {
-              podcast.data[0].tags.map((tag, key) => (
-                <>
-                  <TagLi key={key}>
-                    <Tag to={`/podcasts/tags/${slugify(tag.toLowerCase())}`}>
-                      {tag}
-                    </Tag>
-                  </TagLi>
-                </>
+              podcast.data[0].tags.map((tag) => (
+
+                <TagLi
+                  key={tag.id}
+                >
+                  <Tag to={`/podcasts/tags/${slugify(tag.toLowerCase())}`}>
+                    {tag}
+                  </Tag>
+                </TagLi>
+
               ))
             }
             </TagsUl>

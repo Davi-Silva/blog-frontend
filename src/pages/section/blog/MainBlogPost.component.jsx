@@ -13,28 +13,10 @@ import {
 } from '../../../styled-components/blog-posts.styled-components';
 
 const MainBlogPost = () => {
-  // const [postsList, setPostsList] = useState([]);
   const postsList = useSelector((state) => state.mainBlogPosts);
   const dispatch = useDispatch();
 
-
-  const getPosts = async () => {
-    const response = await fetch('http://localhost:5000/blog/home/main-post', {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    console.log('data test>', data);
-    // setPostsList(data);
-  };
-
   useEffect(() => {
-    // getPosts();
     dispatch(MainBlogPosts.getMainBlogPost());
   }, []);
 
@@ -55,18 +37,16 @@ const MainBlogPost = () => {
         {postsList.data.map((post, index) => {
           if (index === 0) {
             return (
-              <>
-                <BlogPostListMain
-                  key={post.id}
-                  type="Blog"
-                  slug={post.slug}
-                  imgSrc={post.cover.url}
-                  title={post.title}
-                  category={post.category}
-                  publishedOn={post.publishedOn}
-                  index={index}
-                />
-              </>
+              <BlogPostListMain
+                key={post.id}
+                type="Blog"
+                slug={post.slug}
+                imgSrc={post.cover.url}
+                title={post.title}
+                category={post.category}
+                publishedOn={post.publishedOn}
+                index={index}
+              />
             );
           }
           return (
@@ -82,40 +62,40 @@ const MainBlogPost = () => {
           if (index > 0) {
             if (index === 1 || index === 3) {
               return (
-                <>
-                  <ColumnLeft className="col-lg-6 col-md-6 col-sm-6 col-12">
-                    <BlogPostListMain
-                      categoryColor="yellow"
-                      key={index}
-                      type="Blog"
-                      slug={post.slug}
-                      imgSrc={post.cover.url}
-                      title={post.title}
-                      category={post.category}
-                      publishedOn={post.publishedOn}
-                      index={index}
-                    />
-                  </ColumnLeft>
-                </>
+                <ColumnLeft
+                  className="col-lg-6 col-md-6 col-sm-6 col-12"
+                  key={post.id}
+                >
+                  <BlogPostListMain
+                    categoryColor="yellow"
+                    type="Blog"
+                    slug={post.slug}
+                    imgSrc={post.cover.url}
+                    title={post.title}
+                    category={post.category}
+                    publishedOn={post.publishedOn}
+                    index={index}
+                  />
+                </ColumnLeft>
               );
             }
             if (index === 2 || index === 4) {
               return (
-                <>
-                  <ColumnRight className="col-lg-6 col-md-6 col-sm-6 col-12">
-                    <BlogPostListMain
-                      categoryColor="black"
-                      key={index}
-                      type="Blog"
-                      slug={post.slug}
-                      imgSrc={post.cover.url}
-                      title={post.title}
-                      category={post.category}
-                      publishedOn={post.publishedOn}
-                      index={index}
-                    />
-                  </ColumnRight>
-                </>
+                <ColumnRight
+                  className="col-lg-6 col-md-6 col-sm-6 col-12"
+                  key={post.id}
+                >
+                  <BlogPostListMain
+                    categoryColor="black"
+                    type="Blog"
+                    slug={post.slug}
+                    imgSrc={post.cover.url}
+                    title={post.title}
+                    category={post.category}
+                    publishedOn={post.publishedOn}
+                    index={index}
+                  />
+                </ColumnRight>
               );
             }
           }

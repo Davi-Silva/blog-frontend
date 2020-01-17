@@ -37,22 +37,19 @@ const News = () => {
     newsVar = (
       <>
         {news.data.map((post, index) => (
-          <>
-            <NewsList
-              key={post.slug}
-              type="Blog"
-              slug={post.slug}
-              imgSrc={post.cover.url}
-              title={post.title}
-              category={post.category}
-              publishedOn={post.publishedOn}
-              index={index}
-            />
-          </>
+          <NewsList
+            key={post.id}
+            type="Blog"
+            slug={post.slug}
+            imgSrc={post.cover.url}
+            title={post.title}
+            category={post.category}
+            publishedOn={post.publishedOn}
+            index={index}
+          />
         ))}
       </>
     );
-    console.log('news count:', count);
     count += 1;
   }
 

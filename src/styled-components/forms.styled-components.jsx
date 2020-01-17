@@ -61,21 +61,28 @@ export const TextArea = styled.textarea`
 `;
 
 export const Button = styled.button`
-  background-color: transparent;
-  border: none;
-  color: #999;
-  width: 100%;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  border: 1px solid #000;
+  color: #ffcd2b;
+  background: #000;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  margin: 15px auto;
   font-weight: 900;
-  padding: 8px 0px;
-  transition: all 0.3s ease-in-out;
-  font-size: 16px;
+  display: table;
+  padding: 4px 7px;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+    font-size: 16px;
   :focus {
     outline: none;
   }
   :hover {
-    color: #0042ab;
+    color: #000;
+    background: #ffcd2b;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  }
+  :active {
+    transform: scale(0.95);
   }
 `;
 

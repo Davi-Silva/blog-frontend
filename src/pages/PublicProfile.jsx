@@ -18,7 +18,6 @@ const PublicProfile = (props) => {
   const [publicProfile, setPublicProfile] = useState({});
 
   const userInfo = useContext(UserProvider.context);
-  console.log('userInfo:', userInfo);
 
   useEffect(() => {
     const {
@@ -35,9 +34,7 @@ const PublicProfile = (props) => {
         },
       });
       const data = await response.json();
-      console.log('data:', data);
       setPublicProfile(data);
-      console.log('publicProfile:', publicProfile);
     };
 
     getPublicUser(user);

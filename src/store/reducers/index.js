@@ -11,6 +11,7 @@ import mostRecentVideos from './blog/mostRecentVideos';
 import news from './blog/news';
 import articles from './blog/articles';
 import tutorials from './blog/tutorials';
+import post from './blog/post';
 
 export default combineReducers({
   user,
@@ -24,4 +25,5 @@ export default combineReducers({
   news,
   articles,
   tutorials,
+  post,
 });

@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';

@@ -34,7 +34,6 @@ import {
 
 const Admin = (props) => {
   const userInfo = useSelector((state) => state.user.userInfo);
-  console.log('userInfo admin:', userInfo);
   const [coursesState, setCoursesState] = useState({
     courses: false,
   });
@@ -57,7 +56,7 @@ const Admin = (props) => {
 
 
   if (!_.isEmpty(userInfo)) {
-    console.log('userInfo:', userInfo);
+    // console.log('userInfo:', userInfo);
   } else {
     const {
       history,
@@ -214,7 +213,6 @@ const Admin = (props) => {
   const {
     subMenu,
   } = subMenuState;
-  console.log('coursesState:', courses);
 
   if (courses || blog || podcasts || settings) {
     addVar = (
@@ -387,7 +385,6 @@ const Admin = (props) => {
       </>
     );
   } else {
-    console.log('coursesState:', coursesState);
     coursesVar = (
       <>
         <AdminButton

@@ -23,7 +23,6 @@ const UserMenu = (props) => {
   };
 
   const handleLogout = async () => {
-    console.log('Signing out...');
     const response = await fetch('http://localhost:5000/auth/logout', {
       method: 'GET',
       mode: 'cors',
@@ -34,7 +33,6 @@ const UserMenu = (props) => {
       },
     });
     handleCloseOnClick();
-    console.log('sign out response:', response);
   };
 
   return (

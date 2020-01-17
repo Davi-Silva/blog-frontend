@@ -42,7 +42,6 @@ const HelmetWrapper = (props) => {
       </>
     );
   } else if (media === 'Blog') {
-    console.log('blig helmet');
     metas = (
       <>
         <meta property="og:type" content="article" />

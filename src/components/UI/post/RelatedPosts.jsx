@@ -21,8 +21,6 @@ const RelatedPosts = (props) => {
     slug,
   } = props;
   const [relatedCategoryPosts, setRelatedCategoryPosts] = useState([]);
-
-  console.log('testing slug in related posts:', slug);
   const parseDate = (input) => {
     const parts = input.match(/(\d+)/g);
     return new Date(parts[0], parts[1] - 1, parts[2]);
@@ -49,7 +47,6 @@ const RelatedPosts = (props) => {
   };
 
   const getPostByCategory = async () => {
-    console.log('slug in related posts:', slug);
     const dates = slug.split('/');
     const response = await fetch(
       `http://localhost:5000/blog/get/category/newest/${category}/${dates[0]}/${dates[1]}/${dates[2]}/${dates[3]}`,

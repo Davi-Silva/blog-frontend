@@ -24,7 +24,6 @@ const MostRecentPost = () => {
         },
       });
       const data = await response.json();
-      console.log('data test>', data);
       setPost(data);
     };
     getMostRecentPost();
