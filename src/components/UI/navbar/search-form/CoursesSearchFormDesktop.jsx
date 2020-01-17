@@ -14,7 +14,6 @@ const CoursesSearchForm = (props) => {
     const {
       query,
     } = searchState;
-    console.log('query:', query);
   };
 
   const handleSearch = async (e) => {
@@ -28,13 +27,9 @@ const CoursesSearchForm = (props) => {
   //   const {
   //     SearchFormOnClick,
   //   } = props;
-  //   console.log('CloseSearchFormOnClick:', SearchFormOnClick);
   //   const closeSearchForm = SearchFormOnClick;
   //   closeSearchForm();
   // };
-
-
-  console.log('SEARCHBAR:', props);
 
   return (
     <>

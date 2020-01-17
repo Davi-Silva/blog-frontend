@@ -32,13 +32,13 @@ const SubNavBarCategory = () => {
               {/* {subNavMenu} */}
               <Ul>
                 {blogCategories.data.map((category) => (
-                  <>
-                    <Li>
-                      <CategoryLinkTo to={`/blog/category/${category}`}>
-                        {category}
-                      </CategoryLinkTo>
-                    </Li>
-                  </>
+                  <Li
+                    key={category}
+                  >
+                    <CategoryLinkTo to={`/blog/category/${category}`}>
+                      {category}
+                    </CategoryLinkTo>
+                  </Li>
                 ))}
               </Ul>
             </div>

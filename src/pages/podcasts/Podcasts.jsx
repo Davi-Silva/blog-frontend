@@ -41,8 +41,6 @@ import {
 const Podcasts = (props) => {
   const podcasts = useSelector((state) => state.podcasts);
   const dispatch = useDispatch();
-  console.log('biggs podcasts:', podcasts);
-
   useEffect(() => {
     dispatch(PodcastsAction.getPodcasts());
   }, []);
@@ -104,9 +102,9 @@ const Podcasts = (props) => {
         <>
           <div className="col-lg-9 col-md-9 col-sm-12 col-12">
             <div className="row">
-              {podcasts.data.map((podcast, key) => (
+              {podcasts.data.map((podcast) => (
                 <PodcastsList
-                  key={podcast.slug}
+                  key={podcast.id}
                   category={podcast.category}
                   title={podcast.title}
                   date={podcast.uploadedOn}

@@ -34,18 +34,16 @@ const MostRecentVideos = () => {
     posts = (
       <>
         {mostRecentVideos.data.map((post, index) => (
-          <>
-            <MostRecentVideosList
-              key={post.id}
-              type="Blog"
-              slug={post.slug}
-              imgSrc={post.cover.url}
-              title={post.title}
-              category={post.category}
-              publishedOn={post.publishedOn}
-              index={index}
-            />
-          </>
+          <MostRecentVideosList
+            key={post.id}
+            type="Blog"
+            slug={post.slug}
+            imgSrc={post.cover.url}
+            title={post.title}
+            category={post.category}
+            publishedOn={post.publishedOn}
+            index={index}
+          />
         ))}
       </>
     );

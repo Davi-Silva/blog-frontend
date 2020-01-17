@@ -48,7 +48,6 @@ const Navbar = () => {
     fetch('https://cryptic-activist-backend.herokuapp.com/auth/user')
       .then((res) => res.json())
       .then((res) => {
-        console.log('res:', res);
         dispatch(UserActions.loginUser(res));
       })
       .catch((err) => {
@@ -114,8 +113,6 @@ const Navbar = () => {
       profileImage,
       name,
     } = userInfo[0];
-
-    console.log('profiile STATION:', profileImage);
 
     UserDiv = (
       <>

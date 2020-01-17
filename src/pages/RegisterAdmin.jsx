@@ -120,7 +120,6 @@ const RegisterAdmin = () => {
           password: adminPassword,
         };
         const resRegistration = await RegisterAdminUser(adminRegisterInfo);
-        console.log('admin registration completed:', resRegistration);
       }
     } else {
       setIsPasswordsMatching(false);

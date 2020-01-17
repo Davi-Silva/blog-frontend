@@ -9,7 +9,6 @@ const Course = (props) => {
   const {
     params,
   } = props.match;
-  console.log('params:', params);
   return (
     <div className="container">
       <div className="row">

@@ -54,57 +54,54 @@ const Articles = () => {
 
   const articles = (
     <>
-      {articlesList.data.map((post, key) => (
-        <>
-          <div
-            key={post.id}
-            className="col-lg-4 col-md-4 col-sm-6 col-12"
-
+      {articlesList.data.map((post) => (
+        <div
+          key={post.id}
+          className="col-lg-4 col-md-4 col-sm-6 col-12"
+        >
+          <Card
+            to={`/blog/${post.slug}`}
+            className="col-sm-6 col-12 p-0"
+            style={{ border: 'none' }}
           >
-            <Card
-              to={`/blog/${post.slug}`}
-              className="col-sm-6 col-12 p-0"
-              style={{ border: 'none' }}
+            <Cover
+              src={post.cover.url}
+              alt="React.js"
+              width="100%"
+              style={{
+                backgroundImage: `url(${post.cover.url})`,
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+              }}
             >
-              <Cover
-                src={post.cover.url}
-                alt="React.js"
-                width="100%"
-                style={{
-                  backgroundImage: `url(${post.cover.url})`,
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                }}
-              >
-                <BackgroundWrapper />
-              </Cover>
-              <PostInfoDiv>
-                <Author>
-                  <ul>
-                    <li>
-                      <img src={post.author.profileImage.url} alt="Author" />
-                    </li>
-                    <li>
-                      <div>
-                        <span>{post.author.name}</span>
-                      </div>
-                    </li>
-                  </ul>
-                </Author>
-                <PublishedOn>
-                  {formatDate(post.publishedOn)}
-                </PublishedOn>
-                <Title>{post.title}</Title>
-                <CategoryDiv>
-                  <Category>
-                    {post.category}
-                  </Category>
-                </CategoryDiv>
-              </PostInfoDiv>
-            </Card>
-          </div>
-        </>
+              <BackgroundWrapper />
+            </Cover>
+            <PostInfoDiv>
+              <Author>
+                <ul>
+                  <li>
+                    <img src={post.author.profileImage.url} alt="Author" />
+                  </li>
+                  <li>
+                    <div>
+                      <span>{post.author.name}</span>
+                    </div>
+                  </li>
+                </ul>
+              </Author>
+              <PublishedOn>
+                {formatDate(post.publishedOn)}
+              </PublishedOn>
+              <Title>{post.title}</Title>
+              <CategoryDiv>
+                <Category>
+                  {post.category}
+                </Category>
+              </CategoryDiv>
+            </PostInfoDiv>
+          </Card>
+        </div>
       ))}
     </>
   );

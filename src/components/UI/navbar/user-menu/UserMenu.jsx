@@ -34,7 +34,6 @@ const UserMenu = (props) => {
       },
     });
     handleCloseOnClick();
-    console.log('sign out response:', response);
   };
 
   return (

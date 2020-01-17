@@ -35,8 +35,6 @@ const TopAuthors = () => {
     getAuthors();
   }, []);
 
-  console.log('author:', authorState);
-
   let authors;
 
   if (!_.isEmpty(authorState)) {

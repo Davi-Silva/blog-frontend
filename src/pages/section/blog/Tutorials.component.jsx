@@ -34,18 +34,17 @@ const Tutorials = () => {
     tutorials = (
       <>
         {tutorialsList.data.map((post, index) => (
-          <>
-            <TutorialsList
-              key={index}
-              type="Blog"
-              slug={post.slug}
-              imgSrc={post.cover.url}
-              title={post.title}
-              category={post.category}
-              publishedOn={post.publishedOn}
-              index={index}
-            />
-          </>
+          <TutorialsList
+            key={post.id}
+            type="Blog"
+            slug={post.slug}
+            imgSrc={post.cover.url}
+            title={post.title}
+            category={post.category}
+            publishedOn={post.publishedOn}
+            index={index}
+          />
+
         ))}
       </>
     );

@@ -123,7 +123,7 @@ export const AdminButton = styled.button`
 `;
 
 export const AdminSubButton = styled.button`
-  color: #888;
+  color: #000;
   width: 100%;
   height: 100%;
   display: block;
