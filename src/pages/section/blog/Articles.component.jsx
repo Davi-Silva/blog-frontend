@@ -113,13 +113,25 @@ const Articles = () => {
     articlesVar = (
       <>
         <div className="col-lg-4 col-md-4 col-sm-6 col-12">
-          <CoverLoading />
+          <CoverLoading
+            style={{
+              animationDelay: '0s',
+            }}
+          />
         </div>
         <div className="col-lg-4 col-md-4 col-sm-6 col-12">
-          <CoverLoading />
+          <CoverLoading
+            style={{
+              animationDelay: '0.33s',
+            }}
+          />
         </div>
         <div className="col-lg-4 col-md-4 col-sm-6 col-12">
-          <CoverLoading />
+          <CoverLoading
+            style={{
+              animationDelay: '0.66s',
+            }}
+          />
         </div>
       </>
     );

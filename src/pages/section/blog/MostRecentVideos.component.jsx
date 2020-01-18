@@ -6,6 +6,10 @@ import MostRecentVideosList from '../../../components/UI/lists/blog-home/BlogPos
 import * as MostRecentVideosAction from '../../../store/actions/blog/mostRecentVideos';
 
 import {
+  ColumnLeft,
+  ColumnCenterLeft,
+  ColumnCenterRight,
+  ColumnRight,
   PostListTitleDiv,
   PostListTitle,
   SeeAll,
@@ -26,18 +30,34 @@ const MostRecentVideos = () => {
   if (mostRecentVideos.loading) {
     posts = (
       <>
-        <div className="col-lg-3 col-md-3 col-sm-6 col-12">
-          <CoverLoading />
-        </div>
-        <div className="col-lg-3 col-md-3 col-sm-6 col-12">
-          <CoverLoading />
-        </div>
-        <div className="col-lg-3 col-md-3 col-sm-6 col-12">
-          <CoverLoading />
-        </div>
-        <div className="col-lg-3 col-md-3 col-sm-6 col-12">
-          <CoverLoading />
-        </div>
+        <ColumnLeft className="col-lg-3 col-md-3 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '0s',
+            }}
+          />
+        </ColumnLeft>
+        <ColumnCenterLeft className="col-lg-3 col-md-3 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '.25s',
+            }}
+          />
+        </ColumnCenterLeft>
+        <ColumnCenterRight className="col-lg-3 col-md-3 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '.5s',
+            }}
+          />
+        </ColumnCenterRight>
+        <ColumnRight className="col-lg-3 col-md-3 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '.75s',
+            }}
+          />
+        </ColumnRight>
       </>
     );
   } else if (mostRecentVideos.fetched) {

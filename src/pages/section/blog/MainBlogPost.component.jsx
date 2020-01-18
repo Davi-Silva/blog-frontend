@@ -12,6 +12,11 @@ import {
   BlogTopPost,
 } from '../../../styled-components/blog-posts.styled-components';
 
+import {
+  CoverMainLoading,
+  CoverLoading,
+} from '../../../styled-components/blog-posts-top-main.styled-components';
+
 const MainBlogPost = () => {
   const postsList = useSelector((state) => state.mainBlogPosts);
   const dispatch = useDispatch();
@@ -26,9 +31,54 @@ const MainBlogPost = () => {
   if (postsList.loading) {
     posts = (
       <>
-        <p>
-          Loading
-        </p>
+        <CoverMainLoading
+          style={{
+            animationDelay: '0s',
+          }}
+        />
+      </>
+    );
+    postsSmall = (
+      <>
+
+        <ColumnLeft
+          className="col-lg-6 col-md-6 col-sm-6 col-12"
+        >
+          <CoverLoading
+            style={{
+              animationDelay: '.2s',
+            }}
+          />
+        </ColumnLeft>
+        <ColumnRight
+          className="col-lg-6 col-md-6 col-sm-6 col-12"
+        >
+          <CoverLoading
+            style={{
+              animationDelay: '.4s',
+            }}
+          />
+        </ColumnRight>
+        <ColumnLeft
+          className="col-lg-6 col-md-6 col-sm-6 col-12"
+        >
+          <CoverLoading
+            style={{
+              animationDelay: '.6s',
+            }}
+          />
+        </ColumnLeft>
+        <ColumnRight
+          className="col-lg-6 col-md-6 col-sm-6 col-12"
+        >
+          <CoverLoading
+            style={{
+              animationDelay: '.8s',
+            }}
+          />
+        </ColumnRight>
+
+
       </>
     );
   } else if (postsList.fetched) {
