@@ -8,6 +8,7 @@ import {
   PostListTitle,
   Card,
   Cover,
+  CoverLoading,
   BackgroundWrapper,
   PublishedOn,
   PostInfoDiv,
@@ -111,9 +112,15 @@ const Articles = () => {
   if (articlesList.loading) {
     articlesVar = (
       <>
-        <p>
-          Loading
-        </p>
+        <div className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading />
+        </div>
+        <div className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading />
+        </div>
+        <div className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading />
+        </div>
       </>
     );
   } else if (articlesList.fetched) {
@@ -130,17 +137,12 @@ const Articles = () => {
       <Div>
         <div className="container">
           <div className="row">
-            <div className="col-lg-9 col-md-9 col-sm-9 col-6">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-12">
               <PostListTitleDiv>
                 <PostListTitle>
                 Article
                 </PostListTitle>
               </PostListTitleDiv>
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-3 col-6">
-              <SeeAll to="/blog/articles">
-                See More
-              </SeeAll>
             </div>
             {articlesVar}
           </div>

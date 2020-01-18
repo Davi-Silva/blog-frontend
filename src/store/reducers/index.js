@@ -12,6 +12,10 @@ import news from './blog/news';
 import articles from './blog/articles';
 import tutorials from './blog/tutorials';
 import post from './blog/post';
+import postsByCategory from './blog/postsByCategory';
+import postsByTag from './blog/postsByTag';
+import podcastsByCategory from './podcasts/podcastsByCategory';
+import podcastsByTag from './podcasts/podcastsByTag';
 
 export default combineReducers({
   user,
@@ -26,4 +30,8 @@ export default combineReducers({
   articles,
   tutorials,
   post,
+  postsByCategory,
+  postsByTag,
+  podcastsByCategory,
+  podcastsByTag,
 });

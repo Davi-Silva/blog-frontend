@@ -3,9 +3,9 @@ import {
   all,
 } from 'redux-saga/effects';
 
-import asyncGetPodcasts from './podcast/getPodcasts';
-import asyncGetPodcast from './podcast/getPodcast';
-import asyncGetRelatedPodcastsApi from './podcast/getRelatedPodcast';
+import asyncGetPodcasts from './podcasts/getPodcasts';
+import asyncGetPodcast from './podcasts/getPodcast';
+import asyncGetRelatedPodcastsApi from './podcasts/getRelatedPodcast';
 import asyncGetRecentCategoriesApi from './blog/getRecentCategories';
 import asyncGetMainBlogPostsApi from './blog/getMainBlogPosts';
 import asyncGetMostRecentVideosApi from './blog/getMostRecentVideos';
@@ -14,6 +14,10 @@ import asyncGetArticlesApi from './blog/getArticles';
 import asyncGetTutorialsApi from './blog/getTutorials';
 import asyncGetPostApi from './blog/getPost';
 import asyncUpdateHowManyReadApi from './blog/updateHowManyRead';
+import asyncPostsByCategoryApi from './blog/getPostsByCategory';
+import asyncPostsByTagApi from './blog/getPostsByTag';
+import asyncPodcastsByCategoryApi from './podcasts/getPodcastsByCategory';
+import asyncPodcastsByTagApi from './podcasts/getPodcastsByTag';
 
 export default function* root() {
   yield all([
@@ -28,5 +32,9 @@ export default function* root() {
     takeLatest('REQUEST_TUTORIALS', asyncGetTutorialsApi),
     takeLatest('REQUEST_POST', asyncGetPostApi),
     takeLatest('REQUEST_UPDATE_HOW_MANY_READ', asyncUpdateHowManyReadApi),
+    takeLatest('REQUEST_POSTS_BY_CATEGORY', asyncPostsByCategoryApi),
+    takeLatest('REQUEST_POSTS_BY_TAG', asyncPostsByTagApi),
+    takeLatest('REQUEST_PODCASTS_BY_CATEGORY', asyncPodcastsByCategoryApi),
+    takeLatest('REQUEST_PODCASTS_BY_TAG', asyncPodcastsByTagApi),
   ]);
 }

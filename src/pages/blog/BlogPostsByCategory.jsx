@@ -1,6 +1,11 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
+import {
+  FaSpinner,
+} from 'react-icons/fa';
 import BitcoinDoddle from '../../static/img/no-content-img.png';
 
 import SubNavBarCategories from '../../components/UI/navbar/SubNavBarCategory';
@@ -17,131 +22,34 @@ import {
   StickyWrapper,
   WrapperAd,
   AsideDiv,
+  LoadingAllContent,
 } from '../../styled-components/blog-posts.styled-components';
 
+import * as PostsByCategoryAction from '../../store/actions/blog/postsByCategory';
 
-export default class BlogPostsByCategory extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      posts: [],
-      category: '',
-      page: 1,
+const BlogPostsByCategory = (props) => {
+  const postsList = useSelector((state) => state.postsByCategory);
+  const dispatch = useDispatch();
 
-      found: false,
-    };
-    this.getFirstPosts = this.getFirstPosts.bind(this);
-    this.getMorePosts = this.getMorePosts.bind(this);
-  }
-
-  async componentDidMount() {
-    const { match } = this.props;
+  useEffect(() => {
+    const { match } = props;
     const { slug } = match.params;
 
-    this.setStateAsync({
-      category: slug,
-    });
-    const postsList = await this.getFirstPosts(slug);
-    let more = true;
-    if (!postsList.found) {
-      this.setStateAsync({
-        found: false,
-      });
-    }
-    if (postsList.length > 0) {
-      if (postsList.length < 10) {
-        more = false;
-      }
-      await this.setStateAsync({
-        posts: postsList,
-        hasMore: more,
-        found: true,
-      });
-    }
-  }
+    dispatch(PostsByCategoryAction.getPostsByCategory(slug));
+  }, []);
 
-  async getFirstPosts(category) {
-    const {
-      page,
-    } = this.state;
-    this.response = await fetch(`http://localhost:5000/blog/get/category/${category}?page=${page}`, {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await this.response.json();
-    return data;
-  }
+  let allPosts;
 
-  setStateAsync(state) {
-    return new Promise((resolve) => {
-      this.setState(state, resolve);
-    });
-  }
-
-  async getMorePosts() {
-    const {
-      page,
-      category,
-      posts,
-    } = this.state;
-    this.response = await fetch(`http://localhost:5000/blog/get/category/${category}?page=${page}`, {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await this.response.json();
-    if (data.length < 10) {
-      this.setStateAsync({
-        posts: posts.concat(data),
-      });
-      setTimeout(() => {
-        this.setStateAsync({
-          hasMore: false,
-        });
-      }, 10);
-    } else {
-      this.setStateAsync({
-        page: page + 1,
-      });
-
-      this.setStateAsync({
-        podcasts: posts.concat(data),
-      });
-    }
-  }
-
-  render() {
-    const {
-      category,
-      posts,
-      found,
-    } = this.state;
-    let allPosts;
-    if (!found) {
-      allPosts = (
-        <>
-          <div className="row">
-            <div className="col-12">
-              <NoContentDiv>
-                <NoContentImg src={BitcoinDoddle} />
-                <NoContentP>
-                  No blog posts has been found.
-                </NoContentP>
-              </NoContentDiv>
-            </div>
-          </div>
-        </>
-      );
-    } else {
+  if (postsList.loading) {
+    allPosts = (
+      <>
+        <LoadingAllContent>
+          <FaSpinner />
+        </LoadingAllContent>
+      </>
+    );
+  } else if (postsList.fetched) {
+    if (!_.isEmpty(postsList.data)) {
       allPosts = (
         <>
           <div className="row">
@@ -149,7 +57,7 @@ export default class BlogPostsByCategory extends Component {
               <PostList>
 
                 <div className="row">
-                  {posts.reverse().map((post, key) => (
+                  {postsList.data.reverse().map((post, key) => (
                     <BlogPostList
                       key={key}
                       type="Blog"
@@ -184,20 +92,40 @@ export default class BlogPostsByCategory extends Component {
           </div>
         </>
       );
+    } else {
+      allPosts = (
+        <>
+          <div className="row">
+            <div className="col-12">
+              <NoContentDiv>
+                <NoContentImg src={BitcoinDoddle} />
+                <NoContentP>
+                    No blog posts has been found.
+                </NoContentP>
+              </NoContentDiv>
+            </div>
+          </div>
+        </>
+      );
     }
-
-
-    return (
-      <>
-        <SubNavBarCategories />
-        <SubNavBar media="Blog" category="Category" title={`${category.replace(/^\w/, (c) => c.toUpperCase())}`} />
-        <div className="container" style={{ margin: '25px auto' }}>
-          {allPosts}
-        </div>
-      </>
-    );
   }
-}
+
+
+  return (
+    <>
+      <SubNavBarCategories />
+      <SubNavBar
+        media="Blog"
+        category="Category"
+      // title={`${category.replace(/^\w/, (c) => c.toUpperCase())}`}
+        title="Test"
+      />
+      <div className="container" style={{ margin: '25px auto' }}>
+        {allPosts}
+      </div>
+    </>
+  );
+};
 
 BlogPostsByCategory.propTyps = {
   match: PropTypes.shape({
@@ -206,3 +134,5 @@ BlogPostsByCategory.propTyps = {
     }).isRequired,
   }).isRequired,
 };
+
+export default BlogPostsByCategory;

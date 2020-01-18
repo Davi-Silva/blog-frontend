@@ -1,6 +1,11 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
+import {
+  FaSpinner,
+} from 'react-icons/fa';
 import BitcoinDoddle from '../../static/img/no-content-img.png';
 
 import BlogPostList from '../../components/UI/lists/blog-home/BlogPostList.component';
@@ -16,136 +21,59 @@ import {
   StickyWrapper,
   WrapperAd,
   AsideDiv,
+  LoadingAllContent,
 } from '../../styled-components/blog-posts.styled-components';
 
+import * as PostsByTagAction from '../../store/actions/blog/postsByTag';
 
-export default class BlogPostsByTags extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      posts: [],
-      tag: '',
-      page: 1,
-      found: false,
-    };
-    this.getFirstPosts = this.getFirstPosts.bind(this);
-    this.getMorePosts = this.getMorePosts.bind(this);
-  }
+const BlogPostsByTags = (props) => {
+  const postsList = useSelector((state) => state.postsByTag);
+  const dispatch = useDispatch();
 
-  async componentDidMount() {
-    const { match } = this.props;
+  useEffect(() => {
+    const { match } = props;
     const { slug } = match.params;
 
-    this.setStateAsync({
-      tag: slug,
-    });
-    const postsList = await this.getFirstPosts(slug);
-    let more = true;
-    if (!postsList.found) {
-      this.setStateAsync({
-        found: false,
-      });
-    }
-    if (postsList.length > 0) {
-      if (postsList.length < 10) {
-        more = false;
-      }
-      await this.setStateAsync({
-        posts: postsList,
-        hasMore: more,
-        found: true,
-      });
-    }
-  }
+    dispatch(PostsByTagAction.getPostsByTag(slug));
+  }, []);
 
-  async getFirstPosts(tag) {
-    const {
-      page,
-    } = this.state;
-    this.response = await fetch(`http://localhost:5000/blog/get/tag/${tag}?page=${page}`, {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await this.response.json();
-    return data;
-  }
 
-  setStateAsync(state) {
-    return new Promise((resolve) => {
-      this.setState(state, resolve);
-    });
-  }
+  let allPosts;
+  let subMenu;
 
-  async getMorePosts() {
-    const {
-      page,
-      tag,
-      posts,
-    } = this.state;
-    this.response = await fetch(`http://localhost:5000/blog/get/tag/${tag}?page=${page}`, {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await this.response.json();
-    if (data.length < 10) {
-      this.setStateAsync({
-        posts: posts.concat(data),
-      });
-      setTimeout(() => {
-        this.setStateAsync({
-          hasMore: false,
-        });
-      }, 10);
-    } else {
-      this.setStateAsync({
-        page: page + 1,
-      });
-      this.setStateAsync({
-        podcasts: posts.concat(data),
-      });
-    }
-  }
 
-  render() {
-    const {
-      tag,
-      posts,
-      found,
-    } = this.state;
-    let allPosts;
-    if (!found) {
-      allPosts = (
+  if (postsList.loading) {
+    subMenu = (
+      <>
+      </>
+    );
+    allPosts = (
+      <>
+        <LoadingAllContent>
+          <FaSpinner />
+        </LoadingAllContent>
+      </>
+    );
+  } else if (postsList.fetched) {
+    console.log('psotList tags:', postsList);
+    if (!_.isEmpty(postsList.data)) {
+      subMenu = (
         <>
-          <div className="row">
-            <div className="col-12">
-              <NoContentDiv>
-                <NoContentImg src={BitcoinDoddle} />
-                <NoContentP>
-                  No blog posts has been found.
-                </NoContentP>
-              </NoContentDiv>
-            </div>
-          </div>
+          <SubNavBar
+            media="Blog"
+            category="Tag"
+            // title={`${postsList.data[0].tags.replace(/^\w/, (c) => c.toUpperCase())}`}
+            title="Test"
+          />
         </>
       );
-    } else {
       allPosts = (
         <>
           <div className="row">
             <div className="col-lg-9 col-md-9 col-sm-12 col-12">
               <PostList>
                 <div className="row">
-                  {posts.reverse().map((post, key) => (
+                  {postsList.data.map((post, key) => (
                     <BlogPostList
                       key={key}
                       type="Blog"
@@ -179,19 +107,33 @@ export default class BlogPostsByTags extends Component {
           </div>
         </>
       );
+    } else {
+      allPosts = (
+        <>
+          <div className="row">
+            <div className="col-12">
+              <NoContentDiv>
+                <NoContentImg src={BitcoinDoddle} />
+                <NoContentP>
+                    No blog posts has been found.
+                </NoContentP>
+              </NoContentDiv>
+            </div>
+          </div>
+        </>
+      );
     }
-
-
-    return (
-      <>
-        <SubNavBar media="Blog" category="Tag" title={`${tag.replace(/^\w/, (c) => c.toUpperCase())}`} />
-        <div className="container" style={{ margin: '25px auto' }}>
-          {allPosts}
-        </div>
-      </>
-    );
   }
-}
+
+  return (
+    <>
+      {subMenu}
+      <div className="container" style={{ margin: '25px auto' }}>
+        {allPosts}
+      </div>
+    </>
+  );
+};
 
 BlogPostsByTags.propTyps = {
   match: PropTypes.shape({
@@ -200,3 +142,5 @@ BlogPostsByTags.propTyps = {
     }).isRequired,
   }).isRequired,
 };
+
+export default BlogPostsByTags;

@@ -97,25 +97,6 @@ const Post = (props) => {
     }
   }, []);
 
-
-  // const updateHowManyRead = (post) => {
-  //   const response = fetch(
-  //     'http://localhost:5000/blog/update/post/how-many-read',
-  //     {
-  //       method: 'PUT',
-  //       mode: 'cors',
-  //       cache: 'no-cache',
-  //       credentials: 'same-origin',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(post),
-  //     },
-  //   );
-  //   const data = response.json();
-  //   return data;
-  // };
-
   let helmet;
   let subMenu;
   let coverVar;
@@ -246,13 +227,13 @@ const Post = (props) => {
       if (post.data[0].publishedOn === null) {
         postPublished = (
           <UploadedOn>
-            {post.data[0].publishedOn}
+            {formatDate(post.data[0].publishedOn)}
           </UploadedOn>
         );
       } else {
         postPublished = (
           <UploadedOn>
-            {post.data[0].publishedOn}
+            {formatDate(post.data[0].publishedOn)}
           </UploadedOn>
         );
       }
