@@ -5,9 +5,13 @@ import TutorialsList from '../../../components/UI/lists/blog-home/BlogPostListTu
 
 
 import {
+  ColumnLeft,
+  ColumnCenter,
+  ColumnRight,
   PostListTitleDiv,
   PostListTitle,
   SeeAll,
+  CoverLoading,
 } from '../../../styled-components/blog-posts-tutorials.styled-components';
 
 import * as TutorialsAction from '../../../store/actions/blog/tutorials';
@@ -25,9 +29,48 @@ const Tutorials = () => {
   if (tutorialsList.loading) {
     tutorials = (
       <>
-        <p>
-          Loading
-        </p>
+        <ColumnLeft className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '0s',
+            }}
+          />
+        </ColumnLeft>
+        <ColumnLeft className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '0.16s',
+            }}
+          />
+        </ColumnLeft>
+        <ColumnLeft className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '0.32s',
+            }}
+          />
+        </ColumnLeft>
+        <ColumnLeft className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '0.48s',
+            }}
+          />
+        </ColumnLeft>
+        <ColumnLeft className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '0.64s',
+            }}
+          />
+        </ColumnLeft>
+        <ColumnLeft className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '0.8s',
+            }}
+          />
+        </ColumnLeft>
       </>
     );
   } else if (tutorialsList.fetched) {

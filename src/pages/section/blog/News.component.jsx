@@ -11,6 +11,10 @@ import {
   PostListTitle,
   StickyWrapper,
   SeeAll,
+  CoverLoading,
+  ColumnRight,
+  ColumnLeft,
+  ColumnCenter,
 } from '../../../styled-components/blog-posts-news.styled-components';
 
 let count = 1;
@@ -28,9 +32,48 @@ const News = () => {
   if (news.loading) {
     newsVar = (
       <>
-        <p>
-          Loading
-        </p>
+        <ColumnLeft className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '0s',
+            }}
+          />
+        </ColumnLeft>
+        <ColumnCenter className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '0.16s',
+            }}
+          />
+        </ColumnCenter>
+        <ColumnRight className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '0.32s',
+            }}
+          />
+        </ColumnRight>
+        <ColumnLeft className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '0.64s',
+            }}
+          />
+        </ColumnLeft>
+        <ColumnCenter className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '0.8s',
+            }}
+          />
+        </ColumnCenter>
+        <ColumnRight className="col-lg-4 col-md-4 col-sm-6 col-12">
+          <CoverLoading
+            style={{
+              animationDelay: '0.96s',
+            }}
+          />
+        </ColumnRight>
       </>
     );
   } else if (news.fetched) {

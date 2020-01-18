@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { rotate } from './animations';
+import { rotate, loadingTiles } from './animations';
 
 export const BlogTopPost = styled.div`
 	height: 400px;
@@ -99,6 +99,29 @@ export const Cover = styled.div`
 	}
 `;
 
+export const CoverLoading = styled.div`
+  background: #eaeaea;
+	height: 170px;
+	width: 100%;
+	margin-bottom: 15px;
+	animation: ${loadingTiles} 1s infinite;
+	@media (max-width: 1199px) {
+		height: 140px;
+	}
+	@media (max-width: 991px) {
+		height: 105px;
+	}
+	@media (max-width: 769px) {
+		height: 140px;
+	}
+	@media (max-width: 574px) {
+		background-image: url('')!important;
+		height: 106px;
+		border-bottom: 1px solid #999;
+	}
+`;
+
+
 export const BackgroundWrapper = styled.div`
 	background: linear-gradient(0deg, rgba(0,0,0,0.8491771708683473) 0%, rgba(0,212,255,0) 100%);
 	height: 170px;
@@ -121,6 +144,23 @@ export const CoverMain = styled.div`
   /* border-radius: 6px; */
 	height: 356px;
 	width: 100%;
+	@media (max-width: 1199px) {
+		height: 294px;
+	}
+	@media (max-width: 991px) {
+		height: 226px;
+	}
+	@media (max-width: 768px) {
+		margin-bottom: 13px;
+	}
+`;
+
+export const CoverMainLoading = styled.div`
+  background: #eaeaea;
+	height: 356px;
+	width: 100%;
+	animation: ${loadingTiles} 1s infinite;
+
 	@media (max-width: 1199px) {
 		height: 294px;
 	}

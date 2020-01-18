@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { rotate } from './animations';
+import { rotate, loadingTiles } from './animations';
 
 export const PostListTitleDiv = styled.div`
 	margin-bottom: 30px;
@@ -146,6 +146,27 @@ export const Cover = styled.div`
 	height: 190px;
 	width: 100%;
 	margin-bottom: 15px;
+	@media (max-width: 1199px) {
+		height: 160px;
+	}
+	@media (max-width: 991px) {
+		height: 135px;
+	}
+	@media (max-width: 769px) {
+		height: 135px;
+		margin-bottom: 24px;
+	}
+	@media (max-width: 574px) {
+		height: 150px;
+	}
+`;
+
+export const CoverLoading = styled.div`
+	background: #eaeaea;
+	height: 190px;
+	width: 100%;
+	margin-bottom: 15px;
+	animation: ${loadingTiles} 1s infinite;
 	@media (max-width: 1199px) {
 		height: 160px;
 	}

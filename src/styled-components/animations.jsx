@@ -22,3 +22,15 @@ export const rotate = keyframes`
     transform: rotate(360deg);
 	}
 `;
+
+export const loadingTiles = keyframes`
+	0% {
+    opacity: 1
+  }
+  50% {
+    opacity: 0.3;
+  }
+	100% {
+    opacity: 1
+	}
+`;

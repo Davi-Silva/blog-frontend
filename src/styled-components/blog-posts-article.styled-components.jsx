@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { rotate } from './animations';
+import { rotate, loadingTiles } from './animations';
 
 export const Div = styled.div`
 	padding: 25px 0;
@@ -182,10 +182,11 @@ export const BackgroundWrapper = styled.div`
 `;
 
 export const CoverLoading = styled.div`
-	background: #999;
+  background: #eaeaea;
 	height: 190px;
 	width: 100%;
 	margin-bottom: 15px;
+	animation: ${loadingTiles} 1s infinite;
 	@media (max-width: 1199px) {
 		height: 190px;
 	}
