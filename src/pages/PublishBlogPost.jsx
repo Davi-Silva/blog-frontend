@@ -13,6 +13,7 @@ import SubNavBar from '../components/UI/navbar/SubNavBar';
 
 import {
   Input,
+  Select,
   Button,
   Warning,
   BlogPostCoverUploaderPlaceholder,
@@ -23,6 +24,7 @@ export default class PublishBlogPost extends Component {
     super(props);
     this.state = {
       isSlugValid: true,
+      type: '',
       slug: '',
       title: '',
       category: '',
@@ -50,6 +52,7 @@ export default class PublishBlogPost extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.tagsToArray = this.tagsToArray.bind(this);
     this.appendPostToAuthor = this.appendPostToAuthor.bind(this);
+    this.onChangeType = this.onChangeType.bind(this);
   }
 
   async componentDidMount() {
@@ -79,6 +82,12 @@ export default class PublishBlogPost extends Component {
       this.props.history.push('/admin');
     }
   }
+
+  async onChangeType(e) {
+    await this.setStateAsync({ type: e.target.value });
+    this.disabledSubmitButton();
+  }
+
 
   async onChangeTitle(e) {
     const {
@@ -227,6 +236,7 @@ export default class PublishBlogPost extends Component {
     e.preventDefault();
     const {
       isSlugValid,
+      type,
       slug,
       category,
       title,
@@ -244,6 +254,7 @@ export default class PublishBlogPost extends Component {
       const postInfo = {
         isSlugValid: isSlugValid,
         slug,
+        type,
         category: category,
         title: title,
         content: content,
@@ -291,6 +302,7 @@ export default class PublishBlogPost extends Component {
 
   async disabledSubmitButton() {
     const {
+      type,
       category,
       title,
       tags,
@@ -298,12 +310,14 @@ export default class PublishBlogPost extends Component {
       uploadedCovers,
       coverUploaded,
     } = this.state;
-    if (category !== ''
-     && title !== ''
-     && tags !== ''
-     && content !== ''
-     && uploadedCovers.length > 0
-     && coverUploaded) {
+    if (type !== 'Type'
+    && type !== ''
+    && category !== ''
+    && title !== ''
+    && tags !== ''
+    && content !== ''
+    && uploadedCovers.length > 0
+    && coverUploaded) {
       await this.setStateAsync({
         allFieldsFilled: true,
       });
@@ -461,6 +475,16 @@ export default class PublishBlogPost extends Component {
           <div className="row">
             <div className="col-12">
               <form style={{marginTop: '25px'}} onSubmit={this.onSubmit}>
+                <Select 
+                name="type" 
+                id="type"
+                onChange={this.onChangeType}>
+                  <option value="Type">Type</option>
+                  <option value="Article">Article</option>
+                  <option value="News">News</option>
+                  <option value="Tutorial">Tutorial</option>
+                  <option value="Video">Video</option>
+                </Select>
                 <Input
                   type="text"
                   id="title"

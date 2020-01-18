@@ -39,6 +39,23 @@ export const Input = styled.input`
   }
 `;
 
+export const Select = styled.select`
+  border: 1px solid #000;
+  background: #000;
+  color: #ffcd2b;
+  padding: 5px 7px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  :focus {
+    outline: none;
+  }
+  :hover {
+    background: #ffcd2b;
+    color: #000;
+  }
+`;
+
 export const TextArea = styled.textarea`
   border: 1px solid rgba(0, 0, 0, 0.1);
   width: 100%;

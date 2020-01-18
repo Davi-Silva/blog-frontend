@@ -40,14 +40,64 @@ export const SeeAll = styled(Link)`
 `;
 
 export const PostListTitleDiv = styled.div`
-	&::before {
+	margin-bottom: 30px;
+	margin-top: 10px;
+	&::after {
 		content: '';
-		height: 20px;
-		width: 3px;
+		height: 2px;
+		width: 97%;
 		display: block;
 		position: absolute;
-		background: #ffcd2b;
+		background: #000;
 		margin-right: 10px;
+		@media (max-width: 991px) {
+			width: 95.8%;
+		}
+		@media (max-width: 768px) {
+			width: 94%;
+		}
+		@media (max-width: 495px) {
+			width: 93.5%;
+		}
+		@media (max-width: 469px) {
+			width: 93%;
+		}
+		@media (max-width: 464px) {
+			width: 92.5%;
+		}
+		@media (max-width: 416px) {
+			width: 92%;
+		}
+		@media (max-width: 377px) {
+			width: 91.5%;
+		}
+		@media (max-width: 354px) {
+			width: 91%;
+		}
+		@media (max-width: 347px) {
+			width: 90.5%;
+		}
+		@media (max-width: 321px) {
+			width: 90%;
+		}
+		@media (max-width: 305px) {
+			width: 89.5%;
+		}
+		@media (max-width: 297px) {
+			width: 89%;
+		}
+		@media (max-width: 279px) {
+			width: 88.5%;
+		}
+		@media (max-width: 269px) {
+			width: 88%;
+		}
+		@media (max-width: 259px) {
+			width: 87.5%;
+		}
+		@media (max-width: 241px) {
+			width: 87%;
+		}
 	}
 `;
 
@@ -56,7 +106,6 @@ export const PostListTitle = styled.h3`
 	font-weight: 900;
 	letter-spacing: 1px;
 	font-size: 20px;
-	margin-left: 10px;
 	@media (max-width: 991px) {
 		font-size: 18px;
 	}
@@ -126,6 +175,26 @@ export const BackgroundWrapper = styled.div`
 	}
 	@media (max-width: 769px) {
 		height: 135px;
+	}
+	@media (max-width: 574px) {
+		height: 150px;
+	}
+`;
+
+export const CoverLoading = styled.div`
+	background: #999;
+	height: 190px;
+	width: 100%;
+	margin-bottom: 15px;
+	@media (max-width: 1199px) {
+		height: 190px;
+	}
+	@media (max-width: 991px) {
+		height: 105px;
+	}
+	@media (max-width: 769px) {
+		height: 135px;
+		margin-bottom: 24px;
 	}
 	@media (max-width: 574px) {
 		height: 150px;

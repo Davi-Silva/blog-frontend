@@ -5,9 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import _ from 'lodash';
 
-import InfiniteScroll from 'react-infinite-scroll-component';
-
-
 import {
   FaSpinner,
 } from 'react-icons/fa';
@@ -24,7 +21,7 @@ import Ads from '../../components/UI/ads/AdvertisementSquare.component';
 
 import PodcastsList from '../../components/UI/lists/PodcastsList.component';
 
-import * as PodcastsAction from '../../store/actions/podcasts';
+import * as PodcastsAction from '../../store/actions/podcasts/podcasts';
 
 import {
   Logo,

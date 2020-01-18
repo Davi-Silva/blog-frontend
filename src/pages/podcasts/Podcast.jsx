@@ -17,8 +17,8 @@ import ListenOnGooglePodcast from '../../static/img/listen-on-google-podcasts.sv
 import ListenOnSpotifyPodcast from '../../static/img/listen-on-spotify.svg';
 import ListenOnITunesPodcast from '../../static/img/listen-on-apple.svg';
 
-import * as PodcastActions from '../../store/actions/podcast';
-import * as RelatedPodcasts from '../../store/actions/relatedPodcast';
+import * as PodcastActions from '../../store/actions/podcasts/podcast';
+import * as RelatedPodcasts from '../../store/actions/podcasts/relatedPodcast';
 
 import {
   Wrapper,

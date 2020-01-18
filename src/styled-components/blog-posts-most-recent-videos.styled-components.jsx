@@ -7,6 +7,7 @@ import { rotate } from './animations';
 
 export const PostListTitleDiv = styled.div`
 	margin-bottom: 30px;
+	margin-top: 10px;
 	&::after {
 		content: '';
 		height: 2px;
@@ -189,6 +190,26 @@ export const BackgroundWrapper = styled.div`
 	}
 	@media (max-width: 769px) {
 		height: 220px;
+	}
+	@media (max-width: 574px) {
+		height: 170px;
+	}
+`;
+
+export const CoverLoading = styled.div`
+  background: #999;
+	height: 300px;
+	width: 100%;
+	margin-bottom: 15px;
+	@media (max-width: 1199px) {
+		height: 280px;
+	}
+	@media (max-width: 991px) {
+		height: 240px;
+	}
+	@media (max-width: 769px) {
+		height: 220px;
+		margin-bottom: 4px;
 	}
 	@media (max-width: 574px) {
 		height: 170px;

@@ -97,7 +97,6 @@ const Post = (props) => {
     }
   }, []);
 
-
   let helmet;
   let subMenu;
   let coverVar;
@@ -228,13 +227,13 @@ const Post = (props) => {
       if (post.data[0].publishedOn === null) {
         postPublished = (
           <UploadedOn>
-            {post.data[0].publishedOn}
+            {formatDate(post.data[0].publishedOn)}
           </UploadedOn>
         );
       } else {
         postPublished = (
           <UploadedOn>
-            {post.data[0].publishedOn}
+            {formatDate(post.data[0].publishedOn)}
           </UploadedOn>
         );
       }
