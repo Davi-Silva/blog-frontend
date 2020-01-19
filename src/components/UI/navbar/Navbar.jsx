@@ -12,7 +12,7 @@ import SideDrawer from './side-drawer/SideDrawer';
 import UserMenu from './user-menu/UserMenu';
 import SearchForm from './search-form/SearchForm';
 
-import * as UserActions from '../../../store/actions/user';
+import * as UserActions from '../../../store/actions/user/user';
 import * as NavbarActions from '../../../store/actions/navbar';
 
 import StationNavbar from './StationNavbar';
@@ -38,23 +38,12 @@ const Navbar = (props) => {
     showSearchForm: false,
   });
 
-  let userInfo = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
   const { showSideDrawer } = useSelector((state) => state.navbar);
   const dispatch = useDispatch();
-  userInfo = userInfo.userInfo;
 
   useEffect(() => {
-    const handleLoginUser = async () => {
-      fetch('https://cryptic-activist-backend.herokuapp.com/auth/user')
-        .then((res) => res.json())
-        .then((res) => {
-          dispatch(UserActions.loginUser(res));
-        })
-        .catch((err) => {
-
-        });
-    };
-    handleLoginUser();
+    dispatch(UserActions.loginUser());
   }, []);
 
   let UserDiv;
@@ -136,11 +125,13 @@ const Navbar = (props) => {
     }
   };
 
-  if (!_.isEmpty(userInfo)) {
+  let navbar;
+
+  if (!_.isEmpty(user.data)) {
     const {
       profileImage,
       name,
-    } = userInfo[0];
+    } = user.data;
     UserDiv = (
       <>
         <ButtonProfile
@@ -202,12 +193,10 @@ const Navbar = (props) => {
         </SignUp>
       </>
     );
-
     UserMenuDiv = (
       <>
       </>
     );
-
     if (searchFormState.showSearchForm) {
       SearchFormDiv = (
         <>
@@ -222,7 +211,6 @@ const Navbar = (props) => {
     }
   }
 
-  let navbar;
   if (pathname.includes('/course') || pathname.includes('/courses') || pathname.includes('/my-courses')) {
     navbar = (
       <>
@@ -235,7 +223,7 @@ const Navbar = (props) => {
         <SideDrawer
           ShowSideDrawer={showSideDrawer}
           HandleSideDrawer={handleSideDrawer}
-          UserData={userInfo}
+          UserData={user.data}
           style={{
             top: '30px',
           }}
@@ -321,6 +309,7 @@ const Navbar = (props) => {
       </>
     );
   }
+
 
   return (
     <>

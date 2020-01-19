@@ -3,6 +3,13 @@ import {
   all,
 } from 'redux-saga/effects';
 
+
+import asyncLoginUserApi from './user/loginUser';
+import asyncLoginUserProviderApi from './user/loginUserProvider';
+import asyncGetPublicProfileApi from './user/getPublicProfile';
+import asyncLogoutUserApi from './user/logoutUser';
+import asyncRefreshUserData from './user/refreshUserData';
+import asyncUpdateProfileUserInfo from './user/updateProfileUserInfo';
 import asyncGetPodcasts from './podcasts/getPodcasts';
 import asyncGetPodcast from './podcasts/getPodcast';
 import asyncGetRelatedPodcastsApi from './podcasts/getRelatedPodcast';
@@ -21,6 +28,12 @@ import asyncPodcastsByTagApi from './podcasts/getPodcastsByTag';
 
 export default function* root() {
   yield all([
+    takeLatest('REQUEST_LOGIN_USER', asyncLoginUserApi),
+    takeLatest('REQUEST_LOGIN_USER_PROVIDER', asyncLoginUserProviderApi),
+    takeLatest('REQUEST_GET_PUBLIC_PROFILE', asyncGetPublicProfileApi),
+    takeLatest('REQUEST_LOGOUT_USER', asyncLogoutUserApi),
+    takeLatest('REQUEST_REFRESH_USER_DATA', asyncRefreshUserData),
+    takeLatest('REQUEST_UPDATE_USER_INFO', asyncUpdateProfileUserInfo),
     takeLatest('REQUEST_ALL_PODCASTS', asyncGetPodcasts),
     takeLatest('REQUEST_PODCAST_BY_SLUG', asyncGetPodcast),
     takeLatest('REQUEST_RELATED_PODCASTS', asyncGetRelatedPodcastsApi),

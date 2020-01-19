@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   Wrapper,
@@ -11,11 +12,15 @@ import {
   LinkTo,
 } from '../../../../styled-components/user-menu.styled-components';
 
+import * as UserActions from '../../../../store/actions/user/user';
+
 const UserMenu = (props) => {
   const {
     displayName,
     CloseUserMenuOnClick,
   } = props;
+
+  const dispatch = useDispatch();
 
   const handleCloseOnClick = () => {
     const handleClick = CloseUserMenuOnClick;
@@ -23,17 +28,7 @@ const UserMenu = (props) => {
   };
 
   const handleLogout = async () => {
-    console.log('Signing out...');
-    const response = await fetch('https://cryptic-activist-backend.herokuapp.com/auth/logout', {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    handleCloseOnClick();
+    dispatch(UserActions.logoutUser());
   };
 
   return (

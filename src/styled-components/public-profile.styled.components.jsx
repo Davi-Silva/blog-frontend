@@ -1,6 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 
+import { rotate } from './animations';
+
 export const Cover = styled.div`
   width: 100%;
   height: 180px;
@@ -26,7 +28,7 @@ export const Cover = styled.div`
 export const Wrapper = styled.ul`
   width: 70%;
   display: table;
-  margin: 20px auto 0 auto;
+  margin: 20px auto 40px auto;
   li {
     display: inline-block;
     list-style: none;
@@ -130,5 +132,16 @@ export const MemberSince = styled.span`
   @media (max-width: 768px) {
     display: table;
     margin: 0 auto;
+  }
+`;
+
+export const LoadingAllContent = styled.div`
+  width: 100%;
+  svg {
+    animation: ${rotate} 1s infinite;
+    color: #333;
+    font-size: 18px;
+    display: table;
+    margin: 25px auto;
   }
 `;
