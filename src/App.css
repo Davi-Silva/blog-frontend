@@ -76,13 +76,13 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 ::-moz-selection {
 	/* Code for Firefox */
-	color: #fff;
-	background: #0058e4;
+	color: #ffcd2b;
+	background: #000;
 }
 
 ::selection {
-	color: #fff;
-	background: #0058e4;
+	color: #ffcd2b;
+	background: #000;
 }
 
 @keyframes showShadow {

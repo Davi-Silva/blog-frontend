@@ -22,6 +22,8 @@ import {
   EditableButton,
 } from '../styled-components/profile.styled.components';
 
+import RecentActivities from './section/profile/RecentActivities';
+
 import * as UserActions from '../store/actions/user/user';
 
 const Profile = (props) => {
@@ -29,6 +31,9 @@ const Profile = (props) => {
   const dispatch = useDispatch();
   const [emailState, setEmailState] = useState('');
   const [quoteState, setQuoteState] = useState('');
+  const [githubState, setGithubState] = useState('');
+  const [linkedinState, setLinkedinState] = useState('');
+  const [twitterState, setTwitterState] = useState('');
   const [editable, setEditable] = useState(false);
   const [updated, setUpdated] = useState(false);
 
@@ -37,18 +42,22 @@ const Profile = (props) => {
       const {
         email,
         quote,
+        socialMedia,
       } = user.data;
       console.log('email effect:', email);
       console.log('quote effect:', quote);
       setEmailState(email);
       setQuoteState(quote);
+      setGithubState(socialMedia.github);
+      setLinkedinState(socialMedia.linkedin);
+      setTwitterState(socialMedia.twitter);
     }
   }, [user.data]);
 
   useEffect(() => {
     console.log('is updated:', updated);
     if (updated) {
-      dispatch(UserActions.refreshUserData(user.data._id));
+      // dispatch(UserActions.refreshUserData(user.data._id));
     }
   }, [updated]);
 
@@ -68,14 +77,30 @@ const Profile = (props) => {
     }
   };
 
+  const handleGithub = (e) => {
+    setGithubState(e.target.value);
+  };
+
+  const handleLinkedin = (e) => {
+    setLinkedinState(e.target.value);
+  };
+
+  const handleTwitter = (e) => {
+    setTwitterState(e.target.value);
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const updateObj = {
       userId: user.data._id,
-      // email: emailState,
-      quote: quoteState,
     };
-    console.log('updateObj:', updateObj);
+
+    updateObj.email = emailState;
+    updateObj.quote = quoteState;
+    updateObj.github = githubState;
+    updateObj.linkedin = linkedinState;
+    updateObj.twitter = twitterState;
+
     dispatch(UserActions.updateUserInfo(updateObj));
     setUpdated(true);
   };
@@ -85,7 +110,11 @@ const Profile = (props) => {
   let EmailInput;
   let Submit;
   let Quote;
+  let GithubInput;
+  let LinkedinInput;
+  let TwitterInput;
   let displayName = '';
+  let Activities;
 
 
   if (user.loading) {
@@ -112,6 +141,10 @@ const Profile = (props) => {
       <>
       </>
     );
+    Activities = (
+      <>
+      </>
+    );
   } else if (user.fetched) {
     if (!_.isEmpty(user.data)) {
       const {
@@ -133,6 +166,14 @@ const Profile = (props) => {
           />
         </>
       );
+      Activities = (
+        <>
+          <RecentActivities
+            activities={user.data.posts}
+            authorPicture={profileImage.url}
+          />
+        </>
+      );
       if (editable) {
         EmailInput = (
           <>
@@ -151,6 +192,39 @@ const Profile = (props) => {
               name="quote"
               value={quoteState}
               onChange={handleQuote}
+            />
+          </>
+        );
+        GithubInput = (
+          <>
+            <Input
+              id="github-profile"
+              name="github-profile"
+              type="github-profile"
+              value={githubState}
+              onChange={handleGithub}
+            />
+          </>
+        );
+        LinkedinInput = (
+          <>
+            <Input
+              id="linkedin-profile"
+              name="linkedin-profile"
+              type="linkedin-profile"
+              value={linkedinState}
+              onChange={handleLinkedin}
+            />
+          </>
+        );
+        TwitterInput = (
+          <>
+            <Input
+              id="twitter-profile"
+              name="twitter-profile"
+              type="twitter-profile"
+              value={twitterState}
+              onChange={handleTwitter}
             />
           </>
         );
@@ -179,6 +253,42 @@ const Profile = (props) => {
             <TextArea
               value={quoteState}
               onChange={handleQuote}
+              disabled
+            />
+          </>
+        );
+        GithubInput = (
+          <>
+            <Input
+              id="github-profile"
+              name="github-profile"
+              type="github-profile"
+              value={githubState}
+              onChange={handleGithub}
+              disabled
+            />
+          </>
+        );
+        LinkedinInput = (
+          <>
+            <Input
+              id="linkedin-profile"
+              name="linkedin-profile"
+              type="linkedin-profile"
+              value={linkedinState}
+              onChange={handleLinkedin}
+              disabled
+            />
+          </>
+        );
+        TwitterInput = (
+          <>
+            <Input
+              id="twitter-profile"
+              name="twitter-profile"
+              type="twitter-profile"
+              value={twitterState}
+              onChange={handleTwitter}
               disabled
             />
           </>
@@ -223,10 +333,23 @@ const Profile = (props) => {
                   Quote
                 </Label>
                 {Quote}
+                <Label>
+                  Github Profile
+                </Label>
+                {GithubInput}
+                <Label>
+                  Linked-in Profile
+                </Label>
+                {LinkedinInput}
+                <Label>
+                  Twitter Profile
+                </Label>
+                {TwitterInput}
                 {Submit}
               </form>
             </Wrapper>
           </div>
+          {Activities}
         </div>
       </div>
     </>

@@ -1,6 +1,15 @@
 /* eslint-disable no-tabs */
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import {
+  mainColor1,
+  maniColor2,
+  letterColor,
+  badgeBgColor,
+  uploadedOn,
+  followBtnBg,
+  followColor,
+} from './color-scheme.styled-components';
 
 import { opacity, rotate } from './animations';
 
@@ -15,7 +24,7 @@ export const Cover = styled.img`
 `;
 
 export const UploadedOn = styled.p`
-	color: #999;
+	color: ${uploadedOn};
 	margin: 0 0 0 9px;
 	font-size: 12px!important;
 	font-weight: 700;
@@ -24,26 +33,25 @@ export const UploadedOn = styled.p`
 
 export const Title = styled.h1`
 	color: #333;
-	font-size: 28px;
-	font-weight: 700;
-	/* text-align: center; */
-	letter-spacing: 1px;
-	margin: 15px 0px 30px 0px;
+	font-size: 30px;
+	font-weight: 900;
+	letter-spacing: 2px;
+	margin: 30px 0;
 	@media (max-width: 1199px) {
-		font-size: 27px;
+		font-size: 28px;
 	}
 	@media (max-width: 991px) {
-		margin: 5px 0px;
-		font-size: 24px;
+		margin: 27px 0px;
+		font-size: 26px;
 	}
 	@media (max-width: 768px) {
-		font-size: 23px;
+		font-size: 24px;
 	}
 	@media (max-width: 400px) {
-		margin: 5px 0px;
+		margin: 25px 0px;
 	}
 	@media (max-width: 300px) {
-		margin: 3px 0px;
+		margin: 24px 0px;
 	}
 `;
 
@@ -57,9 +65,9 @@ export const TimeToReadCategoryUl = styled.ul`
 
 export const TimeToRead = styled.span`
 	padding: 5px 13px;
-	background: #eaeaea;
+	background: ${badgeBgColor};
 	border-radius: 16px;
-	color: #333;
+	color: ${letterColor};
 	display: table;
 	font-size: 14px;
 	@media (max-width: 578px) {
@@ -69,13 +77,13 @@ export const TimeToRead = styled.span`
 
 export const Category = styled(Link)`
 	padding: 6px 13px;
-	background: #ffcd2b;
+	background: ${mainColor1};
 	border-radius: 16px;
-	color: #000;
+	color: ${letterColor};
 	display: table;
 	font-size: 14px;
 	&:hover {
-		color: #000;
+		color: ${letterColor};
 		text-decoration: none;
 	}
 	@media (max-width: 578px) {
@@ -124,11 +132,11 @@ export const Author = styled.div`
 `;
 
 export const FollowButton = styled.button`
-	background-color: #fff;
-	border: 1px solid #00b170;
+	background-color: ${followBtnBg};
+	border: 1px solid ${followColor};
 	border-radius: 3px;
 	padding: 1px 5px;
-	color: #00b170;
+	color: ${followColor};
 	font-size: 12px;
 	transform: translateY(-3px);
 	transition: .2s all ease-in-out;
@@ -136,8 +144,8 @@ export const FollowButton = styled.button`
 		outline: none;
 	}
 	&:hover {
-		color: #fff;
-		background-color: #00b170;
+		color: ${followBtnBg};
+		background-color: ${followColor};
 	}
 	@media (max-width: 991px) {
 		font-size: 10px;

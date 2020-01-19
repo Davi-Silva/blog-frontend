@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import UserProvider from '../contexts/UserProvider';
+import {
+  FaSpinner,
+} from 'react-icons/fa';
 
 import {
   Wrapper,
@@ -11,73 +14,102 @@ import {
   DisplayName,
   FollowButton,
   MemberSince,
+  LoadingAllContent,
 } from '../styled-components/public-profile.styled.components';
 
+import RecentActivities from './section/profile/RecentActivities';
+
+import * as UserActions from '../store/actions/user/user';
 
 const PublicProfile = (props) => {
-  const [publicProfile, setPublicProfile] = useState({});
+  const publicProfile = useSelector((state) => state.publicProfile);
+  const dispatch = useDispatch();
 
-  const userInfo = useContext(UserProvider.context);
+  const parseDate = (input) => {
+    const parts = input.match(/(\d+)/g);
+    return new Date(parts[0], parts[1] - 1, parts[2]);
+  };
+
+  const formatDate = (uploadedOn) => {
+    const dateFormatted = parseDate(uploadedOn);
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'may',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    return `${months[dateFormatted.getMonth()]} ${dateFormatted.getFullYear()}`;
+  };
+
+  let User;
 
   useEffect(() => {
     const {
       user,
     } = props.match.params;
-    const getPublicUser = async (userData) => {
-      const response = await fetch(`http://localhost:5000/users/public-profile/${userData}`, {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await response.json();
-      setPublicProfile(data);
-    };
-
-    getPublicUser(user);
+    dispatch(UserActions.getPublicProfile(user));
   }, []);
 
-  let User;
-
-  if (!_.isEmpty(publicProfile)) {
+  if (publicProfile.loading) {
     User = (
       <>
-        <Wrapper>
-          <li>
-            <ProfileImage src={publicProfile.profileImage.url} alt="Profile Placeholder" />
-          </li>
-          <li>
-            <UserInfoDiv>
-              <DisplayName>
-                {publicProfile.name}
-              </DisplayName>
-              <FollowButton>
-                <button
-                  type="button"
-                  onClick={() => {
-                    console.log('Clicked');
-                  }}
-                >
-                  Follow +
-                </button>
-              </FollowButton>
-              <p>This is just long statement</p>
-              <MemberSince>
-                Since May 2019
-              </MemberSince>
-            </UserInfoDiv>
-          </li>
-        </Wrapper>
+        <LoadingAllContent>
+          <FaSpinner />
+        </LoadingAllContent>
       </>
     );
-  } else {
-    User = (
-      <>
-      </>
-    );
+  } else if (publicProfile.fetched) {
+    if (!_.isEmpty(publicProfile.data)) {
+      User = (
+        <>
+          <Wrapper>
+            <li>
+              <ProfileImage src={publicProfile.data.profileImage.url} alt="Profile Placeholder" />
+            </li>
+            <li>
+              <UserInfoDiv>
+                <DisplayName>
+                  {publicProfile.data.name}
+                </DisplayName>
+                <FollowButton>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      console.log('Clicked');
+                    }}
+                  >
+                    Follow +
+                  </button>
+                </FollowButton>
+                <p>{publicProfile.data.quote}</p>
+                <MemberSince>
+                  Since
+                  {' '}
+                  {formatDate(publicProfile.data.createdOn)}
+                </MemberSince>
+              </UserInfoDiv>
+            </li>
+          </Wrapper>
+          <div className="container">
+            <div className="row">
+              <RecentActivities
+                activities={publicProfile.data.posts}
+                authorPicture={publicProfile.data.profileImage.url}
+              />
+            </div>
+          </div>
+        </>
+      );
+    }
   }
 
   return (

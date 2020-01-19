@@ -37,3 +37,12 @@ export function loginUserProvider(endpoint) {
     },
   };
 }
+
+export function getPublicProfile(user) {
+  return {
+    type: 'REQUEST_GET_PUBLIC_PROFILE',
+    payload: {
+      user,
+    },
+  };
+}

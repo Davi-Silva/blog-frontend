@@ -4,7 +4,7 @@ import {
 } from 'redux-saga/effects';
 
 async function updateProfileUserInfoApi(updateObj) {
-  const res = await fetch('http://localhost:5000/users/update/quote', {
+  const res = await fetch('http://localhost:5000/users/update', {
     method: 'PUT',
     mode: 'cors',
     cache: 'no-cache',

@@ -243,11 +243,9 @@ const Post = (props) => {
           <div className="container">
             <div className="row">
               <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-                <PostAuthor
-                  author={post.data[0].author}
-                  postPublished={postPublished}
-                />
-                <ShareButtons path={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+                <Title>
+                  {post.data[0].title}
+                </Title>
                 <TimeToReadCategoryUl>
                   <li>
                     <Category
@@ -262,9 +260,12 @@ const Post = (props) => {
                     </TimeToRead>
                   </li>
                 </TimeToReadCategoryUl>
-                <Title>
-                  {post.data[0].title}
-                </Title>
+                <PostAuthor
+                  author={post.data[0].author}
+                  postPublished={postPublished}
+                />
+                <ShareButtons path={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+                {coverVar}
                 <Content dangerouslySetInnerHTML={{ __html: post.data[0].content }} />
                 <Tags
                   tagsArray={post.data[0].tags}
@@ -309,13 +310,6 @@ const Post = (props) => {
     <>
       {helmet}
       {subMenu}
-      <div className="container-fluid p-0">
-        <div className="row">
-          <div className="col-12">
-            {coverVar}
-          </div>
-        </div>
-      </div>
       {allContentPost}
       {content}
     </>

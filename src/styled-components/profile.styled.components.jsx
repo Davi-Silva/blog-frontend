@@ -1,5 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+import {
+  letterColor,
+} from './color-scheme.styled-components';
 
 export const Cover = styled.div`
   width: 100%;
@@ -23,6 +28,7 @@ export const Cover = styled.div`
 
 export const Wrapper = styled.div`
   margin-top: 20px;
+  margin-bottom: 40px;
   @media (max-width: 767px) {
     margin-top: 90px;
   }
@@ -183,4 +189,64 @@ export const TextArea = styled.textarea`
   &:disabled {
     background: transparent;
   }
+`;
+
+export const RecentActivitiesH2 = styled.div`
+  font-size: 20px;
+  color: ${letterColor};
+  font-weight: 900;
+  margin: 10px auto;
+  display: table;
+`;
+
+export const RecentActivitiesCover = styled.div`
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 120px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+`;
+
+export const RecentActivitiesAuthorPicture = styled.img`
+  width: 60px;
+  height: 60px;
+  display: table;
+  margin: -27px auto 0 auto;
+  border: 2px solid #fff;
+  border-radius: 50px;
+`;
+
+
+export const RecentActivityWrapper = styled(Link)`
+  background: #fff;
+  box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 auto 25px auto;
+  display: table;
+  width: 100%;
+  color: ${letterColor};
+  &:hover {
+    text-decoration: none;
+    color: ${letterColor};
+  }
+
+`;
+
+export const RecentActivityTitle = styled.p`
+  font-size: 16px;
+  font-weight: 100;
+  color: #000;
+  margin: 5px 15px;
+  text-align: center;
+`;
+
+export const RecentActivityPublishedOn = styled.p`
+  font-size: 13px;
+  font-weight: 100;
+  color: #999;
+  margin-bottom: 7px;
+  text-align: center;
 `;
