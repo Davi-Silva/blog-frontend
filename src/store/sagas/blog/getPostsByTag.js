@@ -4,7 +4,7 @@ import {
 } from 'redux-saga/effects';
 
 async function getPostsByTagApi(tag) {
-  const res = await fetch(`http://localhost:5000/blog/get/tag/${tag}`, {
+  const res = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/get/tag/${tag}`, {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',

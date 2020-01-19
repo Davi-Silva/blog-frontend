@@ -23,7 +23,7 @@ const RecentActivities = (props) => {
     } = props;
     console.log('activities array:', activities);
     setLoading(true);
-    const response = await fetch('http://localhost:5000/blog/get/user/activities', {
+    const response = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/get/user/activities', {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',

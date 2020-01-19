@@ -7,7 +7,7 @@ async function refreshUserDataApi(id) {
   console.log('id refresh user data:', {
     id,
   });
-  const res = await fetch('http://localhost:5000/auth/user/refresh', {
+  const res = await fetch('https://cryptic-activist-backend.herokuapp.com/auth/user/refresh', {
     method: 'POST',
     mode: 'cors',
     cache: 'no-cache',

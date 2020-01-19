@@ -4,7 +4,7 @@ import {
 } from 'redux-saga/effects';
 
 async function getPublicProfileApi(user) {
-  const res = await fetch(`http://localhost:5000/users/public-profile/${user}`, {
+  const res = await fetch(`https://cryptic-activist-backend.herokuapp.com/users/public-profile/${user}`, {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',
