@@ -260,15 +260,15 @@ export default class PublishBlogPost extends Component {
         content: content,
         tags: tagsArray,
         cover: uploadedCovers[0].id,
-        author: userInfo[0]._id,
+        author: userInfo._id,
       };
       let isSlugValidRes = await this.verifySlug(this.state.slug);
       if (isSlugValidRes.valid) {
         let res = await this.publishPost(postInfo);
         let userPostsArray = [];
-        userPostsArray = userInfo[0].posts;
+        userPostsArray = userInfo.posts;
         userPostsArray.push(res)
-        this.appendPostToAuthor(userInfo[0]._id, userPostsArray);
+        this.appendPostToAuthor(userInfo._id, userPostsArray);
         this.setStateAsync({
           uploaded: res.uploaded
         });

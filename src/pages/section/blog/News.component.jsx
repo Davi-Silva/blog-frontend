@@ -56,21 +56,21 @@ const News = () => {
         <ColumnLeft className="col-lg-4 col-md-4 col-sm-6 col-12">
           <CoverLoading
             style={{
-              animationDelay: '0.64s',
+              animationDelay: '0.48s',
             }}
           />
         </ColumnLeft>
         <ColumnCenter className="col-lg-4 col-md-4 col-sm-6 col-12">
           <CoverLoading
             style={{
-              animationDelay: '0.8s',
+              animationDelay: '0.64s',
             }}
           />
         </ColumnCenter>
         <ColumnRight className="col-lg-4 col-md-4 col-sm-6 col-12">
           <CoverLoading
             style={{
-              animationDelay: '0.96s',
+              animationDelay: '0.8s',
             }}
           />
         </ColumnRight>

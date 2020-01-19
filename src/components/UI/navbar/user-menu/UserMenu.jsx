@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   Wrapper,
@@ -11,11 +12,15 @@ import {
   LinkTo,
 } from '../../../../styled-components/user-menu.styled-components';
 
+import * as UserActions from '../../../../store/actions/user/user';
+
 const UserMenu = (props) => {
   const {
     displayName,
     CloseUserMenuOnClick,
   } = props;
+
+  const dispatch = useDispatch();
 
   const handleCloseOnClick = () => {
     const handleClick = CloseUserMenuOnClick;
@@ -23,16 +28,7 @@ const UserMenu = (props) => {
   };
 
   const handleLogout = async () => {
-    const response = await fetch('http://localhost:5000/auth/logout', {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    handleCloseOnClick();
+    dispatch(UserActions.logoutUser());
   };
 
   return (

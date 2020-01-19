@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import {
   FaGithub,
   FaFacebook,
@@ -10,102 +12,84 @@ import {
   SocialMediaLoginLink,
 } from '../../../styled-components/third-party-login-button.styled-components';
 
-export default class LoginButton extends Component {
-  constructor(props) {
-    super(props);
-    this.componentDidMount = this.componentDidMount.bind(this);
+import * as UserActions from '../../../store/actions/user/user';
 
-    this.state = {
-      icon: '',
-      backgroundColor: '',
-      providerName: '',
-      endpoint: '',
-    };
-  }
+const LoginButton = (props) => {
+  const {
+    icon,
+    backgroundColor,
+    endpoint,
+    providerName,
+  } = props;
+  const dispatch = useDispatch();
 
-  componentDidMount() {
-    const {
-      icon,
-      backgroundColor,
-      providerName,
-      endpoint,
-    } = this.props;
-    this.setState({
-      icon,
-      backgroundColor,
-      providerName,
-      endpoint,
-    });
-  }
+  const handleClick = () => {
+    console.log('clicked');
+    dispatch(UserActions.loginUserProvider(endpoint));
+  };
 
 
-  render() {
-    const {
-      endpoint,
-      backgroundColor,
-      icon,
-      providerName,
-    } = this.state;
-
-    let socialIcon;
-    if (icon === 'github') {
-      socialIcon = (
-        <>
-          <FaGithub />
-        </>
-      );
-    } else if (icon === 'facebook') {
-      socialIcon = (
-        <>
-          <FaFacebook />
-        </>
-      );
-    } else if (icon === 'instagram') {
-      socialIcon = (
-        <>
-          <FaInstagram />
-        </>
-      );
-    } else if (icon === 'google') {
-      socialIcon = (
-        <>
-          <FaGoogle />
-        </>
-      );
-    }
-    return (
+  let socialIcon;
+  if (icon === 'github') {
+    socialIcon = (
       <>
-        <SocialMediaLoginLink
-          href={endpoint}
-          style={{
-            backgroundColor: `${backgroundColor}`,
-          }}
-        >
-
-          <ul>
-            <li
-              style={{
-                marginRight: '5px',
-              }}
-            >
-              {socialIcon}
-            </li>
-            <li
-              style={{
-                marginLeft: '5px',
-              }}
-            >
-              <span style={{ textDecoration: 'none' }}>
-                Login with
-                {' '}
-                {providerName}
-              </span>
-            </li>
-          </ul>
-
-
-        </SocialMediaLoginLink>
+        <FaGithub />
+      </>
+    );
+  } else if (icon === 'facebook') {
+    socialIcon = (
+      <>
+        <FaFacebook />
+      </>
+    );
+  } else if (icon === 'instagram') {
+    socialIcon = (
+      <>
+        <FaInstagram />
+      </>
+    );
+  } else if (icon === 'google') {
+    socialIcon = (
+      <>
+        <FaGoogle />
       </>
     );
   }
-}
+  return (
+    <>
+      <SocialMediaLoginLink
+        // onClick={handleClick}
+        href={endpoint}
+        style={{
+          backgroundColor: `${backgroundColor}`,
+        }}
+      >
+
+        <ul>
+          <li
+            style={{
+              marginRight: '5px',
+            }}
+          >
+            {socialIcon}
+          </li>
+          <li
+            style={{
+              marginLeft: '5px',
+            }}
+          >
+            <span style={{ textDecoration: 'none' }}>
+                Login with
+              {' '}
+              {providerName}
+            </span>
+          </li>
+        </ul>
+
+
+      </SocialMediaLoginLink>
+    </>
+  );
+};
+
+export default LoginButton;

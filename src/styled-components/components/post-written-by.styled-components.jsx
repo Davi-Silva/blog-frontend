@@ -18,6 +18,15 @@ export const WrittenByUl = styled.ul`
   @media (max-width: 575px) {
     transform: translateY(0px);
   }  
+  .authorProfileImageLi {
+    position: absolute;
+    top: 20px;
+    @media (max-width: 575px) {
+      position: relative;
+      top: 0;
+      margin-bottom: -22px;
+    } 
+  }
   li {
     display: inline-block;
     @media (max-width: 575px) {
@@ -38,10 +47,17 @@ export const WrittenByUl = styled.ul`
     }
   }
   .userInfoDiv {
-    transform: translateY(39px);
-    @media (max-width: 575px) {
-      transform: translateY(0px);
+    transform: translateY(20px);
+    margin-left: 97px;
+    @media (max-width: 991px) {
+      margin-left: 79px;
     }  
+    @media (max-width: 575px) {
+      margin-left: 0;
+      ul {
+        margin: 0 auto;
+      }
+    } 
   }
 `;
 
@@ -88,6 +104,7 @@ export const WrittenByAuthorInfoUl = styled.ul`
       font-size: 13px;
       letter-spacing: 1px;
       width: 485px;
+      margin-bottom: 15px;
       line-height: 20px;
       @media (max-width: 991px) {
         font-size: 12px;
@@ -100,7 +117,7 @@ export const WrittenByAuthorInfoUl = styled.ul`
       @media (max-width: 575px) {
         width: 80%;
         text-align: center;
-        margin: 0 auto;
+        margin: 0 auto 15px auto;
         display: table;
       }
       @media (max-width: 440px) {
@@ -117,6 +134,8 @@ export const FollowButton = styled.button`
 	padding: 3px 7px;
 	color: #00b170;
 	font-size: 16px;
+  position: absolute;
+  top: 45px;
 	transition: .2s all ease-in-out;
 	&:focus {
 		outline: none;
@@ -138,5 +157,7 @@ export const FollowButton = styled.button`
   @media (max-width: 575px) {
     margin: 15px auto 0 auto;
     display: table;
+    position: relative;
+    top: 0;
   }  
 `;

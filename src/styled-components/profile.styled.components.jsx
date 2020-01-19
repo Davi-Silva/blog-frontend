@@ -28,6 +28,56 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const EditableButton = styled.button`
+  color: #ffcd2b;
+  position: absolute;
+  display: table;
+  padding: 5px;
+  right: 0;
+  font-size: 23px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  border: 1px solid #000;
+  background: #000;
+  transition: .2s all ease-in-out;
+  @media (max-width: 768px) {
+    top: 15px;
+    right: 15px;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: #ffcd2b;
+    color: #000;
+  }
+  &:active {
+    transform: scale(0.95, 0.95);
+  }
+`;
+
+export const SubmitButton = styled.button`
+  color: #ffcd2b;
+  padding: 5px 7px;
+  background: #000;
+  font-weight: 900;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 3px;
+  border: 1px solid #000;
+  display: table;
+  margin: 15px 0;
+  transition: .2s all ease-in-out;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: #ffcd2b;
+    color: #000;
+  }
+`;
+
 export const ProfileImage = styled.img`
   height: 170px;
   width: 170px;
@@ -86,7 +136,7 @@ export const LoadingProfileImage = styled.div`
   }
 `;
 
-export const Label = styled.h1`
+export const Label = styled.label`
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -98,4 +148,39 @@ export const DisplayName = styled.h1`
   color: #333;
   font-weight: 700;
   letter-spacing: 1px;
+`;
+
+export const Input = styled.input`
+  font-size: 20px;
+  color: #333;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: block;
+  background: #eaeaea;
+  width: 100%;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    background: transparent;
+  }
+`;
+
+export const TextArea = styled.textarea`
+  font-size: 20px;
+  color: #333;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: block;
+  width: 100%;
+  height: 100px;
+  background: #eaeaea;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    background: transparent;
+  }
 `;

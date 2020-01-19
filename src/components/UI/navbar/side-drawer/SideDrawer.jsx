@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import _ from 'lodash';
@@ -27,10 +28,8 @@ import {
 import ProfilePlaceholder from '../../../../static/img/profile-placeholder.png';
 
 const SideDrawer = (props) => {
-  const {
-    UserData,
-  } = props;
-  const userInfo = UserData;
+  const user = useSelector((state) => state.user);
+
 
   const handleClose = () => {
     const {
@@ -56,11 +55,12 @@ const SideDrawer = (props) => {
   let ProfileDiv;
   let logoutVar;
 
-  if (!_.isEmpty(userInfo)) {
+  if (!_.isEmpty(user.data)) {
+    console.log('Side Drawer user:', user);
     const {
       name: displayName,
       profileImage,
-    } = userInfo[0];
+    } = user.data;
     ProfileDiv = (
       <>
         <SideDrawerLinkToAdmin

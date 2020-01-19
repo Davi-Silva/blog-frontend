@@ -14,7 +14,7 @@ import UserMenu from './user-menu/UserMenu';
 import CoursesSearchForm from './search-form/CoursesSearchForm';
 import CoursesSearchFormDesktop from './search-form/CoursesSearchFormDesktop';
 
-import * as UserActions from '../../../store/actions/user';
+import * as UserActions from '../../../store/actions/user/user';
 
 import {
   NavBar,
@@ -40,9 +40,8 @@ const Navbar = () => {
     showSearchForm: false,
   });
 
-  let userInfo = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  userInfo = userInfo.userInfo;
 
   const handleLoginUser = async () => {
     fetch('http://localhost:5000/auth/user')
@@ -108,11 +107,11 @@ const Navbar = () => {
   };
 
 
-  if (!_.isEmpty(userInfo)) {
+  if (!_.isEmpty(user.data)) {
     const {
       profileImage,
       name,
-    } = userInfo[0];
+    } = user.data;
 
     UserDiv = (
       <>
@@ -231,7 +230,7 @@ const Navbar = () => {
       <SideDrawer
         ShowSideDrawer={sideDrawerState.showSideDrawer}
         HandleSideDrawer={handleSideDrawer}
-        UserData={userInfo}
+        UserData={user}
         style={{
           top: '30px',
         }}

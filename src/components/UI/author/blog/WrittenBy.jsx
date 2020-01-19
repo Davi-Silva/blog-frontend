@@ -9,6 +9,13 @@ import {
 } from '../../../../styled-components/components/post-written-by.styled-components';
 
 const WrittenBy = ({ author }) => {
+  const {
+    username,
+    name,
+    profileImage,
+    quote,
+  } = author;
+
   const handleFollowAuthor = async () => {
 
   };
@@ -17,9 +24,9 @@ const WrittenBy = ({ author }) => {
     <>
       <WrittenByDiv>
         <WrittenByUl>
-          <li>
-            <WrittenByAuthorLinkTop to={`/user/${author.username}`}>
-              <img src={author.profileImage.url} alt="" />
+          <li className="authorProfileImageLi">
+            <WrittenByAuthorLinkTop to={`/user/${username}`}>
+              <img src={profileImage.url} alt="" />
             </WrittenByAuthorLinkTop>
           </li>
           <li className="userInfoDiv">
@@ -28,12 +35,12 @@ const WrittenBy = ({ author }) => {
                 <p>
               WRITTEN BY
                 </p>
-                <WrittenByAuthorLinkTop to={`/user/${author.username}`}>
+                <WrittenByAuthorLinkTop to={`/user/${username}`}>
                   <b>
-                    {author.name}
+                    {name}
                   </b>
                 </WrittenByAuthorLinkTop>
-                <p className="author-quote">Nunc metus libero, imperdiet vel metus sit amet, tempor semper libero.</p>
+                <p className="author-quote">{quote}</p>
               </li>
             </WrittenByAuthorInfoUl>
           </li>

@@ -12,7 +12,9 @@ import {
   FaSearch,
   // FaEdit,
   FaListUl,
+  FaSpinner,
 } from 'react-icons/fa';
+
 
 import PublishBlogPost from './PublishBlogPost';
 import UploadNewPodcast from './UploadNewPodcast';
@@ -30,10 +32,11 @@ import {
   AdminLi2,
   AdminButton,
   AdminSubButton,
+  LoadingAllContent,
 } from '../styled-components/admin.styled-components';
 
 const Admin = (props) => {
-  const userInfo = useSelector((state) => state.user.userInfo);
+  const user = useSelector((state) => state.user);
   const [coursesState, setCoursesState] = useState({
     courses: false,
   });
@@ -53,16 +56,9 @@ const Admin = (props) => {
       search: false,
     },
   });
-
-
-  if (!_.isEmpty(userInfo)) {
-    // console.log('userInfo:', userInfo);
-  } else {
-    const {
-      history,
-    } = props;
-    history.push('/');
-  }
+  const {
+    history,
+  } = props;
 
   const onChangeCourse = () => {
     setCoursesState({
@@ -183,8 +179,8 @@ const Admin = (props) => {
     });
   };
 
-  const { history } = props;
 
+  let content;
   let coursesVar;
   let blogVar;
   let podcastsVar;
@@ -197,7 +193,6 @@ const Admin = (props) => {
   let allPodcast;
   // let editPost;
   // let editPodcast;
-
   const {
     courses,
   } = coursesState;
@@ -214,328 +209,345 @@ const Admin = (props) => {
     subMenu,
   } = subMenuState;
 
-  if (courses || blog || podcasts || settings) {
-    addVar = (
+  if (user.loading) {
+    content = (
       <>
-        <AdminSubButton
-          onClick={onChangeAdd}
-        >
-          <FaPlus />
-        </AdminSubButton>
+        <LoadingAllContent>
+          <FaSpinner />
+        </LoadingAllContent>
       </>
     );
-    searchVar = (
-      <>
-        <AdminSubButton
-          onClick={onChangeSearch}
-        >
-          <FaSearch />
-        </AdminSubButton>
-      </>
-    );
+  } else if (user.fetched) {
+    if (!_.isEmpty(user.data)) {
+      if (courses || blog || podcasts || settings) {
+        addVar = (
+          <>
+            <AdminSubButton
+              onClick={onChangeAdd}
+            >
+              <FaPlus />
+            </AdminSubButton>
+          </>
+        );
+        searchVar = (
+          <>
+            <AdminSubButton
+              onClick={onChangeSearch}
+            >
+              <FaSearch />
+            </AdminSubButton>
+          </>
+        );
 
-    if (subMenu.add) {
-      addVar = (
-        <>
-          <AdminSubButton
-            onClick={onChangeAdd}
-            style={{
-              color: '#e0b528',
-            }}
-          >
-            <FaPlus />
-          </AdminSubButton>
-        </>
-      );
+        if (subMenu.add) {
+          addVar = (
+            <>
+              <AdminSubButton
+                onClick={onChangeAdd}
+                style={{
+                  color: '#e0b528',
+                }}
+              >
+                <FaPlus />
+              </AdminSubButton>
+            </>
+          );
+          if (blog) {
+            allBlogPost = (
+              <>
+                <PublishBlogPost History={history} userInfo={user.data} />
+              </>
+            );
+            allPodcast = (
+              <>
+              </>
+            );
+          }
+          if (podcasts) {
+            allBlogPost = (
+              <>
+              </>
+            );
+            allPodcast = (
+              <>
+                <UploadNewPodcast History={history} />
+              </>
+            );
+          }
+        } else {
+          addVar = (
+            <>
+              <AdminSubButton
+                onClick={onChangeAdd}
+              >
+                <FaPlus />
+              </AdminSubButton>
+            </>
+          );
+        }
+
+        if (subMenu.edit) {
+          listAllVar = (
+            <>
+              <AdminSubButton
+                onClick={onChangeEdit}
+                style={{
+                  color: '#e0b528',
+                }}
+              >
+                <FaListUl />
+              </AdminSubButton>
+            </>
+          );
+          if (blog) {
+            allBlogPost = (
+              <>
+                <BlogPostContent />
+              </>
+            );
+            allPodcast = (
+              <>
+              </>
+            );
+          }
+          if (podcasts) {
+            allBlogPost = (
+              <>
+              </>
+            );
+            allPodcast = (
+              <>
+                <PodcastContent />
+              </>
+            );
+          }
+        } else {
+          listAllVar = (
+            <>
+              <AdminSubButton
+                onClick={onChangeEdit}
+              >
+                <FaListUl />
+              </AdminSubButton>
+            </>
+          );
+        }
+
+
+        if (subMenu.search) {
+          searchVar = (
+            <>
+              <AdminSubButton
+                onClick={onChangeSearch}
+                style={{
+                  color: '#e0b528',
+                }}
+              >
+                <FaSearch />
+              </AdminSubButton>
+            </>
+          );
+        } else {
+          searchVar = (
+            <>
+              <AdminSubButton
+                onClick={onChangeSearch}
+              >
+                <FaSearch />
+              </AdminSubButton>
+            </>
+          );
+        }
+      } else {
+        addVar = (
+          <>
+          </>
+        );
+        listAllVar = (
+          <>
+          </>
+        );
+        searchVar = (
+          <>
+          </>
+        );
+      }
+
+      if (courses) {
+        coursesVar = (
+          <>
+            <AdminButton
+              onClick={onChangeCourse}
+              style={{
+                color: '#e0b528',
+              }}
+            >
+              <FaLaptopCode />
+              <span>
+                  Course
+              </span>
+            </AdminButton>
+          </>
+        );
+      } else {
+        coursesVar = (
+          <>
+            <AdminButton
+              onClick={onChangeCourse}
+            >
+              <FaLaptopCode />
+              <span>
+                  Course
+              </span>
+            </AdminButton>
+          </>
+        );
+      }
+
       if (blog) {
-        allBlogPost = (
+        blogVar = (
           <>
-            <PublishBlogPost History={history} userInfo={userInfo} />
+            <AdminButton
+              onClick={onChangeBlog}
+              style={{
+                color: '#e0b528',
+              }}
+            >
+              <FaBlog />
+              <span>
+                  Blog
+              </span>
+            </AdminButton>
           </>
         );
-        allPodcast = (
+      } else {
+        blogVar = (
           <>
+            <AdminButton
+              onClick={onChangeBlog}
+            >
+              <FaBlog />
+              <span>
+                  Blog
+              </span>
+            </AdminButton>
           </>
         );
       }
+
       if (podcasts) {
-        allBlogPost = (
+        podcastsVar = (
           <>
+            <AdminButton
+              onClick={onChangePodcasts}
+              style={{
+                color: '#e0b528',
+              }}
+            >
+              <FaPodcast />
+              <span>
+                  Podcast
+              </span>
+            </AdminButton>
           </>
         );
-        allPodcast = (
+      } else {
+        podcastsVar = (
           <>
-            <UploadNewPodcast History={history} />
-          </>
-        );
-      }
-    } else {
-      addVar = (
-        <>
-          <AdminSubButton
-            onClick={onChangeAdd}
-          >
-            <FaPlus />
-          </AdminSubButton>
-        </>
-      );
-    }
-
-    if (subMenu.edit) {
-      listAllVar = (
-        <>
-          <AdminSubButton
-            onClick={onChangeEdit}
-            style={{
-              color: '#e0b528',
-            }}
-          >
-            <FaListUl />
-          </AdminSubButton>
-        </>
-      );
-      if (blog) {
-        allBlogPost = (
-          <>
-            <BlogPostContent />
-          </>
-        );
-        allPodcast = (
-          <>
+            <AdminButton
+              onClick={onChangePodcasts}
+            >
+              <FaPodcast />
+              <span>
+                  Podcast
+              </span>
+            </AdminButton>
           </>
         );
       }
-      if (podcasts) {
-        allBlogPost = (
+
+      if (settings) {
+        settingsVar = (
           <>
+            <AdminButton
+              onClick={onChangeSettings}
+              style={{
+                color: '#e0b528',
+              }}
+            >
+              <FaCog />
+              <span>
+                  Settings
+              </span>
+            </AdminButton>
           </>
         );
-        allPodcast = (
+      } else {
+        settingsVar = (
           <>
-            <PodcastContent />
+            <AdminButton
+              onClick={onChangeSettings}
+            >
+              <FaCog />
+              <span>
+                  Settings
+              </span>
+            </AdminButton>
           </>
         );
       }
+      content = (
+        <>
+          <AdminWrapper className="container-fluid">
+            <div className="row">
+              <Column className="col-lg-1 col-md-1 col-sm-12 col-12">
+                <AdminUl>
+                  <AdminLi>
+                    {' '}
+                    {subMenuVar}
+                    {coursesVar}
+                  </AdminLi>
+                  <AdminLi>
+                    {blogVar}
+                  </AdminLi>
+                  <AdminLi>
+                    {podcastsVar}
+                  </AdminLi>
+                  <AdminLi>
+                    {settingsVar}
+                  </AdminLi>
+                </AdminUl>
+              </Column>
+              <Column className="col-lg-1 col-md-1 col-sm-12 col-12">
+                <AdminUl>
+                  <AdminLi2>
+                    {addVar}
+                  </AdminLi2>
+                  <AdminLi2>
+                    {searchVar}
+                  </AdminLi2>
+                  <AdminLi2>
+                    {listAllVar}
+                  </AdminLi2>
+                </AdminUl>
+              </Column>
+              <div className="col-lg-10 col-md-10 col-sm-12 col-12">
+                {allBlogPost}
+                {allPodcast}
+              </div>
+            </div>
+          </AdminWrapper>
+        </>
+      );
     } else {
-      listAllVar = (
-        <>
-          <AdminSubButton
-            onClick={onChangeEdit}
-          >
-            <FaListUl />
-          </AdminSubButton>
-        </>
-      );
+      history.push('/');
     }
-
-
-    if (subMenu.search) {
-      searchVar = (
-        <>
-          <AdminSubButton
-            onClick={onChangeSearch}
-            style={{
-              color: '#e0b528',
-            }}
-          >
-            <FaSearch />
-          </AdminSubButton>
-        </>
-      );
-    } else {
-      searchVar = (
-        <>
-          <AdminSubButton
-            onClick={onChangeSearch}
-          >
-            <FaSearch />
-          </AdminSubButton>
-        </>
-      );
-    }
-  } else {
-    addVar = (
-      <>
-      </>
-    );
-    listAllVar = (
-      <>
-      </>
-    );
-    searchVar = (
-      <>
-      </>
-    );
-  }
-
-  if (courses) {
-    coursesVar = (
-      <>
-        <AdminButton
-          onClick={onChangeCourse}
-          style={{
-            color: '#e0b528',
-          }}
-        >
-          <FaLaptopCode />
-          <span>
-              Course
-          </span>
-        </AdminButton>
-      </>
-    );
-  } else {
-    coursesVar = (
-      <>
-        <AdminButton
-          onClick={onChangeCourse}
-        >
-          <FaLaptopCode />
-          <span>
-              Course
-          </span>
-        </AdminButton>
-      </>
-    );
-  }
-
-  if (blog) {
-    blogVar = (
-      <>
-        <AdminButton
-          onClick={onChangeBlog}
-          style={{
-            color: '#e0b528',
-          }}
-        >
-          <FaBlog />
-          <span>
-              Blog
-          </span>
-        </AdminButton>
-      </>
-    );
-  } else {
-    blogVar = (
-      <>
-        <AdminButton
-          onClick={onChangeBlog}
-        >
-          <FaBlog />
-          <span>
-              Blog
-          </span>
-        </AdminButton>
-      </>
-    );
-  }
-
-  if (podcasts) {
-    podcastsVar = (
-      <>
-        <AdminButton
-          onClick={onChangePodcasts}
-          style={{
-            color: '#e0b528',
-          }}
-        >
-          <FaPodcast />
-          <span>
-              Podcast
-          </span>
-        </AdminButton>
-      </>
-    );
-  } else {
-    podcastsVar = (
-      <>
-        <AdminButton
-          onClick={onChangePodcasts}
-        >
-          <FaPodcast />
-          <span>
-              Podcast
-          </span>
-        </AdminButton>
-      </>
-    );
-  }
-
-  if (settings) {
-    settingsVar = (
-      <>
-        <AdminButton
-          onClick={onChangeSettings}
-          style={{
-            color: '#e0b528',
-          }}
-        >
-          <FaCog />
-          <span>
-              Settings
-          </span>
-        </AdminButton>
-      </>
-    );
-  } else {
-    settingsVar = (
-      <>
-        <AdminButton
-          onClick={onChangeSettings}
-        >
-          <FaCog />
-          <span>
-              Settings
-          </span>
-        </AdminButton>
-      </>
-    );
   }
 
 
   return (
     <>
-      <AdminWrapper
-        className="container-fluid"
-      >
-        <div className="row">
-          <Column className="col-lg-1 col-md-1 col-sm-12 col-12">
-            <AdminUl>
-              <AdminLi>
-                {' '}
-                {subMenuVar}
-                {coursesVar}
-              </AdminLi>
-              <AdminLi>
-                {blogVar}
-              </AdminLi>
-              <AdminLi>
-                {podcastsVar}
-              </AdminLi>
-              <AdminLi>
-                {settingsVar}
-              </AdminLi>
-            </AdminUl>
-          </Column>
-          <Column className="col-lg-1 col-md-1 col-sm-12 col-12">
-            <AdminUl>
-              <AdminLi2>
-                {addVar}
-              </AdminLi2>
-              <AdminLi2>
-                {searchVar}
-              </AdminLi2>
-              <AdminLi2>
-                {listAllVar}
-              </AdminLi2>
-            </AdminUl>
-          </Column>
-          <div className="col-lg-10 col-md-10 col-sm-12 col-12">
-            {allBlogPost}
-            {allPodcast}
-          </div>
-        </div>
-      </AdminWrapper>
+      {content}
     </>
   );
 };
