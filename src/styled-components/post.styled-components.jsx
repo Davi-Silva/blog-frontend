@@ -169,8 +169,8 @@ export const LoadingCategory = styled.p`
 
 export const Content = styled.div`
 	color: #333;
-	font-size: 16px;
-	margin: 10px 0px;
+	font-size: 17px;
+	margin: 20px 0px;
 	img {
 		width: 100%;
 		height: unset;
@@ -182,6 +182,10 @@ export const Content = styled.div`
 		}
 	}
 	p {
+		font-size: 17px;
+		@media (max-width: 575px) {
+			font-size: 17px;
+		}
 		img {
 			width: 100%;
 			height: unset;
