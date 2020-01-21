@@ -46,3 +46,24 @@ export function getPublicProfile(user) {
     },
   };
 }
+
+
+export function setFollowAuthor(userId, authorId) {
+  return {
+    type: 'REQUEST_SET_FOLLOW_AUTHOR',
+    payload: {
+      userId,
+      authorId,
+    },
+  };
+}
+
+export function setUnfollowAuthor(userId, authorId) {
+  return {
+    type: 'REQUEST_SET_UNFOLLOW_AUTHOR',
+    payload: {
+      userId,
+      authorId,
+    },
+  };
+}
