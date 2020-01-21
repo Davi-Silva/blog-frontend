@@ -13,11 +13,11 @@ import {
 } from '../../../../styled-components/post-author.styled-components';
 
 const PostAuthor = ({ author, postPublished }) => {
-  const userInfo = useSelector((state) => state.user.userInfo);
+  const user = useSelector((state) => state.user);
 
   let followButton;
-  if (!_.isEmpty(userInfo)) {
-    if (author._id === userInfo[0]._id) {
+  if (!_.isEmpty(user.data)) {
+    if (author._id === user.data._id) {
       followButton = (
         <>
         </>

@@ -7,6 +7,7 @@ import {
 import asyncLoginUserApi from './user/loginUser';
 import asyncLoginUserProviderApi from './user/loginUserProvider';
 import asyncGetPublicProfileApi from './user/getPublicProfile';
+import asyncSetFollowAuthorApi from './user/setFollowAuthor';
 import asyncLogoutUserApi from './user/logoutUser';
 import asyncRefreshUserData from './user/refreshUserData';
 import asyncUpdateProfileUserInfo from './user/updateProfileUserInfo';
@@ -31,6 +32,7 @@ export default function* root() {
     takeLatest('REQUEST_LOGIN_USER', asyncLoginUserApi),
     takeLatest('REQUEST_LOGIN_USER_PROVIDER', asyncLoginUserProviderApi),
     takeLatest('REQUEST_GET_PUBLIC_PROFILE', asyncGetPublicProfileApi),
+    takeLatest('REQUEST_SET_FOLLOW_AUTHOR', asyncSetFollowAuthorApi),
     takeLatest('REQUEST_LOGOUT_USER', asyncLogoutUserApi),
     takeLatest('REQUEST_REFRESH_USER_DATA', asyncRefreshUserData),
     takeLatest('REQUEST_UPDATE_USER_INFO', asyncUpdateProfileUserInfo),
