@@ -4,7 +4,7 @@ import {
 } from 'redux-saga/effects';
 
 async function getPodcastsByCategoryApi(category) {
-  const res = await fetch(`https://cryptic-activist-backend.herokuapp.com/podcasts/get/category/${category}`, {
+  const res = await fetch(`http://34.205.75.176:5000/podcasts/get/category/${category}`, {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',

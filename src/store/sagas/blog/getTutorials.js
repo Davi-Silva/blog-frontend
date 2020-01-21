@@ -4,7 +4,7 @@ import {
 } from 'redux-saga/effects';
 
 async function getTutorialsApi() {
-  const res = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/home/tutorials', {
+  const res = await fetch('http://34.205.75.176:5000/blog/home/tutorials', {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',

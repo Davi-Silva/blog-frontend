@@ -44,7 +44,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const handleLoginUser = async () => {
-    fetch('https://cryptic-activist-backend.herokuapp.com/auth/user')
+    fetch('http://34.205.75.176:5000/auth/user')
       .then((res) => res.json())
       .then((res) => {
         dispatch(UserActions.loginUser(res));

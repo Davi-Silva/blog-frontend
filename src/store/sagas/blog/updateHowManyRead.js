@@ -5,7 +5,7 @@ import {
 
 async function updateHowManyReadApi(post) {
   const response = fetch(
-    'https://cryptic-activist-backend.herokuapp.com/blog/update/post/how-many-read',
+    'http://34.205.75.176:5000/blog/update/post/how-many-read',
     {
       method: 'PUT',
       mode: 'cors',

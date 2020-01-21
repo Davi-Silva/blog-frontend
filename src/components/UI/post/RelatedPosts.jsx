@@ -49,7 +49,7 @@ const RelatedPosts = (props) => {
   const getPostByCategory = async () => {
     const dates = slug.split('/');
     const response = await fetch(
-      `https://cryptic-activist-backend.herokuapp.com/blog/get/category/newest/${category}/${dates[0]}/${dates[1]}/${dates[2]}/${dates[3]}`,
+      `http://34.205.75.176:5000/blog/get/category/newest/${category}/${dates[0]}/${dates[1]}/${dates[2]}/${dates[3]}`,
       {
         method: 'GET',
         mode: 'cors',

@@ -49,7 +49,7 @@ export default class PodcastContent extends Component {
 
   async getAllPodcasts() {
     this.response = await fetch(
-      'https://cryptic-activist-backend.herokuapp.com/podcasts/',
+      'http://34.205.75.176:5000/podcasts/',
       {
         method: 'GET',
         mode: 'cors',

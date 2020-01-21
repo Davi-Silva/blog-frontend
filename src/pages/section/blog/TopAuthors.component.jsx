@@ -20,7 +20,7 @@ const TopAuthors = () => {
 
   useEffect(() => {
     const getAuthors = async () => {
-      const response = await fetch('https://cryptic-activist-backend.herokuapp.com/blog/get/top-authors', {
+      const response = await fetch('http://34.205.75.176:5000/blog/get/top-authors', {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',

@@ -4,7 +4,7 @@ import {
 } from 'redux-saga/effects';
 
 async function setUnfollowAuthorApi(userId, authorId) {
-  const res = await fetch('http://localhost:5000/users/update/unfollow/author', {
+  const res = await fetch('http://34.205.75.176:5000/users/update/unfollow/author', {
     method: 'PUT',
     mode: 'cors',
     cache: 'no-cache',

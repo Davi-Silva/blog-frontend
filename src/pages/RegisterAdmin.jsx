@@ -25,7 +25,7 @@ const RegisterAdmin = () => {
 
   const RegisterAdminUser = async (adminRegisterInfo) => {
     console.log('userInfo:', adminRegisterInfo);
-    const response = await fetch('https://cryptic-activist-backend.herokuapp.com/admin/user/register/admin',
+    const response = await fetch('http://34.205.75.176:5000/admin/user/register/admin',
       {
         method: 'POST',
         mode: 'cors',
@@ -41,7 +41,7 @@ const RegisterAdmin = () => {
   };
 
   const verifyAdminUser = async () => {
-    const response = await fetch(`https://cryptic-activist-backend.herokuapp.com/admin/user/verify/admin/username/${adminUser}`,
+    const response = await fetch(`http://34.205.75.176:5000/admin/user/verify/admin/username/${adminUser}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -56,7 +56,7 @@ const RegisterAdmin = () => {
   };
 
   const LoginSU = async (userInfo) => {
-    const response = await fetch('https://cryptic-activist-backend.herokuapp.com/admin/user/verify/su',
+    const response = await fetch('http://34.205.75.176:5000/admin/user/verify/su',
       {
         method: 'POST',
         mode: 'cors',

@@ -64,7 +64,7 @@ export default class BlogContent extends Component {
 
   async getFirstPosts() {
     this.response = await fetch(
-      'https://cryptic-activist-backend.herokuapp.com/blog/',
+      'http://34.205.75.176:5000/blog/',
       {
         method: 'GET',
         mode: 'cors',
@@ -88,7 +88,7 @@ export default class BlogContent extends Component {
       page: page + 1,
     });
     const tempPage = page + 1;
-    this.response = await fetch(`https://cryptic-activist-backend.herokuapp.com/blog/?page=${tempPage}`, {
+    this.response = await fetch(`http://34.205.75.176:5000/blog/?page=${tempPage}`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
