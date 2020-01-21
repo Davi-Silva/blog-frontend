@@ -286,8 +286,6 @@ const Podcast = (props) => {
     subMenu = (
       <SubNavBar media="Podcast" category={podcast.data[0].category} title={podcast.data[0].title} />
     );
-
-
     content = (
       <>
         <div className="col-lg-4 col-md-4 col-sm-12 col-12">
