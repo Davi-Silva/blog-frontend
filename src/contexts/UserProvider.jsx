@@ -7,7 +7,7 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    fetch('http://34.196.97.115:5000/auth/user')
+    fetch('http://52.70.19.141:5000/auth/user')
       .then((res) => res.json())
       .then((res) => {
         setUser(res);

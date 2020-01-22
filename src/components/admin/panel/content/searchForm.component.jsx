@@ -43,7 +43,7 @@ export default class SearchForm extends Component {
       media,
     } = this.props;
     this.response = await fetch(
-      `http://34.196.97.115:5000/${media}/`,
+      `http://52.70.19.141:5000/${media}/`,
       {
         method: 'GET',
         mode: 'cors',

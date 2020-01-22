@@ -44,7 +44,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const handleLoginUser = async () => {
-    fetch('http://34.196.97.115:5000/auth/user')
+    fetch('http://52.70.19.141:5000/auth/user')
       .then((res) => res.json())
       .then((res) => {
         dispatch(UserActions.loginUser(res));

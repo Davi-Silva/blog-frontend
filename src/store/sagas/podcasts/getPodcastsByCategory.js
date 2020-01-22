@@ -4,7 +4,7 @@ import {
 } from 'redux-saga/effects';
 
 async function getPodcastsByCategoryApi(category) {
-  const res = await fetch(`http://34.196.97.115:5000/podcasts/get/category/${category}`, {
+  const res = await fetch(`http://52.70.19.141:5000/podcasts/get/category/${category}`, {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',

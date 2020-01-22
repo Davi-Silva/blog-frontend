@@ -4,7 +4,7 @@ import {
 } from 'redux-saga/effects';
 
 async function getMainBlogPostsApi() {
-  const res = await fetch('http://34.196.97.115:5000/blog/home/main-post', {
+  const res = await fetch('http://52.70.19.141:5000/blog/home/main-post', {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',

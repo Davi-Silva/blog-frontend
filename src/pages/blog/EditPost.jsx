@@ -129,7 +129,7 @@ export default class EditPost extends Component {
     const { slug } = match.params;
 
     this.response = await fetch(
-      `http://34.196.97.115:5000/blog/get/slug/${slug}`,
+      `http://52.70.19.141:5000/blog/get/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',

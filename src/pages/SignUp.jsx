@@ -82,7 +82,7 @@ class Register extends Component {
   }
 
   async registerUser(registerInfo) {
-    this.response = await fetch('http://34.196.97.115:5000/users/register', {
+    this.response = await fetch('http://52.70.19.141:5000/users/register', {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',

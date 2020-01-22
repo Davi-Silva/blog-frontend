@@ -1,5 +1,7 @@
 # Cryptic Activist
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0930cada-cb34-4de5-90d7-caea0c7a418a/deploy-status)](https://app.netlify.com/sites/crypticactivist/deploys)
+
 > Cryptic Activist is a MERN Stack based platform focused on online courses, blog posts and podcast about the world crypto world and libertarian causes. 
 
 > This project is still under development and it has not been deployed yet but you can test it in your own local machine.

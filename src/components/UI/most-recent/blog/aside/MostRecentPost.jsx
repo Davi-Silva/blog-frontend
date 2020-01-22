@@ -14,7 +14,7 @@ const MostRecentPost = () => {
 
   useEffect(() => {
     const getMostRecentPost = async () => {
-      const response = await fetch('http://34.196.97.115:5000/blog/most/recent/post', {
+      const response = await fetch('http://52.70.19.141:5000/blog/most/recent/post', {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',

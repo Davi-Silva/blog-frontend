@@ -168,7 +168,7 @@ export default class EditPodcast extends Component {
     const { match } = this.props;
     const { slug } = match.params;
     this.response = await fetch(
-      `http://34.196.97.115:5000/podcasts/get/slug/${slug}`,
+      `http://52.70.19.141:5000/podcasts/get/slug/${slug}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -199,7 +199,7 @@ export default class EditPodcast extends Component {
   async updatePodcast(podcast) {
     const { id } = this.state;
     this.response = await fetch(
-      `http://34.196.97.115:5000/podcasts/update/${id}`,
+      `http://52.70.19.141:5000/podcasts/update/${id}`,
       {
         method: 'PUT',
         mode: 'cors',
