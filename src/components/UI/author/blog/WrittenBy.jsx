@@ -26,7 +26,7 @@ const WrittenBy = ({ author }) => {
   console.log('user written by:', user);
 
   const handleVerifiyFollow = async (userId, authorId) => {
-    const res = await fetch('http://34.205.75.176:5000/users/verify/following/author',
+    const res = await fetch('http://34.196.97.115:5000/users/verify/following/author',
       {
         method: 'POST',
         mode: 'cors',

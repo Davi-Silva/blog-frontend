@@ -7,7 +7,7 @@ async function refreshUserDataApi(id) {
   console.log('id refresh user data:', {
     id,
   });
-  const res = await fetch('http://34.205.75.176:5000/auth/user/refresh', {
+  const res = await fetch('http://34.196.97.115:5000/auth/user/refresh', {
     method: 'POST',
     mode: 'cors',
     cache: 'no-cache',

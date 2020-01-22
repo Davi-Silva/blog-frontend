@@ -49,7 +49,7 @@ export default class PodcastContent extends Component {
 
   async getAllPodcasts() {
     this.response = await fetch(
-      'http://34.205.75.176:5000/podcasts/',
+      'http://34.196.97.115:5000/podcasts/',
       {
         method: 'GET',
         mode: 'cors',

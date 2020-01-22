@@ -49,7 +49,7 @@ const RelatedPosts = (props) => {
   const getPostByCategory = async () => {
     const dates = slug.split('/');
     const response = await fetch(
-      `http://34.205.75.176:5000/blog/get/category/newest/${category}/${dates[0]}/${dates[1]}/${dates[2]}/${dates[3]}`,
+      `http://34.196.97.115:5000/blog/get/category/newest/${category}/${dates[0]}/${dates[1]}/${dates[2]}/${dates[3]}`,
       {
         method: 'GET',
         mode: 'cors',

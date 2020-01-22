@@ -4,7 +4,7 @@ import {
 } from 'redux-saga/effects';
 
 async function getMostRecentVideosApi() {
-  const res = await fetch('http://34.205.75.176:5000/blog/home/most-recent-videos', {
+  const res = await fetch('http://34.196.97.115:5000/blog/home/most-recent-videos', {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',

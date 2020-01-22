@@ -74,7 +74,7 @@ export default class UploadNewPodcast extends Component {
 
   async verifySlug(slug) {
     let response = await fetch(
-      `http://34.205.75.176:5000/podcasts/validation/slug/${slug}`,
+      `http://34.196.97.115:5000/podcasts/validation/slug/${slug}`,
       {
         method: "GET",
         mode: "cors",
@@ -91,7 +91,7 @@ export default class UploadNewPodcast extends Component {
 
   async uploadPodcast(podcast) {
     let response = await fetch(
-      `http://34.205.75.176:5000/podcasts/upload`,
+      `http://34.196.97.115:5000/podcasts/upload`,
       {
         method: "POST",
         mode: "cors",
@@ -290,7 +290,7 @@ export default class UploadNewPodcast extends Component {
       type: "podcasts",
       title: this.state.title
     };
-      let response = fetch("http://34.205.75.176:5000/podcasts/set/global-variable", {
+      let response = fetch("http://34.196.97.115:5000/podcasts/set/global-variable", {
       method: "POST",
       mode: "cors",
       cache: "no-cache",

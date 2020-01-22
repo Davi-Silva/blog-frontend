@@ -23,7 +23,7 @@ const RecentActivities = (props) => {
     } = props;
     console.log('activities array:', activities);
     setLoading(true);
-    const response = await fetch('http://34.205.75.176:5000/blog/get/user/activities', {
+    const response = await fetch('http://34.196.97.115:5000/blog/get/user/activities', {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
