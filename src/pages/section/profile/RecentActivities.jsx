@@ -76,9 +76,7 @@ const RecentActivities = (props) => {
     return `${months[dateFormatted.getMonth()]} ${dateFormatted.getDate()} ${dateFormatted.getFullYear()}`;
   };
 
-
   let Activities;
-  console.log('RECENT ACTIVITIES');
 
   return (
     <>

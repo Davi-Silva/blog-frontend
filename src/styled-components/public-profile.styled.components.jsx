@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
+// import { Link } from 'react-router-dom';
 
 import { rotate } from './animations';
 
@@ -25,21 +26,59 @@ export const Cover = styled.div`
   }
 `;
 
+export const SocialMediaUser = styled.ul`
+  margin: 5px auto;
+  display: table;
+  li {
+    display: inline-block;
+    text-align: center;
+  }
+`;
+
+export const SocialMediaUserLink = styled.a`
+  text-decoration: none;
+  padding: 4px;
+  svg {
+    font-size: 22px;
+    color: #000;
+    transition: .2s all ease-in-out;
+    &:hover {
+      color: #ffcd2b;
+    }
+  }
+`;
+
+
 export const Wrapper = styled.ul`
   width: 70%;
   display: table;
   margin: 20px auto 40px auto;
+  .user-cover {
+    @media (max-width: 768px) {
+      display: table;
+      margin: 0 auto;
+    }
+  }
+  .user-info {
+    @media (max-width: 991px) {
+      width: 66%;
+      margin: 0;
+      transform: translate(10px, 10px);
+    }
+    @media (max-width: 768px) {
+      transform: translate(0px);
+      margin: 0 auto;
+      display: table;
+    }
+  }
   li {
     display: inline-block;
     list-style: none;
     margin: 0 7px;
-    @media (max-width: 767px) {
-      width: 100%;
-      margin: 0;
-    }
   }
   @media (max-width: 768px) {
-    margin-top: 30px;
+    margin: 30px auto 40px auto;
+    width: 100%;
   }
 `;
 

@@ -2,6 +2,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import { rotate } from './animations';
+
 import {
   letterColor,
 } from './color-scheme.styled-components';
@@ -249,4 +251,16 @@ export const RecentActivityPublishedOn = styled.p`
   color: #999;
   margin-bottom: 7px;
   text-align: center;
+`;
+
+export const LoadingAllContent = styled.div`
+  width: 100%;
+  padding: 50px 0;
+  svg {
+    animation: ${rotate} 1s infinite;
+    color: #333;
+    font-size: 18px;
+    display: table;
+    margin: 25px auto;
+  }
 `;

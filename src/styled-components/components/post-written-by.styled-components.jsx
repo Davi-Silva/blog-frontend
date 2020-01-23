@@ -6,6 +6,7 @@ export const WrittenByDiv = styled.div`
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
   padding: 25px 0;
+  height: 138px;
   margin: 20px 0 30px 0;
   @media (max-width: 575px) {
     margin-bottom: 0;
@@ -74,6 +75,10 @@ export const WrittenByAuthorLinkTop = styled(Link)`
 export const WrittenByAuthorInfoUl = styled.ul`
   margin-bottom: 0;
   margin-left: 15px;
+  .followBtn {
+    position: absolute;
+    top: -12px;
+  }
   li {
     list-style: none;
     p {
@@ -134,6 +139,7 @@ export const FollowButton = styled.button`
 	padding: 3px 7px;
 	color: #00b170;
 	font-size: 16px;
+  width: 82px;
   position: absolute;
   top: 45px;
 	transition: .2s all ease-in-out;

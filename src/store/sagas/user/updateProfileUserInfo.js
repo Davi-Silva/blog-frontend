@@ -20,9 +20,8 @@ async function updateProfileUserInfoApi(updateObj) {
 
 export default function* asyncUpdateProfileUserInfo(action) {
   try {
-    yield call(updateProfileUserInfoApi, action.payload.updateObj);
-
-    yield put({ type: 'SUCCESS_UPDATE_USER_INFO' });
+    const response = yield call(updateProfileUserInfoApi, action.payload.updateObj);
+    yield put({ type: 'SUCCESS_UPDATE_USER_INFO', payload: { data: response } });
   } catch (err) {
     yield put({ type: 'FAILURE_UPDATE_USER_INFO' });
   }
