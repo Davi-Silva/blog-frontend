@@ -4,7 +4,7 @@ import {
 } from 'redux-saga/effects';
 
 async function setFollowAuthorApi(userId, authorId) {
-  const res = await fetch('http://52.70.19.141:5000/users/update/follow/author', {
+  const res = await fetch('http://localhost:5000/users/update/follow/author', {
     method: 'PUT',
     mode: 'cors',
     cache: 'no-cache',

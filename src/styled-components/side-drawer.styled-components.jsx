@@ -144,7 +144,6 @@ export const SideDrawerLinkTo = styled(Link)`
     color: #ffcd2b;
     text-decoration: none;
     background: #000;
-    border-radius: 3px;
   }
   &:focus {
     outline: none;

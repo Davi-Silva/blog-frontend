@@ -27,7 +27,7 @@ export default class RecentCategoriesBlogPost extends Component {
   }
 
   async getCategories() {
-    this.response = await fetch('http://52.70.19.141:5000/blog/get/categories/newest/5', {
+    this.response = await fetch('http://localhost:5000/blog/get/categories/newest/5', {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',

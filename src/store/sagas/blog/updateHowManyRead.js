@@ -5,7 +5,7 @@ import {
 
 async function updateHowManyReadApi(post) {
   const response = fetch(
-    'http://52.70.19.141:5000/blog/update/post/how-many-read',
+    'http://localhost:5000/blog/update/post/how-many-read',
     {
       method: 'PUT',
       mode: 'cors',

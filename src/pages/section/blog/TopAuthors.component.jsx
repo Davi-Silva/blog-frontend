@@ -20,7 +20,7 @@ const TopAuthors = () => {
 
   useEffect(() => {
     const getAuthors = async () => {
-      const response = await fetch('http://52.70.19.141:5000/blog/get/top-authors', {
+      const response = await fetch('http://localhost:5000/blog/get/top-authors', {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',

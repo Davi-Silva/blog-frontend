@@ -42,7 +42,7 @@ const Login = (props) => {
 
   const loginUser = async (loginInfo) => {
     const response = await fetch(
-      'http://52.70.19.141:5000/users/login',
+      'http://localhost:5000/users/login',
       {
         method: 'POST',
         mode: 'cors',
@@ -94,7 +94,7 @@ const Login = (props) => {
                 <LoginButton
                   icon="google"
                   backgroundColor="#4285f4"
-                  endpoint="//52.70.19.141:5000/auth/google"
+                  endpoint="//localhost:5000/auth/google"
                   providerName="Google"
                 />
               </li>
@@ -106,7 +106,7 @@ const Login = (props) => {
                 <LoginButton
                   icon="github"
                   backgroundColor="#333"
-                  endpoint="http://52.70.19.141:5000/auth/github"
+                  endpoint="http://localhost:5000/auth/github"
                   providerName="Github"
                 />
               </li>
@@ -118,7 +118,7 @@ const Login = (props) => {
                 <LoginButton
                   icon="facebook"
                   backgroundColor="#3a5797"
-                  endpoint="http://52.70.19.141:5000/auth/facebook"
+                  endpoint="http://localhost:5000/auth/facebook"
                   providerName="Facebook"
                 />
               </li>

@@ -43,7 +43,7 @@ export default class RelatedCategory extends Component {
 
   async getPodcastByCategory(category) {
     this.response = await fetch(
-      `http://52.70.19.141:5000/podcasts/get/category/${category}`,
+      `http://localhost:5000/podcasts/get/category/${category}`,
       {
         method: 'GET',
         mode: 'cors',
