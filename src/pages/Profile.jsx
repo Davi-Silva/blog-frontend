@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import {
   FaEdit,
+  FaSpinner,
 } from 'react-icons/fa';
 
 import _ from 'lodash';
@@ -20,6 +21,7 @@ import {
   SubmitButton,
   LoadingProfileImage,
   EditableButton,
+  LoadingAllContent,
 } from '../styled-components/profile.styled.components';
 
 import RecentActivities from './section/profile/RecentActivities';
@@ -105,6 +107,7 @@ const Profile = (props) => {
     setUpdated(true);
   };
 
+  let content;
   let UserImageDiv;
   let ProfileCoverImage;
   let EmailInput;
@@ -113,11 +116,22 @@ const Profile = (props) => {
   let GithubInput;
   let LinkedinInput;
   let TwitterInput;
-  let displayName = '';
+  let displayName;
   let Activities;
 
 
   if (user.loading) {
+    content = (
+      <>
+        <LoadingAllContent>
+          <FaSpinner />
+        </LoadingAllContent>
+      </>
+    );
+    displayName = (
+      <>
+      </>
+    );
     UserImageDiv = (
       <>
         <LoadingProfileImage
@@ -150,7 +164,12 @@ const Profile = (props) => {
       const {
         name, profileImage, email, quote,
       } = user.data;
-      displayName = name;
+      displayName = (
+        <>
+          <Label>Name</Label>
+          <DisplayName>{name}</DisplayName>
+        </>
+      );
       UserImageDiv = (
         <>
           <ProfileImage src={profileImage.url} alt="Profile Placeholder" />
@@ -177,6 +196,9 @@ const Profile = (props) => {
       if (editable) {
         EmailInput = (
           <>
+            <Label>
+              Email
+            </Label>
             <Input
               id="email"
               name="email"
@@ -187,6 +209,9 @@ const Profile = (props) => {
         );
         Quote = (
           <>
+            <Label>
+              Quote
+            </Label>
             <TextArea
               id="quote"
               name="quote"
@@ -197,6 +222,9 @@ const Profile = (props) => {
         );
         GithubInput = (
           <>
+            <Label>
+              Github Profile
+            </Label>
             <Input
               id="github-profile"
               name="github-profile"
@@ -208,6 +236,9 @@ const Profile = (props) => {
         );
         LinkedinInput = (
           <>
+            <Label>
+              Linked-in Profile
+            </Label>
             <Input
               id="linkedin-profile"
               name="linkedin-profile"
@@ -219,6 +250,9 @@ const Profile = (props) => {
         );
         TwitterInput = (
           <>
+            <Label>
+              Twitter Profile
+            </Label>
             <Input
               id="twitter-profile"
               name="twitter-profile"
@@ -238,6 +272,9 @@ const Profile = (props) => {
       } else {
         EmailInput = (
           <>
+            <Label>
+              Email
+            </Label>
             <Input
               id="email"
               name="email"
@@ -250,6 +287,9 @@ const Profile = (props) => {
         );
         Quote = (
           <>
+            <Label>
+              Quote
+            </Label>
             <TextArea
               value={quoteState}
               onChange={handleQuote}
@@ -259,6 +299,9 @@ const Profile = (props) => {
         );
         GithubInput = (
           <>
+            <Label>
+              Github Profile
+            </Label>
             <Input
               id="github-profile"
               name="github-profile"
@@ -271,6 +314,9 @@ const Profile = (props) => {
         );
         LinkedinInput = (
           <>
+            <Label>
+              Linked-in Profile
+            </Label>
             <Input
               id="linkedin-profile"
               name="linkedin-profile"
@@ -283,6 +329,9 @@ const Profile = (props) => {
         );
         TwitterInput = (
           <>
+            <Label>
+              Twitter Profile
+            </Label>
             <Input
               id="twitter-profile"
               name="twitter-profile"
@@ -295,6 +344,17 @@ const Profile = (props) => {
         );
         Submit = (
           <>
+          </>
+        );
+        content = (
+          <>
+            {displayName}
+            {EmailInput}
+            {Quote}
+            {GithubInput}
+            {LinkedinInput}
+            {TwitterInput}
+            {Submit}
           </>
         );
       }
@@ -323,29 +383,7 @@ const Profile = (props) => {
                 <FaEdit />
               </EditableButton>
               <form onSubmit={onSubmit}>
-                <Label>Name</Label>
-                <DisplayName>{displayName}</DisplayName>
-                <Label>
-                  Email
-                </Label>
-                {EmailInput}
-                <Label>
-                  Quote
-                </Label>
-                {Quote}
-                <Label>
-                  Github Profile
-                </Label>
-                {GithubInput}
-                <Label>
-                  Linked-in Profile
-                </Label>
-                {LinkedinInput}
-                <Label>
-                  Twitter Profile
-                </Label>
-                {TwitterInput}
-                {Submit}
+                {content}
               </form>
             </Wrapper>
           </div>

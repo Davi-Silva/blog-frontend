@@ -5,6 +5,9 @@ import _ from 'lodash';
 
 import {
   FaSpinner,
+  FaTwitter,
+  FaLinkedinIn,
+  FaGithub,
 } from 'react-icons/fa';
 
 import {
@@ -14,6 +17,8 @@ import {
   DisplayName,
   FollowButton,
   MemberSince,
+  SocialMediaUser,
+  SocialMediaUserLink,
   LoadingAllContent,
 } from '../styled-components/public-profile.styled.components';
 
@@ -23,6 +28,7 @@ import * as UserActions from '../store/actions/user/user';
 
 const PublicProfile = (props) => {
   const publicProfile = useSelector((state) => state.publicProfile);
+  console.log('publicProfile:', publicProfile);
   const dispatch = useDispatch();
 
   const parseDate = (input) => {
@@ -51,6 +57,9 @@ const PublicProfile = (props) => {
   };
 
   let User;
+  let github;
+  let linkedin;
+  let twitter;
 
   useEffect(() => {
     const {
@@ -69,13 +78,77 @@ const PublicProfile = (props) => {
     );
   } else if (publicProfile.fetched) {
     if (!_.isEmpty(publicProfile.data)) {
+      if (publicProfile.data.socialMedia.github === '') {
+        github = (
+          <>
+          </>
+        );
+      } else {
+        github = (
+          <>
+            <li>
+              <SocialMediaUserLink
+                href={publicProfile.data.socialMedia.github}
+                target="_blank"
+              >
+                <FaGithub />
+              </SocialMediaUserLink>
+            </li>
+          </>
+        );
+      }
+      if (publicProfile.data.socialMedia.linkedin === '') {
+        linkedin = (
+          <>
+          </>
+        );
+      } else {
+        linkedin = (
+          <>
+            <li>
+              <SocialMediaUserLink
+                href={publicProfile.data.socialMedia.linkedin}
+                target="_blank"
+              >
+                <FaLinkedinIn />
+              </SocialMediaUserLink>
+            </li>
+          </>
+        );
+      }
+      if (publicProfile.data.socialMedia.twitter === '') {
+        twitter = (
+          <>
+          </>
+        );
+      } else {
+        twitter = (
+          <>
+            <li>
+              <SocialMediaUserLink
+                href={publicProfile.data.socialMedia.twitter}
+                target="_blank"
+              >
+                <FaTwitter />
+              </SocialMediaUserLink>
+            </li>
+          </>
+        );
+      }
+
+
       User = (
         <>
           <Wrapper>
-            <li>
+            <li className="user-cover">
               <ProfileImage src={publicProfile.data.profileImage.url} alt="Profile Placeholder" />
+              <SocialMediaUser>
+                {github}
+                {linkedin}
+                {twitter}
+              </SocialMediaUser>
             </li>
-            <li>
+            <li className="user-info">
               <UserInfoDiv>
                 <DisplayName>
                   {publicProfile.data.name}

@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 
 import user from './user/user';
-import profileUserInfo from './user/profileUserInfo';
 import publicProfile from './user/publicProfile';
 import setFollowAuthor from './user/setFollowAuthor';
 import setUnfollowAuthor from './user/setUnfollowAuthor';
@@ -23,7 +22,6 @@ import podcastsByTag from './podcasts/podcastsByTag';
 
 export default combineReducers({
   user,
-  profileUserInfo,
   publicProfile,
   setFollowAuthor,
   setUnfollowAuthor,

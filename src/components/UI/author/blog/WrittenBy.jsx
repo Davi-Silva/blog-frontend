@@ -74,7 +74,7 @@ const WrittenBy = ({ author }) => {
       } else if (user.data.following.indexOf(author._id) !== -1) {
         FollowBtn = (
           <>
-            <li>
+            <li className="followBtn">
               <FollowButton
                 type="button"
                 onClick={handleUnfollowAuthor}
@@ -87,7 +87,7 @@ const WrittenBy = ({ author }) => {
       } else if (user.data.following.indexOf(author._id) === -1) {
         FollowBtn = (
           <>
-            <li>
+            <li className="followBtn">
               <FollowButton
                 type="button"
                 onClick={handleFollowAuthor}
