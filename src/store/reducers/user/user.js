@@ -98,7 +98,6 @@ export default function user(state = initialState, action) {
         loading: true,
       };
     case 'SUCCESS_UPDATE_USER_INFO':
-      // console.log('SUCCESS_UPDATE_USER_INFO:', state);
       return update(state, {
         data: {
           email: { $set: action.payload.data.email },
@@ -113,9 +112,32 @@ export default function user(state = initialState, action) {
         fetch: { $set: true },
         error: { $set: false },
       });
-    case 'FAILURE__UPDATE_USER_INFO':
+    case 'FAILURE_UPDATE_USER_INFO':
       return {
         ...state,
+        loading: false,
+        fetched: true,
+        error: true,
+      };
+    case 'REQUEST_SET_FOLLOW_AUTHOR':
+      return {
+        ...state,
+        loading: true,
+      };
+    case 'SUCCESS_SET_FOLLOW_AUTHOR':
+      console.log('SUCCESS_SET_FOLLOW_AUTHOR:', action);
+      return update(state, {
+        data: {
+          following: { $push: [action.payload.data.authorId] },
+        },
+        loading: { $set: false },
+        fetch: { $set: true },
+        error: { $set: false },
+      });
+    case 'FAILURE_SET_FOLLOW_AUTHOR':
+      return {
+        ...state,
+        data: {},
         loading: false,
         fetched: true,
         error: true,

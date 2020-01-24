@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-underscore-dangle */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
 
@@ -10,11 +10,13 @@ import {
   WrittenByAuthorInfoUl,
   WrittenByAuthorLinkTop,
   FollowButton,
+  UnfollowButton,
 } from '../../../../styled-components/components/post-written-by.styled-components';
 
 import * as UserActions from '../../../../store/actions/user/user';
 
 const WrittenBy = ({ author }) => {
+  const [isFollowing, setIsFollowing] = useState(null);
   const {
     username,
     name,
@@ -23,9 +25,8 @@ const WrittenBy = ({ author }) => {
   } = author;
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  console.log('user written by:', user);
 
-  const handleVerifiyFollow = async (userId, authorId) => {
+  const handleVerifyFollow = async (userId, authorId) => {
     const res = await fetch('http://localhost:5000/users/verify/following/author',
       {
         method: 'POST',
@@ -45,8 +46,10 @@ const WrittenBy = ({ author }) => {
   };
 
   const handleFollowAuthor = async () => {
-    const res = await handleVerifiyFollow(author._id, user.data._id);
-    if (res.following === -1 && res.followers === -1) {
+    const res = await handleVerifyFollow(author._id, user.data._id);
+    console.log('res.following:', res.following);
+    console.log('res.followers:', res.followers);
+    if (res.following === -1) {
       dispatch(UserActions.setFollowAuthor(author._id, user.data._id));
     } else {
       console.log('already following...');
@@ -54,7 +57,7 @@ const WrittenBy = ({ author }) => {
   };
 
   const handleUnfollowAuthor = async () => {
-    const res = await handleVerifiyFollow(author._id, user.data._id);
+    const res = await handleVerifyFollow(author._id, user.data._id);
     if (res.following === -1 && res.followers === -1) {
       dispatch(UserActions.setUnfollowAuthor(author._id, user.data._id));
     } else {
@@ -62,29 +65,44 @@ const WrittenBy = ({ author }) => {
     }
   };
 
+  // useEffect(() => {
+
+  // }, []);
+
+  const handleVerify = async () => {
+    const res = await handleVerifyFollow(author._id, user.data._id);
+    console.log('res:', res);
+    if (res.following !== -1) {
+      setIsFollowing(true);
+    }
+  };
+  handleVerify();
+
   let FollowBtn;
 
-  if (!user.loading) {
-    if (!_.isEmpty(user.data)) {
-      if (author._id === user.data._id) {
-        FollowBtn = (
-          <>
-          </>
-        );
-      } else if (user.data.following.indexOf(author._id) !== -1) {
+  if (user.fetched) {
+    if (author._id === user.data._id) {
+      FollowBtn = (
+        <>
+        </>
+      );
+    } else if (!_.isEmpty(user.data)) {
+      if (isFollowing) {
         FollowBtn = (
           <>
             <li className="followBtn">
-              <FollowButton
+              <UnfollowButton
                 type="button"
                 onClick={handleUnfollowAuthor}
               >
-                Following
-              </FollowButton>
+                    Following
+              </UnfollowButton>
             </li>
           </>
         );
-      } else if (user.data.following.indexOf(author._id) === -1) {
+      }
+
+      if (!isFollowing) {
         FollowBtn = (
           <>
             <li className="followBtn">
@@ -92,7 +110,7 @@ const WrittenBy = ({ author }) => {
                 type="button"
                 onClick={handleFollowAuthor}
               >
-                Follow +
+                    Follow +
               </FollowButton>
             </li>
           </>

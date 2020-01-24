@@ -8,8 +8,13 @@ export const WrittenByDiv = styled.div`
   padding: 25px 0;
   height: 138px;
   margin: 20px 0 30px 0;
+  @media (max-width: 991px) {
+    margin-bottom: 0;
+    height: 123px;
+  } 
   @media (max-width: 575px) {
     margin-bottom: 0;
+    height: 240px;
   }   
 `;
 
@@ -78,6 +83,10 @@ export const WrittenByAuthorInfoUl = styled.ul`
   .followBtn {
     position: absolute;
     top: -12px;
+    @media (max-width: 575px) {
+      display: table;
+      right: 0;
+    }  
   }
   li {
     list-style: none;
@@ -132,6 +141,7 @@ export const WrittenByAuthorInfoUl = styled.ul`
   }
 `;
 
+
 export const FollowButton = styled.button`
 	background-color: #fff;
 	border: 1px solid #00b170;
@@ -139,7 +149,7 @@ export const FollowButton = styled.button`
 	padding: 3px 7px;
 	color: #00b170;
 	font-size: 16px;
-  width: 82px;
+  width: 96px;
   position: absolute;
   top: 45px;
 	transition: .2s all ease-in-out;
@@ -152,10 +162,11 @@ export const FollowButton = styled.button`
 	}
   @media (max-width: 1199px) {
 		font-size: 15px;
+    right: 0px;
 	}
 	@media (max-width: 991px) {
 		font-size: 13px;
-    margin-left: 10px;
+    right: -60px;
 	}
   @media (max-width: 768px) {
     margin-left: 15px;
@@ -164,6 +175,47 @@ export const FollowButton = styled.button`
     margin: 15px auto 0 auto;
     display: table;
     position: relative;
-    top: 0;
+    top: 77px;
+    right: 0;
+  }  
+`;
+
+
+export const UnfollowButton = styled.button`
+	background-color: #00b170;
+	border: 1px solid #00b170;
+	border-radius: 3px;
+	padding: 3px 7px;
+	color: #fff;
+	font-size: 16px;
+  width: 96px;
+  position: absolute;
+  top: 45px;
+	transition: .2s all ease-in-out;
+	&:focus {
+		outline: none;
+	}
+	&:hover {
+		color: #fff;
+		background-color: #00b170;
+	}
+  @media (max-width: 1199px) {
+		font-size: 15px;
+    right: 0px;
+	}
+	@media (max-width: 991px) {
+		font-size: 13px;
+    right: -60px;
+    top: 39px;
+	}
+  @media (max-width: 768px) {
+    margin-left: 15px;
+  }
+  @media (max-width: 575px) {
+    margin: 15px auto 0 auto;
+    display: table;
+    position: relative;
+    top: 77px;
+    right: 0;
   }  
 `;

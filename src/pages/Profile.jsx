@@ -269,6 +269,17 @@ const Profile = (props) => {
             </SubmitButton>
           </>
         );
+        content = (
+          <>
+            {displayName}
+            {EmailInput}
+            {Quote}
+            {GithubInput}
+            {LinkedinInput}
+            {TwitterInput}
+            {Submit}
+          </>
+        );
       } else {
         EmailInput = (
           <>

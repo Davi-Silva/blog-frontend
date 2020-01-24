@@ -183,7 +183,7 @@ const Post = (props) => {
             <meta property="og:locale" content="en_US" />
             <meta property="og:locale:alternate" content="en_CA" />
             <meta property="og:locale:alternate" content="es_GB" />
-            <meta property="og:site_name" content="CrypticActivist" />
+            <meta property="og:site_name" content="Cryptic Activist" />
             <meta property="og:description" content="Meta description" />
             <meta property="og:title" content={`${post.data[0].title} - ${'Blog'} | Cryptic Activist`} />
             <meta property="og:image" content={`${post.data[0].cover}`} />
@@ -193,13 +193,13 @@ const Post = (props) => {
             <meta property="og:image:width" content="800" />
             <meta property="og:image:height" content="600" />
             <meta property="og:image:alt" content={post.data[0].coverAlt} />
-            <meta property="og:url" content={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+            <meta property="og:url" content={`https://crypticactivist.com${location.pathname}`} />
             <meta property="og:type" content="article" />
             <meta property="og:type:article:published_time" content={post.data[0].publishedOn} />
             <meta property="og:type:article:author" content={post.data[0].author} />
             <meta property="og:type:article:tags" content={post.data[0].tags} />
 
-            <meta name="twitter:site" content="CrypticActivist" />
+            <meta name="twitter:site" content="Cryptic Activist" />
             <meta name="twitter:title" content={`${post.data[0].title} - ${'Blog'} | Cryptic Activist`} />
             <meta name="twitter:description" content="metaDescription" />
             <meta name="twitter:image" content={post.data[0].cover} />
@@ -264,7 +264,7 @@ const Post = (props) => {
                   author={post.data[0].author}
                   postPublished={postPublished}
                 />
-                <ShareButtons path={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
+                <ShareButtons path={`https://crypticactivist.com${location.pathname}`} />
                 {coverVar}
                 <Content dangerouslySetInnerHTML={{ __html: post.data[0].content }} />
                 <Tags

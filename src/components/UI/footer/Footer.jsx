@@ -140,7 +140,7 @@ function Footer() {
                 </SocialMediaTitle>
                 <SocialMediaUl>
                   <SocialMediaLi>
-                    <SocialMediaLink to="//www.twitter.com/CrypticActivist" target="_blank">
+                    <SocialMediaLink to="//www.twitter.com/Cryptic Activist" target="_blank">
                       <FaTwitter />
                     </SocialMediaLink>
                   </SocialMediaLi>
