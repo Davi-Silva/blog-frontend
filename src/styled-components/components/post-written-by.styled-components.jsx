@@ -145,7 +145,7 @@ export const WrittenByAuthorInfoUl = styled.ul`
 export const FollowButton = styled.button`
 	background-color: #fff;
 	border: 1px solid #00b170;
-	border-radius: 3px;
+	border-radius: 50px;
 	padding: 3px 7px;
 	color: #00b170;
 	font-size: 16px;
@@ -184,7 +184,7 @@ export const FollowButton = styled.button`
 export const UnfollowButton = styled.button`
 	background-color: #00b170;
 	border: 1px solid #00b170;
-	border-radius: 3px;
+	border-radius: 50px;
 	padding: 3px 7px;
 	color: #fff;
 	font-size: 16px;

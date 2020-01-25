@@ -142,6 +142,28 @@ export default function user(state = initialState, action) {
         fetched: true,
         error: true,
       };
+    case 'REQUEST_SET_UNFOLLOW_AUTHOR':
+      return {
+        ...state,
+        loading: true,
+      };
+    case 'SUCCESS_SET_UNFOLLOW_AUTHOR':
+      return update(state, {
+        // data: {
+        //   following: { $push: [action.payload.data.authorId] },
+        // },
+        loading: { $set: false },
+        fetch: { $set: true },
+        error: { $set: false },
+      });
+    case 'FAILURE_SET_UNFOLLOW_AUTHOR':
+      return {
+        ...state,
+        data: {},
+        loading: false,
+        fetched: true,
+        error: true,
+      };
     default:
       return state;
   }

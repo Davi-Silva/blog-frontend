@@ -26,7 +26,7 @@ export default class Upload extends Component {
     const { onUpload } = this.props;
 
     return (
-      <Dropzone accept="audio/*" onDropAccepted={onUpload}>
+      <Dropzone accept="audio/*" onDropAccepted={onUpload} uploadMultiple="false">
         {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
           <DropAudioContainer
             {...getRootProps()}

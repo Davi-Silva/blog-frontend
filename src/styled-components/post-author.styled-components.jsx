@@ -35,8 +35,8 @@ export const Author = styled.div`
 export const FollowButton = styled.button`
 	background-color: #fff;
 	border: 1px solid #00b170;
-	border-radius: 3px;
-	padding: 1px 5px;
+	border-radius: 50px;
+	padding: 1px 7px;
 	color: #00b170;
 	font-size: 12px;
 	transform: translateY(-7px);
@@ -66,5 +66,26 @@ export const AuthorPictureLink = styled(Link)`
 			height: 45px;
 			width: 45px;
 		}
+	}
+`;
+
+export const UnfollowButton = styled.button`
+	background-color: #00b170;
+	border: 1px solid #00b170;
+	border-radius: 50px;
+	padding: 1px 7px;
+	color: #fff;
+	font-size: 12px;
+	transform: translateY(-7px);
+	transition: .2s all ease-in-out;
+	&:focus {
+		outline: none;
+	}
+	&:hover {
+		color: #fff;
+		background-color: #00b170;
+	}
+	@media (max-width: 991px) {
+		font-size: 10px;
 	}
 `;

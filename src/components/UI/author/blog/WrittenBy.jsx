@@ -50,7 +50,7 @@ const WrittenBy = ({ author }) => {
     console.log('res.following:', res.following);
     console.log('res.followers:', res.followers);
     if (res.following === -1) {
-      dispatch(UserActions.setFollowAuthor(author._id, user.data._id));
+      dispatch(UserActions.setFollowAuthor(user.data._id, author._id));
     } else {
       console.log('already following...');
     }
@@ -58,7 +58,9 @@ const WrittenBy = ({ author }) => {
 
   const handleUnfollowAuthor = async () => {
     const res = await handleVerifyFollow(author._id, user.data._id);
-    if (res.following === -1 && res.followers === -1) {
+    console.log('res.following:', res.following);
+    console.log('res.followers:', res.followers);
+    if (res.following >= 0) {
       dispatch(UserActions.setUnfollowAuthor(author._id, user.data._id));
     } else {
       console.log('already following...');
@@ -71,8 +73,8 @@ const WrittenBy = ({ author }) => {
 
   const handleVerify = async () => {
     const res = await handleVerifyFollow(author._id, user.data._id);
-    console.log('res:', res);
-    if (res.following !== -1) {
+    console.log('handleVerify res:', res);
+    if (res.following > -1) {
       setIsFollowing(true);
     }
   };
@@ -95,7 +97,7 @@ const WrittenBy = ({ author }) => {
                 type="button"
                 onClick={handleUnfollowAuthor}
               >
-                    Following
+                Following
               </UnfollowButton>
             </li>
           </>
@@ -118,8 +120,6 @@ const WrittenBy = ({ author }) => {
       }
     }
   }
-
-  console.log('written by user:', user);
 
   return (
     <>

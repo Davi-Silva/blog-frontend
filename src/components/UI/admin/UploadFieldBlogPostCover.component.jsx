@@ -27,7 +27,7 @@ const Upload = (props) => {
 
   const { onUpload } = props;
   return (
-    <Dropzone accept="image/*" onDropAccepted={onUpload}>
+    <Dropzone accept="image/*" onDropAccepted={onUpload} uploadMultiple="false">
       {({
         getRootProps,
         getInputProps,

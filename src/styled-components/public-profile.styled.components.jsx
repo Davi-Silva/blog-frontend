@@ -54,9 +54,11 @@ export const Wrapper = styled.ul`
   display: table;
   margin: 20px auto 40px auto;
   .user-cover {
+    transform: translateY(-40px);
     @media (max-width: 768px) {
       display: table;
       margin: 0 auto;
+      transform: translateY(0px);
     }
   }
   .user-info {
@@ -133,28 +135,59 @@ export const DisplayName = styled.span`
   }
 `;
 
-export const FollowButton = styled.span`
+export const FollowButton = styled.button`
   margin-left: 15px;
-  button {
-    background-color: #fff;
-    border: 1px solid #00b170;
-    border-radius: 3px;
-    padding: 1px 5px;
-    color: #00b170;
-    font-size: 14px;
-    transform: translateY(-10px);
-    transition: .2s all ease-in-out;
-    &:focus {
-      outline: none;
-    }
-    &:hover {
-      color: #fff;
-      background-color: #00b170;
-    }
-    &:active {
-      background-color: #00945e;
+  display: inline-block;
+  background-color: #fff;
+  border: 1px solid #00b170;
+  border-radius: 50px;
+  padding: 3px 7px;
+  color: #00b170;
+  font-size: 14px;
+  transform: translateY(-10px);
+  transition: .2s all ease-in-out;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #00b170;
+  }
+  &:active {
+    background-color: #00945e;
+  }
+  @media (max-width: 768px) {
+    margin: -25px auto 0 auto;
+    display: table;
+    button {
+      transform: translateY(-37px);
     }
   }
+`;
+
+
+export const UnfollowButton = styled.button`
+  margin-left: 15px;
+  background-color: #00b170;
+  border: 1px solid #00b170;
+  border-radius: 50px;
+  padding: 3px 7px;
+  display: inline-block;
+  color: #fff;
+  font-size: 14px;
+  transform: translateY(-10px);
+  transition: .2s all ease-in-out;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #00b170;
+  }
+  &:active {
+    background-color: #00945e;
+  }
+
   @media (max-width: 768px) {
     margin: -25px auto 0 auto;
     display: table;
@@ -182,5 +215,21 @@ export const LoadingAllContent = styled.div`
     font-size: 18px;
     display: table;
     margin: 25px auto;
+  }
+`;
+
+export const FollowUl = styled.ul`
+transform: translateY(40px);
+  li {
+    display: inline-block;
+    margin-right: 15px;
+    margin-left: 0px;
+  }
+`;
+
+export const FollowDivUl = styled.ul`
+  li {
+    display: block;
+    margin-right: 6px;
   }
 `;
