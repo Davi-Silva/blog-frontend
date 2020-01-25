@@ -16,12 +16,16 @@ import {
   UserInfoDiv,
   ProfileImage,
   DisplayName,
+  Quote,
+  EmptyQuote,
   FollowButton,
   UnfollowButton,
   MemberSince,
   SocialMediaUser,
   SocialMediaUserLink,
   LoadingAllContent,
+  LoadingAllContentFollow,
+  LoadingAllContentUnfollow,
   FollowUl,
   FollowDivUl,
 } from '../styled-components/public-profile.styled.components';
@@ -82,8 +86,6 @@ const PublicProfile = (props) => {
 
   const handleFollowAuthor = async () => {
     const res = await handleVerifyFollow(publicProfile.data._id, user.data._id);
-    console.log('res.following:', res.following);
-    console.log('res.followers:', res.followers);
     if (res.following === -1) {
       dispatch(UserActions.setFollowAuthor(user.data._id, publicProfile.data._id));
     } else {
@@ -103,8 +105,10 @@ const PublicProfile = (props) => {
   const handleVerify = async () => {
     const res = await handleVerifyFollow(publicProfile.data._id, user.data._id);
     console.log('handleVerify res:', res);
-    if (res.following > -1) {
+    if (res.following >= 0) {
       setIsFollowing(true);
+    } else if (res.following === -1) {
+      setIsFollowing(false);
     }
   };
   handleVerify();
@@ -119,28 +123,53 @@ const PublicProfile = (props) => {
       );
     } else if (!_.isEmpty(user.data)) {
       if (isFollowing) {
-        FollowBtn = (
-          <>
-            <UnfollowButton
-              onClick={handleUnfollowAuthor}
-            >
-              Following
-            </UnfollowButton>
-          </>
-        );
+        // if (user.loading) {
+        //   FollowBtn = (
+        //     <>
+        //       <UnfollowButton>
+        //         <LoadingAllContentUnfollow>
+        //           <FaSpinner />
+        //         </LoadingAllContentUnfollow>
+        //       </UnfollowButton>
+        //     </>
+        //   );
+        // } else
+        if (user.fetched) {
+          FollowBtn = (
+            <>
+              <UnfollowButton
+                onClick={handleUnfollowAuthor}
+              >
+                Following
+              </UnfollowButton>
+            </>
+          );
+        }
       }
 
       if (!isFollowing) {
-        FollowBtn = (
-          <>
-
-            <FollowButton
-              onClick={handleFollowAuthor}
-            >
-                Follow +
-            </FollowButton>
-          </>
-        );
+        // if (user.loading) {
+        //   FollowBtn = (
+        //     <>
+        //       <FollowButton>
+        //         <LoadingAllContentFollow>
+        //           <FaSpinner />
+        //         </LoadingAllContentFollow>
+        //       </FollowButton>
+        //     </>
+        //   );
+        // } else
+        if (user.fetched) {
+          FollowBtn = (
+            <>
+              <FollowButton
+                onClick={handleFollowAuthor}
+              >
+                  Follow +
+              </FollowButton>
+            </>
+          );
+        }
       }
     }
   }
@@ -150,6 +179,7 @@ const PublicProfile = (props) => {
   let github;
   let linkedin;
   let twitter;
+  let quote;
 
   useEffect(() => {
     const {
@@ -168,6 +198,20 @@ const PublicProfile = (props) => {
     );
   } else if (publicProfile.fetched) {
     if (!_.isEmpty(publicProfile.data)) {
+      if (publicProfile.data.quote === '') {
+        quote = (
+          <>
+            <Quote>{publicProfile.data.quote}</Quote>
+          </>
+        );
+      } else {
+        quote = (
+          <>
+            <EmptyQuote>{publicProfile.data.quote}</EmptyQuote>
+          </>
+        );
+      }
+
       if (publicProfile.data.socialMedia.github === '') {
         github = (
           <>
@@ -226,7 +270,6 @@ const PublicProfile = (props) => {
         );
       }
 
-
       User = (
         <>
           <Wrapper>
@@ -244,7 +287,12 @@ const PublicProfile = (props) => {
                   {publicProfile.data.name}
                 </DisplayName>
                 {FollowBtn}
-                <p>{publicProfile.data.quote}</p>
+                {/* <Quote>{publicProfile.data.quote}</Quote> */}
+                {publicProfile.data.quote === '' ? (
+                  <EmptyQuote>{publicProfile.data.quote}</EmptyQuote>
+                ) : (
+                  <Quote>{publicProfile.data.quote}</Quote>
+                )}
                 <MemberSince>
                   Since
                   {' '}
@@ -259,7 +307,9 @@ const PublicProfile = (props) => {
                     Posts
                       </b>
                     </li>
-                    <li>
+                    <li
+                      className="number"
+                    >
                       <span>{publicProfile.data.posts.length}</span>
                     </li>
                   </FollowDivUl>
@@ -271,7 +321,9 @@ const PublicProfile = (props) => {
                     Following
                       </b>
                     </li>
-                    <li>
+                    <li
+                      className="number"
+                    >
                       <span>{publicProfile.data.following.length}</span>
                     </li>
                   </FollowDivUl>
@@ -283,7 +335,9 @@ const PublicProfile = (props) => {
                     Follower
                       </b>
                     </li>
-                    <li>
+                    <li
+                      className="number"
+                    >
                       <span>{publicProfile.data.followers.length}</span>
                     </li>
                   </FollowDivUl>

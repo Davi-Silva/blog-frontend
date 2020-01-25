@@ -1,8 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
+
+import {
+  FaSpinner,
+} from 'react-icons/fa';
 
 import {
   WrittenByDiv,
@@ -11,12 +15,17 @@ import {
   WrittenByAuthorLinkTop,
   FollowButton,
   UnfollowButton,
+  FollowButtonLoading,
+  UnfollowButtonLoading,
+  LoadingAllContentFollow,
+  LoadingAllContentUnfollow,
 } from '../../../../styled-components/components/post-written-by.styled-components';
 
 import * as UserActions from '../../../../store/actions/user/user';
 
 const WrittenBy = ({ author }) => {
   const [isFollowing, setIsFollowing] = useState(null);
+  const [loading, setLoading] = useState(false);
   const {
     username,
     name,
@@ -47,8 +56,6 @@ const WrittenBy = ({ author }) => {
 
   const handleFollowAuthor = async () => {
     const res = await handleVerifyFollow(author._id, user.data._id);
-    console.log('res.following:', res.following);
-    console.log('res.followers:', res.followers);
     if (res.following === -1) {
       dispatch(UserActions.setFollowAuthor(user.data._id, author._id));
     } else {
@@ -58,8 +65,6 @@ const WrittenBy = ({ author }) => {
 
   const handleUnfollowAuthor = async () => {
     const res = await handleVerifyFollow(author._id, user.data._id);
-    console.log('res.following:', res.following);
-    console.log('res.followers:', res.followers);
     if (res.following >= 0) {
       dispatch(UserActions.setUnfollowAuthor(author._id, user.data._id));
     } else {
@@ -67,15 +72,13 @@ const WrittenBy = ({ author }) => {
     }
   };
 
-  // useEffect(() => {
-
-  // }, []);
-
   const handleVerify = async () => {
     const res = await handleVerifyFollow(author._id, user.data._id);
     console.log('handleVerify res:', res);
-    if (res.following > -1) {
+    if (res.following >= 0) {
       setIsFollowing(true);
+    } else if (res.following === -1) {
+      setIsFollowing(false);
     }
   };
   handleVerify();
@@ -90,33 +93,61 @@ const WrittenBy = ({ author }) => {
       );
     } else if (!_.isEmpty(user.data)) {
       if (isFollowing) {
-        FollowBtn = (
-          <>
-            <li className="followBtn">
-              <UnfollowButton
-                type="button"
-                onClick={handleUnfollowAuthor}
-              >
-                Following
-              </UnfollowButton>
-            </li>
-          </>
-        );
+        if (user.loading) {
+          FollowBtn = (
+            <>
+              <li className="followBtn">
+                <UnfollowButtonLoading>
+                  <LoadingAllContentUnfollow>
+                    <FaSpinner />
+                  </LoadingAllContentUnfollow>
+                </UnfollowButtonLoading>
+              </li>
+            </>
+          );
+        } else if (!user.loading && user.fetched) {
+          FollowBtn = (
+            <>
+              <li className="followBtn">
+                <UnfollowButton
+                  type="button"
+                  onClick={handleUnfollowAuthor}
+                >
+                  Following
+                </UnfollowButton>
+              </li>
+            </>
+          );
+        }
       }
 
       if (!isFollowing) {
-        FollowBtn = (
-          <>
-            <li className="followBtn">
-              <FollowButton
-                type="button"
-                onClick={handleFollowAuthor}
-              >
-                    Follow +
-              </FollowButton>
-            </li>
-          </>
-        );
+        if (user.loading) {
+          FollowBtn = (
+            <>
+              <li className="followBtn">
+                <FollowButtonLoading>
+                  <LoadingAllContentFollow>
+                    <FaSpinner />
+                  </LoadingAllContentFollow>
+                </FollowButtonLoading>
+              </li>
+            </>
+          );
+        } else if (!user.loading && user.fetched) {
+          FollowBtn = (
+            <>
+              <li className="followBtn">
+                <FollowButton
+                  type="button"
+                  onClick={handleFollowAuthor}
+                >
+                  Follow +
+                </FollowButton>
+              </li>
+            </>
+          );
+        }
       }
     }
   }

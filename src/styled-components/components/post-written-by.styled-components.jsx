@@ -2,6 +2,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import { rotate } from '../animations';
+
 export const WrittenByDiv = styled.div`
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
@@ -133,6 +135,7 @@ export const WrittenByAuthorInfoUl = styled.ul`
         text-align: center;
         margin: 0 auto 15px auto;
         display: table;
+        height: fit-content;
       }
       @media (max-width: 440px) {
         width: 100%;
@@ -170,6 +173,7 @@ export const FollowButton = styled.button`
 	}
   @media (max-width: 768px) {
     margin-left: 15px;
+    transform: translateX(30px);
   }
   @media (max-width: 575px) {
     margin: 15px auto 0 auto;
@@ -177,6 +181,47 @@ export const FollowButton = styled.button`
     position: relative;
     top: 77px;
     right: 0;
+    transform: translateX(0px);
+  }  
+`;
+
+export const FollowButtonLoading = styled.button`
+	background-color: #fff;
+	border: 1px solid #00b170;
+	border-radius: 50px;
+	padding: 3px 7px;
+	color: #00b170;
+	font-size: 16px;
+  width: 96px;
+  position: absolute;
+  top: 45px;
+	transition: .2s all ease-in-out;
+	&:focus {
+		outline: none;
+	}
+	&:hover {
+		color: #fff;
+		background-color: #00b170;
+	}
+  @media (max-width: 1199px) {
+		font-size: 15px;
+    right: 0px;
+	}
+	@media (max-width: 991px) {
+		font-size: 13px;
+    right: -60px;
+	}
+  @media (max-width: 768px) {
+    margin-left: 15px;
+    transform: translateX(30px);
+  }
+  @media (max-width: 575px) {
+    margin: 15px auto 0 auto;
+    display: table;
+    position: relative;
+    top: 77px;
+    right: 0;
+    transform: translateX(0px);
   }  
 `;
 
@@ -210,6 +255,7 @@ export const UnfollowButton = styled.button`
 	}
   @media (max-width: 768px) {
     margin-left: 15px;
+    transform: translateX(30px);
   }
   @media (max-width: 575px) {
     margin: 15px auto 0 auto;
@@ -217,5 +263,70 @@ export const UnfollowButton = styled.button`
     position: relative;
     top: 77px;
     right: 0;
+    transform: translateX(0px);
   }  
+`;
+
+export const UnfollowButtonLoading = styled.button`
+	background-color: #00b170;
+	border: 1px solid #00b170;
+	border-radius: 50px;
+	padding: 3px 7px;
+	color: #fff;
+	font-size: 16px;
+  width: 96px;
+  position: absolute;
+  top: 45px;
+	transition: .2s all ease-in-out;
+	&:focus {
+		outline: none;
+	}
+	&:hover {
+		color: #fff;
+		background-color: #00b170;
+	}
+  @media (max-width: 1199px) {
+		font-size: 15px;
+    right: 0px;
+	}
+	@media (max-width: 991px) {
+		font-size: 13px;
+    right: -60px;
+    top: 39px;
+	}
+  @media (max-width: 768px) {
+    margin-left: 15px;
+    transform: translateX(30px);
+  }
+  @media (max-width: 575px) {
+    margin: 15px auto 0 auto;
+    display: table;
+    position: relative;
+    top: 77px;
+    right: 0;
+    transform: translateX(0px);
+  }  
+`;
+
+export const LoadingAllContentFollow = styled.div`
+	width: 100%;
+	svg {
+		animation: ${rotate} 1s infinite;
+		color: #00b170;
+		font-size: 18px;
+		display: table;
+		margin: 3px auto;
+	}
+`;
+
+
+export const LoadingAllContentUnfollow = styled.div`
+	width: 100%;
+	svg {
+		animation: ${rotate} 1s infinite;
+		color: #fff;
+		font-size: 18px;
+		display: table;
+		margin: 3px auto;
+	}
 `;

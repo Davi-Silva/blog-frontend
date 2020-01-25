@@ -149,9 +149,9 @@ export default function user(state = initialState, action) {
       };
     case 'SUCCESS_SET_UNFOLLOW_AUTHOR':
       return update(state, {
-        // data: {
-        //   following: { $push: [action.payload.data.authorId] },
-        // },
+        data: {
+          following: { $set: action.payload.data.userFollowingArray },
+        },
         loading: { $set: false },
         fetch: { $set: true },
         error: { $set: false },

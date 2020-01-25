@@ -135,6 +135,28 @@ export const DisplayName = styled.span`
   }
 `;
 
+export const Quote = styled.p`
+  color: #999;
+  font-size: 14px;
+  height: fit-content;
+  max-width: 599px;
+  line-height: 18px;
+  @media (max-width: 1199px) {
+    max-width: 473px;
+  }
+  /* @media (max-width: 991px) {
+    height: 24px;
+    max-width: 599px;
+    line-height: 18px;
+  } */
+`;
+
+export const EmptyQuote = styled.p`
+  color: #999;
+  font-size: 15px;
+  height: 24px;
+`;
+
 export const FollowButton = styled.button`
   margin-left: 15px;
   display: inline-block;
@@ -159,6 +181,7 @@ export const FollowButton = styled.button`
   @media (max-width: 768px) {
     margin: -25px auto 0 auto;
     display: table;
+    transform: translateY(-39px);
     button {
       transform: translateY(-37px);
     }
@@ -191,6 +214,7 @@ export const UnfollowButton = styled.button`
   @media (max-width: 768px) {
     margin: -25px auto 0 auto;
     display: table;
+    transform: translateY(-39px);
     button {
       transform: translateY(-37px);
     }
@@ -218,12 +242,62 @@ export const LoadingAllContent = styled.div`
   }
 `;
 
+export const LoadingAllContentFollow = styled.div`
+  margin-left: 15px;
+  display: inline-block;
+  background-color: #fff;
+  border: 1px solid #00b170;
+  border-radius: 50px;
+  padding: 3px 7px;
+  color: #00b170;
+  font-size: 14px;
+  transform: translateY(-10px);
+  transition: .2s all ease-in-out;
+  @media (max-width: 768px) {
+    transform: translateY(-39px);
+  }
+  svg {
+    animation: ${rotate} 1s infinite;
+    color: #00b170;
+    font-size: 18px;
+    display: table;
+    margin: 25px auto;
+  }
+`;
+
+export const LoadingAllContentUnfollow = styled.div`
+  margin-left: 15px;
+  background-color: #00b170;
+  border: 1px solid #00b170;
+  border-radius: 50px;
+  padding: 3px 7px;
+  display: inline-block;
+  color: #fff;
+  font-size: 14px;
+  transform: translateY(-10px);
+  transition: .2s all ease-in-out;
+  @media (max-width: 768px) {
+    transform: translateY(-39px);
+  }
+  svg {
+    animation: ${rotate} 1s infinite;
+    color: #fff;
+    font-size: 18px;
+    display: table;
+    margin: 25px auto;
+  }
+`;
+
 export const FollowUl = styled.ul`
-transform: translateY(40px);
+  transform: translateY(40px);
   li {
     display: inline-block;
     margin-right: 15px;
     margin-left: 0px;
+  }
+  @media (max-width: 768px) {
+    margin: -20px auto 10px auto;
+    display: table;
   }
 `;
 
@@ -231,5 +305,13 @@ export const FollowDivUl = styled.ul`
   li {
     display: block;
     margin-right: 6px;
+  }
+  .number {
+    span {
+      @media (max-width: 768px) {
+        margin: 0 auto;
+        display: table;
+      }
+    }
   }
 `;
