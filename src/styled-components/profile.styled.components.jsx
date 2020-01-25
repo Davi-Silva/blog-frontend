@@ -230,9 +230,11 @@ export const RecentActivityWrapper = styled(Link)`
   display: table;
   width: 100%;
   color: ${letterColor};
+  transition: all .25s ease-in-out;
   &:hover {
     text-decoration: none;
     color: ${letterColor};
+    box-shadow: 0px 0px 11px 2px rgba(0, 0, 0, 0.3);
   }
 
 `;
