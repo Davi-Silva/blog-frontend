@@ -244,7 +244,7 @@ const Navbar = (props) => {
               <FaBars />
             </ToggleButton>
             <Brand className="navbar-brand" to="/">
-              CrypticActivist
+              Cryptic Activist
             </Brand>
             <ToggleButton
               className="navbar-toggler"

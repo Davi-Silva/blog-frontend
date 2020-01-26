@@ -1,8 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-underscore-dangle */
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
+
+import {
+  FaSpinner,
+} from 'react-icons/fa';
 
 import {
   WrittenByDiv,
@@ -10,11 +14,18 @@ import {
   WrittenByAuthorInfoUl,
   WrittenByAuthorLinkTop,
   FollowButton,
+  UnfollowButton,
+  FollowButtonLoading,
+  UnfollowButtonLoading,
+  LoadingAllContentFollow,
+  LoadingAllContentUnfollow,
 } from '../../../../styled-components/components/post-written-by.styled-components';
 
 import * as UserActions from '../../../../store/actions/user/user';
 
 const WrittenBy = ({ author }) => {
+  const [isFollowing, setIsFollowing] = useState(null);
+  const [loading, setLoading] = useState(false);
   const {
     username,
     name,
@@ -23,9 +34,8 @@ const WrittenBy = ({ author }) => {
   } = author;
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  console.log('user written by:', user);
 
-  const handleVerifiyFollow = async (userId, authorId) => {
+  const handleVerifyFollow = async (userId, authorId) => {
     const res = await fetch('http://localhost:5000/users/verify/following/author',
       {
         method: 'POST',
@@ -45,63 +55,102 @@ const WrittenBy = ({ author }) => {
   };
 
   const handleFollowAuthor = async () => {
-    const res = await handleVerifiyFollow(author._id, user.data._id);
-    if (res.following === -1 && res.followers === -1) {
-      dispatch(UserActions.setFollowAuthor(author._id, user.data._id));
+    const res = await handleVerifyFollow(author._id, user.data._id);
+    if (res.following === -1) {
+      dispatch(UserActions.setFollowAuthor(user.data._id, author._id));
     } else {
       console.log('already following...');
     }
   };
 
   const handleUnfollowAuthor = async () => {
-    const res = await handleVerifiyFollow(author._id, user.data._id);
-    if (res.following === -1 && res.followers === -1) {
+    const res = await handleVerifyFollow(author._id, user.data._id);
+    if (res.following >= 0) {
       dispatch(UserActions.setUnfollowAuthor(author._id, user.data._id));
     } else {
       console.log('already following...');
     }
   };
 
+  const handleVerify = async () => {
+    const res = await handleVerifyFollow(author._id, user.data._id);
+    console.log('handleVerify res:', res);
+    if (res.following >= 0) {
+      setIsFollowing(true);
+    } else if (res.following === -1) {
+      setIsFollowing(false);
+    }
+  };
+  handleVerify();
+
   let FollowBtn;
 
-  if (!user.loading) {
-    if (!_.isEmpty(user.data)) {
-      if (author._id === user.data._id) {
-        FollowBtn = (
-          <>
-          </>
-        );
-      } else if (user.data.following.indexOf(author._id) !== -1) {
-        FollowBtn = (
-          <>
-            <li className="followBtn">
-              <FollowButton
-                type="button"
-                onClick={handleUnfollowAuthor}
-              >
-                Following
-              </FollowButton>
-            </li>
-          </>
-        );
-      } else if (user.data.following.indexOf(author._id) === -1) {
-        FollowBtn = (
-          <>
-            <li className="followBtn">
-              <FollowButton
-                type="button"
-                onClick={handleFollowAuthor}
-              >
-                Follow +
-              </FollowButton>
-            </li>
-          </>
-        );
+  if (user.fetched) {
+    if (author._id === user.data._id) {
+      FollowBtn = (
+        <>
+        </>
+      );
+    } else if (!_.isEmpty(user.data)) {
+      if (isFollowing) {
+        if (user.loading) {
+          FollowBtn = (
+            <>
+              <li className="followBtn">
+                <UnfollowButtonLoading>
+                  <LoadingAllContentUnfollow>
+                    <FaSpinner />
+                  </LoadingAllContentUnfollow>
+                </UnfollowButtonLoading>
+              </li>
+            </>
+          );
+        } else if (!user.loading && user.fetched) {
+          FollowBtn = (
+            <>
+              <li className="followBtn">
+                <UnfollowButton
+                  type="button"
+                  onClick={handleUnfollowAuthor}
+                >
+                  Following
+                </UnfollowButton>
+              </li>
+            </>
+          );
+        }
+      }
+
+      if (!isFollowing) {
+        if (user.loading) {
+          FollowBtn = (
+            <>
+              <li className="followBtn">
+                <FollowButtonLoading>
+                  <LoadingAllContentFollow>
+                    <FaSpinner />
+                  </LoadingAllContentFollow>
+                </FollowButtonLoading>
+              </li>
+            </>
+          );
+        } else if (!user.loading && user.fetched) {
+          FollowBtn = (
+            <>
+              <li className="followBtn">
+                <FollowButton
+                  type="button"
+                  onClick={handleFollowAuthor}
+                >
+                  Follow +
+                </FollowButton>
+              </li>
+            </>
+          );
+        }
       }
     }
   }
-
-  console.log('written by user:', user);
 
   return (
     <>

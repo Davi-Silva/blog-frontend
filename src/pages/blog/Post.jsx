@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import slugify from 'slugify';
+import _ from 'lodash';
 
 import { Helmet } from 'react-helmet';
 
@@ -124,185 +125,194 @@ const Post = (props) => {
       </>
     );
   } else if (post.fetched) {
-    if (count === 0) {
-      const postObj = {
-        slug: post.data[0].slug,
-        howManyReadNumber: post.data[0].howManyRead,
-      };
-      dispatch(PostAction.updateHowManyRead(postObj));
-      count += 1;
-    }
-    content = (
-      <>
-      </>
-    );
-    subMenu = (
-      <>
-        <SubNavBar media="Blog" category={post.data[0].category} title={post.data[0].title} />
-      </>
-    );
-    coverVar = (
-      <>
-        <Cover
-          src={post.data[0].cover.url}
-          alt={post.data[0].coverAlt}
-        />
-      </>
-    );
-    if (post.data[0].slug === '') {
-      related = (
+    if (!_.isEmpty(post.data)) {
+      if (count === 0) {
+        const postObj = {
+          slug: post.data[0].slug,
+          howManyReadNumber: post.data[0].howManyRead,
+        };
+        dispatch(PostAction.updateHowManyRead(postObj));
+        count += 1;
+      }
+      content = (
         <>
         </>
       );
-    } else {
-      related = (
+      subMenu = (
         <>
-          <RelatedPosts
-            slug={post.data[0].slug}
-            category={post.data[0].category}
+          <SubNavBar media="Blog" category={post.data[0].category} title={post.data[0].title} />
+        </>
+      );
+      coverVar = (
+        <>
+          <Cover
+            src={post.data[0].cover.url}
+            alt={post.data[0].coverAlt}
           />
         </>
       );
-    }
-
-    if (post.data[0].title === '') {
-      helmet = (
-        <>
-          <Helmet title="Loading..." media="Blog" />
-        </>
-      );
-    } else {
-      helmet = (
-        <>
-          <Helmet>
-            <title>{`${post.data[0].title} - ${'Blog'} | Cryptic Activist`}</title>
-            <meta
-              name="description"
-              content="Blog Posts"
-            />
-            <meta property="og:locale" content="en_US" />
-            <meta property="og:locale:alternate" content="en_CA" />
-            <meta property="og:locale:alternate" content="es_GB" />
-            <meta property="og:site_name" content="CrypticActivist" />
-            <meta property="og:description" content="Meta description" />
-            <meta property="og:title" content={`${post.data[0].title} - ${'Blog'} | Cryptic Activist`} />
-            <meta property="og:image" content={`${post.data[0].cover}`} />
-            <meta property="og:image:type" content="image/jpeg" />
-            <meta property="og:image:type" content="image/jpg" />
-            <meta property="og:image:type" content="image/png" />
-            <meta property="og:image:width" content="800" />
-            <meta property="og:image:height" content="600" />
-            <meta property="og:image:alt" content={post.data[0].coverAlt} />
-            <meta property="og:url" content={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
-            <meta property="og:type" content="article" />
-            <meta property="og:type:article:published_time" content={post.data[0].publishedOn} />
-            <meta property="og:type:article:author" content={post.data[0].author} />
-            <meta property="og:type:article:tags" content={post.data[0].tags} />
-
-            <meta name="twitter:site" content="CrypticActivist" />
-            <meta name="twitter:title" content={`${post.data[0].title} - ${'Blog'} | Cryptic Activist`} />
-            <meta name="twitter:description" content="metaDescription" />
-            <meta name="twitter:image" content={post.data[0].cover} />
-            <meta name="twitter:creator" content={post.data[0].author} />
-            <meta name="twitter:card" content="article" />
-            <meta name="twitter:image:alt" content={`${post.data[0].title}'s cover`} />
-          </Helmet>
-        </>
-      );
-    }
-
-
-    if (post.data[0].title === ''
-    || post.data[0].cover === ''
-    || post.data[0].coverAlt === ''
-    || post.data[0].content === ''
-    || post.data[0].tags === ''
-    || post.data[0].publishedOn === '') {
-      allContentPost = (
-        <LoadingAllContent>
-          <FaSpinner />
-        </LoadingAllContent>
-      );
-    } else {
-      if (post.data[0].publishedOn === null) {
-        postPublished = (
-          <UploadedOn>
-            {formatDate(post.data[0].publishedOn)}
-          </UploadedOn>
+      if (post.data[0].slug === '') {
+        related = (
+          <>
+          </>
         );
       } else {
-        postPublished = (
-          <UploadedOn>
-            {formatDate(post.data[0].publishedOn)}
-          </UploadedOn>
+        related = (
+          <>
+            <RelatedPosts
+              slug={post.data[0].slug}
+              category={post.data[0].category}
+            />
+          </>
         );
       }
 
-      allContentPost = (
-        <>
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-                <Title>
-                  {post.data[0].title}
-                </Title>
-                <TimeToReadCategoryUl>
-                  <li>
-                    <Category
-                      to={`/blog/category/${slugify(post.data[0].category.toLowerCase())}`}
-                    >
-                      {post.data[0].category}
-                    </Category>
-                  </li>
-                  <li>
-                    <TimeToRead>
-                      {getReadTime(post.data[0].content)}
-                    </TimeToRead>
-                  </li>
-                </TimeToReadCategoryUl>
-                <PostAuthor
-                  author={post.data[0].author}
-                  postPublished={postPublished}
-                />
-                <ShareButtons path={`https://hardcore-tesla-e87eac.netlify.com${location.pathname}`} />
-                {coverVar}
-                <Content dangerouslySetInnerHTML={{ __html: post.data[0].content }} />
-                <Tags
-                  tagsArray={post.data[0].tags}
-                />
-                <WrittenBy
-                  author={post.data[0].author}
-                />
-              </div>
-              <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                <AsideDiv>
-                  <StickyWrapper>
-                    <WrapperAd>
-                      <MostRecentPost />
-                    </WrapperAd>
-                    <Ads />
-                  </StickyWrapper>
-                </AsideDiv>
-                <AsideDiv>
-                  <StickyWrapper>
-                    <Ads />
-                    <Ads
-                      IsLast="last"
-                    />
-                  </StickyWrapper>
-                </AsideDiv>
+      if (post.data[0].title === '') {
+        helmet = (
+          <>
+            <Helmet title="Loading..." media="Blog" />
+          </>
+        );
+      } else {
+        helmet = (
+          <>
+            <Helmet>
+              <title>{`${post.data[0].title} - ${'Blog'} | Cryptic Activist`}</title>
+              <meta
+                name="description"
+                content="Blog Posts"
+              />
+              <meta property="og:locale" content="en_US" />
+              <meta property="og:locale:alternate" content="en_CA" />
+              <meta property="og:locale:alternate" content="es_GB" />
+              <meta property="og:site_name" content="Cryptic Activist" />
+              <meta property="og:description" content="Meta description" />
+              <meta property="og:title" content={`${post.data[0].title} - ${'Blog'} | Cryptic Activist`} />
+              <meta property="og:image" content={`${post.data[0].cover}`} />
+              <meta property="og:image:type" content="image/jpeg" />
+              <meta property="og:image:type" content="image/jpg" />
+              <meta property="og:image:type" content="image/png" />
+              <meta property="og:image:width" content="800" />
+              <meta property="og:image:height" content="600" />
+              <meta property="og:image:alt" content={post.data[0].coverAlt} />
+              <meta property="og:url" content={`https://crypticactivist.com${location.pathname}`} />
+              <meta property="og:type" content="article" />
+              <meta property="og:type:article:published_time" content={post.data[0].publishedOn} />
+              <meta property="og:type:article:author" content={post.data[0].author} />
+              <meta property="og:type:article:tags" content={post.data[0].tags} />
+
+              <meta name="twitter:site" content="Cryptic Activist" />
+              <meta name="twitter:title" content={`${post.data[0].title} - ${'Blog'} | Cryptic Activist`} />
+              <meta name="twitter:description" content="metaDescription" />
+              <meta name="twitter:image" content={post.data[0].cover} />
+              <meta name="twitter:creator" content={post.data[0].author} />
+              <meta name="twitter:card" content="article" />
+              <meta name="twitter:image:alt" content={`${post.data[0].title}'s cover`} />
+            </Helmet>
+          </>
+        );
+      }
+
+
+      if (post.data[0].title === ''
+      || post.data[0].cover === ''
+      || post.data[0].coverAlt === ''
+      || post.data[0].content === ''
+      || post.data[0].tags === ''
+      || post.data[0].publishedOn === '') {
+        allContentPost = (
+          <LoadingAllContent>
+            <FaSpinner />
+          </LoadingAllContent>
+        );
+      } else {
+        if (post.data[0].publishedOn === null) {
+          postPublished = (
+            <UploadedOn>
+              {formatDate(post.data[0].publishedOn)}
+            </UploadedOn>
+          );
+        } else {
+          postPublished = (
+            <UploadedOn>
+              {formatDate(post.data[0].publishedOn)}
+            </UploadedOn>
+          );
+        }
+
+        allContentPost = (
+          <>
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-9 col-md-9 col-sm-12 col-12">
+                  <Title>
+                    {post.data[0].title}
+                  </Title>
+                  <TimeToReadCategoryUl>
+                    <li>
+                      <Category
+                        to={`/blog/category/${slugify(post.data[0].category.toLowerCase())}`}
+                      >
+                        {post.data[0].category}
+                      </Category>
+                    </li>
+                    <li>
+                      <TimeToRead>
+                        {getReadTime(post.data[0].content)}
+                      </TimeToRead>
+                    </li>
+                  </TimeToReadCategoryUl>
+                  <PostAuthor
+                    author={post.data[0].author}
+                    postPublished={postPublished}
+                  />
+                  <ShareButtons
+                    path={`https://crypticactivist.com${location.pathname}`}
+                    size={32}
+                  />
+                  {coverVar}
+                  <Content dangerouslySetInnerHTML={{ __html: post.data[0].content }} />
+                  <Tags
+                    tagsArray={post.data[0].tags}
+                  />
+                  <WrittenBy
+                    author={post.data[0].author}
+                  />
+                </div>
+                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
+                  <AsideDiv>
+                    <StickyWrapper>
+                      <WrapperAd>
+                        <MostRecentPost />
+                      </WrapperAd>
+                      <Ads />
+                    </StickyWrapper>
+                  </AsideDiv>
+                  <AsideDiv>
+                    <StickyWrapper>
+                      <Ads />
+                      <Ads
+                        IsLast="last"
+                      />
+                    </StickyWrapper>
+                  </AsideDiv>
+                </div>
               </div>
             </div>
-          </div>
-          <Fluid className="container">
-            <div className="row">
-              <div className="col-12">
-                {related}
+            <Fluid className="container">
+              <div className="row">
+                <div className="col-12">
+                  {related}
+                </div>
               </div>
-            </div>
-          </Fluid>
-        </>
-      );
+            </Fluid>
+          </>
+        );
+      }
+    } else {
+      const { history } = props;
+      const { push } = history;
+      push('/blog');
     }
   }
 

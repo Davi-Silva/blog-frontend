@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import _ from 'lodash';
@@ -27,9 +27,15 @@ import {
 
 import ProfilePlaceholder from '../../../../static/img/profile-placeholder.png';
 
+import * as UserActions from '../../../../store/actions/user/user';
+
 const SideDrawer = (props) => {
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
+  const handleLogout = async () => {
+    dispatch(UserActions.logoutUser());
+  };
 
   const handleClose = () => {
     const {
@@ -39,18 +45,6 @@ const SideDrawer = (props) => {
     closeDrawer();
   };
 
-  const handleLogout = async () => {
-    handleClose();
-    await fetch('http://localhost:5000/auth/logout', {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  };
 
   let ProfileDiv;
   let logoutVar;

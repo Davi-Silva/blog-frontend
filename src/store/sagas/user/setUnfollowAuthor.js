@@ -23,9 +23,9 @@ async function setUnfollowAuthorApi(userId, authorId) {
 
 export default function* asyncSetUnfollowAuthorApi(action) {
   try {
-    yield call(setUnfollowAuthorApi, action.payload.userId, action.payload.authorId);
-
-    yield put({ type: 'SUCCESS_SET_UNFOLLOW_AUTHOR' });
+    const response = yield call(setUnfollowAuthorApi, action.payload.userId, action.payload.authorId);
+    console.log('oh oby:', response);
+    yield put({ type: 'SUCCESS_SET_UNFOLLOW_AUTHOR', payload: { data: response } });
   } catch (err) {
     console.log(err);
     yield put({ type: 'FAILURE_SET_UNFOLLOW_AUTHOR' });

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import {
   Wrapper,
@@ -18,6 +18,7 @@ const UserMenu = (props) => {
   const {
     displayName,
     CloseUserMenuOnClick,
+    isAdmin,
   } = props;
 
   const dispatch = useDispatch();
@@ -30,6 +31,32 @@ const UserMenu = (props) => {
   const handleLogout = async () => {
     dispatch(UserActions.logoutUser());
   };
+
+  let Admin;
+
+  if (isAdmin) {
+    Admin = (
+      <>
+        <LinkTo
+          to="/admin"
+          onClick={handleCloseOnClick}
+        >
+          Admin
+        </LinkTo>
+      </>
+    );
+  } else {
+    Admin = (
+      <>
+        <LinkTo
+          to="/admin"
+          onClick={handleCloseOnClick}
+        >
+          Contributor
+        </LinkTo>
+      </>
+    );
+  }
 
   return (
     <>
@@ -52,12 +79,7 @@ const UserMenu = (props) => {
         <hr />
         <MenuOpitionUl>
           <MenuOpitionLi>
-            <LinkTo
-              to="/admin"
-              onClick={handleCloseOnClick}
-            >
-              Admin
-            </LinkTo>
+            {Admin}
           </MenuOpitionLi>
           <MenuOpitionLi>
             <LinkTo

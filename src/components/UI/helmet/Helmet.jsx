@@ -73,7 +73,7 @@ const HelmetWrapper = (props) => {
         <meta property="og:locale" content="en_US" />
         <meta property="og:locale:alternate" content="en_CA" />
         <meta property="og:locale:alternate" content="es_GB" />
-        <meta property="og:site_name" content="CrypticActivist" />
+        <meta property="og:site_name" content="Cryptic Activist" />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:title" content={title} />
         <meta property="og:image" content={`${cover}`} />
@@ -83,7 +83,7 @@ const HelmetWrapper = (props) => {
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="600" />
         <meta property="og:url" content={`${contentUrl}`} />
-        <meta name="twitter:site" content="CrypticActivist" />
+        <meta name="twitter:site" content="Cryptic Activist" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={cover} />
@@ -113,7 +113,7 @@ HelmetWrapper.propTypes = {
 };
 
 HelmetWrapper.defaultProps = {
-  title: 'CrypticActivist',
+  title: 'Cryptic Activist',
   metaDescription: 'A place where the technology meets freedom.',
   media: '',
   contentUrl: '',

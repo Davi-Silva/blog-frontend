@@ -252,7 +252,7 @@ const Navbar = () => {
           </ToggleButton>
           <Brand className="navbar-brand" to="/courses">
             <p>
-              CrypticActivist
+              Cryptic Activist
             </p>
             <p>
               <span>
@@ -291,7 +291,7 @@ const Navbar = () => {
                 >
                   <p>Go to</p>
                   {' '}
-                  <p>CrypticActivist</p>
+                  <p>Cryptic Activist</p>
                 </LinkA>
               </li>
               <li

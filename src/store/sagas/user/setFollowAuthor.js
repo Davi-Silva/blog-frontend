@@ -23,9 +23,9 @@ async function setFollowAuthorApi(userId, authorId) {
 
 export default function* asyncSetFollowAuthorApi(action) {
   try {
-    yield call(setFollowAuthorApi, action.payload.userId, action.payload.authorId);
-
-    yield put({ type: 'SUCCESS_SET_FOLLOW_AUTHOR' });
+    const response = yield call(setFollowAuthorApi, action.payload.userId, action.payload.authorId);
+    console.log('response: nigga:', response);
+    yield put({ type: 'SUCCESS_SET_FOLLOW_AUTHOR', payload: { data: response } });
   } catch (err) {
     console.log(err);
     yield put({ type: 'FAILURE_SET_FOLLOW_AUTHOR' });
