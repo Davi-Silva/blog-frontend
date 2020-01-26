@@ -292,7 +292,10 @@ const Podcast = (props) => {
           <Aside>
             <CoverImage cover={podcast.data[0].cover.url} coverAlt={podcast.data[0].coverAlt} />
             <ShareButtonsDiv>
-              <ShareButtons path={`https://crypticactivist.com${location.pathname}`} />
+              <ShareButtons
+                path={`https://crypticactivist.com${location.pathname}`}
+                size={30}
+              />
             </ShareButtonsDiv>
           </Aside>
         </div>

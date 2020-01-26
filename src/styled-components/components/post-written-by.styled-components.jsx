@@ -8,15 +8,16 @@ export const WrittenByDiv = styled.div`
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
   padding: 25px 0;
-  height: 138px;
+  /* height: 138px; */
   margin: 20px 0 30px 0;
   @media (max-width: 991px) {
     margin-bottom: 0;
-    height: 123px;
+    /* height: 123px; */
   } 
   @media (max-width: 575px) {
     margin-bottom: 0;
-    height: 240px;
+    /* height: 240px; */
+    padding: 25px 0 30px 0;
   }   
 `;
 
@@ -88,6 +89,7 @@ export const WrittenByAuthorInfoUl = styled.ul`
     @media (max-width: 575px) {
       display: table;
       right: 0;
+      position: relative;
     }  
   }
   li {
@@ -120,15 +122,18 @@ export const WrittenByAuthorInfoUl = styled.ul`
       font-size: 13px;
       letter-spacing: 1px;
       width: 485px;
-      margin-bottom: 15px;
+      margin-bottom: 0px;
       line-height: 20px;
+      @media (max-width: 1199px) {
+        width: 450px;
+      }
       @media (max-width: 991px) {
         font-size: 12px;
-        width: 320px;
+        width: 305px;
         line-height: 17px;
       }
       @media (max-width: 768px) {
-        width: 315px;
+        width: 280px;
       }
       @media (max-width: 575px) {
         width: 80%;
@@ -155,6 +160,7 @@ export const FollowButton = styled.button`
   width: 96px;
   position: absolute;
   top: 45px;
+  right: -180px;
 	transition: .2s all ease-in-out;
 	&:focus {
 		outline: none;
@@ -165,24 +171,24 @@ export const FollowButton = styled.button`
 	}
   @media (max-width: 1199px) {
 		font-size: 15px;
-    right: 0px;
+    right: -110px;
 	}
 	@media (max-width: 991px) {
 		font-size: 13px;
-    right: -60px;
+    right: -100px;
 	}
   @media (max-width: 768px) {
     margin-left: 15px;
-    transform: translateX(30px);
+    transform: translateX(15px);
   }
   @media (max-width: 575px) {
     margin: 15px auto 0 auto;
     display: table;
     position: relative;
-    top: 77px;
+    top: 0px;
     right: 0;
     transform: translateX(0px);
-  }  
+  }
 `;
 
 export const FollowButtonLoading = styled.button`
@@ -195,6 +201,7 @@ export const FollowButtonLoading = styled.button`
   width: 96px;
   position: absolute;
   top: 45px;
+  right: -180px;
 	transition: .2s all ease-in-out;
 	&:focus {
 		outline: none;
@@ -205,24 +212,24 @@ export const FollowButtonLoading = styled.button`
 	}
   @media (max-width: 1199px) {
 		font-size: 15px;
-    right: 0px;
+    right: -110px;
 	}
 	@media (max-width: 991px) {
 		font-size: 13px;
-    right: -60px;
+    right: -100px;
 	}
   @media (max-width: 768px) {
     margin-left: 15px;
-    transform: translateX(30px);
+    transform: translateX(15px);
   }
   @media (max-width: 575px) {
     margin: 15px auto 0 auto;
     display: table;
     position: relative;
-    top: 77px;
+    top: 0px;
     right: 0;
     transform: translateX(0px);
-  }  
+  }
 `;
 
 
@@ -236,6 +243,7 @@ export const UnfollowButton = styled.button`
   width: 96px;
   position: absolute;
   top: 45px;
+  right: -180px;
 	transition: .2s all ease-in-out;
 	&:focus {
 		outline: none;
@@ -246,25 +254,24 @@ export const UnfollowButton = styled.button`
 	}
   @media (max-width: 1199px) {
 		font-size: 15px;
-    right: 0px;
+    right: -110px;
 	}
 	@media (max-width: 991px) {
 		font-size: 13px;
-    right: -60px;
-    top: 39px;
+    right: -100px;
 	}
   @media (max-width: 768px) {
     margin-left: 15px;
-    transform: translateX(30px);
+    transform: translateX(15px);
   }
   @media (max-width: 575px) {
     margin: 15px auto 0 auto;
     display: table;
     position: relative;
-    top: 77px;
+    top: 0px;
     right: 0;
     transform: translateX(0px);
-  }  
+  }
 `;
 
 export const UnfollowButtonLoading = styled.button`
@@ -277,6 +284,7 @@ export const UnfollowButtonLoading = styled.button`
   width: 96px;
   position: absolute;
   top: 45px;
+  right: -180px;
 	transition: .2s all ease-in-out;
 	&:focus {
 		outline: none;
@@ -287,25 +295,24 @@ export const UnfollowButtonLoading = styled.button`
 	}
   @media (max-width: 1199px) {
 		font-size: 15px;
-    right: 0px;
+    right: -110px;
 	}
 	@media (max-width: 991px) {
 		font-size: 13px;
-    right: -60px;
-    top: 39px;
+    right: -100px;
 	}
   @media (max-width: 768px) {
     margin-left: 15px;
-    transform: translateX(30px);
+    transform: translateX(15px);
   }
   @media (max-width: 575px) {
     margin: 15px auto 0 auto;
     display: table;
     position: relative;
-    top: 77px;
+    top: 0px;
     right: 0;
     transform: translateX(0px);
-  }  
+  }
 `;
 
 export const LoadingAllContentFollow = styled.div`
@@ -316,6 +323,12 @@ export const LoadingAllContentFollow = styled.div`
 		font-size: 18px;
 		display: table;
 		margin: 3px auto;
+    @media (max-width: 1199px) {
+      font-size: 17px;
+    }
+    @media (max-width: 991px) {
+      font-size: 13px;
+    }
 	}
 `;
 
@@ -328,5 +341,11 @@ export const LoadingAllContentUnfollow = styled.div`
 		font-size: 18px;
 		display: table;
 		margin: 3px auto;
+    @media (max-width: 1199px) {
+      font-size: 17px;
+    }
+    @media (max-width: 991px) {
+      font-size: 13px;
+    }
 	}
 `;

@@ -294,6 +294,29 @@ export const FollowUl = styled.ul`
     display: inline-block;
     margin-right: 15px;
     margin-left: 0px;
+    @media (max-width: 768px) {
+      margin: 0 auto;
+      display: inline-block;
+      padding: 0 7px;
+    }
+    @media (max-width: 450px) {
+      padding: 0 5px;
+    }
+    @media (max-width: 413px) {
+      padding: 0 3px;
+    }
+    @media (max-width: 413px) {
+      padding: 0 3px;
+    }
+    @media (max-width: 356px) {
+      padding: 0 2px;
+    }
+    @media (max-width: 337px) {
+      padding: 0 2px;
+    }
+    @media (max-width: 321px) {
+      padding: 0 1px;
+    }
   }
   @media (max-width: 768px) {
     margin: -20px auto 10px auto;
@@ -302,15 +325,46 @@ export const FollowUl = styled.ul`
 `;
 
 export const FollowDivUl = styled.ul`
+  @media (max-width: 768px) {
+    display: table;
+    margin: 0 auto;
+  }
   li {
     display: block;
     margin-right: 6px;
+    @media (max-width: 768px) {
+      display: table;
+      margin: 0 auto;
+    }
+    b {
+      @media (max-width: 413px) {
+        font-size: 15px;
+      }
+      @media (max-width: 337px) {
+        font-size: 14px;
+      }
+      @media (max-width: 321px) {
+        font-size: 13px;
+      }
+      @media (max-width: 285px) {
+        font-size: 12px;
+      }
+    }
   }
   .number {
     span {
       @media (max-width: 768px) {
         margin: 0 auto;
         display: table;
+      }
+      @media (max-width: 337px) {
+        font-size: 15px;
+      }
+      @media (max-width: 321px) {
+        font-size: 14px;
+      }
+      @media (max-width: 285px) {
+        font-size: 13px;
       }
     }
   }

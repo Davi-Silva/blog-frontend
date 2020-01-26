@@ -26,6 +26,7 @@ import {
 const ShareButtons = (props) => {
   const {
     path,
+    size,
   } = props;
   const title = 'Check out this post\n';
   return (
@@ -38,13 +39,14 @@ const ShareButtons = (props) => {
             style={{
               display: 'table',
               margin: '0 auto',
+              textALign: 'center',
               '&:focus': {
                 outline: 'none',
               },
             }}
           >
             <FacebookIcon
-              size={32}
+              size={size}
               round
             />
           </FacebookShareButton>
@@ -56,13 +58,14 @@ const ShareButtons = (props) => {
             style={{
               display: 'table',
               margin: '0 auto',
+              textALign: 'center',
               '&:focus': {
                 outline: 'none',
               },
             }}
           >
             <LinkedinIcon
-              size={32}
+              size={size}
               round
             />
           </LinkedinShareButton>
@@ -75,13 +78,14 @@ const ShareButtons = (props) => {
             style={{
               display: 'table',
               margin: '0 auto',
+              textALign: 'center',
               '&:focus': {
                 outline: 'none',
               },
             }}
           >
             <TwitterIcon
-              size={32}
+              size={size}
               round
             />
           </TwitterShareButton>
@@ -93,13 +97,14 @@ const ShareButtons = (props) => {
             style={{
               display: 'table',
               margin: '0 auto',
+              textALign: 'center',
               '&:focus': {
                 outline: 'none',
               },
             }}
           >
             <RedditIcon
-              size={32}
+              size={size}
               round
             />
           </RedditShareButton>
@@ -112,13 +117,14 @@ const ShareButtons = (props) => {
             style={{
               display: 'table',
               margin: '0 auto',
+              textALign: 'center',
               '&:focus': {
                 outline: 'none',
               },
             }}
           >
             <WhatsappIcon
-              size={32}
+              size={size}
               round
             />
           </WhatsappShareButton>
@@ -130,13 +136,14 @@ const ShareButtons = (props) => {
             style={{
               display: 'table',
               margin: '0 auto',
+              textALign: 'center',
               '&:focus': {
                 outline: 'none',
               },
             }}
           >
             <TelegramIcon
-              size={32}
+              size={size}
               round
             />
           </TelegramShareButton>

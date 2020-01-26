@@ -266,7 +266,10 @@ const Post = (props) => {
                     author={post.data[0].author}
                     postPublished={postPublished}
                   />
-                  <ShareButtons path={`https://crypticactivist.com${location.pathname}`} />
+                  <ShareButtons
+                    path={`https://crypticactivist.com${location.pathname}`}
+                    size={32}
+                  />
                   {coverVar}
                   <Content dangerouslySetInnerHTML={{ __html: post.data[0].content }} />
                   <Tags
