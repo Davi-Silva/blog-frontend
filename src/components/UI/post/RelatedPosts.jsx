@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropType from 'prop-types';
+import _ from 'lodash';
 
 import {
   LoadingRelatedPostLabel,
@@ -15,12 +17,11 @@ import {
   ColumnLeft,
 } from '../../../styled-components/components/post-related-posts.styled-components';
 
+import * as PostAction from '../../../store/actions/blog/relatedPosts';
+
 const RelatedPosts = (props) => {
-  const {
-    category,
-    slug,
-  } = props;
-  const [relatedCategoryPosts, setRelatedCategoryPosts] = useState([]);
+  const relatedPosts = useSelector((state) => state.relatedPosts);
+  const dispatch = useDispatch();
   const parseDate = (input) => {
     const parts = input.match(/(\d+)/g);
     return new Date(parts[0], parts[1] - 1, parts[2]);
@@ -46,31 +47,14 @@ const RelatedPosts = (props) => {
     return formattedDate;
   };
 
-  const getPostByCategory = async () => {
-    const dates = slug.split('/');
-    const response = await fetch(
-      `http://localhost:5000/blog/get/category/newest/${category}/${dates[0]}/${dates[1]}/${dates[2]}/${dates[3]}`,
-      {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
-    );
-    const data = await response.json();
-    return data;
-  };
-
   useEffect(() => {
-    const handleRelatedPosts = async () => {
-      const relatedCategoryPostsRes = await getPostByCategory(category, slug);
-      setRelatedCategoryPosts(relatedCategoryPostsRes);
-    };
-    handleRelatedPosts();
+    const {
+      category,
+      slug,
+    } = props;
+    dispatch(PostAction.getRelatedPosts(category, slug));
   }, []);
+
 
   const getColumn = (post, index) => {
     let column;
@@ -228,28 +212,30 @@ const RelatedPosts = (props) => {
 
   let postRelatedPost;
 
-  if (relatedCategoryPosts.found === false) {
+  if (relatedPosts.loading) {
     postRelatedPost = (
       <LoadingRelatedPostLabel />
     );
-  } else {
-    postRelatedPost = (
-      <>
-        <RelatedPostLabel>
-          Related Blog Posts
-        </RelatedPostLabel>
-        <br />
-        <RelatedPostList>
-          <div className="container">
-            <div className="row">
-              {
-            relatedCategoryPosts.map((post, key) => getColumn(post, key))
-            }
+  } else if (!relatedPosts.loading && relatedPosts.fetched) {
+    if (!_.isEmpty(relatedPosts.data)) {
+      postRelatedPost = (
+        <>
+          <RelatedPostLabel>
+            Related Blog Posts
+          </RelatedPostLabel>
+          <br />
+          <RelatedPostList>
+            <div className="container">
+              <div className="row">
+                {
+              relatedPosts.data.map((post, key) => getColumn(post, key))
+              }
+              </div>
             </div>
-          </div>
-        </RelatedPostList>
-      </>
-    );
+          </RelatedPostList>
+        </>
+      );
+    }
   }
 
 

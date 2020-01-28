@@ -35,7 +35,7 @@ export const Author = styled.div`
 	}
 `;
 
-export const AuthorPictureLink = styled(Link)`
+export const AuthorLink = styled(Link)`
 	&:hover {
 		text-decoration: none;
 	}

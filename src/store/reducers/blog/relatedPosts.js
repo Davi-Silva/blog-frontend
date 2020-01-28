@@ -5,14 +5,14 @@ const initialState = {
   error: false,
 };
 
-export default function mostRecentVideos(state = initialState, action) {
+export default function relatedPosts(state = initialState, action) {
   switch (action.type) {
-    case 'REQUEST_MOST_RECENT_VIDEOS':
+    case 'REQUEST_GET_RELATED_POSTS':
       return {
         ...state,
         loading: true,
       };
-    case 'SUCCESS_MOST_RECENT_VIDEOS':
+    case 'SUCCESS_GET_RELATED_POSTS':
       return {
         ...state,
         data: action.payload.data,
@@ -20,7 +20,7 @@ export default function mostRecentVideos(state = initialState, action) {
         fetched: true,
         error: false,
       };
-    case 'FAILURE_MOST_RECENT_VIDEOS':
+    case 'FAILURE_GET_RELATED_POSTS':
       return {
         ...state,
         data: [],

@@ -13,7 +13,7 @@ import {
   Author,
   FollowButton,
   UnfollowButton,
-  AuthorPictureLink,
+  AuthorLink,
   LoadingAllContentFollow,
   LoadingAllContentUnfollow,
 } from '../../../../styled-components/post-author.styled-components';
@@ -83,17 +83,6 @@ const PostAuthor = ({ author, postPublished }) => {
       );
     } else if (!_.isEmpty(user.data)) {
       if (isFollowing) {
-        // if (user.loading) {
-        //   FollowBtn = (
-        //     <>
-        //       <li className="followBtn">
-        //         <LoadingAllContentUnfollow>
-        //           <FaSpinner />
-        //         </LoadingAllContentUnfollow>
-        //       </li>
-        //     </>
-        //   );
-        // } else
         if (user.fetched) {
           FollowBtn = (
             <>
@@ -111,17 +100,6 @@ const PostAuthor = ({ author, postPublished }) => {
       }
 
       if (!isFollowing) {
-        // if (user.loading) {
-        //   FollowBtn = (
-        //     <>
-        //       <li className="followBtn">
-        //         <LoadingAllContentFollow>
-        //           <FaSpinner />
-        //         </LoadingAllContentFollow>
-        //       </li>
-        //     </>
-        //   );
-        // } else
         if (user.fetched) {
           FollowBtn = (
             <>
@@ -145,13 +123,15 @@ const PostAuthor = ({ author, postPublished }) => {
       <Author>
         <ul>
           <li>
-            <AuthorPictureLink to={`/user/${author.username}`}>
+            <AuthorLink to={`/user/${author.username}`}>
               <img src={author.profileImage.url} alt="Author" />
-            </AuthorPictureLink>
+            </AuthorLink>
           </li>
           <li>
             <div>
-              <span>{author.name}</span>
+              <AuthorLink to={`/user/${author.username}`}>
+                <span>{author.name}</span>
+              </AuthorLink>
               <span>
                 {FollowBtn}
               </span>

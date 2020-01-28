@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import BlogPostListMain from '../../../components/UI/lists/blog-home/BlogPostListMain.component';
@@ -18,7 +18,7 @@ import {
 } from '../../../styled-components/blog-posts-top-main.styled-components';
 
 const MainBlogPost = () => {
-  const postsList = useSelector((state) => state.mainBlogPosts);
+  const blog = useSelector((state) => state.blog);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const MainBlogPost = () => {
   let posts;
   let postsSmall;
 
-  if (postsList.loading) {
+  if (blog.mainBlogPost.loading) {
     posts = (
       <>
         <CoverMainLoading
@@ -81,10 +81,10 @@ const MainBlogPost = () => {
 
       </>
     );
-  } else if (postsList.fetched) {
+  } else if (blog.mainBlogPost.fetched) {
     posts = (
       <>
-        {postsList.data.map((post, index) => {
+        {blog.mainBlogPost.data.map((post, index) => {
           if (index === 0) {
             return (
               <BlogPostListMain
@@ -108,7 +108,7 @@ const MainBlogPost = () => {
     );
     postsSmall = (
       <>
-        {postsList.data.map((post, index) => {
+        {blog.mainBlogPost.data.map((post, index) => {
           if (index > 0) {
             if (index === 1 || index === 3) {
               return (

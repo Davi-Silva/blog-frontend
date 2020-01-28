@@ -6,17 +6,13 @@ import navbar from './navbar';
 import podcasts from './podcasts/podcasts';
 import podcast from './podcasts/podcast';
 import relatedPodcast from './podcasts/related-podcasts';
-import blogCategories from './blog/categories';
-import mainBlogPosts from './blog/mainBlogPosts';
-import mostRecentVideos from './blog/mostRecentVideos';
-import news from './blog/news';
-import articles from './blog/articles';
-import tutorials from './blog/tutorials';
+import blog from './blog/blog';
 import post from './blog/post';
 import postsByCategory from './blog/postsByCategory';
 import postsByTag from './blog/postsByTag';
 import podcastsByCategory from './podcasts/podcastsByCategory';
 import podcastsByTag from './podcasts/podcastsByTag';
+import relatedPosts from './blog/relatedPosts';
 
 export default combineReducers({
   user,
@@ -25,15 +21,11 @@ export default combineReducers({
   podcasts,
   podcast,
   relatedPodcast,
-  blogCategories,
-  mainBlogPosts,
-  mostRecentVideos,
-  news,
-  articles,
-  tutorials,
+  blog,
   post,
   postsByCategory,
   postsByTag,
   podcastsByCategory,
   podcastsByTag,
+  relatedPosts,
 });

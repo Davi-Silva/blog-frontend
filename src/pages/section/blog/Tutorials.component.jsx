@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import TutorialsList from '../../../components/UI/lists/blog-home/BlogPostListTutorials.component';
@@ -6,18 +6,15 @@ import TutorialsList from '../../../components/UI/lists/blog-home/BlogPostListTu
 
 import {
   ColumnLeft,
-  ColumnCenter,
-  ColumnRight,
   PostListTitleDiv,
   PostListTitle,
-  SeeAll,
   CoverLoading,
 } from '../../../styled-components/blog-posts-tutorials.styled-components';
 
 import * as TutorialsAction from '../../../store/actions/blog/tutorials';
 
 const Tutorials = () => {
-  const tutorialsList = useSelector((state) => state.tutorials);
+  const blog = useSelector((state) => state.blog);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,7 +23,7 @@ const Tutorials = () => {
 
   let tutorials;
 
-  if (tutorialsList.loading) {
+  if (blog.tutorials.loading) {
     tutorials = (
       <>
         <ColumnLeft className="col-lg-4 col-md-4 col-sm-6 col-12">
@@ -73,10 +70,10 @@ const Tutorials = () => {
         </ColumnLeft>
       </>
     );
-  } else if (tutorialsList.fetched) {
+  } else if (blog.tutorials.fetched) {
     tutorials = (
       <>
-        {tutorialsList.data.map((post, index) => (
+        {blog.tutorials.data.map((post, index) => (
           <TutorialsList
             key={post.id}
             type="Blog"
