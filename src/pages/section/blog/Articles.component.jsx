@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import {
   Div,
-  SeeAll,
   PostListTitleDiv,
   PostListTitle,
   Card,
@@ -21,7 +20,7 @@ import {
 import * as ArticlesAction from '../../../store/actions/blog/articles';
 
 const Articles = () => {
-  const articlesList = useSelector((state) => state.articles);
+  const blog = useSelector((state) => state.blog);
   const dispatch = useDispatch();
 
   const parseDate = (input) => {
@@ -55,7 +54,7 @@ const Articles = () => {
 
   const articles = (
     <>
-      {articlesList.data.map((post) => (
+      {blog.articles.data.map((post) => (
         <div
           key={post.id}
           className="col-lg-4 col-md-4 col-sm-6 col-12"
@@ -109,7 +108,7 @@ const Articles = () => {
 
   let articlesVar;
 
-  if (articlesList.loading) {
+  if (blog.articles.loading) {
     articlesVar = (
       <>
         <div className="col-lg-4 col-md-4 col-sm-6 col-12">
@@ -135,7 +134,7 @@ const Articles = () => {
         </div>
       </>
     );
-  } else if (articlesList.fetched) {
+  } else if (blog.articles.fetched) {
     articlesVar = (
       <>
         {articles}

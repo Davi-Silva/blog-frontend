@@ -12,13 +12,12 @@ import {
   ColumnRight,
   PostListTitleDiv,
   PostListTitle,
-  SeeAll,
   CoverLoading,
 } from '../../../styled-components/blog-posts-most-recent-videos.styled-components';
 
 
 const MostRecentVideos = () => {
-  const mostRecentVideos = useSelector((state) => state.mostRecentVideos);
+  const blog = useSelector((state) => state.blog);
   const dispatch = useDispatch();
 
 
@@ -27,7 +26,7 @@ const MostRecentVideos = () => {
   }, []);
 
   let posts;
-  if (mostRecentVideos.loading) {
+  if (blog.mostRecentVideos.loading) {
     posts = (
       <>
         <ColumnLeft className="col-lg-3 col-md-3 col-sm-6 col-12">
@@ -60,10 +59,10 @@ const MostRecentVideos = () => {
         </ColumnRight>
       </>
     );
-  } else if (mostRecentVideos.fetched) {
+  } else if (blog.mostRecentVideos.fetched) {
     posts = (
       <>
-        {mostRecentVideos.data.map((post, index) => (
+        {blog.mostRecentVideos.data.map((post, index) => (
           <MostRecentVideosList
             key={post.id}
             type="Blog"

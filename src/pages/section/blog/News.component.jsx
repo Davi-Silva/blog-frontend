@@ -10,17 +10,14 @@ import {
   PostListTitleDiv,
   PostListTitle,
   StickyWrapper,
-  SeeAll,
   CoverLoading,
   ColumnRight,
   ColumnLeft,
   ColumnCenter,
 } from '../../../styled-components/blog-posts-news.styled-components';
 
-let count = 1;
-
 const News = () => {
-  const news = useSelector((state) => state.news);
+  const blog = useSelector((state) => state.blog);
   const dispatch = useDispatch();
 
 
@@ -29,7 +26,7 @@ const News = () => {
   }, []);
 
   let newsVar;
-  if (news.loading) {
+  if (blog.news.loading) {
     newsVar = (
       <>
         <ColumnLeft className="col-lg-4 col-md-4 col-sm-6 col-12">
@@ -76,10 +73,10 @@ const News = () => {
         </ColumnRight>
       </>
     );
-  } else if (news.fetched) {
+  } else if (blog.news.fetched) {
     newsVar = (
       <>
-        {news.data.map((post, index) => (
+        {blog.news.data.map((post, index) => (
           <NewsList
             key={post.id}
             type="Blog"
@@ -93,7 +90,6 @@ const News = () => {
         ))}
       </>
     );
-    count += 1;
   }
 
 

@@ -22,6 +22,7 @@ import asyncGetNewsApi from './blog/getNews';
 import asyncGetArticlesApi from './blog/getArticles';
 import asyncGetTutorialsApi from './blog/getTutorials';
 import asyncGetPostApi from './blog/getPost';
+import asyncGetRelatedBlogPostsApi from './blog/getRelatedBlogPosts';
 import asyncUpdateHowManyReadApi from './blog/updateHowManyRead';
 import asyncPostsByCategoryApi from './blog/getPostsByCategory';
 import asyncPostsByTagApi from './blog/getPostsByTag';
@@ -53,5 +54,6 @@ export default function* root() {
     takeLatest('REQUEST_POSTS_BY_TAG', asyncPostsByTagApi),
     takeLatest('REQUEST_PODCASTS_BY_CATEGORY', asyncPodcastsByCategoryApi),
     takeLatest('REQUEST_PODCASTS_BY_TAG', asyncPodcastsByTagApi),
+    takeLatest('REQUEST_GET_RELATED_POSTS', asyncGetRelatedBlogPostsApi),
   ]);
 }

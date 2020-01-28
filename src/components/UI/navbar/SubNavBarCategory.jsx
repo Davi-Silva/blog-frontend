@@ -15,7 +15,7 @@ import {
 import * as BlogActions from '../../../store/actions/blog/categories';
 
 const SubNavBarCategory = () => {
-  const blogCategories = useSelector((state) => state.blogCategories);
+  const blog = useSelector((state) => state.blog);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const SubNavBarCategory = () => {
             <div className="col-12">
               {/* {subNavMenu} */}
               <Ul>
-                {blogCategories.data.map((category) => (
+                {blog.blogCategories.data.map((category) => (
                   <Li
                     key={category}
                   >
