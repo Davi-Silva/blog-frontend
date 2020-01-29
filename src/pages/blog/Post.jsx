@@ -43,7 +43,7 @@ import * as PostAction from '../../store/actions/blog/post';
 
 let count = 0;
 const Post = (props) => {
-  const post = useSelector((state) => state.post);
+  const post = useSelector((state) => state.post.post);
   const dispatch = useDispatch();
   const {
     location,
@@ -126,10 +126,11 @@ const Post = (props) => {
     );
   } else if (post.fetched) {
     if (!_.isEmpty(post.data)) {
+      console.log(post.data);
       if (count === 0) {
         const postObj = {
-          slug: post.data[0].slug,
-          howManyReadNumber: post.data[0].howManyRead,
+          slug: post.data.slug,
+          howManyReadNumber: post.data.howManyRead,
         };
         dispatch(PostAction.updateHowManyRead(postObj));
         count += 1;
@@ -140,18 +141,18 @@ const Post = (props) => {
       );
       subMenu = (
         <>
-          <SubNavBar media="Blog" category={post.data[0].category} title={post.data[0].title} />
+          <SubNavBar media="Blog" category={post.data.category} title={post.data.title} />
         </>
       );
       coverVar = (
         <>
           <Cover
-            src={post.data[0].cover.url}
-            alt={post.data[0].coverAlt}
+            src={post.data.cover.url}
+            alt={post.data.coverAlt}
           />
         </>
       );
-      if (post.data[0].slug === '') {
+      if (post.data.slug === '') {
         related = (
           <>
           </>
@@ -160,14 +161,14 @@ const Post = (props) => {
         related = (
           <>
             <RelatedPosts
-              slug={post.data[0].slug}
-              category={post.data[0].category}
+              slug={post.data.slug}
+              category={post.data.category}
             />
           </>
         );
       }
 
-      if (post.data[0].title === '') {
+      if (post.data.title === '') {
         helmet = (
           <>
             <Helmet title="Loading..." media="Blog" />
@@ -177,7 +178,7 @@ const Post = (props) => {
         helmet = (
           <>
             <Helmet>
-              <title>{`${post.data[0].title} - ${'Blog'} | Cryptic Activist`}</title>
+              <title>{`${post.data.title} - ${'Blog'} | Cryptic Activist`}</title>
               <meta
                 name="description"
                 content="Blog Posts"
@@ -187,55 +188,55 @@ const Post = (props) => {
               <meta property="og:locale:alternate" content="es_GB" />
               <meta property="og:site_name" content="Cryptic Activist" />
               <meta property="og:description" content="Meta description" />
-              <meta property="og:title" content={`${post.data[0].title} - ${'Blog'} | Cryptic Activist`} />
-              <meta property="og:image" content={`${post.data[0].cover}`} />
+              <meta property="og:title" content={`${post.data.title} - ${'Blog'} | Cryptic Activist`} />
+              <meta property="og:image" content={`${post.data.cover.url}`} />
               <meta property="og:image:type" content="image/jpeg" />
               <meta property="og:image:type" content="image/jpg" />
               <meta property="og:image:type" content="image/png" />
               <meta property="og:image:width" content="800" />
               <meta property="og:image:height" content="600" />
-              <meta property="og:image:alt" content={post.data[0].coverAlt} />
+              <meta property="og:image:alt" content={post.data.cover.name} />
               <meta property="og:url" content={`https://crypticactivist.com${location.pathname}`} />
               <meta property="og:type" content="article" />
-              <meta property="og:type:article:published_time" content={post.data[0].publishedOn} />
-              <meta property="og:type:article:author" content={post.data[0].author} />
-              <meta property="og:type:article:tags" content={post.data[0].tags} />
+              <meta property="og:type:article:published_time" content={post.data.publishedOn} />
+              <meta property="og:type:article:author" content={post.data.author.name} />
+              <meta property="og:type:article:tags" content={post.data.tags} />
 
               <meta name="twitter:site" content="Cryptic Activist" />
-              <meta name="twitter:title" content={`${post.data[0].title} - ${'Blog'} | Cryptic Activist`} />
+              <meta name="twitter:title" content={`${post.data.title} - ${'Blog'} | Cryptic Activist`} />
               <meta name="twitter:description" content="metaDescription" />
-              <meta name="twitter:image" content={post.data[0].cover} />
-              <meta name="twitter:creator" content={post.data[0].author} />
+              <meta name="twitter:image" content={post.data.cover.url} />
+              <meta name="twitter:creator" content={post.data.author.name} />
               <meta name="twitter:card" content="article" />
-              <meta name="twitter:image:alt" content={`${post.data[0].title}'s cover`} />
+              <meta name="twitter:image:alt" content={`${post.data.title}'s cover`} />
             </Helmet>
           </>
         );
       }
 
 
-      if (post.data[0].title === ''
-      || post.data[0].cover === ''
-      || post.data[0].coverAlt === ''
-      || post.data[0].content === ''
-      || post.data[0].tags === ''
-      || post.data[0].publishedOn === '') {
+      if (post.data.title === ''
+      || post.data.cover === ''
+      || post.data.coverAlt === ''
+      || post.data.content === ''
+      || post.data.tags === ''
+      || post.data.publishedOn === '') {
         allContentPost = (
           <LoadingAllContent>
             <FaSpinner />
           </LoadingAllContent>
         );
       } else {
-        if (post.data[0].publishedOn === null) {
+        if (post.data.publishedOn === null) {
           postPublished = (
             <UploadedOn>
-              {formatDate(post.data[0].publishedOn)}
+              {formatDate(post.data.publishedOn)}
             </UploadedOn>
           );
         } else {
           postPublished = (
             <UploadedOn>
-              {formatDate(post.data[0].publishedOn)}
+              {formatDate(post.data.publishedOn)}
             </UploadedOn>
           );
         }
@@ -246,24 +247,24 @@ const Post = (props) => {
               <div className="row">
                 <div className="col-lg-9 col-md-9 col-sm-12 col-12">
                   <Title>
-                    {post.data[0].title}
+                    {post.data.title}
                   </Title>
                   <TimeToReadCategoryUl>
                     <li>
                       <Category
-                        to={`/blog/category/${slugify(post.data[0].category.toLowerCase())}`}
+                        to={`/blog/category/${slugify(post.data.category.toLowerCase())}`}
                       >
-                        {post.data[0].category}
+                        {post.data.category}
                       </Category>
                     </li>
                     <li>
                       <TimeToRead>
-                        {getReadTime(post.data[0].content)}
+                        {getReadTime(post.data.content)}
                       </TimeToRead>
                     </li>
                   </TimeToReadCategoryUl>
                   <PostAuthor
-                    author={post.data[0].author}
+                    author={post.data.author}
                     postPublished={postPublished}
                   />
                   <ShareButtons
@@ -271,12 +272,12 @@ const Post = (props) => {
                     size={32}
                   />
                   {coverVar}
-                  <Content dangerouslySetInnerHTML={{ __html: post.data[0].content }} />
+                  <Content dangerouslySetInnerHTML={{ __html: post.data.content }} />
                   <Tags
-                    tagsArray={post.data[0].tags}
+                    tagsArray={post.data.tags}
                   />
                   <WrittenBy
-                    author={post.data[0].author}
+                    author={post.data.author}
                   />
                 </div>
                 <div className="col-lg-3 col-md-3 col-sm-12 col-12">

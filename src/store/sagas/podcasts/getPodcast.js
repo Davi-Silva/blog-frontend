@@ -21,7 +21,7 @@ export default function* asyncGetPodcast(action) {
   try {
     const response = yield call(getPodcastApi, action.payload.slug);
 
-    yield put({ type: 'SUCCESS_PODCAST_BY_SLUG', payload: { data: response } });
+    yield put({ type: 'SUCCESS_PODCAST_BY_SLUG', payload: { data: response[0] } });
   } catch (err) {
     yield put({ type: 'FAILURE_PODCAST_BY_SLUG' });
   }

@@ -20,7 +20,7 @@ import {
 import * as PostAction from '../../../store/actions/blog/relatedPosts';
 
 const RelatedPosts = (props) => {
-  const relatedPosts = useSelector((state) => state.relatedPosts);
+  const relatedPosts = useSelector((state) => state.post.relatedPosts);
   const dispatch = useDispatch();
   const parseDate = (input) => {
     const parts = input.match(/(\d+)/g);

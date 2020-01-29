@@ -298,6 +298,34 @@ const Navbar = (props) => {
                     Station
                   </LinkA>
                 </li>
+                <li className="nav-item">
+                  <LinkA
+                    className="nav-link"
+                    to="//exchange.crypticactivist.com"
+                    target="_blank"
+                    onClick={() => {
+                      document
+                        .querySelector('#navbarResponsive')
+                        .classList.remove('show');
+                    }}
+                  >
+                    Exchange
+                  </LinkA>
+                </li>
+                <li className="nav-item">
+                  <LinkA
+                    className="nav-link"
+                    to="//forum.crypticactivist.com"
+                    target="_blank"
+                    onClick={() => {
+                      document
+                        .querySelector('#navbarResponsive')
+                        .classList.remove('show');
+                    }}
+                  >
+                    Forum
+                  </LinkA>
+                </li>
                 <li className="profile-li">
                   {UserDiv}
                 </li>

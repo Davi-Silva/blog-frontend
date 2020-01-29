@@ -49,14 +49,9 @@ export const ProfileLink = styled(Link)`
 	transition: all .2s ease-in-out;
 	&:hover {
 		text-decoration: none;
-		transition: all .2s ease-in-out;
-		img {
-			border-color: #0058e4;
-			transition: all .2s ease-in-out;
-		}
+		border-color: #ffcd2b;
 		h2 {
 			color: #333;
-			transition: all .2s ease-in-out;
 		}
 	}
 	@media (max-width: 576px) {

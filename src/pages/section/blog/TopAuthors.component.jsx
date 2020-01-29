@@ -30,6 +30,7 @@ const TopAuthors = () => {
         },
       });
       const data = await response.json();
+      console.log('authors:', data);
       setAuthorState(data);
     };
     getAuthors();
@@ -40,13 +41,27 @@ const TopAuthors = () => {
   if (!_.isEmpty(authorState)) {
     authors = (
       <>
-        {authorState[0].name}
+        {authorState.map((author) => (
+          <div className="col-lg-4 col-md-4 col-sm-4 col-12">
+            <ProfileLink to={`/user/${author.username}`}>
+              <ProfileImage
+                src={author.profileImage.url}
+                alt={author.profileImage.name}
+              />
+              <AuthorName>
+                {author.name}
+              </AuthorName>
+              <AuthorNumberOfPosts>
+                {`${author.posts.length} Posts`}
+              </AuthorNumberOfPosts>
+            </ProfileLink>
+          </div>
+        ))}
       </>
     );
   } else {
     authors = (
       <>
-
       </>
     );
   }
@@ -61,48 +76,7 @@ const TopAuthors = () => {
                 Top Authors
               </Title>
             </div>
-            <div className="col-lg-4 col-md-4 col-sm-4 col-12">
-              <ProfileLink to="/profile">
-                <ProfileImage
-                  src={ProfilePlaceholder}
-                  alt="Author"
-                />
-                <AuthorName>
-                  {authors}
-                </AuthorName>
-                <AuthorNumberOfPosts>
-                  {`${12} Posts`}
-                </AuthorNumberOfPosts>
-              </ProfileLink>
-            </div>
-            <div className="col-lg-4 col-md-4 col-sm-4 col-12">
-              <ProfileLink to="/profile">
-                <ProfileImage
-                  src={ProfilePlaceholder}
-                  alt="Author"
-                />
-                <AuthorName>
-                  Author Name
-                </AuthorName>
-                <AuthorNumberOfPosts>
-                  {`${7} Posts`}
-                </AuthorNumberOfPosts>
-              </ProfileLink>
-            </div>
-            <div className="col-lg-4 col-md-4 col-sm-4 col-12">
-              <ProfileLink to="/profile">
-                <ProfileImage
-                  src={ProfilePlaceholder}
-                  alt="Author"
-                />
-                <AuthorName>
-                  Author Name
-                </AuthorName>
-                <AuthorNumberOfPosts>
-                  {`${3} Posts`}
-                </AuthorNumberOfPosts>
-              </ProfileLink>
-            </div>
+            {authors}
           </div>
         </div>
       </TopAuthorDiv>
