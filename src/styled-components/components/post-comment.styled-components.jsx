@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 
 import { opacity } from '../animations';
 
+export const CommentsWrapper = styled.div`
+  margin: 40px 0 10px 0;
+`;
+
 export const Wrapper = styled.div`
   margin-bottom: 0px;
   padding: 10px 0;

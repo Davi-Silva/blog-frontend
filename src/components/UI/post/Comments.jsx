@@ -6,6 +6,7 @@ import slugify from 'slugify';
 import _ from 'lodash';
 
 import {
+  CommentsWrapper,
   Wrapper,
   LinkToProfile,
   AuthorPicture,
@@ -20,16 +21,17 @@ import AddComment from './AddComment';
 
 import * as PostAction from '../../../store/actions/blog/post';
 
-const Comments = () => {
+const Comments = (props) => {
   const comments = useSelector((state) => state.post.comments);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const {
+    postId,
+  } = props;
 
   useEffect(() => {
     dispatch(PostAction.getCommentsPost(comments));
   }, []);
-
-  console.log('comments:', comments);
 
   const parseDate = (input) => {
     const parts = input.match(/(\d+)/g);
@@ -69,81 +71,53 @@ const Comments = () => {
 
   return (
     <>
-      {commentTitle}
-      {!_.isEmpty(user.data) ? (
-        <AddComment />
-      ) : (
-        <></>
-      )}
-      {comments.loading === true ? (
-        <h2>Loading...</h2>
-      ) : (
-        // {comments.fetched === true ? }
-        comments.fetched === true ? (
-          comments.data.map((comment) => (
-            <Wrapper key={comment.id}>
-              <UserInfoWrapper>
-                <ul>
-                  <li className="img-li">
-                    <LinkToProfile to={`/user/${comment.author.username}`}>
-                      <AuthorPicture
-                        src={comment.author.profileImage.url}
-                      />
-                    </LinkToProfile>
-                  </li>
-                  <li className="user-info">
-                    <LinkToProfile to={`/user/${comment.author.username}`}>
-                      <AuthorName>
-                        {comment.author.name}
-                      </AuthorName>
-                    </LinkToProfile>
-                    <PostedOn>
-                      {formatDate(comment.publishedOn)}
-                    </PostedOn>
-                  </li>
-                </ul>
-              </UserInfoWrapper>
-              <Content>{comment.content}</Content>
-
-            </Wrapper>
-          ))
+      <CommentsWrapper>
+        {commentTitle}
+        {!_.isEmpty(user.data) ? (
+          <AddComment
+            user={user.data}
+            post={postId}
+          />
         ) : (
-          <h2>Error</h2>
-        )
-      )}
+          <></>
+        )}
 
-      {/* {comments[0].content !== undefined ? <CommentsTitle>Comments:</CommentsTitle> : <></>}
-      {comments[0].content !== undefined ? (
-        comments.map((comment) => (
-          <Wrapper key={comment.id}>
-            <UserInfoWrapper>
-              <ul>
-                <li className="img-li">
-                  <LinkToProfile to={`/user/${comment.author.username}`}>
-                    <AuthorPicture
-                      src={comment.author.profileImage.url}
-                    />
-                  </LinkToProfile>
-                </li>
-                <li className="user-info">
-                  <LinkToProfile to={`/user/${comment.author.username}`}>
-                    <AuthorName>
-                      {comment.author.name}
-                    </AuthorName>
-                  </LinkToProfile>
-                  <PostedOn>
-                    {formatDate(comment.publishedOn)}
-                  </PostedOn>
-                </li>
-              </ul>
-            </UserInfoWrapper>
-            <Content>{comment.content}</Content>
 
-          </Wrapper>
-        ))
-      ) : (
-        <span>No comments yet...</span>
-      )} */}
+        {comments.loading === true ? (
+          <h2>Loading...</h2>
+        ) : (
+          comments.fetched === true ? (
+            comments.data.map((comment) => (
+              <Wrapper key={comment.id}>
+                <UserInfoWrapper>
+                  <ul>
+                    <li className="img-li">
+                      <LinkToProfile to={`/user/${comment.author.username}`}>
+                        <AuthorPicture
+                          src={comment.author.profileImage.url}
+                        />
+                      </LinkToProfile>
+                    </li>
+                    <li className="user-info">
+                      <LinkToProfile to={`/user/${comment.author.username}`}>
+                        <AuthorName>
+                          {comment.author.name}
+                        </AuthorName>
+                      </LinkToProfile>
+                      <PostedOn>
+                        {formatDate(comment.publishedOn)}
+                      </PostedOn>
+                    </li>
+                  </ul>
+                </UserInfoWrapper>
+                <Content>{comment.content}</Content>
+              </Wrapper>
+            ))
+          ) : (
+            <h2>Error</h2>
+          )
+        )}
+      </CommentsWrapper>
     </>
   );
 };

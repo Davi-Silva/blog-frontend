@@ -19,10 +19,9 @@ async function getCommentsPostApi(comments) {
 }
 
 export default function* asyncGetCommentsPostApi(action) {
-  console.log('asyncGetCommentsPostApi action:', action);
   try {
     const response = yield call(getCommentsPostApi, action.payload.comments);
-    console.log('asyncGetCommentsPostApi response:', response);
+
     yield put({ type: 'SUCCESS_GET_ALL_COMMENTS_POST', payload: { data: response } });
   } catch (err) {
     yield put({ type: 'FAILURE_GET_ALL_COMMENTS_POST' });

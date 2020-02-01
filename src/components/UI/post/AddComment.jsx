@@ -1,35 +1,23 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Form,
   TextArea,
   SendButton,
 } from '../../../styled-components/components/add-comment.styled-components';
 
+import * as PostAction from '../../../store/actions/blog/post';
 
 const AddComment = (props) => {
+  const comments = useSelector((state) => state.post.comments);
   const [comment, setComment] = useState('');
   const { user, post } = props;
-
-  const postComment = async () => {
-    const res = await fetch('http://localhost:5000/blog/contributor/post/comment',
-      {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ user, post, comment }),
-      });
-    const data = await res.json(res);
-    return data;
-  };
-
+  const dispatch = useDispatch();
 
   const handleSendComment = async (e) => {
     e.preventDefault();
-    postComment();
+    dispatch(PostAction.postComment(user._id, post, comment));
+    setComment('');
   };
 
   const handleTextArea = (e) => {
@@ -42,6 +30,8 @@ const AddComment = (props) => {
         <TextArea
           placeholder="Comment..."
           onChange={handleTextArea}
+          id="comment-textarea"
+          value={comment}
         />
         <SendButton>Send</SendButton>
       </Form>

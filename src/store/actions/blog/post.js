@@ -25,3 +25,14 @@ export function getCommentsPost(comments) {
     },
   };
 }
+
+export function postComment(userId, postId, comment) {
+  return {
+    type: 'REQUEST_POST_COMMENT',
+    payload: {
+      userId,
+      postId,
+      comment,
+    },
+  };
+}

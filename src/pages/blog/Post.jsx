@@ -311,7 +311,9 @@ const Post = (props) => {
             <div className="container">
               <div className="row">
                 <div className="col-lg-9 col-md-9 col-sm-9 col-12">
-                  <Comments />
+                  <Comments
+                    postId={post.data._id}
+                  />
                 </div>
                 <div className="col-lg-3 col-md-3 col-sm-3 col-12" />
               </div>

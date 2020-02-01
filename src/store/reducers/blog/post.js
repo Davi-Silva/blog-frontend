@@ -18,6 +18,7 @@ const initialState = {
     loading: false,
     fetched: false,
     error: false,
+    isSubmitted: false,
   },
 };
 
@@ -104,6 +105,30 @@ export default function post(state = initialState, action) {
         },
       });
     case 'FAILURE_GET_ALL_COMMENTS_POST':
+      return update(state, {
+        comments: {
+          fetched: { $set: true },
+          error: { $set: true },
+        },
+      });
+    case 'REQUEST_POST_COMMENT':
+      return update(state, {
+        comments: {
+          // loading: { $set: true },
+          isSubmitted: { $set: false },
+        },
+      });
+    case 'SUCCESS_POST_COMMENT':
+      return update(state, {
+        comments: {
+          data: { $push: [action.payload.data] },
+          // loading: { $set: false },
+          fetched: { $set: true },
+          error: { $set: false },
+          isSubmitted: { $set: true },
+        },
+      });
+    case 'FAILURE_POST_COMMENT':
       return update(state, {
         comments: {
           fetched: { $set: true },
