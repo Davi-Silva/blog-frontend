@@ -11,7 +11,7 @@ import {
   CoverLoading,
 } from '../../../styled-components/blog-posts-tutorials.styled-components';
 
-import * as TutorialsAction from '../../../store/actions/blog/tutorials';
+import * as TutorialsAction from '../../../store/actions/blog/blog';
 
 const Tutorials = () => {
   const blog = useSelector((state) => state.blog);

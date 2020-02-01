@@ -20,6 +20,7 @@ import Ads from '../../components/UI/ads/AdvertisementSquare.component';
 import Tags from '../../components/UI/post/Tags';
 import RelatedPosts from '../../components/UI/post/RelatedPosts';
 import WrittenBy from '../../components/UI/author/blog/WrittenBy';
+import Comments from '../../components/UI/post/Comments';
 
 
 import {
@@ -307,6 +308,14 @@ const Post = (props) => {
                 </div>
               </div>
             </Fluid>
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-9 col-md-9 col-sm-9 col-12">
+                  <Comments />
+                </div>
+                <div className="col-lg-3 col-md-3 col-sm-3 col-12" />
+              </div>
+            </div>
           </>
         );
       }

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import MostRecentVideosList from '../../../components/UI/lists/blog-home/BlogPostListMostRecentVideos.component';
 
-import * as MostRecentVideosAction from '../../../store/actions/blog/mostRecentVideos';
+import * as MostRecentVideosAction from '../../../store/actions/blog/blog';
 
 import {
   ColumnLeft,

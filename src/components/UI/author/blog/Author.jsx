@@ -64,7 +64,6 @@ const PostAuthor = ({ author, postPublished }) => {
 
   const handleVerify = async () => {
     const res = await handleVerifyFollow(author._id, user.data._id);
-    console.log('handleVerify res:', res);
     if (res.following >= 0) {
       setIsFollowing(true);
     } else if (res.following === -1) {

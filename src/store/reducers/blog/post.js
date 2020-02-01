@@ -13,6 +13,12 @@ const initialState = {
     fetched: false,
     error: false,
   },
+  comments: {
+    data: [],
+    loading: false,
+    fetched: false,
+    error: false,
+  },
 };
 
 export default function post(state = initialState, action) {
@@ -78,6 +84,28 @@ export default function post(state = initialState, action) {
     case 'FAILURE_GET_RELATED_POSTS':
       return update(state, {
         relatedPosts: {
+          fetched: { $set: true },
+          error: { $set: true },
+        },
+      });
+    case 'REQUEST_GET_ALL_COMMENTS_POST':
+      return update(state, {
+        comments: {
+          loading: { $set: true },
+        },
+      });
+    case 'SUCCESS_GET_ALL_COMMENTS_POST':
+      return update(state, {
+        comments: {
+          data: { $set: action.payload.data },
+          loading: { $set: false },
+          fetched: { $set: true },
+          error: { $set: false },
+        },
+      });
+    case 'FAILURE_GET_ALL_COMMENTS_POST':
+      return update(state, {
+        comments: {
           fetched: { $set: true },
           error: { $set: true },
         },

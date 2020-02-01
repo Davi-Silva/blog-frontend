@@ -22,6 +22,7 @@ import asyncGetNewsApi from './blog/getNews';
 import asyncGetArticlesApi from './blog/getArticles';
 import asyncGetTutorialsApi from './blog/getTutorials';
 import asyncGetPostApi from './blog/getPost';
+import asyncGetCommentsPost from './blog/getCommentsPost';
 import asyncGetRelatedBlogPostsApi from './blog/getRelatedBlogPosts';
 import asyncUpdateHowManyReadApi from './blog/updateHowManyRead';
 import asyncPostsByCategoryApi from './blog/getPostsByCategory';
@@ -49,6 +50,7 @@ export default function* root() {
     takeLatest('REQUEST_ARTICLES', asyncGetArticlesApi),
     takeLatest('REQUEST_TUTORIALS', asyncGetTutorialsApi),
     takeLatest('REQUEST_POST', asyncGetPostApi),
+    takeLatest('REQUEST_GET_ALL_COMMENTS_POST', asyncGetCommentsPost),
     takeLatest('REQUEST_UPDATE_HOW_MANY_READ', asyncUpdateHowManyReadApi),
     takeLatest('REQUEST_POSTS_BY_CATEGORY', asyncPostsByCategoryApi),
     takeLatest('REQUEST_POSTS_BY_TAG', asyncPostsByTagApi),
