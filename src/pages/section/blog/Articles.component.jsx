@@ -17,7 +17,7 @@ import {
   Category,
 } from '../../../styled-components/blog-posts-article.styled-components';
 
-import * as ArticlesAction from '../../../store/actions/blog/articles';
+import * as ArticlesAction from '../../../store/actions/blog/blog';
 
 const Articles = () => {
   const blog = useSelector((state) => state.blog);

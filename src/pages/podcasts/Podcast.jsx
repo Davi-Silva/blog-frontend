@@ -48,8 +48,8 @@ import CoverImage from '../../components/UI/podcast/cover.component';
 let count = 0;
 
 const Podcast = (props) => {
-  const podcast = useSelector((state) => state.podcast);
-  const relatedPodcast = useSelector((state) => state.relatedPodcast);
+  const podcast = useSelector((state) => state.podcast.podcast);
+  const relatedPodcast = useSelector((state) => state.podcast.relatedPodcasts);
   const dispatch = useDispatch();
 
   const parseDate = (input) => {
@@ -105,7 +105,7 @@ const Podcast = (props) => {
            <RelatedPodcastLi
              key={related.id}
            >
-             <RelatedPodcast to={`/podcast/${podcast.slug}`}>
+             <RelatedPodcast to={`/podcast/${podcast.data.slug}`}>
                <img
                  src={related.cover.url}
                  alt={related.cover.name}
@@ -153,32 +153,32 @@ const Podcast = (props) => {
   } else if (podcast.fetched) {
     if (!_.isEmpty(podcast.data) && !relatedPodcast.fetch) {
       if (count === 0) {
-        dispatch(RelatedPodcasts.getGetRelatedPodcasts(podcast.data[0].category, podcast.data[0].slug));
+        dispatch(RelatedPodcasts.getGetRelatedPodcasts(podcast.data.category, podcast.data.slug));
         count += 1;
       }
     }
 
-    if (podcast.data[0].updatedOn === null) {
+    if (podcast.data.updatedOn === null) {
       podcastUpdated = (
         <UploadedOn>
      Uploaded on&nbsp;
-          <span style={{ color: '#333', fontWeight: '700' }}>{formatDate(podcast.data[0].uploadedOn)}</span>
+          <span style={{ color: '#333', fontWeight: '700' }}>{formatDate(podcast.data.uploadedOn)}</span>
         </UploadedOn>
       );
     } else {
       podcastUpdated = (
         <UploadedOn>
        Updated on&nbsp;
-          <span style={{ color: '#333', fontWeight: '700' }}>{formatDate(podcast.data[0].updatedOn)}</span>
+          <span style={{ color: '#333', fontWeight: '700' }}>{formatDate(podcast.data.updatedOn)}</span>
         </UploadedOn>
       );
     }
 
-    if (!_.isEmpty(podcast.data[0].audioFile)) {
+    if (!_.isEmpty(podcast.data.audioFile)) {
       audio = (
         <>
           <AudioPlayer
-            audioFileUrl={podcast.data[0].audioFile.url}
+            audioFileUrl={podcast.data.audioFile.url}
           />
         </>
       );
@@ -189,11 +189,11 @@ const Podcast = (props) => {
       );
     }
 
-    if (podcast.data[0].googleEpisodeUrl !== '') {
+    if (podcast.data.googleEpisodeUrl !== '') {
       googleExternalPodcast = (
         <>
           <li>
-            <a href={podcast.data[0].googleEpisodeUrl} target="_blank" rel="noopener noreferrer">
+            <a href={podcast.data.googleEpisodeUrl} target="_blank" rel="noopener noreferrer">
               <img src={ListenOnGooglePodcast} alt="Listen on Google Podcasts" />
             </a>
           </li>
@@ -205,11 +205,11 @@ const Podcast = (props) => {
         </>
       );
     }
-    if (podcast.data[0].spotifyEpisodeUrl !== '') {
+    if (podcast.data.spotifyEpisodeUrl !== '') {
       spotifyExternalPodcast = (
         <>
           <li>
-            <a href={podcast.data[0].spotifyEpisodeUrl} target="_blank" rel="noopener noreferrer">
+            <a href={podcast.data.spotifyEpisodeUrl} target="_blank" rel="noopener noreferrer">
               <img src={ListenOnSpotifyPodcast} alt="Listen on Spotify Podcasts" />
             </a>
           </li>
@@ -221,11 +221,11 @@ const Podcast = (props) => {
         </>
       );
     }
-    if (podcast.data[0].itunesEpisodeUrl !== '') {
+    if (podcast.data.itunesEpisodeUrl !== '') {
       itunesExternalPodcast = (
         <>
           <li>
-            <a href={podcast.data[0].itunesEpisodeUrl} target="_blank" rel="noopener noreferrer">
+            <a href={podcast.data.itunesEpisodeUrl} target="_blank" rel="noopener noreferrer">
               <img src={ListenOnITunesPodcast} alt="Listen on iTunes Podcasts" />
             </a>
           </li>
@@ -242,7 +242,7 @@ const Podcast = (props) => {
     helmet = (
       <>
         <Helmet>
-          <title>{`${podcast.data[0].title} - Podcast | Cryptic Activist`}</title>
+          <title>{`${podcast.data.title} - Podcast | Cryptic Activist`}</title>
           <meta
             name="description"
             content="Meta Description"
@@ -252,8 +252,8 @@ const Podcast = (props) => {
           <meta property="og:locale:alternate" content="es_GB" />
           <meta property="og:site_name" content="Cryptic Activist" />
           <meta property="og:description" content="Meta Description" />
-          <meta property="og:title" content={podcast.data[0].title} />
-          <meta property="og:image" content={`${podcast.data[0].cover}`} />
+          <meta property="og:title" content={podcast.data.title} />
+          <meta property="og:image" content={`${podcast.data.cover}`} />
           <meta property="og:image:type" content="image/jpeg" />
           <meta property="og:image:type" content="image/jpg" />
           <meta property="og:image:type" content="image/png" />
@@ -262,35 +262,35 @@ const Podcast = (props) => {
           <meta property="og:url" content={`https://crypticactivist.com${location.pathname}`} />
 
           <meta name="twitter:site" content="Cryptic Activist" />
-          <meta name="twitter:title" content={podcast.data[0].title} />
+          <meta name="twitter:title" content={podcast.data.title} />
           <meta name="twitter:description" content="Meta Description" />
-          <meta name="twitter:image" content={podcast.data[0].cover} />
+          <meta name="twitter:image" content={podcast.data.cover} />
 
           <meta property="og:music:duration" content="" />
           <meta property="og:type" content="music.song" />
-          <meta property="og:image:alt" content={podcast.data[0].coverAlt} />
+          <meta property="og:image:alt" content={podcast.data.coverAlt} />
           <meta property="og:audio:type" content="audio/mpeg" />
           <meta property="og:audio:type" content="audio/mp3" />
-          <meta property="og:audio" content={podcast.data[0].audioFile.url} />
-          <meta property="og:audio:secure_url" content={podcast.data[0].audioFile.url} />
+          <meta property="og:audio" content={podcast.data.audioFile.url} />
+          <meta property="og:audio:secure_url" content={podcast.data.audioFile.url} />
 
           <meta name="twitter:card" content="music.song" />
           <meta name="twitter:image:alt" content="Podcast cover" />
-          <meta name="twitter:player" content={podcast.data[0].audioFile.url} />
+          <meta name="twitter:player" content={podcast.data.audioFile.url} />
           <meta name="twitter:width" content="100" />
           <meta name="twitter:height" content="200" />
-          <meta name="twitter:player:stream" content={podcast.data[0].audioFile.url} />
+          <meta name="twitter:player:stream" content={podcast.data.audioFile.url} />
         </Helmet>
       </>
     );
     subMenu = (
-      <SubNavBar media="Podcast" category={podcast.data[0].category} title={podcast.data[0].title} />
+      <SubNavBar media="Podcast" category={podcast.data.category} title={podcast.data.title} />
     );
     content = (
       <>
         <div className="col-lg-4 col-md-4 col-sm-12 col-12">
           <Aside>
-            <CoverImage cover={podcast.data[0].cover.url} coverAlt={podcast.data[0].coverAlt} />
+            <CoverImage cover={podcast.data.cover.url} coverAlt={podcast.data.coverAlt} />
             <ShareButtonsDiv>
               <ShareButtons
                 path={`https://crypticactivist.com${location.pathname}`}
@@ -302,15 +302,15 @@ const Podcast = (props) => {
         <div className="col-lg-8 col-md-8 col-sm-12 col-12">
           <Wrapper>
             {podcastUpdated}
-            <Title>{podcast.data[0].title}</Title>
+            <Title>{podcast.data.title}</Title>
             <Category
-              to={`/podcasts/category/${slugify(podcast.data[0].category.toLowerCase())}`}
+              to={`/podcasts/category/${slugify(podcast.data.category.toLowerCase())}`}
             >
-              {podcast.data[0].category}
+              {podcast.data.category}
             </Category>
             {audio}
             <Description
-              dangerouslySetInnerHTML={{ __html: podcast.data[0].description }}
+              dangerouslySetInnerHTML={{ __html: podcast.data.description }}
             />
             <ExternalEpisodeLabel>
               Also available on
@@ -323,7 +323,7 @@ const Podcast = (props) => {
             </ExternalEpisodeUl>
             <TagsUl>
               {
-              podcast.data[0].tags.map((tag) => (
+              podcast.data.tags.map((tag) => (
 
                 <TagLi
                   key={tag.id}

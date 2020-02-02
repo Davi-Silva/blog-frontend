@@ -49,14 +49,9 @@ export const ProfileLink = styled(Link)`
 	transition: all .2s ease-in-out;
 	&:hover {
 		text-decoration: none;
-		transition: all .2s ease-in-out;
-		img {
-			border-color: #0058e4;
-			transition: all .2s ease-in-out;
-		}
+		border-color: #ffcd2b;
 		h2 {
 			color: #333;
-			transition: all .2s ease-in-out;
 		}
 	}
 	@media (max-width: 576px) {
@@ -74,7 +69,7 @@ export const ProfileImage = styled.img`
 `;
 
 export const AuthorName = styled.h2`
-	color: #999;
+	color: #333;
 	font-size: 16px;
 	display: block;
 	text-align: center;
@@ -83,7 +78,7 @@ export const AuthorName = styled.h2`
 `;
 
 export const AuthorNumberOfPosts = styled.h2`
-	color: #999;
+	color: #333;
 	font-size: 16px;
 	display: block;
 	text-align: center;

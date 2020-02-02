@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import NewsList from '../../../components/UI/lists/blog-home/BlogPostListNews.component';
 import Ads from '../../../components/UI/ads/AdvertisementSquare.component';
 
-import * as NewsAction from '../../../store/actions/blog/news';
+import * as NewsAction from '../../../store/actions/blog/blog';
 
 import {
   PostListTitleDiv,

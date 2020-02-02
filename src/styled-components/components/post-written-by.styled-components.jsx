@@ -8,7 +8,7 @@ export const WrittenByDiv = styled.div`
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
   padding: 25px 0;
-  /* height: 138px; */
+  min-height: 138px;
   margin: 20px 0 30px 0;
   @media (max-width: 991px) {
     margin-bottom: 0;

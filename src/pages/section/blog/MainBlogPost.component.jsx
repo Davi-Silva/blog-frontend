@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import BlogPostListMain from '../../../components/UI/lists/blog-home/BlogPostListMain.component';
 
-import * as MainBlogPosts from '../../../store/actions/blog/mainBlogPosts';
+import * as MainBlogPosts from '../../../store/actions/blog/blog';
 
 
 import {

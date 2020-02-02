@@ -16,3 +16,23 @@ export function updateHowManyRead(post) {
     },
   };
 }
+
+export function getCommentsPost(postId) {
+  return {
+    type: 'REQUEST_GET_ALL_COMMENTS_POST',
+    payload: {
+      postId,
+    },
+  };
+}
+
+export function postComment(userId, postId, comment) {
+  return {
+    type: 'REQUEST_POST_COMMENT',
+    payload: {
+      userId,
+      postId,
+      comment,
+    },
+  };
+}

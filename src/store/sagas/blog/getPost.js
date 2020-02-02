@@ -20,8 +20,7 @@ async function getPostApi(slug) {
 export default function* asyncGetPostApi(action) {
   try {
     const response = yield call(getPostApi, action.payload.slug);
-
-    yield put({ type: 'SUCCESS_POST', payload: { data: response } });
+    yield put({ type: 'SUCCESS_POST', payload: { data: response[0] } });
   } catch (err) {
     yield put({ type: 'FAILURE_POST' });
   }

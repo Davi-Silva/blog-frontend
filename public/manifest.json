@@ -1,6 +1,6 @@
 {
-  "short_name": "Course",
-  "name": "Course",
+  "short_name": "Cryptic Activist",
+  "name": "Cryptic Activist",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#6345ba",
+  "theme_color": "#ffcd2b",
   "background_color": "#ffffff"
 }
