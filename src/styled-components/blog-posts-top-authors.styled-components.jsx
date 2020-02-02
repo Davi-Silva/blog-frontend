@@ -69,7 +69,7 @@ export const ProfileImage = styled.img`
 `;
 
 export const AuthorName = styled.h2`
-	color: #999;
+	color: #333;
 	font-size: 16px;
 	display: block;
 	text-align: center;
@@ -78,7 +78,7 @@ export const AuthorName = styled.h2`
 `;
 
 export const AuthorNumberOfPosts = styled.h2`
-	color: #999;
+	color: #333;
 	font-size: 16px;
 	display: block;
 	text-align: center;

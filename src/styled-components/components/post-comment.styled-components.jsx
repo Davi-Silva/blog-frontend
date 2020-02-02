@@ -66,8 +66,9 @@ export const Content = styled.p`
 `;
 
 export const CommentsTitle = styled.h4`
-	font-size: 16px;
-	color: #333;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #333;
   letter-spacing: 1px;
-  font-weight: 100;
+  font-weight: 900;
 `;

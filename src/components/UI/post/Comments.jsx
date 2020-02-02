@@ -30,7 +30,7 @@ const Comments = (props) => {
   } = props;
 
   useEffect(() => {
-    dispatch(PostAction.getCommentsPost(comments));
+    dispatch(PostAction.getCommentsPost(postId));
   }, []);
 
   const parseDate = (input) => {

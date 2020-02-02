@@ -17,11 +17,11 @@ export function updateHowManyRead(post) {
   };
 }
 
-export function getCommentsPost(comments) {
+export function getCommentsPost(postId) {
   return {
     type: 'REQUEST_GET_ALL_COMMENTS_POST',
     payload: {
-      comments,
+      postId,
     },
   };
 }

@@ -3,7 +3,7 @@ import {
   call,
 } from 'redux-saga/effects';
 
-async function getCommentsPostApi(comments) {
+async function getCommentsPostApi(postId) {
   const res = await fetch('http://localhost:5000/blog/comments', {
     method: 'POST',
     mode: 'cors',
@@ -12,7 +12,7 @@ async function getCommentsPostApi(comments) {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(comments),
+    body: JSON.stringify({ postId }),
   });
   const data = await res.json();
   return data;
@@ -20,7 +20,7 @@ async function getCommentsPostApi(comments) {
 
 export default function* asyncGetCommentsPostApi(action) {
   try {
-    const response = yield call(getCommentsPostApi, action.payload.comments);
+    const response = yield call(getCommentsPostApi, action.payload.postId);
 
     yield put({ type: 'SUCCESS_GET_ALL_COMMENTS_POST', payload: { data: response } });
   } catch (err) {
