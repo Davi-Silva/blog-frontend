@@ -344,7 +344,9 @@ const Navbar = () => {
             </Ul>
             {UserMenuDiv}
             {gridState ? (
-              <CategoriesMenu />
+              <CategoriesMenu
+                Toggle={toggleGrid}
+              />
             ) : (
               <>
               </>

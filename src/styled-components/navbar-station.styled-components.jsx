@@ -139,6 +139,9 @@ export const Brand = styled(Link)`
   font-weight: 900;
   letter-spacing: 1px;
   font-size: 14px;
+  &:hover {
+    color: #000;
+  }
   p {
     margin-bottom: 0;
     line-height: 15px;
