@@ -315,6 +315,20 @@ const Navbar = (props) => {
                 <li className="nav-item">
                   <LinkA
                     className="nav-link"
+                    to="//meetup.crypticactivist.com"
+                    target="_blank"
+                    onClick={() => {
+                      document
+                        .querySelector('#navbarResponsive')
+                        .classList.remove('show');
+                    }}
+                  >
+                    Meetup
+                  </LinkA>
+                </li>
+                <li className="nav-item">
+                  <LinkA
+                    className="nav-link"
                     to="//forum.crypticactivist.com"
                     target="_blank"
                     onClick={() => {

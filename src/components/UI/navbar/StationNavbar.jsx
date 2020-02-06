@@ -14,6 +14,9 @@ import UserMenu from './user-menu/UserMenu';
 import CoursesSearchForm from './search-form/CoursesSearchForm';
 import CoursesSearchFormDesktop from './search-form/CoursesSearchFormDesktop';
 
+import CategoriesMenu from './station/categories-menu/CategoriesMenu';
+import Cart from './station/cart/Cart';
+
 import * as UserActions from '../../../store/actions/user/user';
 
 import {
@@ -39,6 +42,8 @@ const Navbar = () => {
   const [searchFormState, setSearchFormState] = useState({
     showSearchForm: false,
   });
+  const [cartState, setCartState] = useState(false);
+  const [gridState, setGridState] = useState(false);
 
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -71,6 +76,54 @@ const Navbar = () => {
         showUserMenu: true,
       });
     }
+  };
+
+  const handleCloseSideDrawer = () => {
+    const sideDrawer = window.document.body.children[1].children[1];
+    const sideBackgroundDrawer = window.document.body.children[1].children[0];
+    if (sideDrawerState.showSideDrawer) {
+      sideDrawer.classList.remove('showSideDrawer');
+      sideBackgroundDrawer.classList.remove('showBackgroundSideDrawer');
+      sideDrawer.classList.add('hideSideDrawer');
+      sideBackgroundDrawer.classList.add('hideBackgroundSideDrawer');
+      setSideDrawerState({ showSideDrawer: false });
+    }
+  };
+
+  const handleSideDrawer = () => {
+    const sideDrawer = window.document.body.children[1].children[1];
+    const sideBackgroundDrawer = window.document.body.children[1].children[0];
+    if (!sideDrawerState.showSideDrawer) {
+      sideDrawer.classList.remove('hideSideDrawer');
+      sideBackgroundDrawer.classList.remove('hideBackgroundSideDrawer');
+      sideDrawer.classList.add('showSideDrawer');
+      sideBackgroundDrawer.classList.add('showBackgroundSideDrawer');
+      setSideDrawerState({ showSideDrawer: true });
+    } else {
+      sideDrawer.classList.remove('showSideDrawer');
+      sideBackgroundDrawer.classList.remove('showBackgroundSideDrawer');
+      sideDrawer.classList.add('hideSideDrawer');
+      sideBackgroundDrawer.classList.add('hideBackgroundSideDrawer');
+      setSideDrawerState({ showSideDrawer: false });
+    }
+  };
+
+  const toggleCart = () => {
+    if (cartState) {
+      document.querySelector('.nav-cart').classList.remove('clicked');
+    } else {
+      document.querySelector('.nav-cart').classList.add('clicked');
+    }
+    setCartState(!cartState);
+  };
+
+  const toggleGrid = () => {
+    if (gridState) {
+      document.querySelector('.nav-grid').classList.remove('clicked');
+    } else {
+      document.querySelector('.nav-grid').classList.add('clicked');
+    }
+    setGridState(!gridState);
   };
 
   const handleSearchForm = () => {
@@ -170,7 +223,7 @@ const Navbar = () => {
               .classList.remove('show');
           }}
         >
-                      Login
+          Login
         </SignUp>
       </>
     );
@@ -193,37 +246,6 @@ const Navbar = () => {
       );
     }
   }
-
-  const handleCloseSideDrawer = () => {
-    const sideDrawer = window.document.body.children[1].children[1];
-    const sideBackgroundDrawer = window.document.body.children[1].children[0];
-    if (sideDrawerState.showSideDrawer) {
-      sideDrawer.classList.remove('showSideDrawer');
-      sideBackgroundDrawer.classList.remove('showBackgroundSideDrawer');
-      sideDrawer.classList.add('hideSideDrawer');
-      sideBackgroundDrawer.classList.add('hideBackgroundSideDrawer');
-      setSideDrawerState({ showSideDrawer: false });
-    }
-  };
-
-  const handleSideDrawer = () => {
-    const sideDrawer = window.document.body.children[1].children[1];
-    const sideBackgroundDrawer = window.document.body.children[1].children[0];
-    if (!sideDrawerState.showSideDrawer) {
-      sideDrawer.classList.remove('hideSideDrawer');
-      sideBackgroundDrawer.classList.remove('hideBackgroundSideDrawer');
-      sideDrawer.classList.add('showSideDrawer');
-      sideBackgroundDrawer.classList.add('showBackgroundSideDrawer');
-      setSideDrawerState({ showSideDrawer: true });
-    } else {
-      sideDrawer.classList.remove('showSideDrawer');
-      sideBackgroundDrawer.classList.remove('showBackgroundSideDrawer');
-      sideDrawer.classList.add('hideSideDrawer');
-      sideBackgroundDrawer.classList.add('hideBackgroundSideDrawer');
-      setSideDrawerState({ showSideDrawer: false });
-    }
-  };
-
 
   return (
     <>
@@ -260,7 +282,10 @@ const Navbar = () => {
               </span>
             </p>
           </Brand>
-          <LinkIconGrid>
+          <LinkIconGrid
+            className="nav-grid"
+            onClick={toggleGrid}
+          >
             <FaTh />
           </LinkIconGrid>
           <ToggleButton
@@ -284,6 +309,11 @@ const Navbar = () => {
                   className="nav-link go-home"
                   to="/"
                   onClick={() => {
+                    setCartState(false);
+                    setGridState(false);
+                    setUserMenuState({
+                      showUserMenu: false,
+                    });
                     document
                       .querySelector('#navbarResponsive')
                       .classList.remove('show');
@@ -303,12 +333,9 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <LinkIcon
+                  to="/cart"
                   className="nav-cart"
-                  // onClick={() => {
-                  //   document
-                  //     .querySelector('#navbarResponsive')
-                  //     .classList.remove('show');
-                  // }}
+                  onClick={toggleCart}
                 >
                   <FaShoppingCart />
                 </LinkIcon>
@@ -316,6 +343,18 @@ const Navbar = () => {
               {UserDiv}
             </Ul>
             {UserMenuDiv}
+            {gridState ? (
+              <CategoriesMenu />
+            ) : (
+              <>
+              </>
+            )}
+            {cartState ? (
+              <Cart />
+            ) : (
+              <>
+              </>
+            )}
           </div>
         </div>
       </NavBar>

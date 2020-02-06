@@ -8,6 +8,9 @@ export const NavBar = styled.nav`
   height: 50px;
   border-bottom: 1px solid #000;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+  .clicked {
+    background: #e0b528;
+  }
 `;
 
 export const Ul = styled.ul`
@@ -27,7 +30,8 @@ export const Ul = styled.ul`
   }
   .nav-cart {
     padding: 6px 7px!important;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    display: block;
   }
 `;
 
@@ -70,7 +74,7 @@ export const LinkIcon = styled.button`
   padding: 6px 9px 8px 9px;
   border-radius: 3px;
   border: none;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.15s ease-in-out;
   line-height: 18px;
   .nav-cart {
     padding: 6px;
@@ -80,7 +84,6 @@ export const LinkIcon = styled.button`
   }
   &:focus {
     outline: none;
-    background: #e0b528;
     color: #000;
   }
   @media (max-width: 320px) {
@@ -101,14 +104,13 @@ export const LinkIconGrid = styled.button`
   padding: 6px 9px 8px 9px;
   border-radius: 3px;
   border: none;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.15s ease-in-out;
   line-height: 18px;
   :hover {
     color: #000;
   }
   &:focus {
     outline: none;
-    background: #e0b528;
     color: #000;
   }
   @media (max-width: 768px) {
