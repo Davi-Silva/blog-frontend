@@ -1,11 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import _ from 'lodash';
 
 import { Helmet } from 'react-helmet';
 
+import * as HomepageActions from '../store/actions/homepage/homepage';
+
 function Homepage(props) {
+  const mostReadPost = useSelector((state) => state.homepage.mostReadPost);
   const {
     location,
   } = props;
+  const dispatch = useDispatch();
+
+  console.log('mostReadPost:', mostReadPost);
+
+  useEffect(() => {
+    dispatch(HomepageActions.getMostReadPost());
+  }, []);
+
+  let mostRead;
+
+  if (mostReadPost.loading) {
+    mostRead = (
+      <h1>Loading</h1>
+    );
+  } else if (mostReadPost.fetched) {
+    if (!_.isEmpty(mostReadPost.data)) {
+      const {
+        title,
+      } = mostReadPost.data;
+      mostRead = (
+        <h1>{title}</h1>
+      );
+    }
+  }
+
   return (
     <>
       <Helmet>
@@ -32,8 +62,7 @@ function Homepage(props) {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h1>Homepage</h1>
-            <h2>Dashboard</h2>
+            {mostRead}
           </div>
         </div>
       </div>
