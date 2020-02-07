@@ -22,6 +22,7 @@ import {
   Warning,
   BlogPostCoverUploaderPlaceholder,
 } from '../styled-components/forms.styled-components';
+import Upload from '../components/UI/admin/UploadFieldBlogPostCover.component';
 
 
 const PublishBlogPost = (props) => {
@@ -329,7 +330,8 @@ const PublishBlogPost = (props) => {
 
   const handleDeleteCover = async (id) => {
     await api.delete(`/admin/blog/delete/cover/${id}`);
-    setUploadedCovers(publishCover.filter((file) => file.id !== id));
+    // setUploadedCovers(publishCover.filter((file) => file.id !== id));
+    dispatch(UploadBlogPostCoverAction.deleteUploadedCover());
   };
 
 

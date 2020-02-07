@@ -25,3 +25,9 @@ export function finishUploadCoverProcess(data) {
     },
   };
 }
+
+export function deleteUploadedCover() {
+  return {
+    type: 'DELETE_UPLOADED_COVER',
+  };
+}

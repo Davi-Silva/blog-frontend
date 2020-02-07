@@ -25,6 +25,11 @@ export default function publishBlogPostCover(state = initialState, action) {
           url: { $set: action.payload.data.url },
         },
       });
+    case 'DELETE_UPLOADED_COVER':
+      return {
+        ...state,
+        data: {},
+      };
     default:
       return state;
   }
