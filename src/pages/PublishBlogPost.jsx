@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import _, { uniqueId } from 'lodash';
 import filesize from 'filesize';
@@ -22,8 +21,6 @@ import {
   Warning,
   BlogPostCoverUploaderPlaceholder,
 } from '../styled-components/forms.styled-components';
-import Upload from '../components/UI/admin/UploadFieldBlogPostCover.component';
-
 
 const PublishBlogPost = (props) => {
   const [isSlugValid, setIsSlugValid] = useState(true);
@@ -35,28 +32,13 @@ const PublishBlogPost = (props) => {
   const [tagsArray, setTagsArray] = useState([]);
   const [content, setContent] = useState('');
   const [uploaded, setUploaded] = useState(null);
-  const [uploadedCovers, setUploadedCovers] = useState([]);
-  const [coverUploaded, setCoverUploaded] = useState(false);
-  const [author, setAuthor] = useState('');
   const [allFieldsFilled, setAllFieldsFilled] = useState(false);
   const [enableCoverUploader, setEnableCoverUploader] = useState(false);
   const [warning, setWarning] = useState(false);
 
+  const userInfo = useSelector((state) => state.user.data);
   const publishCover = useSelector((state) => state.publishBlogPostCover.data);
   const dispatch = useDispatch();
-
-  const handleGetCover = async () => {
-    const responseCover = await api.get(`/blog/cover/${title}`);
-    // dispatch(UploadBlogPostCoverAction.updateUploadCoverProcess(responseCover.data));
-    setUploadedCovers(responseCover.data.map((file) => ({
-      id: file._id,
-      name: file.name,
-      readableSize: filesize(file.size),
-      preview: file.url,
-      uploaded: true,
-      url: file.url,
-    })));
-  };
 
   const setGlobalVariable = async () => {
     const bodyRequest = {
@@ -73,7 +55,6 @@ const PublishBlogPost = (props) => {
       },
       body: JSON.stringify(bodyRequest),
     });
-    // let data = await response.json();
     return response;
   };
 
@@ -111,6 +92,24 @@ const PublishBlogPost = (props) => {
     return response;
   };
 
+  const publishPost = async (podcast) => {
+    const response = await fetch(
+      'http://localhost:5000/admin/blog/publish',
+      {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(podcast),
+      },
+    );
+    const data = await response.json();
+    return data;
+  };
+
   const disabledSubmitButton = () => {
     if (type !== 'Type'
       && type !== ''
@@ -126,22 +125,24 @@ const PublishBlogPost = (props) => {
     }
   };
 
-  useEffect(() => {
-    handleGetCover();
-  }, []);
+  const handleDeleteCover = async (id) => {
+    await api.delete(`/admin/blog/delete/cover/${id}`);
+    dispatch(UploadBlogPostCoverAction.deleteUploadedCover());
+  };
 
   useEffect(() => {
     setGlobalVariable();
     if (uploaded) {
       const {
-        history,
+        History,
       } = props;
-      history.push('/admin');
+      History.push('/admin');
     }
   }, [title, uploaded]);
 
   useEffect(() => () => {
     URL.revokeObjectURL(publishCover.preview);
+    handleDeleteCover(publishCover.id);
   }, []);
 
 
@@ -184,16 +185,15 @@ const PublishBlogPost = (props) => {
     }
   };
 
-  const handleEditorChange = async (e) => {
-    setContent(e.target.getContent());
-  };
-
-
   const onChangeCategory = (e) => {
     setCategory(e.target.value.replace(/^\w/, (c) => c.toUpperCase()));
     setTimeout(() => {
       disabledSubmitButton();
     }, 0);
+  };
+
+  const handleEditorChange = async (e) => {
+    setContent(e.target.getContent());
   };
 
   const tagsToArray = () => {
@@ -211,34 +211,15 @@ const PublishBlogPost = (props) => {
     }, 0);
   };
 
-  const publishPost = async (podcast) => {
-    const response = await fetch(
-      'http://localhost:5000/admin/blog/publish',
-      {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(podcast),
-      },
-    );
-    const data = await response.json();
-    return data;
-  };
-
   const onSubmit = async (e) => {
     e.preventDefault();
     disabledSubmitButton();
     const {
       History,
-      userInfo,
     } = props;
     if (allFieldsFilled) {
       const postInfo = {
-        isSlugValid,
+        isSlugValid: true,
         slug,
         type,
         category,
@@ -258,13 +239,13 @@ const PublishBlogPost = (props) => {
         setUploaded(res.uploaded);
         History.push('/blog');
       } else {
-        console.log('meh');
+        console.log('slug is not valid, try a different one.');
+        setIsSlugValid(false);
       }
     } else {
       setWarning(true);
     }
   };
-
 
   const updateFileCover = (id, data) => {
     dispatch(UploadBlogPostCoverAction.updateUploadCoverProcess(data));
@@ -281,22 +262,20 @@ const PublishBlogPost = (props) => {
 
     data.append('file', uploadedCoversParam.file, uploadedCoversParam.name);
 
-    api
-      .post('/admin/blog/publish/cover', data, {
-        onUploadProgress: (e) => {
-          const progress = parseInt(Math.round((e.loaded * 100) / e.total), 10);
+    api.post('/admin/blog/publish/cover', data, {
+      onUploadProgress: (e) => {
+        const progress = parseInt(Math.round((e.loaded * 100) / e.total), 10);
 
-          handleUpdateProgress(progress);
-          disabledSubmitButton();
-        },
-      })
+        handleUpdateProgress(progress);
+        disabledSubmitButton();
+      },
+    })
       .then((response) => {
         dispatch(UploadBlogPostCoverAction.finishUploadCoverProcess({
           uploaded: true,
           id: response.data._id,
           url: response.data.url,
         }));
-        setCoverUploaded(true);
         disabledSubmitButton();
       })
       .catch(() => {
@@ -327,66 +306,33 @@ const PublishBlogPost = (props) => {
     }, 0);
   };
 
-
-  const handleDeleteCover = async (id) => {
-    await api.delete(`/admin/blog/delete/cover/${id}`);
-    // setUploadedCovers(publishCover.filter((file) => file.id !== id));
-    dispatch(UploadBlogPostCoverAction.deleteUploadedCover());
-  };
-
-
-  let coverUploader;
-  let warningDiv;
-
-  if (enableCoverUploader) {
-    coverUploader = (
-      <>
-        <UploadCover onUpload={handleUploadCover} />
-        {!_.isEmpty(publishCover) && (
-        <FileListCover
-          files={publishCover}
-          onDelete={handleDeleteCover}
-        />
-        )}
-      </>
-    );
-  } else {
-    coverUploader = (
-      <>
-        <BlogPostCoverUploaderPlaceholder>
-          <p>
-            Give this blog post a
-            {' '}
-            <strong>Title</strong>
-            {' '}
-            before uploading a cover
-          </p>
-        </BlogPostCoverUploaderPlaceholder>
-      </>
-    );
-  }
-  if (warning) {
-    warningDiv = (
-      <>
-        <Warning>
-          All fileds must be filled
-        </Warning>
-      </>
-    );
-  } else {
-    warningDiv = (
-      <>
-      </>
-    );
-  }
-
   return (
     <>
       <div className="container">
         <div className="row">
           <div className="col-12">
             <div style={{ height: '300px', width: '100%' }}>
-              {coverUploader}
+              {enableCoverUploader ? (
+                <>
+                  <UploadCover onUpload={handleUploadCover} />
+                  {!_.isEmpty(publishCover) && (
+                  <FileListCover
+                    files={publishCover}
+                    onDelete={handleDeleteCover}
+                  />
+                  )}
+                </>
+              ) : (
+                <BlogPostCoverUploaderPlaceholder>
+                  <p>
+                  Give this blog post a
+                    {' '}
+                    <strong>Title </strong>
+                    {' '}
+                  before uploading a cover
+                  </p>
+                </BlogPostCoverUploaderPlaceholder>
+              )}
             </div>
           </div>
         </div>
@@ -474,7 +420,7 @@ const PublishBlogPost = (props) => {
                     marginBottom: '0px', marginTop: '0px', position: 'absolute', color: '#333',
                   }}
                   >
-Tags:
+                    Tags:
                   </p>
                 </li>
                 <li style={{ display: 'inline', marginLeft: '45px', marginTop: '-20px' }}>
@@ -494,7 +440,16 @@ Tags:
                   />
                 </li>
               </ul>
-              {warningDiv}
+              {warning && (
+              <Warning>
+                All fileds must be filled
+              </Warning>
+              )}
+              {!isSlugValid && (
+                <Warning>
+                  Invalid title
+                </Warning>
+              ) }
               <Button>Publish</Button>
             </form>
           </div>
@@ -503,5 +458,10 @@ Tags:
     </>
   );
 };
+
+PublishBlogPost.propTypes = {
+  History: PropTypes.shape().isRequired,
+};
+
 
 export default PublishBlogPost;

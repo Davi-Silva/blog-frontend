@@ -134,7 +134,7 @@ export const Warning = styled.div`
 export const BlogPostCoverUploaderPlaceholder = styled.div`
   margin-top: 5px;
   margin-left: 6px;
-  border: 1px dashed #0058e4;
+  border: 1px dashed #000;
   border-radius: 4px;
   width: 99%;
   height: 300px;
@@ -145,14 +145,14 @@ export const BlogPostCoverUploaderPlaceholder = styled.div`
   p {
     display: table;
     margin: 15px auto;
-    color: #999;
+    color: #000;
     font-size: 16px;
     text-align: center;
   }
 `;
 
 export const PodcastCoverUploaderPlaceholder = styled.div`
-  border: 1px dashed #0058e4;
+  border: 1px dashed #000;
   border-radius: 4px;
   height: 250px;
   width: 250px;
@@ -165,7 +165,7 @@ export const PodcastCoverUploaderPlaceholder = styled.div`
   p {
     display: table;
     margin: 0 auto;
-    color: #999;
+    color: #000;
     font-size: 16px;
     text-align: center;
   }
@@ -179,7 +179,7 @@ export const DivAside = styled.div`
 
 
 export const PodcastAudioFileUploaderPlaceholder = styled.div`
-  border: 1px dashed #0058e4;
+  border: 1px dashed #000;
   border-radius: 4px;
   height: 72px;
   width: 100%;
@@ -190,7 +190,7 @@ export const PodcastAudioFileUploaderPlaceholder = styled.div`
   p {
     display: table;
     margin: 0 auto;
-    color: #999;
+    color: #000;
     font-size: 16px;
     text-align: center;
   }

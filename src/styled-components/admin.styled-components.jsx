@@ -600,7 +600,7 @@ export const DropContainerBlogPostCover = styled.div.attrs({
 `;
 
 const messageColors = {
-  default: '#999',
+  default: '#000',
   error: '#e57878',
   success: '#78e5d5',
 };
