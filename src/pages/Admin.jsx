@@ -218,7 +218,7 @@ const Admin = (props) => {
       </>
     );
   } else if (user.fetched) {
-    if (!_.isEmpty(user.data)) {
+    if (!_.isEmpty(user.data) && user.data.isAdmin) {
       if (courses || blog || podcasts || settings) {
         addVar = (
           <>

@@ -7,6 +7,7 @@ import filesize from 'filesize';
 import slugify from 'slugify';
 import { Editor } from '@tinymce/tinymce-react';
 
+import { Context } from 'immutability-helper';
 import api from '../services/api';
 
 import UploadCover from '../components/UI/admin/UploadFieldBlogPostCover.component';
@@ -286,6 +287,7 @@ const PublishBlogPost = (props) => {
   };
 
   const handleUploadCover = async (files) => {
+    console.log('file Dropzone:', files);
     const uploadedCoversObj = files.map((file) => ({
       file,
       id: uniqueId(),

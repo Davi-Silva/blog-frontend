@@ -9,6 +9,7 @@ import podcast from './podcasts/podcast';
 import blog from './blog/blog';
 import post from './blog/post';
 import publishBlogPostCover from './blog/publishBlogPost';
+import uploadedPodcast from './podcasts/uploadPodcast';
 import postsByCategory from './blog/postsByCategory';
 import postsByTag from './blog/postsByTag';
 import podcastsByCategory from './podcasts/podcastsByCategory';
@@ -24,6 +25,7 @@ export default combineReducers({
   blog,
   post,
   publishBlogPostCover,
+  uploadedPodcast,
   postsByCategory,
   postsByTag,
   podcastsByCategory,

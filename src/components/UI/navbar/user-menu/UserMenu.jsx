@@ -20,6 +20,7 @@ const UserMenu = (props) => {
     CloseUserMenuOnClick,
     isAdmin,
   } = props;
+  console.log('isAdmin:', isAdmin);
 
   const dispatch = useDispatch();
 

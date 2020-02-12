@@ -427,13 +427,16 @@ export const Container = styled.ul`
   }
 `;
 
+export const ContainerAdmin = styled.div`
+  position: relative;
+
+`;
+
 export const ContainerBlogPostCover = styled.ul`
   top: 20px;
   position: relative;
   width: 100%;
   transform: translateY(-305px);
-
-  
   li {
     display: flex;
     justify-content: space-between;
@@ -465,6 +468,24 @@ export const FileInfo = styled.div`
       }
     }
   }
+`;
+
+export const DeleteButton = styled.button`
+  color: #e57878;
+  background: #fff;
+  border: none;
+  margin: 0 auto;
+  display: table;
+  transform: translateY(-37px);
+  padding: 1px 5px;
+  font-size: 12px;
+  border-radius: 4px;
+`;
+
+export const FileInfoAdmin = styled.div`
+  position: relative;
+    top: -141px;
+    height: 0px;
 `;
 
 export const FileInfoBlogPost = styled.div`
@@ -502,6 +523,19 @@ export const Preview = styled.div`
   display: table;
   margin: 0 auto;
 `;
+
+export const PreviewAdmin = styled.div`
+  width: 120px;
+  height: 120px;
+  border-radius: 120px;
+  background-image: url(${(props) => props.src});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  display: table;
+  margin: 0 auto;
+`;
+
 
 export const PreviewAudio = styled.div`
   width: 250px;
@@ -579,6 +613,26 @@ export const DropAudioContainer = styled.div.attrs({
   }
 `;
 
+export const DropContainerAdmin = styled.div.attrs({
+  className: 'dropzone',
+})`
+  border: 1px dashed #e0b528;
+  border-radius: 70px;
+  height: 120px;
+  width: 120px;
+  display: table;
+  z-index: 99999;
+  margin: 0 auto 20px auto;
+  cursor: pointer;
+  -webkit-transition: height 0.2s ease;
+  transition: height 0.2s ease;
+  ${(props) => props.isDragActive && dragActive};
+  ${(props) => props.isDragReject && dragReject};
+  &:focus {
+    outline: none;
+  }
+`;
+
 export const DropContainerBlogPostCover = styled.div.attrs({
   className: 'dropzone',
 })`
@@ -619,6 +673,16 @@ export const UploadAudioMessage = styled.p`
   justify-content: center;
   align-items: center;
   padding: 15px 0;
+`;
+
+export const UploadMessageAdmin = styled.p`
+  display: flex;
+  color: ${(props) => messageColors[props.type || 'default']};
+  justify-content: center;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 13px;
+  margin: 25px 0;
 `;
 
 export const AllContent = styled.div`

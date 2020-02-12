@@ -1,59 +1,52 @@
 import React, { useState } from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
 import {
   FaUsersCog,
-  FaUserPlus,
+  FaUser,
 } from 'react-icons/fa';
+import _ from 'lodash';
+
 
 import {
   TitleDiv,
   Form,
   Warning,
-} from '../styled-components/register-admin.styled-components';
+} from '../styled-components/login-admin.styled-components';
 
-const LoginAdmin = () => {
+import * as UserAction from '../store/actions/user/user';
+
+const LoginAdmin = (props) => {
+  const userInfo = useSelector((state) => state.user);
+
+  const {
+    history,
+  } = props;
+
+  if (!_.isEmpty(userInfo.data)) {
+    history.push('/');
+  }
+
+
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [isSU, setIsSU] = useState(false);
   const [error, setError] = useState(false);
   const [adminUser, setAdminUser] = useState('');
   const [adminPassword, setAdminPassword] = useState('');
-  const [adminPassword2, setAdminPassword2] = useState('');
-  const [isRegister, setIsRegister] = useState(null);
-  const [isAdminUserValid, setIsAdminUserValid] = useState(true);
-  const [isPasswordsMatching, setIsPasswordsMatching] = useState(true);
+  const [isCredentialIncorrect, setIsCredentialIncorrect] = useState(false);
+  const [areFieldsFilled, setAreFieldsFilled] = useState(true);
 
-  const RegisterAdminUser = async (adminRegisterInfo) => {
-    console.log('userInfo:', adminRegisterInfo);
-    const response = await fetch('http://localhost:5000/admin/user/register/admin',
-      {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(adminRegisterInfo),
-      });
-    const data = await response.json();
-    return data;
+  const dispatch = useDispatch();
+
+  const handleLoginAdmin = async (e) => {
+    e.preventDefault();
+    // setIsCredentialIncorrect(false);
+    dispatch(UserAction.loginAdminUser(adminUser, adminPassword));
+    if (userInfo.fetched && !_.isEmpty(userInfo.data)) {
+      history.push('/');
+    }
   };
 
-  const verifyAdminUser = async () => {
-    const response = await fetch(`http://localhost:5000/admin/user/verify/admin/username/${adminUser}`,
-      {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-    const data = await response.json();
-    return data;
-  };
 
   const LoginSU = async (userInfo) => {
     const response = await fetch('http://localhost:5000/admin/user/verify/su',
@@ -87,9 +80,6 @@ const LoginAdmin = () => {
     setAdminPassword(e.target.value);
   };
 
-  const handleAdminPassword2 = (e) => {
-    setAdminPassword2(e.target.value);
-  };
 
   const handleLoginSU = async (e) => {
     e.preventDefault();
@@ -106,91 +96,18 @@ const LoginAdmin = () => {
     }
   };
 
-  const handleRegistration = async (e) => {
-    e.preventDefault();
+  let loginAdmin;
 
-    if (adminPassword === adminPassword2 && (adminPassword !== '' && adminPassword2 !== '')) {
-      setIsPasswordsMatching(true);
-      const res = await verifyAdminUser(adminUser);
-      if (!res.valid) {
-        setIsAdminUserValid(false);
-      } else {
-        const adminRegisterInfo = {
-          user: adminUser,
-          password: adminPassword,
-        };
-        const resRegistration = await RegisterAdminUser(adminRegisterInfo);
-      }
-    } else {
-      setIsPasswordsMatching(false);
-    }
-  };
-
-
-  let registerAdmin;
-  let notSUWarning;
-  let passwordsDoesntMatch;
-  let usernameAlreadyTaken;
-
-  if (error) {
-    notSUWarning = (
-      <>
-        <br />
-        <Warning>
-          Not a Super User
-        </Warning>
-      </>
-    );
-  } else {
-    notSUWarning = (
-      <>
-
-      </>
-    );
-  }
-
-  if (isPasswordsMatching) {
-    passwordsDoesntMatch = (
-      <>
-
-      </>
-    );
-  } else {
-    passwordsDoesntMatch = (
-      <>
-        <Warning>
-          Passwords must match
-        </Warning>
-      </>
-    );
-  }
-
-
-  if (isAdminUserValid) {
-    usernameAlreadyTaken = (
-      <>
-
-      </>
-    );
-  } else {
-    usernameAlreadyTaken = (
-      <>
-        <Warning>
-          This username is already taken
-        </Warning>
-      </>
-    );
-  }
 
   if (isSU) {
-    registerAdmin = (
+    loginAdmin = (
       <>
         <div className="col-12">
           <TitleDiv>
-            <FaUserPlus />
-            <h1>Register new admin</h1>
+            <FaUser />
+            <h1>Login Admin</h1>
           </TitleDiv>
-          <Form method="post" onSubmit={handleRegistration}>
+          <Form method="post" onSubmit={handleLoginAdmin}>
             <input
               type="text"
               name="user"
@@ -209,26 +126,20 @@ const LoginAdmin = () => {
               placeholder="Password"
               onChange={handleAdminPassword}
             />
-            <br />
-            <input
-              type="password"
-              name="password2"
-              id="password2"
-              value={adminPassword2}
-              placeholder="Confirm Password"
-              onChange={handleAdminPassword2}
-            />
-            {passwordsDoesntMatch}
-            {usernameAlreadyTaken}
-            <button type="submit">
-              Register
+            {isCredentialIncorrect && (
+            <Warning>
+              Invalid credentials
+            </Warning>
+            )}
+            <button className="login" type="submit">
+              Login
             </button>
           </Form>
         </div>
       </>
     );
   } else {
-    registerAdmin = (
+    loginAdmin = (
       <>
         <div className="col-12">
           <TitleDiv>
@@ -254,8 +165,15 @@ const LoginAdmin = () => {
               placeholder="Password"
               onChange={handlePassword}
             />
-            {notSUWarning}
-            <button type="submit">
+            {error && (
+              <>
+                <br />
+                <Warning>
+                  Not a Super User
+                </Warning>
+              </>
+            )}
+            <button className="login" type="submit">
               Login
             </button>
           </Form>
@@ -268,7 +186,7 @@ const LoginAdmin = () => {
     <>
       <div className="container">
         <div className="row">
-          {registerAdmin}
+          {loginAdmin}
         </div>
       </div>
     </>

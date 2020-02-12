@@ -5,6 +5,8 @@ import {
 
 
 import asyncLoginUserApi from './user/loginUser';
+import asyncRegisterAdminUserApi from './user/registerAdminUser';
+import asyncLoginAdminUserApi from './user/loginAdminUser';
 import asyncGetMostReadPostApi from './homepage/getMostReadPost';
 import asyncLoginUserProviderApi from './user/loginUserProvider';
 import asyncGetPublicProfileApi from './user/getPublicProfile';
@@ -35,6 +37,8 @@ import asyncPodcastsByTagApi from './podcasts/getPodcastsByTag';
 export default function* root() {
   yield all([
     takeLatest('REQUEST_GET_MOST_READ_POST', asyncGetMostReadPostApi),
+    takeLatest('REQUEST_REGISTER_ADMIN_USER', asyncRegisterAdminUserApi),
+    takeLatest('REQUEST_LOGIN_ADMIN_USER', asyncLoginAdminUserApi),
     takeLatest('REQUEST_LOGIN_USER', asyncLoginUserApi),
     takeLatest('REQUEST_LOGIN_USER_PROVIDER', asyncLoginUserProviderApi),
     takeLatest('REQUEST_GET_PUBLIC_PROFILE', asyncGetPublicProfileApi),

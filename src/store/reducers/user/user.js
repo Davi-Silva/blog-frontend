@@ -9,6 +9,48 @@ const initialState = {
 
 export default function user(state = initialState, action) {
   switch (action.type) {
+    case 'REQUEST_REGISTER_ADMIN_USER':
+      return {
+        ...state,
+        loading: true,
+      };
+    case 'SUCCESS_REGISTER_ADMIN_USER':
+      return {
+        ...state,
+        data: action.payload.data,
+        loading: false,
+        fetched: true,
+        error: false,
+      };
+    case 'FAILURE_REGISTER_ADMIN_USER':
+      return {
+        ...state,
+        data: {},
+        loading: false,
+        fetched: true,
+        error: true,
+      };
+    case 'REQUEST_LOGIN_ADMIN_USER':
+      return {
+        ...state,
+        loading: true,
+      };
+    case 'SUCCESS_LOGIN_ADMIN_USER':
+      return {
+        ...state,
+        data: action.payload.data,
+        loading: false,
+        fetched: true,
+        error: false,
+      };
+    case 'FAILURE_LOGIN_ADMIN_USER':
+      return {
+        ...state,
+        data: {},
+        loading: false,
+        fetched: true,
+        error: true,
+      };
     case 'REQUEST_LOGIN_USER':
       return {
         ...state,

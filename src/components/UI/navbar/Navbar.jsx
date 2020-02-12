@@ -131,6 +131,7 @@ const Navbar = (props) => {
     const {
       profileImage,
       name,
+      isAdmin,
     } = user.data;
     UserDiv = (
       <>
@@ -150,11 +151,16 @@ const Navbar = (props) => {
       </>
     );
     if (userMenuState.showUserMenu) {
+      console.log('isAdmin navbar:', isAdmin);
       UserMenuDiv = (
         <>
           <div className="row">
             <div className="col-12">
-              <UserMenu displayName={name} CloseUserMenuOnClick={closeUserMenuOnClick} />
+              <UserMenu
+                displayName={name}
+                CloseUserMenuOnClick={closeUserMenuOnClick}
+                isAdmin={isAdmin}
+              />
             </div>
           </div>
         </>

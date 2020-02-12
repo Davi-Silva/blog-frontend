@@ -67,3 +67,23 @@ export function setUnfollowAuthor(userId, authorId) {
     },
   };
 }
+
+export function registerAdminUser(adminRegisterInfo, profilePictureId) {
+  return {
+    type: 'REQUEST_REGISTER_ADMIN_USER',
+    payload: {
+      adminRegisterInfo,
+      profilePictureId,
+    },
+  };
+}
+
+export function loginAdminUser(username, password) {
+  return {
+    type: 'REQUEST_LOGIN_ADMIN_USER',
+    payload: {
+      username,
+      password,
+    },
+  };
+}

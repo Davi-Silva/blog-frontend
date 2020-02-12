@@ -36,7 +36,7 @@ export const Form = styled.form`
       color: #333;
     }
   }
-  .register {
+  .login {
     margin: 0 auto;
     display: table;
     background-color: transparent;

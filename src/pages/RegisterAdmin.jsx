@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import _, { uniqueId } from 'lodash';
+import filesize from 'filesize';
 
 import {
   FaUsersCog,
@@ -11,33 +14,47 @@ import {
   Warning,
 } from '../styled-components/register-admin.styled-components';
 
-const RegisterAdmin = () => {
+import api from '../services/api';
+
+import UploadCover from '../components/UI/admin/UploadFieldAdmin';
+import FileListCover from '../components/UI/admin/FileListCoverAdmin';
+
+import * as UserAction from '../store/actions/user/user';
+
+const RegisterAdmin = (props) => {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [isSU, setIsSU] = useState(false);
   const [error, setError] = useState(false);
+  const [adminName, setAdminName] = useState('');
   const [adminUser, setAdminUser] = useState('');
   const [adminPassword, setAdminPassword] = useState('');
   const [adminPassword2, setAdminPassword2] = useState('');
   // const [isRegister, setIsRegister] = useState(null);
   const [isAdminUserValid, setIsAdminUserValid] = useState(true);
   const [isPasswordsMatching, setIsPasswordsMatching] = useState(true);
+  const [profilePicture, setProfilePicture] = useState([]);
+  const dispatch = useDispatch();
 
-  const RegisterAdminUser = async (adminRegisterInfo) => {
-    console.log('userInfo:', adminRegisterInfo);
-    const response = await fetch('http://localhost:5000/admin/user/register/admin',
-      {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(adminRegisterInfo),
+  const userInfo = useSelector((state) => state.user.data);
+  const userInfoFetched = useSelector((state) => state.user.fetched);
+
+  const processUploadCover = (uploadedCoversParam) => {
+    const data = new FormData();
+
+    data.append('file', uploadedCoversParam.file, uploadedCoversParam.name);
+
+    api.post('/users/upload/profile-picture', data, {
+      onUploadProgress: (e) => {
+        const progress = parseInt(Math.round((e.loaded * 100) / e.total), 10);
+      },
+    })
+      .then((response) => {
+        setProfilePicture(response.data);
+      })
+      .catch((err) => {
+        console.log('err:', err);
       });
-    const data = await response.json();
-    return data;
   };
 
   const verifyAdminUser = async () => {
@@ -69,6 +86,10 @@ const RegisterAdmin = () => {
       });
     const data = await response.json();
     return data;
+  };
+
+  const handleName = (e) => {
+    setAdminName(e.target.value);
   };
 
   const handleUser = (e) => {
@@ -109,78 +130,57 @@ const RegisterAdmin = () => {
   const handleRegistration = async (e) => {
     e.preventDefault();
 
-    if (adminPassword === adminPassword2 && (adminPassword !== '' && adminPassword2 !== '')) {
+    if (adminPassword === adminPassword2
+      && (adminPassword !== '' && adminPassword2 !== '')
+      && !_.isEmpty(profilePicture)
+      && adminName !== ''
+      && adminUser !== '') {
       setIsPasswordsMatching(true);
       const res = await verifyAdminUser(adminUser);
       if (!res.valid) {
         setIsAdminUserValid(false);
       } else {
         const adminRegisterInfo = {
+          name: adminName,
           user: adminUser,
           password: adminPassword,
         };
-        const resRegistration = await RegisterAdminUser(adminRegisterInfo);
+        dispatch(UserAction.registerAdminUser(adminRegisterInfo, profilePicture.id));
+        if (userInfoFetched) {
+          const {
+            history,
+          } = props;
+          history.push('/');
+        }
       }
     } else {
       setIsPasswordsMatching(false);
     }
   };
 
+  const handleUploadCover = async (files) => {
+    console.log('file Dropzone:', files);
+    const uploadedCoversObj = files.map((file) => ({
+      file,
+      id: uniqueId(),
+      name: file.name,
+      readableSize: filesize(file.size),
+      preview: URL.createObjectURL(file),
+      progress: 0,
+      uploaded: false,
+      error: false,
+      url: null,
+    }));
+    uploadedCoversObj.forEach(processUploadCover);
+  };
+
+  const handleDeleteProfilePicture = async (id) => {
+    await api.delete(`/users/delete/profile-picture/${id}`);
+    setProfilePicture({});
+  };
+
 
   let registerAdmin;
-  let notSUWarning;
-  let passwordsDoesntMatch;
-  let usernameAlreadyTaken;
-
-  if (error) {
-    notSUWarning = (
-      <>
-        <br />
-        <Warning>
-          Not a Super User
-        </Warning>
-      </>
-    );
-  } else {
-    notSUWarning = (
-      <>
-
-      </>
-    );
-  }
-
-  if (isPasswordsMatching) {
-    passwordsDoesntMatch = (
-      <>
-
-      </>
-    );
-  } else {
-    passwordsDoesntMatch = (
-      <>
-        <Warning>
-          Passwords must match
-        </Warning>
-      </>
-    );
-  }
-
-
-  if (isAdminUserValid) {
-    usernameAlreadyTaken = (
-      <>
-
-      </>
-    );
-  } else {
-    usernameAlreadyTaken = (
-      <>
-        <Warning>
-          This username is already taken
-        </Warning>
-      </>
-    );
-  }
 
   if (isSU) {
     registerAdmin = (
@@ -191,6 +191,23 @@ const RegisterAdmin = () => {
             <h1>Register new admin</h1>
           </TitleDiv>
           <Form method="post" onSubmit={handleRegistration}>
+            <UploadCover onUpload={handleUploadCover} />
+            {!_.isEmpty(profilePicture) && (
+            <FileListCover
+              file={profilePicture}
+              onDelete={handleDeleteProfilePicture}
+            />
+            )}
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={adminName}
+              placeholder="Name"
+              autoComplete="off"
+              onChange={handleName}
+            />
+            <br />
             <input
               type="text"
               name="user"
@@ -218,9 +235,17 @@ const RegisterAdmin = () => {
               placeholder="Confirm Password"
               onChange={handleAdminPassword2}
             />
-            {passwordsDoesntMatch}
-            {usernameAlreadyTaken}
-            <button type="submit">
+            {!isPasswordsMatching && (
+            <Warning>
+              Passwords must match
+            </Warning>
+            )}
+            {!isAdminUserValid && (
+            <Warning>
+              This username is already taken
+            </Warning>
+            )}
+            <button className="register" type="submit">
               Register
             </button>
           </Form>
@@ -254,8 +279,15 @@ const RegisterAdmin = () => {
               placeholder="Password"
               onChange={handlePassword}
             />
-            {notSUWarning}
-            <button type="submit">
+            {error && (
+              <>
+                <br />
+                <Warning>
+                  Not a Super User
+                </Warning>
+              </>
+            )}
+            <button className="register" type="submit">
               Login
             </button>
           </Form>

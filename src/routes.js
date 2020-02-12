@@ -17,7 +17,7 @@ import Navbar from './components/UI/navbar/Navbar';
 
 import Admin from './pages/Admin';
 import RegisterAdmin from './pages/RegisterAdmin';
-// import LoginAdmin from './pages/LoginAdmin';
+import LoginAdmin from './pages/LoginAdmin';
 
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
@@ -75,7 +75,9 @@ const Routes = () => (
       <Route path="/" component={Navbar} />
       <Switch>
         <Route exact path="/admin/register" component={RegisterAdmin} />
+        <Route exact path="/admin/login" component={LoginAdmin} />
         <Route exact path="/admin" component={Admin} />
+
         <Route exact path="/course/:slug" component={Course} />
         <Route exact path="/courses" component={CoursesHome} />
         <Route
