@@ -56,6 +56,10 @@ import Footer from './components/UI/footer/Footer';
 
 import store from './store';
 
+import {
+  PageWrapper,
+} from './styled-components/app.styled-components';
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
@@ -72,91 +76,93 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 const Routes = () => (
   <BrowserRouter>
     <Provider store={store}>
-      <Route path="/" component={Navbar} />
-      <Switch>
-        <Route exact path="/admin/register" component={RegisterAdmin} />
-        <Route exact path="/admin/login" component={LoginAdmin} />
-        <Route exact path="/admin" component={Admin} />
+      <PageWrapper>
+        <Route path="/" component={Navbar} />
+        <Switch>
+          <Route exact path="/admin/register" component={RegisterAdmin} />
+          <Route exact path="/admin/login" component={LoginAdmin} />
+          <Route exact path="/admin" component={Admin} />
 
-        <Route exact path="/course/:slug" component={Course} />
-        <Route exact path="/courses" component={CoursesHome} />
-        <Route
-          exact
-          path="/courses/program/:slug"
-          component={CoursesRelatedProgram}
-        />
-        <Route
-          exact
-          path="/courses/programs"
-          component={CoursesRelatedPrograms}
-        />
-        <Route path="/courses/categories" component={CoursesCategories} />
-        <Route path="/courses/category/:slug" component={CoursesCategory} />
-        <Route path="/my-courses" component={MyCourses} />
+          <Route exact path="/course/:slug" component={Course} />
+          <Route exact path="/courses" component={CoursesHome} />
+          <Route
+            exact
+            path="/courses/program/:slug"
+            component={CoursesRelatedProgram}
+          />
+          <Route
+            exact
+            path="/courses/programs"
+            component={CoursesRelatedPrograms}
+          />
+          <Route path="/courses/categories" component={CoursesCategories} />
+          <Route path="/courses/category/:slug" component={CoursesCategory} />
+          <Route path="/my-courses" component={MyCourses} />
 
-        <Route path="/" exact component={Homepage} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/about" component={About} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/user/:user" component={PublicProfile} />
-        <Route path="/terms-and-conditions" component={TermsConditions} />
-        <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/" exact component={Homepage} />
+          <Route path="/dashboard" component={Dashboard} />
+          {/* <Route path="/login" component={Login} /> */}
+          <Route path="/signup" component={SignUp} />
+          <Route path="/about" component={About} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/user/:user" component={PublicProfile} />
+          <Route path="/terms-and-conditions" component={TermsConditions} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
 
-        <Route exact path="/podcasts" component={Podcasts} />
-        <Route
-          exact
-          path="/podcast/:year/:month/:day/:slug"
-          component={Podcast}
-        />
+          <Route exact path="/podcasts" component={Podcasts} />
+          <Route
+            exact
+            path="/podcast/:year/:month/:day/:slug"
+            component={Podcast}
+          />
 
-        <Route
-          exact
-          path="/blog"
-          component={Blog}
-        />
-        <Route
-          exact
-          path="/blog/:year/:month/:day/:slug"
-          component={Post}
-        />
-        <Route
-          exact
-          path="/blog/tags/:slug"
-          component={BlogPostByTags}
-        />
-        <Route
-          exact
-          path="/blog/category/:slug"
-          component={BlogPostByCategory}
-        />
-        <Route
-          exact
-          path="/podcasts/tags/:slug"
-          component={PodcastsByTags}
-        />
-        <Route
-          exact
-          path="/podcasts/category/:slug"
-          component={PodcastsByCategory}
-        />
-        <Route
-          exacth
-          path="/edit/podcast/:slug"
-          render={(props) => <EditPodcast {...props} />}
-        />
-        <Route
-          exact
-          path="/edit/post/:slug"
-          render={(props) => <EditPost {...props} />}
-        />
-        <Route exact path="/404" component={PageNotFound} />
-        <Route path="/upload/podcast" component={UploadNewPodcast} />
-        <Route path="/publish/blog" component={PublishBlogPost} />
-        <PrivateRoute path="/app" component={() => <h1>Hello, hacky boi.</h1>} />
-      </Switch>
-      <Footer />
+          <Route
+            exact
+            path="/blog"
+            component={Blog}
+          />
+          <Route
+            exact
+            path="/blog/:year/:month/:day/:slug"
+            component={Post}
+          />
+          <Route
+            exact
+            path="/blog/tags/:slug"
+            component={BlogPostByTags}
+          />
+          <Route
+            exact
+            path="/blog/category/:slug"
+            component={BlogPostByCategory}
+          />
+          <Route
+            exact
+            path="/podcasts/tags/:slug"
+            component={PodcastsByTags}
+          />
+          <Route
+            exact
+            path="/podcasts/category/:slug"
+            component={PodcastsByCategory}
+          />
+          <Route
+            exacth
+            path="/edit/podcast/:slug"
+            render={(props) => <EditPodcast {...props} />}
+          />
+          <Route
+            exact
+            path="/edit/post/:slug"
+            render={(props) => <EditPost {...props} />}
+          />
+          <Route exact path="/404" component={PageNotFound} />
+          <Route path="/upload/podcast" component={UploadNewPodcast} />
+          <Route path="/publish/blog" component={PublishBlogPost} />
+          <PrivateRoute path="/app" component={() => <h1>Hello, hacky boi.</h1>} />
+        </Switch>
+        <Footer />
+      </PageWrapper>
     </Provider>
   </BrowserRouter>
 );

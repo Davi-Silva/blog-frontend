@@ -79,8 +79,9 @@ const Navbar = () => {
   };
 
   const handleCloseSideDrawer = () => {
-    const sideDrawer = window.document.body.children[1].children[1];
-    const sideBackgroundDrawer = window.document.body.children[1].children[0];
+    console.log(window.document.body.children[1].children[0].children[1]);
+    const sideDrawer = window.document.body.children[1].children[0].children[1];
+    const sideBackgroundDrawer = window.document.body.children[1].children[0].children[0];
     if (sideDrawerState.showSideDrawer) {
       sideDrawer.classList.remove('showSideDrawer');
       sideBackgroundDrawer.classList.remove('showBackgroundSideDrawer');
@@ -91,8 +92,8 @@ const Navbar = () => {
   };
 
   const handleSideDrawer = () => {
-    const sideDrawer = window.document.body.children[1].children[1];
-    const sideBackgroundDrawer = window.document.body.children[1].children[0];
+    const sideDrawer = window.document.body.children[1].children[0].children[1];
+    const sideBackgroundDrawer = window.document.body.children[1].children[0].children[0];
     if (!sideDrawerState.showSideDrawer) {
       sideDrawer.classList.remove('hideSideDrawer');
       sideBackgroundDrawer.classList.remove('hideBackgroundSideDrawer');

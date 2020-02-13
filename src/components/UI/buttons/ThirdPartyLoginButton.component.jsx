@@ -10,6 +10,7 @@ import {
 
 import {
   SocialMediaLoginLink,
+  Span,
 } from '../../../styled-components/third-party-login-button.styled-components';
 
 import * as UserActions from '../../../store/actions/user/user';
@@ -60,13 +61,11 @@ const LoginButton = (props) => {
       <SocialMediaLoginLink
         // onClick={handleClick}
         href={endpoint}
-        style={{
-          backgroundColor: `${backgroundColor}`,
-        }}
       >
 
         <ul>
           <li
+            className="icon"
             style={{
               marginRight: '5px',
             }}
@@ -78,11 +77,11 @@ const LoginButton = (props) => {
               marginLeft: '5px',
             }}
           >
-            <span style={{ textDecoration: 'none' }}>
+            <Span>
                 Login with
               {' '}
               {providerName}
-            </span>
+            </Span>
           </li>
         </ul>
 

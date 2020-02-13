@@ -24,6 +24,7 @@ import PodcastsList from '../../components/UI/lists/PodcastsList.component';
 import * as PodcastsAction from '../../store/actions/podcasts/podcasts';
 
 import {
+  Container,
   Logo,
   Host,
   AvailableOn,
@@ -187,11 +188,11 @@ const Podcasts = (props) => {
 
         </div>
       </div>
-      <div className="container" style={{ marginTop: '25px' }}>
+      <Container className="container" style={{ marginTop: '25px', marginBottom: '25px' }}>
         <div className="row">
           {allPodcasts}
         </div>
-      </div>
+      </Container>
     </>
   );
 };

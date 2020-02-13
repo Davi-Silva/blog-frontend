@@ -82,7 +82,7 @@ export const Button = styled.button`
   color: #ffcd2b;
   background: #000;
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
-  margin: 15px auto;
+  margin: 25px auto 45px auto;
   font-weight: 900;
   display: table;
   padding: 4px 7px;
@@ -194,13 +194,4 @@ export const PodcastAudioFileUploaderPlaceholder = styled.div`
     font-size: 16px;
     text-align: center;
   }
-`;
-
-export const LoginButtons = styled.ul`
-  margin-bottom: 0;
-   li {
-     width: 220px;
-     display: table;
-     margin: 0 auto;
-   }
 `;

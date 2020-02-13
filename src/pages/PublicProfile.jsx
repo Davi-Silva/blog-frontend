@@ -12,6 +12,7 @@ import {
 } from 'react-icons/fa';
 
 import {
+  ContainerProfile,
   Wrapper,
   UserInfoDiv,
   ProfileImage,
@@ -359,13 +360,13 @@ const PublicProfile = (props) => {
 
   return (
     <>
-      <div className="container">
+      <ContainerProfile className="container">
         <div className="row">
           <div className="col-12">
             {User}
           </div>
         </div>
-      </div>
+      </ContainerProfile>
     </>
   );
 };

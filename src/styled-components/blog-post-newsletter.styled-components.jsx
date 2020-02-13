@@ -2,8 +2,11 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  padding: 25px 0;
+  padding: 25px 0 55px 0;
   width: 100%;
+  @media (max-width: 768px) {
+    padding: 25px 0 460px 0;
+  }
 `;
 
 export const Title = styled.h1`

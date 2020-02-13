@@ -11,7 +11,7 @@ export const SubNavigatorBar = styled.nav`
   position: sticky;
   letter-spacing: 1px;
   border-bottom: 1px solid #000;
-  z-index: 999999999;
+  z-index: 9999;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
 `;
 

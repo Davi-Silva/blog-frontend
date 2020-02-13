@@ -4,6 +4,13 @@ import styled from 'styled-components';
 
 import { rotate } from './animations';
 
+export const ContainerProfile = styled.div`
+  margin-bottom: 25px;
+  @media (max-width: 768px) {
+    margin-bottom: 450px;
+  }
+`;
+
 export const Cover = styled.div`
   width: 100%;
   height: 180px;

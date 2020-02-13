@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import {
+  ContainerProfile,
   RecentActivitiesCover,
   RecentActivitiesH2,
   RecentActivityWrapper,
@@ -109,7 +110,6 @@ const RecentActivities = (props) => {
           </RecentActivityWrapper>
         </div>
       ))}
-
     </>
   );
 };

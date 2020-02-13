@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 export const FooterDiv = styled.footer`
     background: #ffcd2b;
     padding-top: 30px;
-    margin-top: 40px;
+    /* margin-top: 40px; */
+		position: absolute;
+    width: 100%;
+		bottom: 0;
 		border-top: 1px solid #000;
 		box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.2);
 	@media (max-width: 768px) {

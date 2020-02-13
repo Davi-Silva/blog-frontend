@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const RecentCategoriesDiv = styled.div`
   width: 100%;
-  margin: 15px 0;
+  margin: 15px 0 35px 0;
 `;
 
 export const RecentCategoriesTitle = styled.h3`

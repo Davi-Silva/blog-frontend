@@ -45,6 +45,14 @@ const SideDrawer = (props) => {
     closeDrawer();
   };
 
+  const handleToggleForm = () => {
+    const {
+      Toggle,
+    } = props;
+    const toggler = Toggle;
+    toggler();
+  };
+
 
   let ProfileDiv;
   let logoutVar;
@@ -107,8 +115,10 @@ const SideDrawer = (props) => {
       <>
         <LoginLinkDiv>
           <LoginLink
-            to="/login"
-            onClick={handleClose}
+            onClick={() => {
+              handleClose();
+              handleToggleForm();
+            }}
           >
           Login
           </LoginLink>

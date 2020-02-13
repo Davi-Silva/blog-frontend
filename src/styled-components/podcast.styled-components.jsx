@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { opacity, rotate } from './animations';
 
 export const Wrapper = styled.div`
-	margin: 20px auto 0px auto;
+	margin: 20px auto 40px auto;
 	position: sticky;
 	top: 30px;
 `;

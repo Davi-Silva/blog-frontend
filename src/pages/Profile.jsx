@@ -11,6 +11,7 @@ import {
 import _ from 'lodash';
 
 import {
+  ContainerProfile,
   Cover,
   Wrapper,
   ProfileImage,
@@ -380,7 +381,7 @@ const Profile = (props) => {
   return (
     <>
       {ProfileCoverImage}
-      <div className="container">
+      <ContainerProfile className="container">
         <div className="row">
           <div className="col-lg-3 col-md-3 col-sm-12 col-12">
             {UserImageDiv}
@@ -400,7 +401,7 @@ const Profile = (props) => {
           </div>
           {Activities}
         </div>
-      </div>
+      </ContainerProfile>
     </>
   );
 };

@@ -4,6 +4,14 @@ import { Link } from 'react-router-dom';
 
 import { rotate } from './animations';
 
+export const Container = styled.div`
+	margin-top: 25px;
+	margin-bottom: 25px;
+	@media (max-width: 768px) {
+		margin-bottom: 425px!important;
+	}
+`;
+
 export const AvailableOn = styled.div`
 	display: table;
 	margin: 15px auto 0 auto;

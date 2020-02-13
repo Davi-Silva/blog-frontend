@@ -12,6 +12,8 @@ import SideDrawer from './side-drawer/SideDrawer';
 import UserMenu from './user-menu/UserMenu';
 import SearchForm from './search-form/SearchForm';
 
+import Login from '../../../pages/Login';
+
 import * as UserActions from '../../../store/actions/user/user';
 import * as NavbarActions from '../../../store/actions/navbar';
 
@@ -37,6 +39,7 @@ const Navbar = (props) => {
   const [searchFormState, setSearchFormState] = useState({
     showSearchForm: false,
   });
+  const [loginForm, setLoginForm] = useState(false);
 
   const user = useSelector((state) => state.user);
   const { showSideDrawer } = useSelector((state) => state.navbar);
@@ -75,8 +78,8 @@ const Navbar = (props) => {
   };
 
   const handleSideDrawer = () => {
-    const sideDrawer = window.document.body.children[1].children[1];
-    const sideBackgroundDrawer = window.document.body.children[1].children[0];
+    const sideDrawer = window.document.body.children[1].children[0].children[1];
+    const sideBackgroundDrawer = window.document.body.children[1].children[0].children[0];
     if (!showSideDrawer) {
       sideDrawer.classList.remove('hideSideDrawer');
       sideBackgroundDrawer.classList.remove('hideBackgroundSideDrawer');
@@ -125,7 +128,12 @@ const Navbar = (props) => {
     }
   };
 
+  const toggleLoginForm = () => {
+    setLoginForm(!loginForm);
+  };
+
   let navbar;
+
 
   if (!_.isEmpty(user.data)) {
     const {
@@ -188,11 +196,11 @@ const Navbar = (props) => {
       <>
         <SignUp
           // className="nav-link"
-          to="/login"
           onClick={() => {
             document
               .querySelector('#navbarResponsive')
               .classList.remove('show');
+            toggleLoginForm();
           }}
         >
           Login
@@ -230,6 +238,7 @@ const Navbar = (props) => {
           ShowSideDrawer={showSideDrawer}
           HandleSideDrawer={handleSideDrawer}
           UserData={user.data}
+          Toggle={toggleLoginForm}
           style={{
             top: '30px',
           }}
@@ -354,6 +363,9 @@ const Navbar = (props) => {
             </div>
           </div>
         </NavBar>
+        {loginForm && (
+          <Login Toggle={toggleLoginForm} />
+        )}
       </>
     );
   }
